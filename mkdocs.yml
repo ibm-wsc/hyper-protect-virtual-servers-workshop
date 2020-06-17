@@ -6,7 +6,7 @@ nav:
     - Pre-requisites: prereq.md
     - Secure Image Build Lab: securebuild.md
     - GREP11 Lab: grep11.md
-    - Glossary: glossary.md
+    - Glossary of terms: glossary.md
     - Other Resources: resources.md
 
 theme: material
