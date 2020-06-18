@@ -236,15 +236,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#create-a-docker-hub-account-and-token-to-use" class="md-nav__link">
-    Create a Docker Hub account and token to use
+  <a href="#add-docker-registry-to-use-for-secure-build" class="md-nav__link">
+    Add Docker registry to use for secure build
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-docker-registry-to-secure-build" class="md-nav__link">
-    Add Docker registry to secure build
+  <a href="#create-secure-build-hyper-proteect-virtual-server" class="md-nav__link">
+    Create Secure Build Hyper Proteect Virtual Server
   </a>
   
 </li>
@@ -330,15 +330,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#create-a-docker-hub-account-and-token-to-use" class="md-nav__link">
-    Create a Docker Hub account and token to use
+  <a href="#add-docker-registry-to-use-for-secure-build" class="md-nav__link">
+    Add Docker registry to use for secure build
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-docker-registry-to-secure-build" class="md-nav__link">
-    Add Docker registry to secure build
+  <a href="#create-secure-build-hyper-proteect-virtual-server" class="md-nav__link">
+    Create Secure Build Hyper Proteect Virtual Server
   </a>
   
 </li>
@@ -364,16 +364,14 @@
                 
                 
                 <h1 id="secure-build-lab">Secure Build Lab<a class="headerlink" href="#secure-build-lab" title="Permanent link">&para;</a></h1>
-<h2 id="create-a-docker-hub-account-and-token-to-use">Create a Docker Hub account and token to use<a class="headerlink" href="#create-a-docker-hub-account-and-token-to-use" title="Permanent link">&para;</a></h2>
-<h2 id="add-docker-registry-to-secure-build">Add Docker registry to secure build<a class="headerlink" href="#add-docker-registry-to-secure-build" title="Permanent link">&para;</a></h2>
+<h2 id="add-docker-registry-to-use-for-secure-build">Add Docker registry to use for secure build<a class="headerlink" href="#add-docker-registry-to-use-for-secure-build" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>See your current docker registries with:</p>
 <div class="highlight"><pre><span></span><code>hpvs registry list
 </code></pre></div>
 
-<details class="example"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>hpvs registry list
-+---------------+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+---------------+
 | REGISTRY NAME |
 +---------------+
 +---------------+
@@ -383,30 +381,38 @@
 </li>
 <li>
 <p>Set your Docker username to the username for your account on Docker Hub</p>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Command Syntax</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">DOCKER_USERNAME</span><span class="o">=</span><span class="s2">&quot;my_username&quot;</span>
 </code></pre></div>
 
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Example Command</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">DOCKER_USERNAME</span><span class="o">=</span><span class="s2">&quot;gmoney23&quot;</span>
+</code></pre></div>
+
+</div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This will be the username you used when you created your Docker Hub account in the <a href="../prerequisites/#Create-a-Docker-Hub" target="_blank">Prerequisites</a></p>
 </div>
-<details class="example"><summary>Example</summary><div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">DOCKER_USERNAME</span><span class="o">=</span><span class="s2">&quot;gmoney23&quot;</span>
-</code></pre></div>
-
-</details>
 </li>
 <li>
 <p>Set your Docker registry placeholder name </p>
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Command Syntax</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">REGISTRY_NAME</span><span class="o">=</span><span class="s2">&quot;my_registry&quot;</span>
 </code></pre></div>
 
-<details class="example"><summary>Example</summary><div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">REGISTRY_NAME</span><span class="o">=</span><span class="s2">&quot;g_docker_hub&quot;</span>
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Example Command</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">REGISTRY_NAME</span><span class="o">=</span><span class="s2">&quot;g_docker_hub&quot;</span>
 </code></pre></div>
 
-</details>
+</div>
+</div>
 </li>
 <li>
-<p>Add you docker registry with:</p>
+<p>Add your Docker registry with:</p>
 <div class="highlight"><pre><span></span><code>hpvs registry add --name <span class="s2">&quot;</span><span class="si">${</span><span class="nv">REGISTRY_NAME</span><span class="si">}</span><span class="s2">&quot;</span> --dct https://notary.docker.io --url docker.io --user <span class="s2">&quot;</span><span class="si">${</span><span class="nv">DOCKER_USERNAME</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
@@ -414,24 +420,31 @@
 <p class="admonition-title">Note</p>
 <p>It will prompt you to enter your password. Use the Docker Hub token you have created for the lab in the <a href="../prerequisites/#Create-a-GitHub" target="_blank">Prerequisites</a></p>
 </div>
-<details class="example"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>hpvs registry add --name <span class="s2">&quot;</span><span class="si">${</span><span class="nv">REGISTRY_NAME</span><span class="si">}</span><span class="s2">&quot;</span> --dct https://notary.docker.io --url docker.io --user <span class="s2">&quot;</span><span class="si">${</span><span class="nv">DOCKER_USERNAME</span><span class="si">}</span><span class="s2">&quot;</span>
-Enter Password: 
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>Enter Password: 
 </code></pre></div>
 
 </details>
 </li>
 <li>
-<p>Run hpvs registry list again to confirm your registry has been added</p>
+<p>List your registered Docker registries again to confirm your registry has been added.</p>
 <div class="highlight"><pre><span></span><code>hpvs registry list
 </code></pre></div>
 
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+---------------+
+<span class="p">|</span> REGISTRY NAME <span class="p">|</span>
++---------------+
+<span class="p">|</span> g_docker_hub  <span class="p">|</span>
++---------------+
+</code></pre></div>
+
+</details>
 </li>
 <li>
 <p>Check the details of your added registry with </p>
 <div class="highlight"><pre><span></span><code>hpvs registry show --name <span class="s2">&quot;</span><span class="si">${</span><span class="nv">REGISTRY_NAME</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
-<details class="example"><summary><code>hpvs registry show --name "${REGISTRY_NAME}</code>"</summary><div class="highlight"><pre><span></span><code>+------+--------------------------+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+------+--------------------------+
 <span class="p">|</span> name <span class="p">|</span> g_docker_hub             <span class="p">|</span>
 <span class="p">|</span> user <span class="p">|</span> gmoney23                 <span class="p">|</span>
 <span class="p">|</span> dct  <span class="p">|</span> https://notary.docker.io <span class="p">|</span>
@@ -442,6 +455,7 @@ Enter Password:
 </details>
 </li>
 </ol>
+<h2 id="create-secure-build-hyper-proteect-virtual-server">Create Secure Build Hyper Proteect Virtual Server<a class="headerlink" href="#create-secure-build-hyper-proteect-virtual-server" title="Permanent link">&para;</a></h2>
                 
               
               
