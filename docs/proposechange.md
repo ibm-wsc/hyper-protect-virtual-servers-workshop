@@ -6,4 +6,4 @@ You will see a message similar to the following: "You’re editing a file in a p
 
 The owners of this repo will review your pull request and accept or deny your change proposal.
 
-There other other ways of doing a pull request, a Google search will lead you to those tutorials.
+There are other ways of doing a pull request, a Google search will lead you to those tutorials.
