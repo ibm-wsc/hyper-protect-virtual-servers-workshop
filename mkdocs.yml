@@ -7,7 +7,7 @@ nav:
     - Secure Image Build Lab: securebuild.md
     - GREP11 Lab: grep11.md
     - Glossary of terms: glossary.md
-    - Other Resources: resources.md
+    - Other resources: resources.md
     - Propose a change: proposechange.md
 
 theme: material
