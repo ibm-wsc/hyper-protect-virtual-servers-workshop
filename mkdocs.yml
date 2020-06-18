@@ -3,7 +3,7 @@ repo_url: https://github.ibm.com/wsc-blockchain-and-digital-assets/hyper-protect
 edit_uri: edit/master/docs
 nav:
     - Home: index.md
-    - Pre-requisites: prerequisites.md
+    - Prerequisites: prerequisites.md
     - Secure Image Build Lab: securebuild.md
     - GREP11 Lab: grep11.md
     - Glossary of terms: glossary.md
