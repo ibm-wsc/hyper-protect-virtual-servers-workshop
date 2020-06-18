@@ -12,9 +12,9 @@ Welcome to our Hyper Protect Virtual Server workshop. Hyper Protect Virtual Serv
 * Next Steps on Your Journey & Wrap Up
 
 ## Acknowledgements
-* Thanks to the following people who helped us test out the labs: Kevin Breitenother, Victoria Coates, Brandon Nguyen, Jasmine Burgess, Austin Grice
+* Thanks to the following contributors:
 
-## Authors
+## Workshop owners
 * [Barry Silliman](mailto:silliman@us.ibm.com)
 * [Garrett Woodworth](mailto:garrett.lee.woodworth@ibm.com)
 * [Jin VanStee](mailto:jinxiong@us.ibm.com)
