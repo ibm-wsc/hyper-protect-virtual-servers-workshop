@@ -1,8 +1,7 @@
 # Secure Build Lab
 
-## Create a Docker Hub account and token to use 
 
-## Add Docker registry to secure build
+## Add Docker registry to use for secure build
 
 1. See your current docker registries with:
 
@@ -10,9 +9,9 @@
     hpvs registry list
     ```
 
-    ??? example "Example Output"
+    ???+ example "Example Output"
+
         ```
-        hpvs registry list
         +---------------+
         | REGISTRY NAME |
         +---------------+
@@ -22,32 +21,36 @@
 
 2. Set your Docker username to the username for your account on Docker Hub
 
-    ``` bash
-    export DOCKER_USERNAME="my_username"
-    ```
+    === "Command Syntax"
 
-    !!! note 
-        This will be the username you used when you created your Docker Hub account in the [Prerequisites](prerequisites.md#Create-a-Docker-Hub){target=_blank}
+        ``` bash
+        export DOCKER_USERNAME="my_username"
+        ```
 
-    ??? example "Example"
+    === "Example Command"
 
         ``` bash
         export DOCKER_USERNAME="gmoney23"
         ```
+    
+    !!! note 
+        This will be the username you used when you created your Docker Hub account in the [Prerequisites](prerequisites.md#Create-a-Docker-Hub){target=_blank}
 
 3. Set your Docker registry placeholder name 
 
-    ``` bash
-    export REGISTRY_NAME="my_registry"
-    ```
+    === "Command Syntax"
 
-    ??? example "Example"
+        ``` bash
+        export REGISTRY_NAME="my_registry"
+        ```
+
+    === "Example Command"
 
         ``` bash
         export REGISTRY_NAME="g_docker_hub"
         ```
 
-2. Add you docker registry with:
+4. Add your Docker registry with:
 
     ``` bash
     hpvs registry add --name "${REGISTRY_NAME}" --dct https://notary.docker.io --url docker.io --user "${DOCKER_USERNAME}"
@@ -56,26 +59,35 @@
     !!! note 
         It will prompt you to enter your password. Use the Docker Hub token you have created for the lab in the [Prerequisites](prerequisites.md#Create-a-GitHub){target=_blank}
 
-    ??? example "Example Output"
+    ???+ example "Example Output"
 
         ``` bash
-        hpvs registry add --name "${REGISTRY_NAME}" --dct https://notary.docker.io --url docker.io --user "${DOCKER_USERNAME}"
         Enter Password: 
         ```
 
-4. Run hpvs registry list again to confirm your registry has been added
+5. List your registered Docker registries again to confirm your registry has been added.
 
     ``` bash
     hpvs registry list
     ```
 
-5. Check the details of your added registry with 
+    ???+ example "Example Output"
+
+        ``` bash
+        +---------------+
+        | REGISTRY NAME |
+        +---------------+
+        | g_docker_hub  |
+        +---------------+
+        ```
+
+6. Check the details of your added registry with 
 
     ``` bash
     hpvs registry show --name "${REGISTRY_NAME}"
     ```
 
-    ??? example "`hpvs registry show --name "${REGISTRY_NAME}`""
+    ???+ example "Example Output"
 
         ``` bash
         +------+--------------------------+
@@ -85,3 +97,5 @@
         | url  | docker.io                |
         +------+--------------------------+
         ```
+
+## Create Secure Build Hyper Proteect Virtual Server
