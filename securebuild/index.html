@@ -369,15 +369,27 @@
 <ol>
 <li>
 <p>See your current docker registries with:</p>
-<div class="highlight"><pre><span></span><code>hpvs registry list list
+<div class="highlight"><pre><span></span><code>hpvs registry list
 </code></pre></div>
 
+<details class="example"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>hpvs registry list
++---------------+
+| REGISTRY NAME |
++---------------+
++---------------+
+</code></pre></div>
+
+</details>
 </li>
 <li>
 <p>Set your Docker username to the username for your account on Docker Hub</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">DOCKER_USERNAME</span><span class="o">=</span><span class="s2">&quot;my_username&quot;</span>
 </code></pre></div>
 
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will be the username you used when you created your Docker Hub account in the <a href="../prerequisites/#Create-a-Docker-Hub" target="_blank">Prerequisites</a></p>
+</div>
 <details class="example"><summary>Example</summary><div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">DOCKER_USERNAME</span><span class="o">=</span><span class="s2">&quot;gmoney23&quot;</span>
 </code></pre></div>
 
@@ -385,22 +397,28 @@
 </li>
 <li>
 <p>Set your Docker registry placeholder name </p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">REGISTRY_NAME</span><span class="o">=</span>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">REGISTRY_NAME</span><span class="o">=</span><span class="s2">&quot;my_registry&quot;</span>
 </code></pre></div>
 
-<details class="example"><summary>Example</summary><div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">REGISTRY_NAME</span><span class="o">=</span>g_docker_hub
+<details class="example"><summary>Example</summary><div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">REGISTRY_NAME</span><span class="o">=</span><span class="s2">&quot;g_docker_hub&quot;</span>
 </code></pre></div>
 
 </details>
 </li>
 <li>
 <p>Add you docker registry with:</p>
-<div class="highlight"><pre><span></span><code>hpvs registry add --name Docker_Hub --dct https://notary.docker.io --url docker.io --user <span class="si">${</span><span class="nv">DOCKER_USERNAME</span><span class="si">}</span>
+<div class="highlight"><pre><span></span><code>hpvs registry add --name <span class="s2">&quot;</span><span class="si">${</span><span class="nv">REGISTRY_NAME</span><span class="si">}</span><span class="s2">&quot;</span> --dct https://notary.docker.io --url docker.io --user <span class="s2">&quot;</span><span class="si">${</span><span class="nv">DOCKER_USERNAME</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
-</li>
-<li>
-<p>It will prompt you to enter your password. Use the DockerHub token you have created for the lab</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It will prompt you to enter your password. Use the Docker Hub token you have created for the lab in the <a href="../prerequisites/#Create-a-GitHub" target="_blank">Prerequisites</a></p>
+</div>
+<details class="example"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>hpvs registry add --name <span class="s2">&quot;</span><span class="si">${</span><span class="nv">REGISTRY_NAME</span><span class="si">}</span><span class="s2">&quot;</span> --dct https://notary.docker.io --url docker.io --user <span class="s2">&quot;</span><span class="si">${</span><span class="nv">DOCKER_USERNAME</span><span class="si">}</span><span class="s2">&quot;</span>
+Enter Password: 
+</code></pre></div>
+
+</details>
 </li>
 <li>
 <p>Run hpvs registry list again to confirm your registry has been added</p>
@@ -410,9 +428,18 @@
 </li>
 <li>
 <p>Check the details of your added registry with </p>
-<div class="highlight"><pre><span></span><code>hpvs registry show --name 
+<div class="highlight"><pre><span></span><code>hpvs registry show --name <span class="s2">&quot;</span><span class="si">${</span><span class="nv">REGISTRY_NAME</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
+<details class="example"><summary><code>hpvs registry show --name "${REGISTRY_NAME}</code>"</summary><div class="highlight"><pre><span></span><code>+------+--------------------------+
+<span class="p">|</span> name <span class="p">|</span> g_docker_hub             <span class="p">|</span>
+<span class="p">|</span> user <span class="p">|</span> gmoney23                 <span class="p">|</span>
+<span class="p">|</span> dct  <span class="p">|</span> https://notary.docker.io <span class="p">|</span>
+<span class="p">|</span> url  <span class="p">|</span> docker.io                <span class="p">|</span>
++------+--------------------------+
+</code></pre></div>
+
+</details>
 </li>
 </ol>
                 
