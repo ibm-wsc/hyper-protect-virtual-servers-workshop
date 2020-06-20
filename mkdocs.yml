@@ -4,7 +4,13 @@ edit_uri: edit/master/docs
 nav:
     - Home: index.md
     - Prerequisites: prerequisites.md
-    - Secure Image Build Lab: securebuild.md
+    - Secure Image Build Lab:
+      - Process Overview: securebuild-lab/overview.md
+      - Configuring your Environment: securebuild-lab/securebuild-setup.md
+      - Create your Secure Build server: securebuild-lab/create-server.md
+      - Securely Build your Image: securebuild-lab/build.md
+      - Verify your Image Build: securebuild-lab/manifest.md
+      - Deploy your Application in HPVS: securebuild-lab/deploy-app.md
     - GREP11 Lab: grep11.md
     - Glossary of terms: glossary.md
     - Other resources: resources.md

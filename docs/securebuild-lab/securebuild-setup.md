@@ -1,4 +1,4 @@
-# Secure Build Lab
+# Secure Build Setup
 
 
 ## Add Docker registry to use for secure build
@@ -98,4 +98,4 @@
         +------+--------------------------+
         ```
 
-## Create Secure Build Hyper Proteect Virtual Server
+## Add ssh key
