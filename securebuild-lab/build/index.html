@@ -1,0 +1,827 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.0">
+    
+    
+      
+        <title>Securely Build your Image - Hyper Protect Virtual Server Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#securely-build-your-application" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Hyper Protect Virtual Server Workshop" class="md-header-nav__button md-logo" aria-label="Hyper Protect Virtual Server Workshop">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hyper Protect Virtual Server Workshop
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Securely Build your Image
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.ibm.com/wsc-blockchain-and-digital-assets/hyper-protect-virtual-server-workshop/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hyper Protect Virtual Server Workshop" class="md-nav__button md-logo" aria-label="Hyper Protect Virtual Server Workshop">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hyper Protect Virtual Server Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.ibm.com/wsc-blockchain-and-digital-assets/hyper-protect-virtual-server-workshop/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../prerequisites/" title="Prerequisites" class="md-nav__link">
+      Prerequisites
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Secure Image Build Lab
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Secure Image Build Lab" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Secure Image Build Lab
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../overview/" title="Process Overview" class="md-nav__link">
+      Process Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../securebuild-setup/" title="Configuring your Environment" class="md-nav__link">
+      Configuring your Environment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../create-server/" title="Create your Secure Build server" class="md-nav__link">
+      Create your Secure Build server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Securely Build your Image
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Securely Build your Image" class="md-nav__link md-nav__link--active">
+      Securely Build your Image
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#export-variables-set-in-previous-sections-to-current-terminal-session" class="md-nav__link">
+    Export Variables set in previous sections to current terminal session
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-trust-gpg-signing-key-for-your-docker-repository" class="md-nav__link">
+    Create Trust GPG signing key for your Docker Repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-build-configuration" class="md-nav__link">
+    Set Build Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-application" class="md-nav__link">
+    Build Application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-your-application" class="md-nav__link">
+    Verify your application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deploy-app/" title="Deploy your Application in HPVS" class="md-nav__link">
+      Deploy your Application in HPVS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bitcoin_wallet/" title="Use your Bitcoin Wallet" class="md-nav__link">
+      Use your Bitcoin Wallet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cleanup/" title="Clean up your Environment" class="md-nav__link">
+      Clean up your Environment
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../grep11.md" title="GREP11 Lab" class="md-nav__link">
+      GREP11 Lab
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../glossary/" title="Glossary of terms" class="md-nav__link">
+      Glossary of terms
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../resources/" title="Other resources" class="md-nav__link">
+      Other resources
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../proposechange/" title="Propose a change" class="md-nav__link">
+      Propose a change
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#export-variables-set-in-previous-sections-to-current-terminal-session" class="md-nav__link">
+    Export Variables set in previous sections to current terminal session
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-trust-gpg-signing-key-for-your-docker-repository" class="md-nav__link">
+    Create Trust GPG signing key for your Docker Repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-build-configuration" class="md-nav__link">
+    Set Build Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-application" class="md-nav__link">
+    Build Application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-your-application" class="md-nav__link">
+    Verify your application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.ibm.com/wsc-blockchain-and-digital-assets/hyper-protect-virtual-server-workshop/edit/master/docs/securebuild-lab/build.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="securely-build-your-application">Securely Build your Application<a class="headerlink" href="#securely-build-your-application" title="Permanent link">&para;</a></h1>
+<h2 id="export-variables-set-in-previous-sections-to-current-terminal-session">Export Variables set in previous sections to current terminal session<a class="headerlink" href="#export-variables-set-in-previous-sections-to-current-terminal-session" title="Permanent link">&para;</a></h2>
+<p>Source <code>bashrc</code> to set necessary variables if unset</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
+</code></pre></div>
+
+<h2 id="create-trust-gpg-signing-key-for-your-docker-repository">Create Trust GPG signing key for your Docker Repository<a class="headerlink" href="#create-trust-gpg-signing-key-for-your-docker-repository" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Set key name</p>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Command Syntax</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">keyName</span><span class="o">=</span><span class="s2">&quot;your_keyname&quot;</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Example Command</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">keyName</span><span class="o">=</span><span class="s2">&quot;secure_bitcoin_key&quot;</span>
+</code></pre></div>
+
+</div>
+</div>
+</li>
+<li>
+<p>Set key passphrase</p>
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Command Syntax</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">passphrase</span><span class="o">=</span><span class="s2">&quot;your_passphrase&quot;</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Example Command</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">passphrase</span><span class="o">=</span><span class="s2">&quot;most_secure_pw_i_could_think_of&quot;</span>
+</code></pre></div>
+
+</div>
+</div>
+</li>
+<li>
+<p>Create directory to store Docker Content Trust repository signing key material</p>
+<div class="highlight"><pre><span></span><code>mkdir -p <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/dctrust_keys&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Create Key Definition</p>
+<div class="highlight"><pre><span></span><code>cat &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/dctrust_keys/</span><span class="si">${</span><span class="nv">keyName</span><span class="si">}</span><span class="s2">_definition_keys&quot;</span> <span class="s">&lt;&lt;EOF</span>
+<span class="s">    %echo Generating registration definition key</span>
+<span class="s">    Key-Type: RSA</span>
+<span class="s">    Key-Length: 4096</span>
+<span class="s">    Subkey-Type: RSA</span>
+<span class="s">    Subkey-Length: 4096</span>
+<span class="s">    Name-Real: ${keyName}</span>
+<span class="s">    Expire-Date: 0</span>
+<span class="s">    Passphrase: ${passphrase}</span>
+<span class="s">    # Do a commit here, so that we can later print &quot;done&quot; :-)</span>
+<span class="s">    %commit</span>
+<span class="s">    %echo done</span>
+<span class="s">EOF</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Generate Key pair</p>
+<div class="highlight"><pre><span></span><code>gpg --armor --batch --generate-key <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/dctrust_keys/</span><span class="si">${</span><span class="nv">keyName</span><span class="si">}</span><span class="s2">_definition_keys&quot;</span>
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</details>
+</li>
+<li>
+<p>Export Private key</p>
+<div class="highlight"><pre><span></span><code>gpg --armor --pinentry-mode<span class="o">=</span>loopback --passphrase  <span class="s2">&quot;</span><span class="si">${</span><span class="nv">passphrase</span><span class="si">}</span><span class="s2">&quot;</span> <span class="se">\</span>
+--export-secret-keys <span class="s2">&quot;</span><span class="si">${</span><span class="nv">keyName</span><span class="si">}</span><span class="s2">&quot;</span> &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/dctrust_keys/</span><span class="si">${</span><span class="nv">keyName</span><span class="si">}</span><span class="s2">.private&quot;</span>
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</details>
+</li>
+<li>
+<p>Export Public key</p>
+<div class="highlight"><pre><span></span><code>gpg --armor --export <span class="si">${</span><span class="nv">keyName</span><span class="si">}</span> &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/dctrust_keys/</span><span class="si">${</span><span class="nv">keyName</span><span class="si">}</span><span class="s2">.pub&quot;</span>
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Ouput</summary><div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</details>
+</li>
+<li>
+<p>List newly geneerated key files </p>
+<div class="highlight"><pre><span></span><code> ls <span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span>/dctrust_keys/
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</details>
+</li>
+</ol>
+<h2 id="set-build-configuration">Set Build Configuration<a class="headerlink" href="#set-build-configuration" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Set Secure Build Server IP ADDRESS</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">SB_IP</span><span class="o">=</span><span class="m">192</span>.168.22.79
+</code></pre></div>
+
+</li>
+<li>
+<p>Set Secure Build Server Port</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">SB_PORT</span><span class="o">=</span><span class="m">213</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Set Secure Build GitHub repository</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">GH_REPO</span><span class="o">=</span><span class="s2">&quot;https://github.com/IBM/secure-bitcoin-wallet.git&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Set Docker Image Name</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">IMAGE_NAME</span><span class="o">=</span><span class="s2">&quot;hpvs_bc&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Set repository registration name</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">REPO_ID</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">REGISTRY_NAME</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Save repository registration name for later use</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;export REPO_ID=&#39;</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">&#39;&quot;</span> &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Create config file</p>
+<div class="highlight"><pre><span></span><code>cat &gt; &quot;${SB_DIR}/sb_config.yaml&quot; &lt;&lt;EOF
+    secure_build_workers:
+    sbs:
+        url: &#39;https://${SB_IP}&#39;
+        port: &#39;${SB_PORT}&#39;
+        cert_path: &#39;${SB_DIR}/sbs_keys/sbs.cert&#39;
+        key_path: &#39;${SB_DIR}/sbs_keys/sbs.key&#39;
+    regfile:
+        id: &#39;${REPO_ID}&#39;
+    github:
+        url: &#39;${GH_REPO}&#39;
+        branch: &#39;master&#39;
+        recurse_submodules: &#39;False&#39;
+        dockerfile_path: &#39;./Dockerfile&#39;
+        docker_build_path: &#39;./&#39;
+    docker:
+        push_server: &#39;${REGISTRY_NAME}&#39;
+        #base_server: &#39;${REGISTRY_NAME}&#39;
+        pull_server: &#39;${REGISTRY_NAME}&#39;
+        repo: &#39;${DOCKER_USERNAME}/${IMAGE_NAME}&#39;
+        image_tag_prefix: &#39;latest&#39;
+        content_trust_base: &#39;False&#39;
+    env:
+        whitelist: []
+    build:
+        args: []
+    signing_key:
+        private_key_path: &#39;${SB_DIR}/dctrust_keys/${keyName}.private&#39;
+        public_key_path: &#39;${SB_DIR}/dctrust_keys/${keyName}.pub&#39;
+EOF
+</code></pre></div>
+
+</li>
+</ol>
+<h2 id="build-application">Build Application<a class="headerlink" href="#build-application" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Launch secure build with a timeout of 15 minutes (900 seconds) to complete using the above generated configuration file.</p>
+<div class="highlight"><pre><span></span><code>hpvs sb init --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> --out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span> --timeout <span class="m">900</span> --build
+</code></pre></div>
+
+</li>
+<li>
+<p>You can look at the logs if desired in another terminal window while the secure build is running (don't intterrupt the current terminal window which is waiting for the secure build) </p>
+<div class="highlight"><pre><span></span><code>hpvs sb log --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>You can also look at the secure build status in another window. This is useful if you accidentally interrupted the secure build command or if it times out due to the timeout not being long enough.</p>
+<div class="highlight"><pre><span></span><code>hpvs sb status --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>When the seecure build completes successfully it will have the following status</p>
+<details class="exmaple"><summary>Example Output</summary></details>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</li>
+</ol>
+<h2 id="verify-your-application">Verify your application<a class="headerlink" href="#verify-your-application" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Get your application manifest</p>
+</li>
+<li>
+<p>Verify you application manifest</p>
+</li>
+<li>
+<p>What does this give me?</p>
+<p>This gives you awesomeness .... </p>
+</li>
+</ol>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>Congratulations!!! <img alt="🎉" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f389.svg" title=":tada:" /> </p>
+<p>You have securely built your application and are now ready to deploy it into a Hyper Protect Virtual Server in the next section.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../create-server/" title="Create your Secure Build server" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Create your Secure Build server
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../deploy-app/" title="Deploy your Application in HPVS" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Deploy your Application in HPVS
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a14cc5fd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.7a2ea5ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
