@@ -9,8 +9,9 @@ nav:
       - Configuring your Environment: securebuild-lab/securebuild-setup.md
       - Create your Secure Build server: securebuild-lab/create-server.md
       - Securely Build your Image: securebuild-lab/build.md
-      - Verify your Image Build: securebuild-lab/manifest.md
       - Deploy your Application in HPVS: securebuild-lab/deploy-app.md
+      - Use your Bitcoin Wallet: securebuild-lab/bitcoin_wallet.md
+      - Clean up your Environment: securebuild-lab/cleanup.md
     - GREP11 Lab: grep11.md
     - Glossary of terms: glossary.md
     - Other resources: resources.md

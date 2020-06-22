@@ -6,7 +6,7 @@ Welcome to our Hyper Protect Virtual Server workshop. Hyper Protect Virtual Serv
 * Introduction to Hyper Protect Virtual Server
 * Hyper Protect Use Cases & Demo
 * Introduction to the Secure Image Build Process
-* [Lab: Build and Deploy Your First Hyper Protect Virtual Server Image](securebuild.md)
+* [Lab: Build and Deploy Your First Hyper Protect Virtual Server Image](securebuild-lab/overview.md)
 * Introduction to HSM-backed Crypto Service
 * Lab: Crypto Service Exploitation
 * Next Steps on Your Journey & Wrap Up

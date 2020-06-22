@@ -1,6 +1,5 @@
 # Secure Build Setup
 
-
 ## Add Docker registry to use for secure build
 
 1. See your current docker registries with:
@@ -34,7 +33,7 @@
         ```
     
     !!! note 
-        This will be the username you used when you created your Docker Hub account in the [Prerequisites](prerequisites.md#Create-a-Docker-Hub){target=_blank}
+        This will be the username you used when you created your Docker Hub account in the [Prerequisites](../prerequisites.md#Create-a-Docker-Hub){target=_blank}
 
 3. Set your Docker registry placeholder name 
 
@@ -50,14 +49,20 @@
         export REGISTRY_NAME="g_docker_hub"
         ```
 
-4. Add your Docker registry with:
+4. Save your `REGISTRY_NAME` to bashrc for future shells (in case you open new terminals)
+
+    ``` bash
+    echo "export REGISTRY_NAME='${REGISTRY_NAME}'" >> "${HOME}/.bashrc"
+    ```
+
+5. Add your Docker registry with:
 
     ``` bash
     hpvs registry add --name "${REGISTRY_NAME}" --dct https://notary.docker.io --url docker.io --user "${DOCKER_USERNAME}"
     ```
 
     !!! note 
-        It will prompt you to enter your password. Use the Docker Hub token you have created for the lab in the [Prerequisites](prerequisites.md#Create-a-GitHub){target=_blank}
+        It will prompt you to enter your password. Use the Docker Hub token you have created for the lab in the [Prerequisites](../prerequisites.md#Create-a-GitHub){target=_blank}
 
     ???+ example "Example Output"
 
@@ -65,7 +70,7 @@
         Enter Password: 
         ```
 
-5. List your registered Docker registries again to confirm your registry has been added.
+6. List your registered Docker registries again to confirm your registry has been added.
 
     ``` bash
     hpvs registry list
@@ -81,7 +86,7 @@
         +---------------+
         ```
 
-6. Check the details of your added registry with 
+7. Check the details of your added registry with 
 
     ``` bash
     hpvs registry show --name "${REGISTRY_NAME}"
@@ -97,5 +102,3 @@
         | url  | docker.io                |
         +------+--------------------------+
         ```
-
-## Add ssh key
