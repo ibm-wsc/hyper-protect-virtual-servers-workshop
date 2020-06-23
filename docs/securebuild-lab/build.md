@@ -118,37 +118,31 @@ source "${HOME}/.bashrc"
     echo "export SB_IP='${SB_IP}'" >> "${HOME}/.bashrc"
     ```
 
-3. Set Secure Build Server Port
-
-    ``` bash
-    export SB_PORT=213${HPVS_NUMBER}
-    ```
-
-4. Set Secure Build GitHub repository
+3. Set Secure Build GitHub repository
 
     ``` bash
     export GH_REPO="git@github.com:IBM/secure-bitcoin-wallet.git"
     ```
 
-5. Set Docker Image Name
+4. Set Docker Image Name
 
     ``` bash
     export IMAGE_NAME="hpvs_bc"
     ```
 
-6. Set repository registration name
+5. Set repository registration name
 
     ``` bash
     export REPO_ID="${IMAGE_NAME}_${HPVS_NUMBER}"
     ```
 
-7. Save repository registration name for later use
+6. Save repository registration name for later use
 
     ``` bash
     echo "export REPO_ID='${REPO_ID}'" >> "${HOME}/.bashrc"
     ```
 
-8. Create config file
+7. Create config file
 
     ```
     cat > "${SB_DIR}/sb_config.yaml" <<EOF
@@ -194,7 +188,32 @@ source "${HOME}/.bashrc"
     --out "${SB_DIR}/yaml.${REPO_ID}.enc" --timeout 1200 --build
     ```
 
-2. You can look at the logs if desired in another terminal window while the secure build is running (don't intterrupt the current terminal window which is waiting for the secure build) 
+    !!! note
+        The following build will take anywhere from **15-20 minutes** to complete. While this is ongoing, you should open a new tab in your terminal to check the automatically updating logs and build status (steps for doing this are detailed in the next few steps).
+
+    ???+ example "Example Output after running 15-20 minutes to completion"
+    
+        ``` bash
+        > --config "${SB_DIR}/sb_config.yaml" \
+        > --out "${SB_DIR}/yaml.${REPO_ID}.enc" --timeout 1200 --build
+        Enter Sigining Private key passphrase: 
+        {"status":"OK"}
+
+        +--------+-------------------------+
+        | status | OK: async build started |
+        +--------+-------------------------+
+        ##############################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
+        +---------------------+--------------------------------------------------------------------------------------------+
+        | root_ssh_enabled    | false                                                                                      |
+        | status              | success                                                                                    |
+        | build_name          | docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641                     |
+        | image_tag           | latest-b3416d8                                                                             |
+        | manifest_key_gen    | soft_crypto                                                                                |
+        | manifest_public_key | manifest.docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641-public.pem |
+        +---------------------+--------------------------------------------------------------------------------------------+
+        ```
+
+2. Please look at the logs in another terminal window while the secure build is running (don't intterrupt the current terminal window which is waiting for the secure build) 
 
     ``` bash
     hpvs sb log --config "${SB_DIR}/sb_config.yaml"
@@ -216,7 +235,7 @@ source "${HOME}/.bashrc"
         .....
         ```
 
-3. You can also look at the secure build status in another window. This is useful if you accidentally interrupted the secure build command or if it times out due to the timeout not being long enough.
+3. You can also look at the secure build status in another window. This can be useful if you accidentally interrupted the secure build command or it times out due to the timeout not being long enough. It will also fill out the additional fields that are initially blank when the build completes (such as `build_name` and `manifest_public_key`, etc.).
 
     ``` bash
     hpvs sb status --config "${SB_DIR}/sb_config.yaml"
@@ -241,7 +260,7 @@ source "${HOME}/.bashrc"
     hpvs sb log --config "${SB_DIR}/sb_config.yaml"
     ```
 
-5. When the seecure build completes successfully it will have the following logs
+5. When the seecure build successfully completes, it will have ending logs similar to the following:
 
     ???+ example "Example Output"
 
@@ -267,7 +286,7 @@ source "${HOME}/.bashrc"
         2020-06-23 08:39:49,217  root       INFO    completed a build
         ```
 
-6. When the secure build completes successfully you can check the status again to see a completed status
+6. When the secure build successfully completes, you can check the status again to see a `completed` status.
 
     ``` bash
     hpvs sb status --config "${SB_DIR}/sb_config.yaml"

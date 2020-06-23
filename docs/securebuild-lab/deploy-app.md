@@ -43,7 +43,7 @@ source "${HOME}/.bashrc"
 1. Set App port
 
     ``` bash
-    export APP_PORT=214${HPVS_NUMBER}
+    export APP_PORT=301${HPVS_NUMBER}
     ```
 
 2. Create your Hyper Protect Virtual Server

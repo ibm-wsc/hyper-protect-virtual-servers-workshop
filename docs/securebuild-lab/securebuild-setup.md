@@ -35,7 +35,13 @@
     !!! note 
         This will be the username you used when you created your Docker Hub account in the [Prerequisites](../prerequisites.md#Create-a-Docker-Hub){target=_blank}
 
-3. Set your Docker registry placeholder name 
+3. Save your `DOCKER_USERNAME` to `bashrc` for later use.
+
+    ``` bash
+    echo "export DOCKER_USERNAME='${DOCKER_USERNAME}'" >> "${HOME}/.bashrc"
+    ```
+
+4. Set your Docker registry placeholder name 
 
     === "Command Syntax"
 
@@ -49,13 +55,13 @@
         export REGISTRY_NAME="g_docker_hub"
         ```
 
-4. Save your `REGISTRY_NAME` to bashrc for future shells (in case you open new terminals)
+5. Save your `REGISTRY_NAME` to `bashrc` for future shells (in case you open new terminals)
 
     ``` bash
     echo "export REGISTRY_NAME='${REGISTRY_NAME}'" >> "${HOME}/.bashrc"
     ```
 
-5. Add your Docker registry with:
+6. Add your Docker registry with:
 
     ``` bash
     hpvs registry add --name "${REGISTRY_NAME}" --dct https://notary.docker.io \
@@ -71,7 +77,7 @@
         Enter Password: 
         ```
 
-6. List your registered Docker registries again to confirm your registry has been added.
+7. List your registered Docker registries again to confirm your registry has been added.
 
     ``` bash
     hpvs registry list
@@ -87,7 +93,7 @@
         +---------------+
         ```
 
-7. Check the details of your added registry with 
+8. Check the details of your added registry with 
 
     ``` bash
     hpvs registry show --name "${REGISTRY_NAME}"

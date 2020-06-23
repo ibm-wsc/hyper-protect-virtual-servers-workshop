@@ -85,6 +85,17 @@ You will be assigned a number for the lab so as not to interfere with other user
     ``` bash
     echo "export HPVS_NUMBER='${HPVS_NUMBER}'" >> "${HOME}/.bashrc"
     ```
+3. Set Secure Build Server Port
+
+    ``` bash
+    export SB_PORT=300${HPVS_NUMBER}
+    ```
+    
+4. Save `SB_PORT` to `bashrc` for later use.
+
+    ``` bash
+    echo "export SB_PORT='${SB_PORT}'" >> "${HOME}/.bashrc"
+    ```
 
 ## Create Quota Group with storage for secure build server
 
@@ -115,7 +126,7 @@ hpvs vs create --name sbserver_${HPVS_NUMBER} --repo SecureDockerBuild \
 --quotagroup "{quotagroup = sb_user${HPVS_NUMBER}, mountid = data, mount = /data, filesystem = ext4, size = 2GB}" \
 --quotagroup "{quotagroup = sb_user${HPVS_NUMBER}, mountid = docker, mount = /docker, filesystem = ext4, size = 16GB}" \
 --env={EX_VOLUMES="/docker,/data",ROOTFS_LOCK=y,CLIENT_CRT=$cert} \
---ports "{containerport = 443, protocol = tcp, hostport = 213${HPVS_NUMBER}}"
+--ports "{containerport = 443, protocol = tcp, hostport = ${SB_PORT}}"
 ```
 
 ???+ example "Example Output"
@@ -136,7 +147,7 @@ hpvs vs create --name sbserver_${HPVS_NUMBER} --repo SecureDockerBuild \
     │             │                              │
     │             │                              │
     │ Ports       │ LocalPort:443/tcp            │
-    │             │ GuestPort:21300              │
+    │             │ GuestPort:30000              │
     │             │                              │
     │ Quotagroups │ appliance_data               │
     │             │ sb_user00                    │
@@ -194,7 +205,7 @@ hpvs vs show --name "sbserver_${HPVS_NUMBER}"
     │             │                              │
     │             │                              │
     │ Ports       │ LocalPort:443/tcp            │
-    │             │ GuestPort:21300              │
+    │             │ GuestPort:30000              │
     │             │                              │
     │ Quotagroups │ appliance_data               │
     │             │ sb_user00                    │
@@ -206,7 +217,7 @@ hpvs vs show --name "sbserver_${HPVS_NUMBER}"
 
 Your secure build server is now up and running! :fire:
 
-It is available at the IP Address of the Hyper Protect Virtual Server LPAR and port (GuestPort) specified (In this case https://192.168.22.79:21300)
+It is available at the IP Address of the Hyper Protect Virtual Server LPAR and port (GuestPort) specified.
 
 You will use this secure build server to securely build your application in the next section. 
 
