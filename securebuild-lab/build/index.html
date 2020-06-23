@@ -615,7 +615,7 @@ gpg: <span class="k">done</span>
 
 </li>
 <li>
-<p>List newly geneerated key files </p>
+<p>List newly generated key files </p>
 <div class="highlight"><pre><span></span><code> ls <span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span>/registration_keys/
 </code></pre></div>
 
@@ -628,8 +628,14 @@ gpg: <span class="k">done</span>
 <h2 id="set-build-configuration">Set Build Configuration<a class="headerlink" href="#set-build-configuration" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Set Secure Build Server IP ADDRESS</p>
+<p>Set Secure Build Lab IP Address</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">SB_IP</span><span class="o">=</span><span class="m">192</span>.168.22.120
+</code></pre></div>
+
+</li>
+<li>
+<p>Save Secure Build Lab IP Address for later use</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;export SB_IP=&#39;</span><span class="si">${</span><span class="nv">SB_IP</span><span class="si">}</span><span class="s2">&#39;&quot;</span> &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
 </code></pre></div>
 
 </li>
@@ -703,10 +709,10 @@ EOF
 <h2 id="build-application">Build Application<a class="headerlink" href="#build-application" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Launch secure build with a timeout of 15 minutes (900 seconds) to complete using the above generated configuration file.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">passhphrase</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> hpvs sb init <span class="se">\</span>
+<p>Launch secure build with a timeout of 20 minutes (1200 seconds) to complete using the above generated configuration file.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">passphrase</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> hpvs sb init <span class="se">\</span>
 --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> <span class="se">\</span>
---out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span> --timeout <span class="m">900</span> --build
+--out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span> --timeout <span class="m">1200</span> --build
 </code></pre></div>
 
 </li>
@@ -795,19 +801,9 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 
 </details>
 </li>
-<li>
-<p>Ouput the repository registration file</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">passhphrase</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> hpvs sb regfile <span class="se">\</span>
---config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> <span class="se">\</span>
---out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span>
-</code></pre></div>
-
-<details class="example" open="open"><summary>Example Output</summary></details>
-<div class="highlight"><pre><span></span><code>
-</code></pre></div>
-
+</ol>
 <h2 id="verify-your-application">Verify your application<a class="headerlink" href="#verify-your-application" title="Permanent link">&para;</a></h2>
-</li>
+<ol>
 <li>
 <p>Create a directory for your manifest file information and change into it</p>
 <div class="highlight"><pre><span></span><code>mkdir -p <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/manifest&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/manifest&quot;</span>
@@ -832,7 +828,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 
 </li>
 <li>
-<p>Get your manifest signing key</p>
+<p>Get your manifest public verification key</p>
 <div class="highlight"><pre><span></span><code>hpvs sb pubkey --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> --name <span class="s2">&quot;</span><span class="si">${</span><span class="nv">BUILD_NAME</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
