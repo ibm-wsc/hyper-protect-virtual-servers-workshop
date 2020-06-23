@@ -21,7 +21,7 @@ source "${HOME}/.bashrc"
 2. View your newly registered repository
 
     ``` bash
-    hpvs repository list | grep "${REGISTRY_NAME}_${HPVS_NUMBER}"
+    hpvs repository show --id "${REPO_ID}"
     ```
 
 ##  Set up your quota group for storage

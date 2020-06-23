@@ -93,7 +93,7 @@ source "${HOME}/.bashrc"
     gpg --armor --export ${keyName} > "${SB_DIR}/registration_keys/${keyName}.pub"
     ```
 
-8. List newly geneerated key files 
+8. List newly generated key files 
 
     ``` bash
      ls ${SB_DIR}/registration_keys/
@@ -106,43 +106,49 @@ source "${HOME}/.bashrc"
 
 ## Set Build Configuration
 
-1. Set Secure Build Server IP ADDRESS
+1. Set Secure Build Lab IP Address
 
     ``` bash
     export SB_IP=192.168.22.120
     ```
 
-2. Set Secure Build Server Port
+2. Save Secure Build Lab IP Address for later use
+
+    ``` bash
+    echo "export SB_IP='${SB_IP}'" >> "${HOME}/.bashrc"
+    ```
+
+3. Set Secure Build Server Port
 
     ``` bash
     export SB_PORT=213${HPVS_NUMBER}
     ```
 
-3. Set Secure Build GitHub repository
+4. Set Secure Build GitHub repository
 
     ``` bash
     export GH_REPO="git@github.com:IBM/secure-bitcoin-wallet.git"
     ```
 
-4. Set Docker Image Name
+5. Set Docker Image Name
 
     ``` bash
     export IMAGE_NAME="hpvs_bc"
     ```
 
-5. Set repository registration name
+6. Set repository registration name
 
     ``` bash
     export REPO_ID="${IMAGE_NAME}_${HPVS_NUMBER}"
     ```
 
-6. Save repository registration name for later use
+7. Save repository registration name for later use
 
     ``` bash
     echo "export REPO_ID='${REPO_ID}'" >> "${HOME}/.bashrc"
     ```
 
-7. Create config file
+8. Create config file
 
     ```
     cat > "${SB_DIR}/sb_config.yaml" <<EOF
@@ -180,12 +186,12 @@ source "${HOME}/.bashrc"
 
 ## Build Application
 
-1. Launch secure build with a timeout of 15 minutes (900 seconds) to complete using the above generated configuration file.
+1. Launch secure build with a timeout of 20 minutes (1200 seconds) to complete using the above generated configuration file.
 
     ``` bash
-    echo "${passhphrase}" | hpvs sb init \
+    echo "${passphrase}" | hpvs sb init \
     --config "${SB_DIR}/sb_config.yaml" \
-    --out "${SB_DIR}/yaml.${REPO_ID}.enc" --timeout 900 --build
+    --out "${SB_DIR}/yaml.${REPO_ID}.enc" --timeout 1200 --build
     ```
 
 2. You can look at the logs if desired in another terminal window while the secure build is running (don't intterrupt the current terminal window which is waiting for the secure build) 
@@ -280,19 +286,6 @@ source "${HOME}/.bashrc"
         +---------------------+------------------------------------------------------------------------------------------+
         ```
 
-7. Ouput the repository registration file
-
-    ``` bash
-    echo "${passhphrase}" | hpvs sb regfile \
-    --config "${SB_DIR}/sb_config.yaml" \
-    --out "${SB_DIR}/yaml.${REPO_ID}.enc"
-    ```
-
-    ???+ example "Example Output"
-
-    ``` bash
-
-    ```
 ## Verify your application
 
 1. Create a directory for your manifest file information and change into it
@@ -320,7 +313,7 @@ source "${HOME}/.bashrc"
     hpvs sb manifest --config "${SB_DIR}/sb_config.yaml" --name "${BUILD_NAME}"
     ```
 
-4. Get your manifest signing key
+4. Get your manifest public verification key
 
     ``` bash 
     hpvs sb pubkey --config "${SB_DIR}/sb_config.yaml" --name "${BUILD_NAME}"
