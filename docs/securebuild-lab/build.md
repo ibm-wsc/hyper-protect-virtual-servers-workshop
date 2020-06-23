@@ -8,7 +8,7 @@ Source `bashrc` to set necessary variables if unset
 source "${HOME}/.bashrc"
 ```
 
-## Create repository registration GPG signing key for your Docker Repository
+## Create repository registration GPG signing key
 1. Set key name
 
     === "Command Syntax"
