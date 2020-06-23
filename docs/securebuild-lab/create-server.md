@@ -8,26 +8,6 @@ Source `bashrc` to set necessary variables if unset
 source "${HOME}/.bashrc"
 ```
 
-## Create directory for secure build lab and change directory
-
-1. Set your secure build directory
-
-    ``` bash 
-    export SB_DIR="$HOME/securebuild-lab"
-    ```
-
-2. Save SB_DIR to `$HOME/.bashrc` for future shells (in case you open new terminals)
-
-    ``` bash
-    echo "export SB_DIR='${SB_DIR}'" >> "${HOME}/.bashrc"
-    ```
-
-3. Make `SB_DIR/sbs_keys` directory to store secure build server keys.
-
-    ``` bash
-    mkdir -p "${SB_DIR}/sbs_keys"
-    ```
-
 ## Create Certificate and Key for mutual tls
 
 1. Generate rand file
@@ -35,7 +15,14 @@ source "${HOME}/.bashrc"
     ``` bash
     openssl rand -out "${HOME}/.rnd" -hex 256
     ```
-2. Generate cert and key to use mutual tls 
+
+2. Make `SB_DIR/sbs_keys` directory to store secure build server keys.
+
+    ``` bash
+    mkdir -p "${SB_DIR}/sbs_keys"
+    ```
+
+3. Generate cert and key to use mutual tls 
 
     ``` bash
     openssl req -newkey rsa:2048 \
@@ -50,15 +37,23 @@ source "${HOME}/.bashrc"
 
         ``` bash
         Generating a RSA private key
-        .......................................................+++++
-        .......................+++++
-        writing new private key to '/home/multiarch-lab/securebuild-lab/sbs.key'
+        ................................+++++
+        ...............................+++++
+        writing new private key to '/home/multiarch-lab/securebuild-lab/sbs_keys/sbs.key'
         -----
         ```
-3. Save the cert as an environment variable 
+
+4. Change cert to base64 encoding and save to new file.
 
     ``` bash
-    export cert=$(echo $(cat "${SB_DIR}/sbs_keys/sbs.cert" | base64) | tr -d ' ')
+    echo $(cat "${SB_DIR}/sbs_keys/sbs.cert" | base64) \
+    | tr -d ' ' >> "${SB_DIR}/sbs_keys/sbs_base64.cert"
+    ```
+
+5. Save the cert as an environment variable 
+
+    ``` bash
+    export cert=$(cat "${SB_DIR}/sbs_keys/sbs_base64.cert")
     ```
 
 ## Set your provided number and save it for later use
@@ -83,7 +78,7 @@ You will be assigned a number for the lab so as not to interfere with other user
         ```
         
     !!! warning
-        Your user will NOT be 00. Please set the appropriate user you have been assigned.
+        Your user will **NOT** be `00`. Please set the appropriate user you have been assigned.
 
 2. Save your number to `bashrc` for later use.
 
@@ -94,19 +89,19 @@ You will be assigned a number for the lab so as not to interfere with other user
 ## Create Quota Group with storage for secure build server
 
 ``` bash
-hpvs quotagroup create --name "sb-user${HPVS_NUMBER}" --size=29GB
+hpvs quotagroup create --name "sb_user${HPVS_NUMBER}" --size=30GB
 ```
 
 ???+ example "Example Ouput"
 
     ``` bash
     +-------------+--------------+
-    | name        | sb-user00    |
+    | name        | sb_user00    |
     | filesystem  | btrfs        |
     | passthrough | false        |
     | pool_id     | lv_data_pool |
-    | size        | 29GB         |
-    | available   | 29GB         |
+    | size        | 30GB         |
+    | available   | 30GB         |
     | containers  | []           |
     +-------------+--------------+
     ```
@@ -114,11 +109,11 @@ hpvs quotagroup create --name "sb-user${HPVS_NUMBER}" --size=29GB
 ## Create Securebuild server
 
 ``` bash
-hpvs vs create --name sbserver-${HPVS_NUMBER} --repo SecureDockerBuild \
+hpvs vs create --name sbserver_${HPVS_NUMBER} --repo SecureDockerBuild \
 --tag 1.2.1-release-9b63b43 --cpu 2 --ram 2048 \
---quotagroup "{quotagroup = sb-user${HPVS_NUMBER}, mountid = new, mount = /newroot, filesystem = ext4, size = 10GB}" \
---quotagroup "{quotagroup = sb-user${HPVS_NUMBER}, mountid = data, mount = /data, filesystem = ext4, size = 2GB}" \
---quotagroup "{quotagroup = sb-user${HPVS_NUMBER}, mountid = docker, mount = /docker, filesystem = ext4, size = 16GB}" \
+--quotagroup "{quotagroup = sb_user${HPVS_NUMBER}, mountid = new, mount = /newroot, filesystem = ext4, size = 10GB}" \
+--quotagroup "{quotagroup = sb_user${HPVS_NUMBER}, mountid = data, mount = /data, filesystem = ext4, size = 2GB}" \
+--quotagroup "{quotagroup = sb_user${HPVS_NUMBER}, mountid = docker, mount = /docker, filesystem = ext4, size = 16GB}" \
 --env={EX_VOLUMES="/docker,/data",ROOTFS_LOCK=y,CLIENT_CRT=$cert} \
 --ports "{containerport = 443, protocol = tcp, hostport = 213${HPVS_NUMBER}}"
 ```
@@ -129,22 +124,22 @@ hpvs vs create --name sbserver-${HPVS_NUMBER} --repo SecureDockerBuild \
     ╭─────────────┬──────────────────────────────╮
     │ PROPERTIES  │ VALUES                       │
     ├─────────────┼──────────────────────────────┤
-    │ Name        │ sbserver-00                  │
+    │ Name        │ sbserver_00                  │
     │ Status      │ Up Less than a second        │
     │ CPU         │ 2                            │
     │ Memory      │ 2048                         │
     │ Networks    │ Network:bridge               │
-    │             │ IPAddress:172.31.0.7         │
+    │             │ IPAddress:172.31.0.5         │
     │             │ Gateway:172.31.0.1           │
     │             │ Subnet:16                    │
-    │             │ MacAddress:02:42:ac:1f:00:07 │
+    │             │ MacAddress:02:42:ac:1f:00:05 │
     │             │                              │
     │             │                              │
     │ Ports       │ LocalPort:443/tcp            │
     │             │ GuestPort:21300              │
     │             │                              │
     │ Quotagroups │ appliance_data               │
-    │             │ sb-user00                    │
+    │             │ sb_user00                    │
     │             │                              │
     │ State       │ running                      │
     ╰─────────────┴──────────────────────────────╯
@@ -153,7 +148,7 @@ hpvs vs create --name sbserver-${HPVS_NUMBER} --repo SecureDockerBuild \
 We can see the quotagroup is now being used with
 
 ``` bash
-hpvs quotagroup show --name "sb-user${HPVS_NUMBER}"
+hpvs quotagroup show --name "sb_user${HPVS_NUMBER}"
 ```
 
 ???+ example "Example Output"
@@ -162,15 +157,15 @@ hpvs quotagroup show --name "sb-user${HPVS_NUMBER}"
     +-------------+--------------------------------+
     | PROPERTIES  | VALUES                         |
     +-------------+--------------------------------+
-    | name        | sb-user00                      |
+    | name        | sb_user00                      |
     | filesystem  | btrfs                          |
     | passthrough | false                          |
     | pool_id     | lv_data_pool                   |
-    | size        | 29GB                           |
-    | available   | 701MB                          |
-    | containers  | Mountids:"new","data","docker" |
+    | size        | 30GB                           |
+    | available   | 2GB                            |
+    | containers  | Container:sbserver_00          |
+    |             | Mountids:"new","data","docker" |
     |             |                                |
-    |             | Container:sbserver-00          |
     |             |                                |
     +-------------+--------------------------------+
     ```
@@ -178,7 +173,7 @@ hpvs quotagroup show --name "sb-user${HPVS_NUMBER}"
 The show output for the Hyper Protect Virtual Server was shown when it was deployed but when can bring it back up with
 
 ``` bash
-hpvs vs show --name "sbserver-${HPVS_NUMBER}"
+hpvs vs show --name "sbserver_${HPVS_NUMBER}"
 ```
 
 ???+ example "Example Output"
@@ -187,22 +182,22 @@ hpvs vs show --name "sbserver-${HPVS_NUMBER}"
     ╭─────────────┬──────────────────────────────╮
     │ PROPERTIES  │ VALUES                       │
     ├─────────────┼──────────────────────────────┤
-    │ Name        │ sbserver-00                  │
-    │ Status      │ Up 3 minutes                 │
+    │ Name        │ sbserver_00                  │
+    │ Status      │ Up About a minute            │
     │ CPU         │ 2                            │
     │ Memory      │ 2048                         │
     │ Networks    │ Network:bridge               │
-    │             │ IPAddress:172.31.0.7         │
+    │             │ IPAddress:172.31.0.5         │
     │             │ Gateway:172.31.0.1           │
     │             │ Subnet:16                    │
-    │             │ MacAddress:02:42:ac:1f:00:07 │
+    │             │ MacAddress:02:42:ac:1f:00:05 │
     │             │                              │
     │             │                              │
     │ Ports       │ LocalPort:443/tcp            │
     │             │ GuestPort:21300              │
     │             │                              │
     │ Quotagroups │ appliance_data               │
-    │             │ sb-user00                    │
+    │             │ sb_user00                    │
     │             │                              │
     │ State       │ running                      │
     ╰─────────────┴──────────────────────────────╯

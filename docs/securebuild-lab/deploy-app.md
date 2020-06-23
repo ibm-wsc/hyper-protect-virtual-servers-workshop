@@ -13,13 +13,15 @@ source "${HOME}/.bashrc"
 1. Register your repository
 
     ``` bash
-    hpvs repository register --pgp="${SB_DIR}.${REPO_ID}.enc" --id="${REPO_ID}"
+    hpvs repository register \
+    --pgp="${SB_DIR}/yaml.${REPO_ID}.enc" \
+    --id="${REPO_ID}"
     ```
 
 2. View your newly registered repository
 
     ``` bash
-    hpvs repository list | grep "${REGISTRY_NAME}-${HPVS_NUMBER}"
+    hpvs repository list | grep "${REGISTRY_NAME}_${HPVS_NUMBER}"
     ```
 
 ##  Set up your quota group for storage
