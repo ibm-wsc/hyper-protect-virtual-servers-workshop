@@ -294,13 +294,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-directory-for-secure-build-lab-and-change-directory" class="md-nav__link">
-    Create directory for secure build lab and change directory
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#create-certificate-and-key-for-mutual-tls" class="md-nav__link">
     Create Certificate and Key for mutual tls
   </a>
@@ -469,13 +462,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-directory-for-secure-build-lab-and-change-directory" class="md-nav__link">
-    Create directory for secure build lab and change directory
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#create-certificate-and-key-for-mutual-tls" class="md-nav__link">
     Create Certificate and Key for mutual tls
   </a>
@@ -529,17 +515,11 @@
 <div class="highlight"><pre><span></span><code><span class="nb">source</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
 </code></pre></div>
 
-<h2 id="create-directory-for-secure-build-lab-and-change-directory">Create directory for secure build lab and change directory<a class="headerlink" href="#create-directory-for-secure-build-lab-and-change-directory" title="Permanent link">&para;</a></h2>
+<h2 id="create-certificate-and-key-for-mutual-tls">Create Certificate and Key for mutual tls<a class="headerlink" href="#create-certificate-and-key-for-mutual-tls" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Set your secure build directory</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">SB_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/securebuild-lab&quot;</span>
-</code></pre></div>
-
-</li>
-<li>
-<p>Save SB_DIR to <code>$HOME/.bashrc</code> for future shells (in case you open new terminals)</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;export SB_DIR=&#39;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">&#39;&quot;</span> &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
+<p>Generate rand file</p>
+<div class="highlight"><pre><span></span><code>openssl rand -out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.rnd&quot;</span> -hex <span class="m">256</span>
 </code></pre></div>
 
 </li>
@@ -549,14 +529,8 @@
 </code></pre></div>
 
 </li>
-</ol>
-<h2 id="create-certificate-and-key-for-mutual-tls">Create Certificate and Key for mutual tls<a class="headerlink" href="#create-certificate-and-key-for-mutual-tls" title="Permanent link">&para;</a></h2>
-<ol>
 <li>
-<p>Generate rand file</p>
-<p><div class="highlight"><pre><span></span><code>openssl rand -out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.rnd&quot;</span> -hex <span class="m">256</span>
-</code></pre></div>
-2. Generate cert and key to use mutual tls </p>
+<p>Generate cert and key to use mutual tls </p>
 <div class="highlight"><pre><span></span><code>openssl req -newkey rsa:2048 <span class="se">\</span>
 -new -nodes -x509 <span class="se">\</span>
 -days <span class="m">3650</span> <span class="se">\</span>
@@ -566,17 +540,24 @@
 </code></pre></div>
 
 <details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>Generating a RSA private key
-.......................................................+++++
-.......................+++++
-writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild-lab/sbs.key&#39;</span>
+................................+++++
+...............................+++++
+writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild-lab/sbs_keys/sbs.key&#39;</span>
 -----
 </code></pre></div>
 
 </details>
-<ol>
-<li>Save the cert as an environment variable </li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">cert</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="k">$(</span>cat <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sbs_keys/sbs.cert&quot;</span> <span class="p">|</span> base64<span class="k">)</span> <span class="p">|</span> tr -d <span class="s1">&#39; &#39;</span><span class="k">)</span>
+</li>
+<li>
+<p>Change cert to base64 encoding and save to new file.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="k">$(</span>cat <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sbs_keys/sbs.cert&quot;</span> <span class="p">|</span> base64<span class="k">)</span> <span class="se">\</span>
+<span class="p">|</span> tr -d <span class="s1">&#39; &#39;</span> &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sbs_keys/sbs_base64.cert&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Save the cert as an environment variable </p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">cert</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sbs_keys/sbs_base64.cert&quot;</span><span class="k">)</span>
 </code></pre></div>
 
 </li>
@@ -603,7 +584,7 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Your user will NOT be 00. Please set the appropriate user you have been assigned.</p>
+<p>Your user will <strong>NOT</strong> be <code>00</code>. Please set the appropriate user you have been assigned.</p>
 </div>
 </li>
 <li>
@@ -614,27 +595,27 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 </li>
 </ol>
 <h2 id="create-quota-group-with-storage-for-secure-build-server">Create Quota Group with storage for secure build server<a class="headerlink" href="#create-quota-group-with-storage-for-secure-build-server" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>hpvs quotagroup create --name <span class="s2">&quot;sb-user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span> --size<span class="o">=</span>29GB
+<div class="highlight"><pre><span></span><code>hpvs quotagroup create --name <span class="s2">&quot;sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span> --size<span class="o">=</span>30GB
 </code></pre></div>
 
 <details class="example" open="open"><summary>Example Ouput</summary><div class="highlight"><pre><span></span><code>+-------------+--------------+
-<span class="p">|</span> name        <span class="p">|</span> sb-user00    <span class="p">|</span>
+<span class="p">|</span> name        <span class="p">|</span> sb_user00    <span class="p">|</span>
 <span class="p">|</span> filesystem  <span class="p">|</span> btrfs        <span class="p">|</span>
 <span class="p">|</span> passthrough <span class="p">|</span> <span class="nb">false</span>        <span class="p">|</span>
 <span class="p">|</span> pool_id     <span class="p">|</span> lv_data_pool <span class="p">|</span>
-<span class="p">|</span> size        <span class="p">|</span> 29GB         <span class="p">|</span>
-<span class="p">|</span> available   <span class="p">|</span> 29GB         <span class="p">|</span>
+<span class="p">|</span> size        <span class="p">|</span> 30GB         <span class="p">|</span>
+<span class="p">|</span> available   <span class="p">|</span> 30GB         <span class="p">|</span>
 <span class="p">|</span> containers  <span class="p">|</span> <span class="o">[]</span>           <span class="p">|</span>
 +-------------+--------------+
 </code></pre></div>
 
 </details>
 <h2 id="create-securebuild-server">Create Securebuild server<a class="headerlink" href="#create-securebuild-server" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>hpvs vs create --name sbserver-<span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span> --repo SecureDockerBuild <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>hpvs vs create --name sbserver_<span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span> --repo SecureDockerBuild <span class="se">\</span>
 --tag <span class="m">1</span>.2.1-release-9b63b43 --cpu <span class="m">2</span> --ram <span class="m">2048</span> <span class="se">\</span>
---quotagroup <span class="s2">&quot;{quotagroup = sb-user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = new, mount = /newroot, filesystem = ext4, size = 10GB}&quot;</span> <span class="se">\</span>
---quotagroup <span class="s2">&quot;{quotagroup = sb-user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = data, mount = /data, filesystem = ext4, size = 2GB}&quot;</span> <span class="se">\</span>
---quotagroup <span class="s2">&quot;{quotagroup = sb-user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = docker, mount = /docker, filesystem = ext4, size = 16GB}&quot;</span> <span class="se">\</span>
+--quotagroup <span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = new, mount = /newroot, filesystem = ext4, size = 10GB}&quot;</span> <span class="se">\</span>
+--quotagroup <span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = data, mount = /data, filesystem = ext4, size = 2GB}&quot;</span> <span class="se">\</span>
+--quotagroup <span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = docker, mount = /docker, filesystem = ext4, size = 16GB}&quot;</span> <span class="se">\</span>
 --env<span class="o">={</span><span class="nv">EX_VOLUMES</span><span class="o">=</span><span class="s2">&quot;/docker,/data&quot;</span>,ROOTFS_LOCK<span class="o">=</span>y,CLIENT_CRT<span class="o">=</span><span class="nv">$cert</span><span class="o">}</span> <span class="se">\</span>
 --ports <span class="s2">&quot;{containerport = 443, protocol = tcp, hostport = 213</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">}&quot;</span>
 </code></pre></div>
@@ -642,22 +623,22 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 <details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>╭─────────────┬──────────────────────────────╮
 │ PROPERTIES  │ VALUES                       │
 ├─────────────┼──────────────────────────────┤
-│ Name        │ sbserver-00                  │
+│ Name        │ sbserver_00                  │
 │ Status      │ Up Less than a second        │
 │ CPU         │ <span class="m">2</span>                            │
 │ Memory      │ <span class="m">2048</span>                         │
 │ Networks    │ Network:bridge               │
-│             │ IPAddress:172.31.0.7         │
+│             │ IPAddress:172.31.0.5         │
 │             │ Gateway:172.31.0.1           │
 │             │ Subnet:16                    │
-│             │ MacAddress:02:42:ac:1f:00:07 │
+│             │ MacAddress:02:42:ac:1f:00:05 │
 │             │                              │
 │             │                              │
 │ Ports       │ LocalPort:443/tcp            │
 │             │ GuestPort:21300              │
 │             │                              │
 │ Quotagroups │ appliance_data               │
-│             │ sb-user00                    │
+│             │ sb_user00                    │
 │             │                              │
 │ State       │ running                      │
 ╰─────────────┴──────────────────────────────╯
@@ -665,49 +646,49 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 
 </details>
 <p>We can see the quotagroup is now being used with</p>
-<div class="highlight"><pre><span></span><code>hpvs quotagroup show --name <span class="s2">&quot;sb-user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code>hpvs quotagroup show --name <span class="s2">&quot;sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
 <details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+-------------+--------------------------------+
 <span class="p">|</span> PROPERTIES  <span class="p">|</span> VALUES                         <span class="p">|</span>
 +-------------+--------------------------------+
-<span class="p">|</span> name        <span class="p">|</span> sb-user00                      <span class="p">|</span>
+<span class="p">|</span> name        <span class="p">|</span> sb_user00                      <span class="p">|</span>
 <span class="p">|</span> filesystem  <span class="p">|</span> btrfs                          <span class="p">|</span>
 <span class="p">|</span> passthrough <span class="p">|</span> <span class="nb">false</span>                          <span class="p">|</span>
 <span class="p">|</span> pool_id     <span class="p">|</span> lv_data_pool                   <span class="p">|</span>
-<span class="p">|</span> size        <span class="p">|</span> 29GB                           <span class="p">|</span>
-<span class="p">|</span> available   <span class="p">|</span> 701MB                          <span class="p">|</span>
-<span class="p">|</span> containers  <span class="p">|</span> Mountids:<span class="s2">&quot;new&quot;</span>,<span class="s2">&quot;data&quot;</span>,<span class="s2">&quot;docker&quot;</span> <span class="p">|</span>
+<span class="p">|</span> size        <span class="p">|</span> 30GB                           <span class="p">|</span>
+<span class="p">|</span> available   <span class="p">|</span> 2GB                            <span class="p">|</span>
+<span class="p">|</span> containers  <span class="p">|</span> Container:sbserver_00          <span class="p">|</span>
+<span class="p">|</span>             <span class="p">|</span> Mountids:<span class="s2">&quot;new&quot;</span>,<span class="s2">&quot;data&quot;</span>,<span class="s2">&quot;docker&quot;</span> <span class="p">|</span>
 <span class="p">|</span>             <span class="p">|</span>                                <span class="p">|</span>
-<span class="p">|</span>             <span class="p">|</span> Container:sbserver-00          <span class="p">|</span>
 <span class="p">|</span>             <span class="p">|</span>                                <span class="p">|</span>
 +-------------+--------------------------------+
 </code></pre></div>
 
 </details>
 <p>The show output for the Hyper Protect Virtual Server was shown when it was deployed but when can bring it back up with</p>
-<div class="highlight"><pre><span></span><code>hpvs vs show --name <span class="s2">&quot;sbserver-</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code>hpvs vs show --name <span class="s2">&quot;sbserver_</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
 <details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>╭─────────────┬──────────────────────────────╮
 │ PROPERTIES  │ VALUES                       │
 ├─────────────┼──────────────────────────────┤
-│ Name        │ sbserver-00                  │
-│ Status      │ Up <span class="m">3</span> minutes                 │
+│ Name        │ sbserver_00                  │
+│ Status      │ Up About a minute            │
 │ CPU         │ <span class="m">2</span>                            │
 │ Memory      │ <span class="m">2048</span>                         │
 │ Networks    │ Network:bridge               │
-│             │ IPAddress:172.31.0.7         │
+│             │ IPAddress:172.31.0.5         │
 │             │ Gateway:172.31.0.1           │
 │             │ Subnet:16                    │
-│             │ MacAddress:02:42:ac:1f:00:07 │
+│             │ MacAddress:02:42:ac:1f:00:05 │
 │             │                              │
 │             │                              │
 │ Ports       │ LocalPort:443/tcp            │
 │             │ GuestPort:21300              │
 │             │                              │
 │ Quotagroups │ appliance_data               │
-│             │ sb-user00                    │
+│             │ sb_user00                    │
 │             │                              │
 │ State       │ running                      │
 ╰─────────────┴──────────────────────────────╯

@@ -519,13 +519,15 @@
 <ol>
 <li>
 <p>Register your repository</p>
-<div class="highlight"><pre><span></span><code>hpvs repository register --pgp<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span> --id<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code>hpvs repository register <span class="se">\</span>
+--pgp<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span> <span class="se">\</span>
+--id<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
 </li>
 <li>
 <p>View your newly registered repository</p>
-<div class="highlight"><pre><span></span><code>hpvs repository list <span class="p">|</span> grep <span class="s2">&quot;</span><span class="si">${</span><span class="nv">REGISTRY_NAME</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code>hpvs repository list <span class="p">|</span> grep <span class="s2">&quot;</span><span class="si">${</span><span class="nv">REGISTRY_NAME</span><span class="si">}</span><span class="s2">_</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
 </li>

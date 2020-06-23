@@ -281,6 +281,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#create-directory-for-secure-build-lab-and-change-directory" class="md-nav__link">
+    Create directory for secure build lab and change directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-ssh-key-and-grant-github-access" class="md-nav__link">
+    Create SSH Key and Grant GitHub access
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -433,6 +447,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#create-directory-for-secure-build-lab-and-change-directory" class="md-nav__link">
+    Create directory for secure build lab and change directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-ssh-key-and-grant-github-access" class="md-nav__link">
+    Create SSH Key and Grant GitHub access
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -509,12 +537,13 @@
 </li>
 <li>
 <p>Add your Docker registry with:</p>
-<div class="highlight"><pre><span></span><code>hpvs registry add --name <span class="s2">&quot;</span><span class="si">${</span><span class="nv">REGISTRY_NAME</span><span class="si">}</span><span class="s2">&quot;</span> --dct https://notary.docker.io --url docker.io --user <span class="s2">&quot;</span><span class="si">${</span><span class="nv">DOCKER_USERNAME</span><span class="si">}</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code>hpvs registry add --name <span class="s2">&quot;</span><span class="si">${</span><span class="nv">REGISTRY_NAME</span><span class="si">}</span><span class="s2">&quot;</span> --dct https://notary.docker.io <span class="se">\</span>
+--url docker.io --user <span class="s2">&quot;</span><span class="si">${</span><span class="nv">DOCKER_USERNAME</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>It will prompt you to enter your password. Use the Docker Hub token you have created for the lab in the <a href="../../prerequisites/#Create-a-GitHub" target="_blank">Prerequisites</a></p>
+<p>It will prompt you to enter your password. Use the Docker Hub token you have created for the lab in the <a href="../../prerequisites/#create-a-docker-access-token" target="_blank">Prerequisites</a></p>
 </div>
 <details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>Enter Password: 
 </code></pre></div>
@@ -549,6 +578,102 @@
 </code></pre></div>
 
 </details>
+</li>
+</ol>
+<h2 id="create-directory-for-secure-build-lab-and-change-directory">Create directory for secure build lab and change directory<a class="headerlink" href="#create-directory-for-secure-build-lab-and-change-directory" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Set your secure build directory</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">SB_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/securebuild-lab&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Save <code>SB_DIR</code> to <code>$HOME/.bashrc</code> for future shells (in case you open new terminals)</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;export SB_DIR=&#39;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">&#39;&quot;</span> &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Create <code>SB_DIR</code> and change into it</p>
+<div class="highlight"><pre><span></span><code>mkdir -p <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+</li>
+</ol>
+<h2 id="create-ssh-key-and-grant-github-access">Create SSH Key and Grant GitHub access<a class="headerlink" href="#create-ssh-key-and-grant-github-access" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Create GitHub keys directory</p>
+<div class="highlight"><pre><span></span><code>mkdir -p <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/github_keys&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Set <code>GITHUB_SSH_KEY</code> variable</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">GITHUB_SSH_KEY</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/github_keys/github_rsa&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Save <code>GITHUB_SSH_KEY</code> variable in <code>bashrc</code> for later use</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;export GITHUB_SSH_KEY=&#39;</span><span class="si">${</span><span class="nv">GITHUB_SSH_KEY</span><span class="si">}</span><span class="s2">&#39;&quot;</span> &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Create Public and private key for GitHub access</p>
+<div class="highlight"><pre><span></span><code>ssh-keygen -t rsa -b <span class="m">4096</span> -f <span class="s2">&quot;</span><span class="si">${</span><span class="nv">GITHUB_SSH_KEY</span><span class="si">}</span><span class="s2">&quot;</span> -N <span class="s1">&#39;&#39;</span>
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>Generating public/private rsa key pair.
+Your identification has been saved in /home/multiarch-lab/securebuild-lab/github_keys/github_rsa.
+Your public key has been saved in /home/multiarch-lab/securebuild-lab/github_keys/github_rsa.pub.
+The key fingerprint is:
+SHA256:sbEfCzwyOz/LaZ4jSeKT+Aw7IWUr7YT6m8Hxv9Dq90k multiarch-lab@ubuntu
+The key<span class="err">&#39;</span>s randomart image is:
++---<span class="o">[</span>RSA <span class="m">4096</span><span class="o">]</span>----+
+<span class="p">|</span>                 <span class="p">|</span>
+<span class="p">|</span>                 <span class="p">|</span>
+<span class="p">|</span>        o        <span class="p">|</span>
+<span class="p">|</span>  o    . <span class="o">=</span>       <span class="p">|</span>
+<span class="p">|</span> <span class="o">=</span>..  o S .      <span class="p">|</span>
+<span class="p">|</span>+.<span class="o">=</span>o...+ + o     <span class="p">|</span>
+<span class="p">|</span>.<span class="o">=</span>++o++.E o      <span class="p">|</span>
+<span class="p">|</span>. +*+++<span class="o">=</span>++       <span class="p">|</span>
+<span class="p">|</span> .<span class="o">===</span>oo*X+       <span class="p">|</span>
++----<span class="o">[</span>SHA256<span class="o">]</span>-----+
+</code></pre></div>
+
+</details>
+</li>
+<li>
+<p>Cat GitHub public key to terminal</p>
+<div class="highlight"><pre><span></span><code>cat <span class="s2">&quot;</span><span class="si">${</span><span class="nv">GITHUB_SSH_KEY</span><span class="si">}</span><span class="s2">.pub&quot;</span>
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC6zsnjH4fXaR/imYkzRaYVgWsNVIY4LzCftygKGTFJVBDMqVErsbkvF810RUTPIIowwe7Bx2UGLtwv3kL2omUJaHjol/+nzQjdmFrV2qnZosMUCn4xSpdffCmMyFWE8FnWw1ZSc7STcTD/NFzLjrN/vbJgMvla0aSxsENio2RvyFQkMKbwfojE22Q/MOtJAg0wyr9/0JNXiAyLYUEwfi1qVoF4F1mvXgLtNgTSx4VzokUKBsiSaDDbEa70ik154dtWLY9nemUsrSfUluCrHLaJhUy9cg6Jc+/9tco0cZhyZDnLIhT/4+n1XGfZxb83c5WElrg/IEYHGOHfqp+lMfusMj/0ppopz+f66dWDabVQCbrkqa+yfbw0ItC0+sZ7opIYGRLt+OelkrIECo7utzCTxdCCJ+2iUIiBV14my7xAFR+fNLKzl9KD+FTT/QoUPlqTmUQNo6NFNGG15znWVRtMDOdDiA6fugl6RrFJHDpaw9/lh+7g7tqwHGF83ZomvvFdKFMsXY6JTpj6rb7gtKzEapB9imCr0aw0ZTWTdlzTs9ksSNr1gZRf/eiztP5puC4weGDRXVjPwHOFOGbUH7Wk8ywQAmUJdEg03bz01U1htYryiNTD4VD2QfVTmxTltocj/2yv7Apv6gQ+Gb0LsgTp2aWbAnbeWX7qfjpYt0j/iw<span class="o">==</span> multiarch-lab@ubuntu
+</code></pre></div>
+
+</details>
+</li>
+<li>
+<p>Copy your output to the clipboard with <code>ctrl+shift+c</code>.</p>
+</li>
+<li>
+<p>Add this key to your public GitHub (paste copied content into GitHub keys textbox)</p>
+<p><strong>Follow <a href="https://help.github.com/en/enterprise/2.15/user/articles/adding-a-new-ssh-key-to-your-github-account" target="_blank">these instructions</a></strong> for adding this <em>public</em> key to your <code>github.com</code> GitHub account.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You created this <em>public</em> <code>github.com</code> GitHub in the <a href="../../prerequisites/#Create-a-GitHub" target="_blank">Prerequisites</a> (or already had one).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The above copy command (<code>ctrl+shift+c</code>) is saving the <code>.pub</code> public key **NOT* the <code>private</code> key. You keep the private key and GitHub uses the public key to verify that it is communicating with the owner of the private key (i.e. you).</p>
+</div>
+</li>
+<li>
+<p>Feel at ease knowing you will delete this key from your Github account in the cleanup phase of this lab so access will be revoked soon enough <img alt="☺" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/263a.svg" title=":relaxed:" /></p>
 </li>
 </ol>
                 

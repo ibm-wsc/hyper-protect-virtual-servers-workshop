@@ -362,6 +362,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#cleanup-docker-token" class="md-nav__link">
+    Cleanup Docker Token
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleanup-github-ssh-key" class="md-nav__link">
+    Cleanup GitHub ssh key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleanup-lab-directory" class="md-nav__link">
+    Cleanup Lab directory
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -475,6 +496,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#cleanup-docker-token" class="md-nav__link">
+    Cleanup Docker Token
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleanup-github-ssh-key" class="md-nav__link">
+    Cleanup GitHub ssh key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleanup-lab-directory" class="md-nav__link">
+    Cleanup Lab directory
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -505,17 +547,19 @@
 <ol>
 <li>
 <p>Cleanup virtual server</p>
-<div class="highlight"><pre><span></span><code>hpvs vs delete --name sbserver-<span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span>
+<div class="highlight"><pre><span></span><code>hpvs vs delete --name sbserver_<span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span>
 </code></pre></div>
 
 </li>
 <li>
 <p>Cleanup quotagroup</p>
-<div class="highlight"><pre><span></span><code>hpvs quotagroup delete --name <span class="s2">&quot;sb-user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code>hpvs quotagroup delete --name <span class="s2">&quot;sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
-<h2 id="cleanup-application">Cleanup Application<a class="headerlink" href="#cleanup-application" title="Permanent link">&para;</a></h2>
 </li>
+</ol>
+<h2 id="cleanup-application">Cleanup Application<a class="headerlink" href="#cleanup-application" title="Permanent link">&para;</a></h2>
+<ol>
 <li>
 <p>Cleanup HPVS deployment</p>
 <div class="highlight"><pre><span></span><code>hpvs vs delete --name <span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span>
@@ -537,6 +581,14 @@
 </code></pre></div>
 
 </details>
+<h2 id="cleanup-docker-token">Cleanup Docker Token<a class="headerlink" href="#cleanup-docker-token" title="Permanent link">&para;</a></h2>
+<p>Delete the existing Docker Token by logging into your <code>Docker Hub</code> account and following <a href="https://docs.docker.com/docker-hub/access-tokens/#modify-existing-tokens" target="_blank">these instructions</a></p>
+<h2 id="cleanup-github-ssh-key">Cleanup GitHub ssh key<a class="headerlink" href="#cleanup-github-ssh-key" title="Permanent link">&para;</a></h2>
+<p>Delete the ssh key you added for the lab following steps 1-3 of <a href="https://help.github.com/en/github/authenticating-to-github/reviewing-your-ssh-keys" target="_blank">these instructions</a></p>
+<h2 id="cleanup-lab-directory">Cleanup Lab directory<a class="headerlink" href="#cleanup-lab-directory" title="Permanent link">&para;</a></h2>
+<p>You can remove the directory you stored your files in throughout the lab. This is a personal choice as the lab machine will be deleted after the lab anyway.</p>
+<div class="highlight"><pre><span></span><code>rm -rf <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
                 
               
               

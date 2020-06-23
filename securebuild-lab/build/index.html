@@ -306,8 +306,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-trust-gpg-signing-key-for-your-docker-repository" class="md-nav__link">
-    Create Trust GPG signing key for your Docker Repository
+  <a href="#create-repository-registration-gpg-signing-key-for-your-docker-repository" class="md-nav__link">
+    Create repository registration GPG signing key for your Docker Repository
   </a>
   
 </li>
@@ -469,8 +469,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-trust-gpg-signing-key-for-your-docker-repository" class="md-nav__link">
-    Create Trust GPG signing key for your Docker Repository
+  <a href="#create-repository-registration-gpg-signing-key-for-your-docker-repository" class="md-nav__link">
+    Create repository registration GPG signing key for your Docker Repository
   </a>
   
 </li>
@@ -529,7 +529,7 @@
 <div class="highlight"><pre><span></span><code><span class="nb">source</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
 </code></pre></div>
 
-<h2 id="create-trust-gpg-signing-key-for-your-docker-repository">Create Trust GPG signing key for your Docker Repository<a class="headerlink" href="#create-trust-gpg-signing-key-for-your-docker-repository" title="Permanent link">&para;</a></h2>
+<h2 id="create-repository-registration-gpg-signing-key-for-your-docker-repository">Create repository registration GPG signing key for your Docker Repository<a class="headerlink" href="#create-repository-registration-gpg-signing-key-for-your-docker-repository" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Set key name</p>
@@ -560,35 +560,42 @@
 </div>
 </li>
 <li>
-<p>Create directory to store Docker Content Trust repository signing key material</p>
-<div class="highlight"><pre><span></span><code>mkdir -p <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/dctrust_keys&quot;</span>
+<p>Create directory to store Docker repository registration signing key material</p>
+<div class="highlight"><pre><span></span><code>mkdir -p <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/registration_keys&quot;</span>
 </code></pre></div>
 
 </li>
 <li>
 <p>Create Key Definition</p>
-<div class="highlight"><pre><span></span><code>cat &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/dctrust_keys/</span><span class="si">${</span><span class="nv">keyName</span><span class="si">}</span><span class="s2">_definition_keys&quot;</span> <span class="s">&lt;&lt;EOF</span>
-<span class="s">    %echo Generating registration definition key</span>
-<span class="s">    Key-Type: RSA</span>
-<span class="s">    Key-Length: 4096</span>
-<span class="s">    Subkey-Type: RSA</span>
-<span class="s">    Subkey-Length: 4096</span>
-<span class="s">    Name-Real: ${keyName}</span>
-<span class="s">    Expire-Date: 0</span>
-<span class="s">    Passphrase: ${passphrase}</span>
-<span class="s">    # Do a commit here, so that we can later print &quot;done&quot; :-)</span>
-<span class="s">    %commit</span>
-<span class="s">    %echo done</span>
+<div class="highlight"><pre><span></span><code>cat &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/registration_keys/</span><span class="si">${</span><span class="nv">keyName</span><span class="si">}</span><span class="s2">_definition_keys&quot;</span> <span class="s">&lt;&lt;EOF</span>
+<span class="s">%echo Generating registration definition key</span>
+<span class="s">Key-Type: RSA</span>
+<span class="s">Key-Length: 4096</span>
+<span class="s">Subkey-Type: RSA</span>
+<span class="s">Subkey-Length: 4096</span>
+<span class="s">Name-Real: ${keyName}</span>
+<span class="s">Expire-Date: 0</span>
+<span class="s">Passphrase: ${passphrase}</span>
+<span class="s"># Do a commit here, so that we can later print &quot;done&quot; :-)</span>
+<span class="s">%commit</span>
+<span class="s">%echo done</span>
 <span class="s">EOF</span>
 </code></pre></div>
 
 </li>
 <li>
 <p>Generate Key pair</p>
-<div class="highlight"><pre><span></span><code>gpg --armor --batch --generate-key <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/dctrust_keys/</span><span class="si">${</span><span class="nv">keyName</span><span class="si">}</span><span class="s2">_definition_keys&quot;</span>
+<div class="highlight"><pre><span></span><code>gpg --armor --batch --generate-key <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/registration_keys/</span><span class="si">${</span><span class="nv">keyName</span><span class="si">}</span><span class="s2">_definition_keys&quot;</span>
 </code></pre></div>
 
-<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>gpg: directory <span class="s1">&#39;/home/multiarch-lab/.gnupg&#39;</span> created
+gpg: keybox <span class="s1">&#39;/home/multiarch-lab/.gnupg/pubring.kbx&#39;</span> created
+gpg: Generating registration definition key
+gpg: /home/multiarch-lab/.gnupg/trustdb.gpg: trustdb created
+gpg: key 7E05CE05DFEBA2BC marked as ultimately trusted
+gpg: directory <span class="s1">&#39;/home/multiarch-lab/.gnupg/openpgp-revocs.d&#39;</span> created
+gpg: revocation certificate stored as <span class="s1">&#39;/home/multiarch-lab/.gnupg/openpgp-revocs.d/27FB55DC5F7FDF0598C9B1007E05CE05DFEBA2BC.rev&#39;</span>
+gpg: <span class="k">done</span>
 </code></pre></div>
 
 </details>
@@ -596,30 +603,22 @@
 <li>
 <p>Export Private key</p>
 <div class="highlight"><pre><span></span><code>gpg --armor --pinentry-mode<span class="o">=</span>loopback --passphrase  <span class="s2">&quot;</span><span class="si">${</span><span class="nv">passphrase</span><span class="si">}</span><span class="s2">&quot;</span> <span class="se">\</span>
---export-secret-keys <span class="s2">&quot;</span><span class="si">${</span><span class="nv">keyName</span><span class="si">}</span><span class="s2">&quot;</span> &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/dctrust_keys/</span><span class="si">${</span><span class="nv">keyName</span><span class="si">}</span><span class="s2">.private&quot;</span>
+--export-secret-keys <span class="s2">&quot;</span><span class="si">${</span><span class="nv">keyName</span><span class="si">}</span><span class="s2">&quot;</span> &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/registration_keys/</span><span class="si">${</span><span class="nv">keyName</span><span class="si">}</span><span class="s2">.private&quot;</span>
 </code></pre></div>
 
-<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>
-</code></pre></div>
-
-</details>
 </li>
 <li>
 <p>Export Public key</p>
-<div class="highlight"><pre><span></span><code>gpg --armor --export <span class="si">${</span><span class="nv">keyName</span><span class="si">}</span> &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/dctrust_keys/</span><span class="si">${</span><span class="nv">keyName</span><span class="si">}</span><span class="s2">.pub&quot;</span>
+<div class="highlight"><pre><span></span><code>gpg --armor --export <span class="si">${</span><span class="nv">keyName</span><span class="si">}</span> &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/registration_keys/</span><span class="si">${</span><span class="nv">keyName</span><span class="si">}</span><span class="s2">.pub&quot;</span>
 </code></pre></div>
 
-<details class="example" open="open"><summary>Example Ouput</summary><div class="highlight"><pre><span></span><code>
-</code></pre></div>
-
-</details>
 </li>
 <li>
 <p>List newly geneerated key files </p>
-<div class="highlight"><pre><span></span><code> ls <span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span>/dctrust_keys/
+<div class="highlight"><pre><span></span><code> ls <span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span>/registration_keys/
 </code></pre></div>
 
-<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>secure_bitcoin_key_definition_keys  secure_bitcoin_key.pub secure_bitcoin_key.private
 </code></pre></div>
 
 </details>
@@ -641,7 +640,7 @@
 </li>
 <li>
 <p>Set Secure Build GitHub repository</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">GH_REPO</span><span class="o">=</span><span class="s2">&quot;https://github.com/IBM/secure-bitcoin-wallet.git&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">GH_REPO</span><span class="o">=</span><span class="s2">&quot;git@github.com:IBM/secure-bitcoin-wallet.git&quot;</span>
 </code></pre></div>
 
 </li>
@@ -653,7 +652,7 @@
 </li>
 <li>
 <p>Set repository registration name</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">REPO_ID</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">REGISTRY_NAME</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">REPO_ID</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">IMAGE_NAME</span><span class="si">}</span><span class="s2">_</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
 </li>
@@ -666,7 +665,7 @@
 <li>
 <p>Create config file</p>
 <div class="highlight"><pre><span></span><code>cat &gt; &quot;${SB_DIR}/sb_config.yaml&quot; &lt;&lt;EOF
-    secure_build_workers:
+secure_build_workers:
     sbs:
         url: &#39;https://${SB_IP}&#39;
         port: &#39;${SB_PORT}&#39;
@@ -677,6 +676,7 @@
     github:
         url: &#39;${GH_REPO}&#39;
         branch: &#39;master&#39;
+        ssh_private_key_path: &#39;${GITHUB_SSH_KEY}&#39;
         recurse_submodules: &#39;False&#39;
         dockerfile_path: &#39;./Dockerfile&#39;
         docker_build_path: &#39;./&#39;
@@ -692,8 +692,8 @@
     build:
         args: []
     signing_key:
-        private_key_path: &#39;${SB_DIR}/dctrust_keys/${keyName}.private&#39;
-        public_key_path: &#39;${SB_DIR}/dctrust_keys/${keyName}.pub&#39;
+        private_key_path: &#39;${SB_DIR}/registration_keys/${keyName}.private&#39;
+        public_key_path: &#39;${SB_DIR}/registration_keys/${keyName}.pub&#39;
 EOF
 </code></pre></div>
 
@@ -703,7 +703,9 @@ EOF
 <ol>
 <li>
 <p>Launch secure build with a timeout of 15 minutes (900 seconds) to complete using the above generated configuration file.</p>
-<div class="highlight"><pre><span></span><code>hpvs sb init --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> --out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span> --timeout <span class="m">900</span> --build
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">passhphrase</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> hpvs sb init <span class="se">\</span>
+--config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> <span class="se">\</span>
+--out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span> --timeout <span class="m">900</span> --build
 </code></pre></div>
 
 </li>
@@ -712,32 +714,149 @@ EOF
 <div class="highlight"><pre><span></span><code>hpvs sb log --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span>
 </code></pre></div>
 
+<details class="exmaple" open="open"><summary>Example Truncated Output</summary><div class="highlight"><pre><span></span><code>2020-06-23 05:25:42,453  root       INFO    starting a build
+2020-06-23 05:25:42,454  root       INFO    cleaning up the local github repo and the github access credential
+2020-06-23 05:25:42,454  root       INFO    github_dir=secure-bitcoin-wallet
+2020-06-23 05:25:42,454  root       INFO    cloning a github repo
+2020-06-23 05:25:42,454  root       INFO    github_host=github.com
+2020-06-23 05:25:42,454  root       INFO    cmd=ssh-keyscan github.com
+2020-06-23 05:25:47,659  root       INFO    # github.com:22 SSH-2.0-babeld-7c96ae41
+# github.com:22 SSH-2.0-babeld-b6072416
+# github.com:22 SSH-2.0-babeld-b6072416
+github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pL
+.....
+</code></pre></div>
+
+</details>
 </li>
 <li>
 <p>You can also look at the secure build status in another window. This is useful if you accidentally interrupted the secure build command or if it times out due to the timeout not being long enough.</p>
 <div class="highlight"><pre><span></span><code>hpvs sb status --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span>
 </code></pre></div>
 
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+---------------------+---------------+
+<span class="p">|</span> manifest_public_key <span class="p">|</span>               <span class="p">|</span>
+<span class="p">|</span> root_ssh_enabled    <span class="p">|</span> <span class="nb">false</span>         <span class="p">|</span>
+<span class="p">|</span> status              <span class="p">|</span> github cloned <span class="p">|</span>
+<span class="p">|</span> build_name          <span class="p">|</span>               <span class="p">|</span>
+<span class="p">|</span> image_tag           <span class="p">|</span>               <span class="p">|</span>
+<span class="p">|</span> manifest_key_gen    <span class="p">|</span>               <span class="p">|</span>
++---------------------+---------------+
+</code></pre></div>
+
+</details>
 </li>
 <li>
-<p>When the seecure build completes successfully it will have the following status</p>
-<details class="exmaple"><summary>Example Output</summary></details>
-<div class="highlight"><pre><span></span><code>
+<p>You can continue to check the logs to monitor the progress of your secure build with the previous logs command</p>
+<div class="highlight"><pre><span></span><code>hpvs sb log --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span>
 </code></pre></div>
 
 </li>
-</ol>
-<h2 id="verify-your-application">Verify your application<a class="headerlink" href="#verify-your-application" title="Permanent link">&para;</a></h2>
-<ol>
 <li>
-<p>Get your application manifest</p>
+<p>When the seecure build completes successfully it will have the following logs</p>
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code><span class="m">2020</span>-06-23 <span class="m">08</span>:39:46,463  root       INFO    run: latest: digest: sha256:ffbaf396807659d5a4d66fe54c0ebf382a9f170c4eaf187b9b4c8582ca8fdec2 size: <span class="m">5133</span>
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:46,463  root       INFO    run: Signing and pushing trust metadata
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:48,299  root       INFO    run: Successfully signed docker.io/gmoney23/hpvs_bc:latest
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:48,300  root       INFO    run: <span class="k">return</span> <span class="nv">code</span> <span class="o">=</span> <span class="m">0</span>
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:48,300  root       INFO    extracting an image keyid and key
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:48,301  root       INFO    <span class="nv">keyid</span><span class="o">=</span>0cc264a565c452ea6aca776b2787be54e94b905113e77edae00d5ec267a07ffc
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:48,301  root       INFO    <span class="nv">publickey</span><span class="o">=</span>LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJmVENDQVNTZ0F3SUJBZ0lSQUt3cTlRWEZhMzRYMXdIRmZST2NJZXN3Q2dZSUtvWkl6ajBFQXdJd0pURWoKTUNFR0ExVUVBd3dhWkc5amEyVnlMbWx2TDJkdGIyNWxlVEl6TDJod2RuTmZZbU13SGhjTk1qQXdOakl6TURnegpPVFF4V2hjTk16QXdOakl4TURnek9UUXhXakFsTVNNd0lRWURWUVFEREJwa2IyTnJaWEl1YVc4dloyMXZibVY1Ck1qTXZhSEIyYzE5aVl6QlpNQk1HQnlxR1NNNDlBZ0VHQ0NxR1NNNDlBd0VIQTBJQUJKU3ZPdWlSaHJNcjJmQVYKcmZLcHZncVRYNXZwSFlodnEvZXc1SFRuMzRMcnBrQ0xJMjBkdmxjcTUyc1ZvQjVxYkpzeEdTbkphOU5sM0tYYQpZUlRjQ2Z1ak5UQXpNQTRHQTFVZER3RUIvd1FFQXdJRm9EQVRCZ05WSFNVRUREQUtCZ2dyQmdFRkJRY0RBekFNCkJnTlZIUk1CQWY4RUFqQUFNQW9HQ0NxR1NNNDlCQU1DQTBjQU1FUUNJRlhFWE9iZTdHR1NsSjEzTzZicTR6T0IKamhoMlZSbmRYOVJYMytrSFpnVVVBaUJBWXAyNTkwTkpVelJIK1lhR2JzQ1hMRmxOUWRzT2ltWW9NMzlqR0IwRAp5dz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:48,301  root       INFO    generating a config file
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:48,301  root       INFO    create_and_push: SoftCrypto
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:48,819  root       INFO    <span class="nv">digest</span><span class="o">=</span>1f0b1f65b1462f16930b200c77ce5fbe654e1d624405bc243d713de1aade36b7
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:48,819  root       INFO    <span class="nv">block_size</span><span class="o">=</span><span class="m">64</span>
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:48,821  root       INFO    <span class="nv">digest</span><span class="o">=</span>1f0b1f65b1462f16930b200c77ce5fbe654e1d624405bc243d713de1aade36b7
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:48,824  root       INFO    <span class="nv">signature</span><span class="o">=</span>114157a8bd98d7f5a5c2ca33f81496563af7f18d23123fc35c8aa84a5bfadc709ecb17e5e79d42d6bd6ac8a815053d9cfd039b7f01ab84b9a75a23e2917b0bc4f0c1b5bd5664dfebd573c2355c34115762b8fea56285d65cd8db4877c9b95ab3149b65d14ce1a23b1065a34c2d4ba9a1526286a03d87d307a5972cf1425e586c9d213b34fe53407c79a527e78779b7a70b426516db35f22a09329dfac76a8505613249ad2b46070ad7d932a8c4bbe1981d0370150528cb9e6f5a426be6734405435393a8d6d8e145418398f85bc28be6c332d2fa2e84f5465618051b110a3efcd25600dc95ee0d7f8bc0d36b8ddaa9ce1c4be78f38928d9213e5171078e22930
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:48,824  root       INFO    <span class="nv">verify</span><span class="o">=</span>OK
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:49,214  root       WARNING undefined MANIFEST_BUCKET_NAME
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:49,214  root       WARNING skipping transferring a manifest to COS
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:49,214  root       INFO    cleaning up the build environment
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:49,214  root       INFO    <span class="nv">github_dir</span><span class="o">=</span>secure-bitcoin-wallet
+<span class="m">2020</span>-06-23 <span class="m">08</span>:39:49,217  root       INFO    completed a build
+</code></pre></div>
+
+</details>
 </li>
 <li>
-<p>Verify you application manifest</p>
+<p>When the secure build completes successfully you can check the status again to see a completed status</p>
+<div class="highlight"><pre><span></span><code>hpvs sb status --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span>
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+---------------------+------------------------------------------------------------------------------------------+
+<span class="p">|</span> build_name          <span class="p">|</span> docker.io.gmoney23.hpvs_bc.latest-b3416d8.2020-06-23_08-39-48.301849                     <span class="p">|</span>
+<span class="p">|</span> image_tag           <span class="p">|</span> latest-b3416d8                                                                           <span class="p">|</span>
+<span class="p">|</span> manifest_key_gen    <span class="p">|</span> soft_crypto                                                                              <span class="p">|</span>
+<span class="p">|</span> manifest_public_key <span class="p">|</span> manifest.docker.io.gmoney23.hpvs_bc.latest-b3416d8.2020-06-23_08-39-48.301849-public.pem <span class="p">|</span>
+<span class="p">|</span> root_ssh_enabled    <span class="p">|</span> <span class="nb">false</span>                                                                                    <span class="p">|</span>
+<span class="p">|</span> status              <span class="p">|</span> success                                                                                  <span class="p">|</span>
++---------------------+------------------------------------------------------------------------------------------+
+</code></pre></div>
+
+</details>
+</li>
+<li>
+<p>Ouput the repository registration file</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">passhphrase</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> hpvs sb regfile <span class="se">\</span>
+--config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> <span class="se">\</span>
+--out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span>
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary></details>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+<h2 id="verify-your-application">Verify your application<a class="headerlink" href="#verify-your-application" title="Permanent link">&para;</a></h2>
+</li>
+<li>
+<p>Create a directory for your manifest file information and change into it</p>
+<div class="highlight"><pre><span></span><code>mkdir -p <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/manifest&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/manifest&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Save the build name from the status command as a variable</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">BUILD_NAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>hpvs sb status --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> <span class="se">\</span>
+<span class="p">|</span> grep build_name <span class="p">|</span> egrep -ow <span class="s1">&#39;docker.*[[:digit:]]&#39;</span><span class="k">)</span><span class="s2">&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">BUILD_NAME</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>docker.io.gmoney23.hpvs_bc.latest-b3416d8.2020-06-23_08-39-48.301849
+</code></pre></div>
+
+</details>
+</li>
+<li>
+<p>Get your application manifest</p>
+<div class="highlight"><pre><span></span><code>hpvs sb manifest --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> --name <span class="s2">&quot;</span><span class="si">${</span><span class="nv">BUILD_NAME</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Get your manifest signing key</p>
+<div class="highlight"><pre><span></span><code>hpvs sb pubkey --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> --name <span class="s2">&quot;</span><span class="si">${</span><span class="nv">BUILD_NAME</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Check that your application manifest and sigining key were retrieved</p>
+<div class="highlight"><pre><span></span><code>ls
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>docker.io.gmoney23.hpvs_bc.latest-b3416d8.2020-06-23_08-39-48.301849-public.pem
+manifest.docker.io.gmoney23.hpvs_bc.latest-b3416d8.2020-06-23_08-39-48.301849.sig.tbz
+</code></pre></div>
+
+</details>
+</li>
+<li>
+<p>Verify your manifest file with the public key
+ ... continued </p>
+</li>
+<li>
+<p>Further inspect manifest files .... (I will fill this out)</p>
 </li>
 <li>
 <p>What does this give me?</p>
-<p>This gives you awesomeness .... </p>
+<p>This gives you awesomeness ....  (Obviously I will fill this out)</p>
 </li>
 </ol>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
