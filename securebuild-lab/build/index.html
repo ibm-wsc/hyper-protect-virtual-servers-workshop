@@ -640,12 +640,6 @@ gpg: <span class="k">done</span>
 
 </li>
 <li>
-<p>Set Secure Build Server Port</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">SB_PORT</span><span class="o">=</span><span class="m">213</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span>
-</code></pre></div>
-
-</li>
-<li>
 <p>Set Secure Build GitHub repository</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">GH_REPO</span><span class="o">=</span><span class="s2">&quot;git@github.com:IBM/secure-bitcoin-wallet.git&quot;</span>
 </code></pre></div>
@@ -715,9 +709,33 @@ EOF
 --out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span> --timeout <span class="m">1200</span> --build
 </code></pre></div>
 
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following build will take anywhere from <strong>15-20 minutes</strong> to complete. While this is ongoing, you should open a new tab in your terminal to check the automatically updating logs and build status (steps for doing this are detailed in the next few steps).</p>
+</div>
+<details class="example" open="open"><summary>Example Output after running 15-20 minutes to completion</summary><div class="highlight"><pre><span></span><code>&gt; --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> <span class="se">\</span>
+&gt; --out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span> --timeout <span class="m">1200</span> --build
+Enter Sigining Private key passphrase: 
+<span class="o">{</span><span class="s2">&quot;status&quot;</span>:<span class="s2">&quot;OK&quot;</span><span class="o">}</span>
+
++--------+-------------------------+
+<span class="p">|</span> status <span class="p">|</span> OK: async build started <span class="p">|</span>
++--------+-------------------------+
+<span class="c1">##############################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################</span>
++---------------------+--------------------------------------------------------------------------------------------+
+<span class="p">|</span> root_ssh_enabled    <span class="p">|</span> <span class="nb">false</span>                                                                                      <span class="p">|</span>
+<span class="p">|</span> status              <span class="p">|</span> success                                                                                    <span class="p">|</span>
+<span class="p">|</span> build_name          <span class="p">|</span> docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641                     <span class="p">|</span>
+<span class="p">|</span> image_tag           <span class="p">|</span> latest-b3416d8                                                                             <span class="p">|</span>
+<span class="p">|</span> manifest_key_gen    <span class="p">|</span> soft_crypto                                                                                <span class="p">|</span>
+<span class="p">|</span> manifest_public_key <span class="p">|</span> manifest.docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641-public.pem <span class="p">|</span>
++---------------------+--------------------------------------------------------------------------------------------+
+</code></pre></div>
+
+</details>
 </li>
 <li>
-<p>You can look at the logs if desired in another terminal window while the secure build is running (don't intterrupt the current terminal window which is waiting for the secure build) </p>
+<p>Please look at the logs in another terminal window while the secure build is running (don't intterrupt the current terminal window which is waiting for the secure build) </p>
 <div class="highlight"><pre><span></span><code>hpvs sb log --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span>
 </code></pre></div>
 
@@ -737,7 +755,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 </details>
 </li>
 <li>
-<p>You can also look at the secure build status in another window. This is useful if you accidentally interrupted the secure build command or if it times out due to the timeout not being long enough.</p>
+<p>You can also look at the secure build status in another window. This can be useful if you accidentally interrupted the secure build command or it times out due to the timeout not being long enough. It will also fill out the additional fields that are initially blank when the build completes (such as <code>build_name</code> and <code>manifest_public_key</code>, etc.).</p>
 <div class="highlight"><pre><span></span><code>hpvs sb status --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span>
 </code></pre></div>
 
@@ -760,7 +778,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 
 </li>
 <li>
-<p>When the seecure build completes successfully it will have the following logs</p>
+<p>When the seecure build successfully completes, it will have ending logs similar to the following:</p>
 <details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code><span class="m">2020</span>-06-23 <span class="m">08</span>:39:46,463  root       INFO    run: latest: digest: sha256:ffbaf396807659d5a4d66fe54c0ebf382a9f170c4eaf187b9b4c8582ca8fdec2 size: <span class="m">5133</span>
 <span class="m">2020</span>-06-23 <span class="m">08</span>:39:46,463  root       INFO    run: Signing and pushing trust metadata
 <span class="m">2020</span>-06-23 <span class="m">08</span>:39:48,299  root       INFO    run: Successfully signed docker.io/gmoney23/hpvs_bc:latest
@@ -785,7 +803,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 </details>
 </li>
 <li>
-<p>When the secure build completes successfully you can check the status again to see a completed status</p>
+<p>When the secure build successfully completes, you can check the status again to see a <code>completed</code> status.</p>
 <div class="highlight"><pre><span></span><code>hpvs sb status --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span>
 </code></pre></div>
 

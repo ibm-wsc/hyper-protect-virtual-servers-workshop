@@ -589,7 +589,16 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 </li>
 <li>
 <p>Save your number to <code>bashrc</code> for later use.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;export HPVS_NUMBER=&#39;</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&#39;&quot;</span> &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
+<p><div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;export HPVS_NUMBER=&#39;</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&#39;&quot;</span> &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
+</code></pre></div>
+3. Set Secure Build Server Port</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">SB_PORT</span><span class="o">=</span><span class="m">300</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Save <code>SB_PORT</code> to <code>bashrc</code> for later use.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;export SB_PORT=&#39;</span><span class="si">${</span><span class="nv">SB_PORT</span><span class="si">}</span><span class="s2">&#39;&quot;</span> &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
 </code></pre></div>
 
 </li>
@@ -617,7 +626,7 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 --quotagroup <span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = data, mount = /data, filesystem = ext4, size = 2GB}&quot;</span> <span class="se">\</span>
 --quotagroup <span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = docker, mount = /docker, filesystem = ext4, size = 16GB}&quot;</span> <span class="se">\</span>
 --env<span class="o">={</span><span class="nv">EX_VOLUMES</span><span class="o">=</span><span class="s2">&quot;/docker,/data&quot;</span>,ROOTFS_LOCK<span class="o">=</span>y,CLIENT_CRT<span class="o">=</span><span class="nv">$cert</span><span class="o">}</span> <span class="se">\</span>
---ports <span class="s2">&quot;{containerport = 443, protocol = tcp, hostport = 213</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">}&quot;</span>
+--ports <span class="s2">&quot;{containerport = 443, protocol = tcp, hostport = </span><span class="si">${</span><span class="nv">SB_PORT</span><span class="si">}</span><span class="s2">}&quot;</span>
 </code></pre></div>
 
 <details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>╭─────────────┬──────────────────────────────╮
@@ -635,7 +644,7 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 │             │                              │
 │             │                              │
 │ Ports       │ LocalPort:443/tcp            │
-│             │ GuestPort:21300              │
+│             │ GuestPort:30000              │
 │             │                              │
 │ Quotagroups │ appliance_data               │
 │             │ sb_user00                    │
@@ -685,7 +694,7 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 │             │                              │
 │             │                              │
 │ Ports       │ LocalPort:443/tcp            │
-│             │ GuestPort:21300              │
+│             │ GuestPort:30000              │
 │             │                              │
 │ Quotagroups │ appliance_data               │
 │             │ sb_user00                    │
@@ -696,7 +705,7 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 
 </details>
 <p>Your secure build server is now up and running! <img alt="🔥" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f525.svg" title=":fire:" /></p>
-<p>It is available at the IP Address of the Hyper Protect Virtual Server LPAR and port (GuestPort) specified (In this case <a href="https://192.168.22.79:21300">https://192.168.22.79:21300</a>)</p>
+<p>It is available at the IP Address of the Hyper Protect Virtual Server LPAR and port (GuestPort) specified.</p>
 <p>You will use this secure build server to securely build your application in the next section. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

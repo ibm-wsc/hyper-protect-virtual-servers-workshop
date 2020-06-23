@@ -516,6 +516,12 @@
 </div>
 </li>
 <li>
+<p>Save your <code>DOCKER_USERNAME</code> to <code>bashrc</code> for later use.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;export DOCKER_USERNAME=&#39;</span><span class="si">${</span><span class="nv">DOCKER_USERNAME</span><span class="si">}</span><span class="s2">&#39;&quot;</span> &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
 <p>Set your Docker registry placeholder name </p>
 <div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Command Syntax</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">REGISTRY_NAME</span><span class="o">=</span><span class="s2">&quot;my_registry&quot;</span>
@@ -530,7 +536,7 @@
 </div>
 </li>
 <li>
-<p>Save your <code>REGISTRY_NAME</code> to bashrc for future shells (in case you open new terminals)</p>
+<p>Save your <code>REGISTRY_NAME</code> to <code>bashrc</code> for future shells (in case you open new terminals)</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;export REGISTRY_NAME=&#39;</span><span class="si">${</span><span class="nv">REGISTRY_NAME</span><span class="si">}</span><span class="s2">&#39;&quot;</span> &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
 </code></pre></div>
 
