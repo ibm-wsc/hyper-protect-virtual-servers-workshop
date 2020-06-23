@@ -64,7 +64,8 @@ source "${HOME}/.bashrc"
 5. Generate Key pair
 
     ``` bash
-    gpg --armor --batch --generate-key "${SB_DIR}/registration_keys/${keyName}_definition_keys"
+    gpg --armor --batch \
+    --generate-key "${SB_DIR}/registration_keys/${keyName}_definition_keys"
     ```
 
     ???+ example "Example Output"
@@ -108,7 +109,7 @@ source "${HOME}/.bashrc"
 1. Set Secure Build Server IP ADDRESS
 
     ``` bash
-    export SB_IP=192.168.22.79
+    export SB_IP=192.168.22.120
     ```
 
 2. Set Secure Build Server Port
