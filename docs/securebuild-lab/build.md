@@ -109,7 +109,7 @@ source "${HOME}/.bashrc"
 1. Set Secure Build Lab IP Address
 
     ``` bash
-    export SB_IP=192.168.22.120
+    export SB_IP=192.168.22.79
     ```
 
 2. Save Secure Build Lab IP Address for later use
@@ -201,8 +201,6 @@ source "${HOME}/.bashrc"
     ???+ example "Example Output after running 15-20 minutes to completion"
     
         ``` bash
-        > --config "${SB_DIR}/sb_config.yaml" \
-        > --out "${SB_DIR}/yaml.${REPO_ID}.enc" --timeout 1200 --build
         Enter Sigining Private key passphrase: 
         {"status":"OK"}
 
