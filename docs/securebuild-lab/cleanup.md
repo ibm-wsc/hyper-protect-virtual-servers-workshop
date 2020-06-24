@@ -21,7 +21,7 @@ source "${HOME}/.bashrc"
     ``` bash
     hpvs quotagroup delete --name "sb_user${HPVS_NUMBER}"
     ```
-    
+
 ## Cleanup Application
 
 1. Cleanup HPVS deployment
@@ -44,6 +44,11 @@ hpvs repository  delete --id ${REPO_ID}
 
 ???+ example "Example Output"
     ``` bash
+    +-------------------+-----------------------------------------------------------------------------------------------------------------------------+
+    | ContainersDeleted | []                                                                                                                          |
+    | ImagesDeleted     | map[Deleted:[sha256:5c0129df1b5ccb333a4dea9ed5a880cbc15654a9c1d5e32bb4e183072ce7b021] Untagged:[gmoney23/hpvs_bc_a:latest]] |
+    | RepositoryDeleted | docker.io/gmoney23/hpvs_bc_a                                                                                                |
+    +-------------------+-----------------------------------------------------------------------------------------------------------------------------+
     ```
 
 ## Cleanup Docker Token
