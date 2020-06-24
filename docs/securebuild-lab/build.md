@@ -188,8 +188,15 @@ source "${HOME}/.bashrc"
     --out "${SB_DIR}/yaml.${REPO_ID}.enc" --timeout 1200 --build
     ```
 
-    !!! note
+    !!! Tip
         The following build will take anywhere from **15-20 minutes** to complete. While this is ongoing, you should open a new tab in your terminal to check the automatically updating logs and build status (steps for doing this are detailed in the next few steps).
+
+    !!! note
+        The secure build is asynchronous so if the command gets interrupted here don't worry! :grin:
+
+        That just means you will need to retrieve the registration file later since the cli couldn't grab it after the build. 
+        
+        (We will do this anyway in `Step 7` to cover our bases)
 
     ???+ example "Example Output after running 15-20 minutes to completion"
     
@@ -305,12 +312,32 @@ source "${HOME}/.bashrc"
         +---------------------+------------------------------------------------------------------------------------------+
         ```
 
-## Verify your application
-
-1. Create a directory for your manifest file information and change into it
+7. Ouput the repository registration file (just in case the `sb init` command got interrupted before completing)
 
     ``` bash
-    mkdir -p "${SB_DIR}/manifest" && cd "${SB_DIR}/manifest"
+    echo "${passphrase}" | hpvs sb regfile \
+    --config "${SB_DIR}/sb_config.yaml" \
+    --out "${SB_DIR}/yaml.${REPO_ID}.enc"
+    ```
+
+    ???+ example "Example Output"
+
+    ``` bash
+    Enter Sigining Private key passphrase:
+    ```
+
+    !!! Tip 
+        The `echo` command takes care of the passphrase so you don't need to enter it manually.
+
+    !!! note
+        This registration file should be created at the end of the `sb init` command. However, given that the build is asynchronous it will complete even if you accidentally interrupt it. However, if you do interrupt it then the repoistory registration file won't be craeted. We grab it again here just to cover our bases if that command got interrupted. If it didn't get interrupted you could skip this step. However, it doesn't hurt to grab it again here as it will just retrieve it again. 
+
+## Verify your application
+
+1. Create directories for your manifest file information and change into your new `manifest` directory.
+
+    ``` bash
+    mkdir -p "${SB_DIR}/manifest/manifest_files" && cd "${SB_DIR}/manifest"
     ```
 
 2. Save the build name from the status command as a variable
@@ -347,21 +374,72 @@ source "${HOME}/.bashrc"
     ???+ example "Example Output"
 
         ```bash 
-        docker.io.gmoney23.hpvs_bc.latest-b3416d8.2020-06-23_08-39-48.301849-public.pem
-        manifest.docker.io.gmoney23.hpvs_bc.latest-b3416d8.2020-06-23_08-39-48.301849.sig.tbz
+        docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641-public.pem
+        manifest.docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641.sig.tbz
+        manifest_files
         ```
 
-6. Verify your manifest file with the public key
- ... continued 
+6. Set `MANIFEST` to point to your manifest files.
 
-7. Further inspect manifest files .... (I will fill this out)
+    ``` bash
+    export MANIFEST="${SB_DIR}/manifest/manifest.${BUILD_NAME}"
+    ```
 
-8. What does this give me?
+7. Set `MAN_KEY` to point to your manifest public key.
 
-    This gives you awesomeness ....  (Obviously I will fill this out)
+    ``` bash
+    export MAN_KEY="${SB_DIR}/manifest/${MAN_KEY}-public.pem"
+    ```
+
+8. Untar and unzip the manifest `.sig.tbz` file to reveal the `.sig` and `.tbz` files (and remove the original `.sig.tbz`)
+
+    ``` bash
+    tar -xjvf "${MANIFEST}.sig.tbz" && rm "${MANIFEST}.sig.tbz"
+    ```
+
+    ???+ example "Example Output"
+
+        ```
+        manifest.docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641.tbz
+        manifest.docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641.sig
+        ```
+
+    !!! note
+
+        The `.sig.tbz` was a tarball compressed using bzip2 compression of both a nested `.tbz` file (containing the manifest files) and a `.sig` file containing a signature of the nested `.tbz` to verify it with the public key retrieved using the `hpvs sb pubkey` command above saved in the file referenced by `MAN_KEY`.
+
+9.  Untar and unzip the manifest `.tbz` file into the `manifest_files` directory.
+
+    ``` bash
+    tar -xjf "${MANIFEST}.tbz" -C "${SB_DIR}/manifest/manifest_files"
+    ```
+
+10. Change into the `manifest_files` directory with your manifest files and view the files in the directory.
+
+    ``` bash
+    cd "${SB_DIR}/manifest/manifest_files" && ls
+    ```
+
+    ???+ example "Example Output"
+
+        ``` bash
+        data  git  root_ssh
+        ```
+    
+    !!! info "Manifest explanation"
+        This `manifest` package contains three directories as shown above. The `data` directory contains the `build.json` (containing the build status of the directory updated after the image was pushed to its Docker Registry) and `build.log` (containing the logs from the secure build). The `git` directory contains the source code used for the build (cloned from git). Finally, the `root_ssh` directory contains any `ssh` material provided (if the user chose to use ssh) which is empty for us because we didn't enable ssh and provide ssh keys. This way no one can ssh into our secure build container. 
+
+11. What does this give me?
+
+    This gives you a way to see the collection of files used for your build at the time of the build and signed by the manifest private key which is secured in your secure build container. By retrieving the public key and verifying the signature of the package we *and auditors* can verify what was used for our secure image build. (Since the private key was generated in the secure build server we can trust it) This gives us verification of what was used in the build as well as the verification of the images themselves we get from [Docker Content Trust](https://docs.docker.com/engine/security/trust/content_trust/){target=_blank}.
+
+    !!! note
+        The secure build server also generates the keys for Docker Content Trust and stores them safely to provide a secure root of trust.
+
+        _Remember the secure build server is running as a Hyper Protect Virtual Server and thus inherits all of the security features and assurances of Hyper Protect Virtual Servers._
 
 ## Summary
 
 Congratulations!!! :tada: 
 
-You have securely built your application and are now ready to deploy it into a Hyper Protect Virtual Server in the next section.
+You have securely built your application and are ready to deploy it into a Hyper Protect Virtual Server in the next section.
