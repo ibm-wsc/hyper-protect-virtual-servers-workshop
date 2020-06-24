@@ -190,16 +190,16 @@ source "${HOME}/.bashrc"
 
 ## Access your application
 
-Run the following command to print the address for your application:
+Run the following command to print the address for your electrum wallet application:
 
 ``` bash
-echo "https://${SB_IP}:${APP_PORT}"
+echo "https://${SB_IP}:${APP_PORT}/electrum"
 ```
 
 ???+ example "Example Output"
 
     ```
-    https://192.168.22.120:30100
+    https://192.168.22.120:30100/electrum
     ```
 
 Your app is now up and running at the address printed in your terminal! 

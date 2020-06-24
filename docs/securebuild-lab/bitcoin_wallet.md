@@ -2,12 +2,14 @@
 
 ## Overview 
 
-This application is an electrum bitcoin wallet. You can use it to store the identities necessary to transact on the bitcoin network. Whereas this version of the wallet is just a proof of concept, the idea is that using a wallet such as this on Hyper Protect enables you to protect your digital assets from bad actors.
+This application is an secure Electrum Bitcoin wallet found at [this GitHub repository](https://github.com/IBM/secure-bitcoin-wallet){_target=blank}. You can use it to store the identities necessary to transact on the Bitcoin public blockchain network. While this version of the wallet is just a proof of concept, running this type of wallet on Hyper Protect enables you to protect your digital assets from bad actors such as malicious server administrators.
 
 !!! info 
-    You are able to use this Electrum Bitcoin wallet like you normally would. In other words, it inherits the security benefits of the Hyper Protect Virtual Server platform to ensure that a legitimate version of the application is running (Secure Image Build process) and that administrators cannot compromise the application (Hyper Protect Virtual Server deployment)
+    This Electrum Bitcoin wallet functions regularly, while inheriting the security benefits of the Hyper Protect Virtual Server platform. This ensures that a legitimate version of the application is running (Secure Image Build process) and that administrators cannot compromise the application (Hyper Protect Virtual Server deployment).
 
-## Open Link to visit your
+## Register a new user
+
+![User Registration](Bitcoin_Wallet_Images/Wallet_register_info.png)
 
 ## Get currency from a bitcoin test faucet
 
