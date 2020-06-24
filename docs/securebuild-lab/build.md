@@ -329,7 +329,7 @@ source "${HOME}/.bashrc"
     !!! Tip 
         The `echo` command takes care of the passphrase so you don't need to enter it manually.
     
-    !!! note
+    !!! warning
         If you run this command from a terminal window where you did not set the `$passphrase` environment variable you will get an error saying `openpgp: invalid data: private key checksum failure`. You can also check to make sure you are in the right terminal window by running `echo $passphrase` and the output should be the passphrase you set in the beginning of the "Create repository registration GPG signing key" section.
 
     !!! note
