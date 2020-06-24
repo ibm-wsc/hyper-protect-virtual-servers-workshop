@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.0">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
       
       
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#use-your-bitcoin-wallet-application" class="md-skip">
+        <a href="#welcome-to-the-secure-bitcoin-wallet-on-ibm-linuxone" class="md-skip">
           Skip to content
         </a>
       
@@ -330,22 +330,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#register-a-new-user" class="md-nav__link">
-    Register a new user
+  <a href="#account-registration" class="md-nav__link">
+    Account Registration
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-currency-from-a-bitcoin-test-faucet" class="md-nav__link">
-    Get currency from a bitcoin test faucet
+  <a href="#wallet-initialization" class="md-nav__link">
+    Wallet initialization
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#send-current-back-to-the-faucet" class="md-nav__link">
-    Send current back to the faucet
+  <a href="#receiving-bitcoins" class="md-nav__link">
+    Receiving Bitcoins
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#returning-bitcoins" class="md-nav__link">
+    Returning Bitcoins
   </a>
   
 </li>
@@ -455,22 +462,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#register-a-new-user" class="md-nav__link">
-    Register a new user
+  <a href="#account-registration" class="md-nav__link">
+    Account Registration
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-currency-from-a-bitcoin-test-faucet" class="md-nav__link">
-    Get currency from a bitcoin test faucet
+  <a href="#wallet-initialization" class="md-nav__link">
+    Wallet initialization
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#send-current-back-to-the-faucet" class="md-nav__link">
-    Send current back to the faucet
+  <a href="#receiving-bitcoins" class="md-nav__link">
+    Receiving Bitcoins
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#returning-bitcoins" class="md-nav__link">
+    Returning Bitcoins
   </a>
   
 </li>
@@ -495,19 +509,146 @@
                   
                 
                 
-                <h1 id="use-your-bitcoin-wallet-application">Use your bitcoin wallet application<a class="headerlink" href="#use-your-bitcoin-wallet-application" title="Permanent link">&para;</a></h1>
+                <h1 id="welcome-to-the-secure-bitcoin-wallet-on-ibm-linuxone">Welcome to the Secure Bitcoin Wallet on IBM LinuxONE<a class="headerlink" href="#welcome-to-the-secure-bitcoin-wallet-on-ibm-linuxone" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>This application is an secure Electrum Bitcoin wallet found at <a _target="blank" href="https://github.com/IBM/secure-bitcoin-wallet">this GitHub repository</a>. You can use it to store the identities necessary to transact on the Bitcoin public blockchain network. While this version of the wallet is just a proof of concept, running this type of wallet on Hyper Protect enables you to protect your digital assets from bad actors such as malicious server administrators.</p>
+<p>This application is an secure <a href="https://electrum.org/#home" target="_blank">Electrum</a> Bitcoin wallet found at <a href="https://github.com/IBM/secure-bitcoin-wallet" target="_blank">this GitHub repository</a>. You can use it to store the identities necessary to transact on the Bitcoin public blockchain network. While this version of the wallet is just a proof of concept, running this type of wallet on Hyper Protect enables you to protect your digital assets from bad actors such as malicious server administrators.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>This Electrum Bitcoin wallet functions regularly, while inheriting the security benefits of the Hyper Protect Virtual Server platform. This ensures that a legitimate version of the application is running (Secure Image Build process) and that administrators cannot compromise the application (Hyper Protect Virtual Server deployment).</p>
 </div>
-<h2 id="register-a-new-user">Register a new user<a class="headerlink" href="#register-a-new-user" title="Permanent link">&para;</a></h2>
+<h2 id="account-registration">Account Registration<a class="headerlink" href="#account-registration" title="Permanent link">&para;</a></h2>
+<p>Registering a fake account for lab purposes.</p>
+<ol>
+<li>
+<p>Choose <code>Register</code> since you won't have an existing account on the newly deployed server.</p>
+<p><img alt="Secure Bitcoin Wallet Welcome" src="../Bitcoin_Wallet_Images/Bitcoin_Wallet_Homepage.png" /></p>
+</li>
+<li>
+<p>Enter the registration details you desire.</p>
 <p><img alt="User Registration" src="../Bitcoin_Wallet_Images/Wallet_register_info.png" /></p>
-<h2 id="get-currency-from-a-bitcoin-test-faucet">Get currency from a bitcoin test faucet<a class="headerlink" href="#get-currency-from-a-bitcoin-test-faucet" title="Permanent link">&para;</a></h2>
-<p>Instead of transacting on the real bitcoin network we will use a testnet ()
-<a href="https://bitcoinfaucet.uo1.net/send.php">https://bitcoinfaucet.uo1.net/send.php</a></p>
-<h2 id="send-current-back-to-the-faucet">Send current back to the faucet<a class="headerlink" href="#send-current-back-to-the-faucet" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Do not worry about the information you enter on the registration page (shown below) as it won't map to anything. You just need your password to log back in if you log out of the application.</p>
+</div>
+</li>
+</ol>
+<h2 id="wallet-initialization">Wallet initialization<a class="headerlink" href="#wallet-initialization" title="Permanent link">&para;</a></h2>
+<p>It's time to set up your Electrum Bitcoin wallet itself! <img alt="⚡" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26a1.svg" title=":zap:" /></p>
+<ol>
+<li>
+<p>Bring up the wallet screen</p>
+<p><img alt="Wallet Start" src="../Bitcoin_Wallet_Images/Click_Wallet_Start.png" /></p>
+</li>
+<li>
+<p>Enter in a <code>password</code> for your wallet and click <code>Create Wallet</code></p>
+<p><img alt="Create Wallet" src="../Bitcoin_Wallet_Images/Create_Wallet.png" /></p>
+</li>
+<li>
+<p>Load your newly created wallet to enable it</p>
+<p><img alt="Load Wallet" src="../Bitcoin_Wallet_Images/Load_Wallet.png" /></p>
+</li>
+<li>
+<p>Reload the page.</p>
+<p><img alt="Initialized Wallet" src="../Bitcoin_Wallet_Images/Reload_new_wallet.png" /></p>
+</li>
+<li>
+<p>Your wallet is ready for use in all of its glory <img alt="👼" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f47c.svg" title=":angel:" /></p>
+<p><img alt="Locked and Loaded Wallet" src="../Bitcoin_Wallet_Images/Loaded_Wallet_Time.png" /></p>
+</li>
+</ol>
+<h2 id="receiving-bitcoins">Receiving Bitcoins<a class="headerlink" href="#receiving-bitcoins" title="Permanent link">&para;</a></h2>
+<p>A wallet without currency is blasphemy, so it's time to fill it on up with fake bitcoins. </p>
+<ol>
+<li>
+<p>Go to the <code>Receive</code> section of the wallet and get the bitcoin wallet address.  </p>
+<p><img alt="Wallet receiving bitcoin" src="../Bitcoin_Wallet_Images/Receiving_bitcoin.png" /></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This is the address whose alloted bitcoins you lay claim to.</p>
+</div>
+</li>
+<li>
+<p>Open <a href="https://bitcoinfaucet.uo1.net/send.php" target="_blank">this bitcoin test faucet site</a> [click on the link] and use it to transfer bitcoin value to the <code>Receiving address</code> in your wallet <strong>from step 1 above</strong>.</p>
+<p><img alt="Transfer Bitcoins" src="../Bitcoin_Wallet_Images/Send_bitcoins_to_wallet.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Instead of transacting on the "real" bitcoin blockchain network we are using a <a href="https://medium.com/myetherwallet/understanding-blockchain-changes-testnets-and-mainnets-c2171a8e835f" target="_blank">testnet</a>. This means that the network participants agree that the assets on the network have no value. Testnets are used for testing changes to the network, testing applications and introducing new users to the technical aspects of network. There are testnets for many of the public blockchain networks including of course bitcoin and ethereum. Test faucets (like the one we are using) act as distributors of tokens to other users on the testnet.</p>
+</div>
+</li>
+<li>
+<p>Switch back to your wallet tab and go to the <code>History</code> section and then reload the page.</p>
+<p><img alt="Check History" src="../Bitcoin_Wallet_Images/Check_History_Receive_Transaction.png" /></p>
+</li>
+<li>
+<p>You should now see your wallet address as the recipient of a <code>pending transaction</code> from the bitcoin testnet faucet.</p>
+<p><img alt="First Transaction History" src="../Bitcoin_Wallet_Images/Transaction_History_no_confirmations.png" /></p>
+</li>
+<li>
+<p>After clicking for more information you get a detailed transaction overview</p>
+<p><img alt="Receive Transaction 0 Confirmations" src="../Bitcoin_Wallet_Images/0_confirmations_block_details.png" /></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The number of <a href="https://en.bitcoin.it/wiki/Confirmation" target="_blank">confirmations</a> a block receives is the number of blocks deep the block that has included the blockchain transaction is. In other words, <code>1 confirmation</code> means that the current head block includes the transaction. <code>2 confirmations</code> means that the current head blocks parent block contains the transaction and so on. The deeper the transaction is (more confirmations it has) the more mining power it would take to "reverse history" and undo the transaction.</p>
+</div>
+<p>Since there are <code>0 confirmations</code> in the picture above, it means that the transaction is not yet included in a block. This is why it has no timestamp yet and it's block number is listed as <code>0</code>.</p>
+</li>
+<li>
+<p>After waiting anywhere from a minute to a few minutes (depending on the current testnet traffic) you should see a confirmation on your transaction.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You will need to keep reloading the page for it to update. It doesn't update automatically.</p>
+</div>
+<p><img alt="1 Confirmation Received" src="../Bitcoin_Wallet_Images/1_Confirmation_Received.png" /></p>
+<p>There is now a timestamp and a block number! <img alt="💵" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4b5.svg" title=":dollar:" /></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>As time passes more confirmations will accumulate. You can check on the <code>confirmations</code> again at the end of the lab to show yourself this (Given enough time has passed for one or more additional confirmation(s) to occur).</p>
+</div>
+</li>
+</ol>
+<h2 id="returning-bitcoins">Returning Bitcoins<a class="headerlink" href="#returning-bitcoins" title="Permanent link">&para;</a></h2>
+<p>Since you are feeling charitable you decide to transfer your testnet value back to the faucet's address. </p>
+<ol>
+<li>
+<p>Go back to <a href="https://bitcoinfaucet.uo1.net/send.php" target="_blank">the faucet site</a> and get it's bitcoin address</p>
+<p><img alt="Faucet Address" src="../Bitcoin_Wallet_Images/testnet_faucet_address.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This address is here for easy copy and paste:</p>
+<div class="highlight"><pre><span></span><code>2NGZrVvZG92qGYqzTLjCAewvPZ7JE8S8VxE
+</code></pre></div>
+
+</div>
+</li>
+<li>
+<p>Send bitcoins to faucet using <code>Send</code> section of wallet</p>
+<p><img alt="Send Bitcoins to Faucet" src="../Bitcoin_Wallet_Images/Send_bitcoins_back_to_faucet.png" /></p>
+</li>
+<li>
+<p>Once sent you will see the <code>Signed transaction</code> information filled out on your wallet page.</p>
+<p><img alt="Bitcoins Sent Back to Faucet" src="../Bitcoin_Wallet_Images/bitcoin_send_transaction_output.png" /></p>
+</li>
+<li>
+<p>You can go back to the <a href="https://bitcoinfaucet.uo1.net/send.php" target="_blank">bitcoin faucet site</a> and see the transaction as green there with a sender of your address and a transaction ID matching the one you sent.</p>
+<p><img alt="Bitcoins returned to faucet" src="../Bitcoin_Wallet_Images/transaction_giving_coins_back_to_faucet.png" /></p>
+</li>
+<li>
+<p>You can view both the initial received transaction and the newly sent transaction in the <code>History</code> tab of your bitcoin wallet.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If you wait eventually these transactions will gain confirmations as in the picture below</p>
+</div>
+<p><img alt="Both transactions with 1 confirmation" src="../Bitcoin_Wallet_Images/both_confirmed_transactions.png" /></p>
+</li>
+<li>
+<p>You can continue to play around with the electrum wallet before moving on.</p>
+</li>
+<li>
+<p>Congratulations!!! </p>
+<p>You have participated in the bitcoin testnet using a securely built electrum bitcoin wallet powered by a Hyper Protect Virtual Server. </p>
+<p><img alt="🚀" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f680.svg" title=":rocket:" /> </p>
+</li>
+</ol>
                 
               
               
@@ -575,14 +716,14 @@
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.a14cc5fd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: [],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.9b3611bd.min.js"
+            worker: "../../assets/javascripts/worker/search.7a2ea5ba.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
