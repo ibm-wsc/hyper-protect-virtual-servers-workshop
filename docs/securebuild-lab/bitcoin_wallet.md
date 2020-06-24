@@ -129,9 +129,13 @@ Since you are feeling charitable you decide to transfer your testnet value back 
 
 6. You can continue to play around with the electrum wallet before moving on.
 
-7. Congratulations!!! 
+## Summary
 
-    You have participated in the bitcoin testnet using a securely built electrum bitcoin wallet powered by a Hyper Protect Virtual Server. 
+Congratulations!!! 
 
-    :rocket: 
+You have participated in the bitcoin testnet using a securely built electrum bitcoin wallet powered by a Hyper Protect Virtual Server. 
+
+:rocket:
+
+Now, it's time to clean up...
 
