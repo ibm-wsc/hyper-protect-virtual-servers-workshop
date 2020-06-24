@@ -206,8 +206,10 @@ Your app is now up and running at the address printed in your terminal!
 
 !!! tip
     You can visit the IP address easily by right-clicking on the link (wih the line under it) in your terminal and selecting `Open Link`
+    ![Open Link](Bitcoin_Wallet_Images/Open_Link.png)
 
 !!! info
     This application uses self-signed certificates so don't worry about the certificate warning you'll need to accept in your browser. Just click `Advanced` and then `Accept the Risk and Continue` :smile:
+    ![Accept Risk](Bitcoin_Wallet_Images/Accept_SelfSigned_Cert.png)
 
 In the final part of this lab you will use your newly built application...
