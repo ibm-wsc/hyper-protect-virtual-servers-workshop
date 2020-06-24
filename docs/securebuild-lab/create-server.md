@@ -181,7 +181,7 @@ hpvs quotagroup show --name "sb_user${HPVS_NUMBER}"
     +-------------+--------------------------------+
     ```
 
-The show output for the Hyper Protect Virtual Server was shown when it was deployed but when can bring it back up with
+The show output for the Hyper Protect Virtual Server was shown when it was deployed but we can bring it back up with
 
 ``` bash
 hpvs vs show --name "sbserver_${HPVS_NUMBER}"
