@@ -42,6 +42,20 @@ The abbreviation of Enterprise PKCS #11, which is specifically designed for cust
 ## Envelope encryption
 The process of encrypting data with a data encryption key and then encrypting the key with a root key that can be fully managed.
 
+## FIPS 140-2 compliance
+An organization’s adherence to the Federal Information Processing Standards (FIPS) 140-2 standards. This standard specifies the security requirements that will be satisfied by a cryptographic module utilized within a security system protecting sensitive information.  FIPS 140-2 outlines four levels of security: 
+
+Level 1 - the lowest level of security. It covers the basic security features in a cryptographic module.
+
+Level 2 - improves the physical security aspects of cryptographic modules. Examples of required physical security             measures are tamper-evident coatings, seals, or pick-resistant locks. Role-based authentication is included in this security level and ensures the operator accessing the module is authorized and is limited to their assigned actions. 
+
+Level 3 - requires enhanced physical security, potentially with products available from the private sector. A multi-chip embedded module has to be contained in a strong enclosure that zeroizes critical security parameters when it is removed. This security level also uses identity-based authentication. 
+
+Level 4 - requires tamper detection circuits to be able to detect any device penetration. This level is best for when cryptographic modules are in a physically unprotected environment that intruders can access. Modules must be able to detect fluctuations and zeroize themselves. Level 4 also protects against security compromises due to environmental conditions.
+
+## FIPS 197 compliance
+An organization’s adherence to Federal Information Processing Standards (FIPS) 197 which is an algorithmic standard that addresses the Advanced Encryption Standard (AES). AES specifies a FIPS-approved cryptographic algorithm that can be used to protect electronic data. The AES algorithm is a symmetric block cipher that can encrypt and decrypt information.
+
 ## GPG
 The abbreviation of Gnu Privacy Guard, which is an open standard used for signing, encrypting, and decrypting texts with public and private keys to increase the security of communications.
 
@@ -89,6 +103,9 @@ A partition is the logic partition (LPAR) on the mainframe, and can be created b
 
 ## PKCS #11
 The abbreviation of Public-Key Cryptography Standards #11, which defines a platform-independent API to cryptographic tokens, such as HSM and smart cards.
+
+## Protected memory enclave
+Defined private regions of memory whose contents are protected and unable to be read or saved to any process outside the enclave itself.
 
 ## Quotagroup
 The storage assigned to a workload running on an appliance. The appliance administrator assigns FCP, or ECKD based storage to an appliance. He then creates quotagroups, representing parts of the underlying storage. He finally assigns quotagroups to workloads through the appliance API.
