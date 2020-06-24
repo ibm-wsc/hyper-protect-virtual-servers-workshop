@@ -826,7 +826,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 </details>
 </li>
 <li>
-<p>Output the repository registration file (just in case the <code>sb init</code> command got interrupted before completing)</p>
+<p>From the original terminal window that you ran <code>hpvs sb init</code>, output the repository registration file (just in case the <code>sb init</code> command got interrupted before completing)</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">passphrase</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> hpvs sb regfile <span class="se">\</span>
 --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> <span class="se">\</span>
 --out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span>
@@ -839,6 +839,10 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>The <code>echo</code> command takes care of the passphrase so you don't need to enter it manually.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you run this command from a terminal window where you did not set the <code>$passphrase</code> environment variable you will get an error saying <code>openpgp: invalid data: private key checksum failure</code>. You can also check to make sure you are in the right terminal window by running <code>echo $passphrase</code> and the output should be the passphrase you set in the beginning of the "Create repository registration GPG signing key" section.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
