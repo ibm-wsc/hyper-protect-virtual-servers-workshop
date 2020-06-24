@@ -629,7 +629,7 @@ gpg: <span class="k">done</span>
 <ol>
 <li>
 <p>Set Secure Build Lab IP Address</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">SB_IP</span><span class="o">=</span><span class="m">192</span>.168.22.120
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">SB_IP</span><span class="o">=</span><span class="m">192</span>.168.22.79
 </code></pre></div>
 
 </li>
@@ -719,9 +719,7 @@ EOF
 <p>That just means you will need to retrieve the registration file later since the cli couldn't grab it after the build. </p>
 <p>(We will do this anyway in <code>Step 7</code> to cover our bases)</p>
 </div>
-<details class="example" open="open"><summary>Example Output after running 15-20 minutes to completion</summary><div class="highlight"><pre><span></span><code>&gt; --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> <span class="se">\</span>
-&gt; --out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span> --timeout <span class="m">1200</span> --build
-Enter Sigining Private key passphrase: 
+<details class="example" open="open"><summary>Example Output after running 15-20 minutes to completion</summary><div class="highlight"><pre><span></span><code>Enter Sigining Private key passphrase: 
 <span class="o">{</span><span class="s2">&quot;status&quot;</span>:<span class="s2">&quot;OK&quot;</span><span class="o">}</span>
 
 +--------+-------------------------+
