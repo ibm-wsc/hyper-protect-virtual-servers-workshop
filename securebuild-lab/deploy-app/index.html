@@ -325,8 +325,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#set-up-your-quota-group-for-storage" class="md-nav__link">
-    Set up your Quota Group for storage
+  <a href="#set-up-your-quotagroup-for-storage" class="md-nav__link">
+    Set up your Quotagroup for storage
   </a>
   
 </li>
@@ -469,8 +469,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#set-up-your-quota-group-for-storage" class="md-nav__link">
-    Set up your Quota Group for storage
+  <a href="#set-up-your-quotagroup-for-storage" class="md-nav__link">
+    Set up your Quotagroup for storage
   </a>
   
 </li>
@@ -546,10 +546,10 @@
 </details>
 </li>
 </ol>
-<h2 id="set-up-your-quota-group-for-storage">Set up your Quota Group for storage<a class="headerlink" href="#set-up-your-quota-group-for-storage" title="Permanent link">&para;</a></h2>
+<h2 id="set-up-your-quotagroup-for-storage">Set up your Quotagroup for storage<a class="headerlink" href="#set-up-your-quotagroup-for-storage" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Create Quota Group</p>
+<p>Create Quotagroup</p>
 <div class="highlight"><pre><span></span><code>hpvs quotagroup create --name<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">&quot;</span> --size<span class="o">=</span>5GB
 </code></pre></div>
 
@@ -628,7 +628,7 @@
 </details>
 </li>
 <li>
-<p>Check on the Quota Group (and see the application is indeed using it)</p>
+<p>Check on the Quotagroup (and see the application is indeed using it)</p>
 <div class="highlight"><pre><span></span><code>hpvs quotagroup show --name <span class="s2">&quot;</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
@@ -649,7 +649,7 @@
 </code></pre></div>
 
 </details>
-<p>We can see the Hyper Protect Virtual Server for our application is now taking up the majority of our Quota Group.</p>
+<p>We can see the Hyper Protect Virtual Server for our application is now taking up the majority of our Quotagroup.</p>
 </li>
 <li>
 <p>If you ever need to check the Hyper Protect Virtual Server you can use the show command</p>
@@ -692,7 +692,7 @@
 </code></pre></div>
 
 </details>
-<p>Your app is now up and running at the aaddress printed in your terminal! </p>
+<p>Your app is now up and running at the address printed in your terminal! </p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>You can visit the IP address easily by right-clicking on the link (wih the line under it) in your terminal and selecting <code>Open Link</code></p>

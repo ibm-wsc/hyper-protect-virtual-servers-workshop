@@ -741,11 +741,11 @@ Enter Sigining Private key passphrase:
 </details>
 </li>
 <li>
-<p>Please look at the logs in another terminal window while the secure build is running (don't intterrupt the current terminal window which is waiting for the secure build) </p>
+<p>Please look at the logs in another terminal window while the secure build is running (don't interrupt the current terminal window which is waiting for the secure build) </p>
 <div class="highlight"><pre><span></span><code>hpvs sb log --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span>
 </code></pre></div>
 
-<details class="exmaple" open="open"><summary>Example Truncated Output</summary><div class="highlight"><pre><span></span><code>2020-06-23 05:25:42,453  root       INFO    starting a build
+<details class="example" open="open"><summary>Example Truncated Output</summary><div class="highlight"><pre><span></span><code>2020-06-23 05:25:42,453  root       INFO    starting a build
 2020-06-23 05:25:42,454  root       INFO    cleaning up the local github repo and the github access credential
 2020-06-23 05:25:42,454  root       INFO    github_dir=secure-bitcoin-wallet
 2020-06-23 05:25:42,454  root       INFO    cloning a github repo
@@ -784,7 +784,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 
 </li>
 <li>
-<p>When the seecure build successfully completes, it will have ending logs similar to the following:</p>
+<p>When the secure build successfully completes, it will have ending logs similar to the following:</p>
 <details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code><span class="m">2020</span>-06-23 <span class="m">08</span>:39:46,463  root       INFO    run: latest: digest: sha256:ffbaf396807659d5a4d66fe54c0ebf382a9f170c4eaf187b9b4c8582ca8fdec2 size: <span class="m">5133</span>
 <span class="m">2020</span>-06-23 <span class="m">08</span>:39:46,463  root       INFO    run: Signing and pushing trust metadata
 <span class="m">2020</span>-06-23 <span class="m">08</span>:39:48,299  root       INFO    run: Successfully signed docker.io/gmoney23/hpvs_bc:latest
@@ -826,7 +826,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 </details>
 </li>
 <li>
-<p>Ouput the repository registration file (just in case the <code>sb init</code> command got interrupted before completing)</p>
+<p>Output the repository registration file (just in case the <code>sb init</code> command got interrupted before completing)</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">passphrase</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> hpvs sb regfile <span class="se">\</span>
 --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> <span class="se">\</span>
 --out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span>
@@ -842,7 +842,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This registration file should be created at the end of the <code>sb init</code> command. However, given that the build is asynchronous it will complete even if you accidentally interrupt it. However, if you do interrupt it then the repoistory registration file won't be craeted. We grab it again here just to cover our bases if that command got interrupted. If it didn't get interrupted you could skip this step. However, it doesn't hurt to grab it again here as it will just retrieve it again. </p>
+<p>This registration file should be created at the end of the <code>sb init</code> command. However, given that the build is asynchronous it will complete even if you accidentally interrupt it. However, if you do interrupt it then the repository registration file won't be created. We grab it again here just to cover our bases if that command got interrupted. If it didn't get interrupted you could skip this step. However, it doesn't hurt to grab it again here as it will just retrieve it again. </p>
 </div>
 </li>
 </ol>
@@ -878,7 +878,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 
 </li>
 <li>
-<p>Check that your application manifest and sigining key were retrieved</p>
+<p>Check that your application manifest and signing key were retrieved</p>
 <div class="highlight"><pre><span></span><code>ls
 </code></pre></div>
 

@@ -308,8 +308,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-quota-group-with-storage-for-secure-build-server" class="md-nav__link">
-    Create Quota Group with storage for secure build server
+  <a href="#create-quotagroup-with-storage-for-secure-build-server" class="md-nav__link">
+    Create Quotagroup with storage for secure build server
   </a>
   
 </li>
@@ -476,8 +476,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-quota-group-with-storage-for-secure-build-server" class="md-nav__link">
-    Create Quota Group with storage for secure build server
+  <a href="#create-quotagroup-with-storage-for-secure-build-server" class="md-nav__link">
+    Create Quotagroup with storage for secure build server
   </a>
   
 </li>
@@ -603,7 +603,7 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 
 </li>
 </ol>
-<h2 id="create-quota-group-with-storage-for-secure-build-server">Create Quota Group with storage for secure build server<a class="headerlink" href="#create-quota-group-with-storage-for-secure-build-server" title="Permanent link">&para;</a></h2>
+<h2 id="create-quotagroup-with-storage-for-secure-build-server">Create Quotagroup with storage for secure build server<a class="headerlink" href="#create-quotagroup-with-storage-for-secure-build-server" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>hpvs quotagroup create --name <span class="s2">&quot;sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span> --size<span class="o">=</span>30GB
 </code></pre></div>
 
@@ -675,7 +675,7 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 </code></pre></div>
 
 </details>
-<p>The show output for the Hyper Protect Virtual Server was shown when it was deployed but when can bring it back up with</p>
+<p>The show output for the Hyper Protect Virtual Server was shown when it was deployed but we can bring it back up with</p>
 <div class="highlight"><pre><span></span><code>hpvs vs show --name <span class="s2">&quot;sbserver_</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
