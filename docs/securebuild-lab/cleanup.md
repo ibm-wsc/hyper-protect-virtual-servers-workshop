@@ -16,7 +16,7 @@ source "${HOME}/.bashrc"
     hpvs vs delete --name sbserver_${HPVS_NUMBER}
     ```
 
-2. Cleanup quotagroup
+2. Cleanup Quotagroup
 
     ``` bash
     hpvs quotagroup delete --name "sb_user${HPVS_NUMBER}"
@@ -30,7 +30,7 @@ source "${HOME}/.bashrc"
     hpvs vs delete --name ${REPO_ID}
     ```
 
-2. Cleanup quotagroup
+2. Cleanup Quotagroup
 
     ``` bash
     hpvs quotagroup delete --name "${REPO_ID}"

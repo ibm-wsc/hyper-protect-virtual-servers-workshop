@@ -97,7 +97,7 @@ You will be assigned a number for the lab so as not to interfere with other user
     echo "export SB_PORT='${SB_PORT}'" >> "${HOME}/.bashrc"
     ```
 
-## Create Quota Group with storage for secure build server
+## Create Quotagroup with storage for secure build server
 
 ``` bash
 hpvs quotagroup create --name "sb_user${HPVS_NUMBER}" --size=30GB

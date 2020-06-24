@@ -220,13 +220,13 @@ source "${HOME}/.bashrc"
         +---------------------+--------------------------------------------------------------------------------------------+
         ```
 
-2. Please look at the logs in another terminal window while the secure build is running (don't intterrupt the current terminal window which is waiting for the secure build) 
+2. Please look at the logs in another terminal window while the secure build is running (don't interrupt the current terminal window which is waiting for the secure build) 
 
     ``` bash
     hpvs sb log --config "${SB_DIR}/sb_config.yaml"
     ```
 
-    ???+ exmaple "Example Truncated Output"
+    ???+ example "Example Truncated Output"
 
         ```
         2020-06-23 05:25:42,453  root       INFO    starting a build
@@ -267,7 +267,7 @@ source "${HOME}/.bashrc"
     hpvs sb log --config "${SB_DIR}/sb_config.yaml"
     ```
 
-5. When the seecure build successfully completes, it will have ending logs similar to the following:
+5. When the secure build successfully completes, it will have ending logs similar to the following:
 
     ???+ example "Example Output"
 
@@ -312,7 +312,7 @@ source "${HOME}/.bashrc"
         +---------------------+------------------------------------------------------------------------------------------+
         ```
 
-7. Ouput the repository registration file (just in case the `sb init` command got interrupted before completing)
+7. Output the repository registration file (just in case the `sb init` command got interrupted before completing)
 
     ``` bash
     echo "${passphrase}" | hpvs sb regfile \
@@ -330,7 +330,7 @@ source "${HOME}/.bashrc"
         The `echo` command takes care of the passphrase so you don't need to enter it manually.
 
     !!! note
-        This registration file should be created at the end of the `sb init` command. However, given that the build is asynchronous it will complete even if you accidentally interrupt it. However, if you do interrupt it then the repoistory registration file won't be craeted. We grab it again here just to cover our bases if that command got interrupted. If it didn't get interrupted you could skip this step. However, it doesn't hurt to grab it again here as it will just retrieve it again. 
+        This registration file should be created at the end of the `sb init` command. However, given that the build is asynchronous it will complete even if you accidentally interrupt it. However, if you do interrupt it then the repository registration file won't be created. We grab it again here just to cover our bases if that command got interrupted. If it didn't get interrupted you could skip this step. However, it doesn't hurt to grab it again here as it will just retrieve it again. 
 
 ## Verify your application
 
@@ -365,7 +365,7 @@ source "${HOME}/.bashrc"
     hpvs sb pubkey --config "${SB_DIR}/sb_config.yaml" --name "${BUILD_NAME}"
     ```
 
-5. Check that your application manifest and sigining key were retrieved
+5. Check that your application manifest and signing key were retrieved
 
     ``` bash
     ls

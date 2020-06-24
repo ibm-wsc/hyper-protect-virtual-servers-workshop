@@ -42,9 +42,9 @@ source "${HOME}/.bashrc"
         +-----------------+------------------------------+
         ```
 
-##  Set up your Quota Group for storage
+##  Set up your Quotagroup for storage
 
-1. Create Quota Group
+1. Create Quotagroup
 
     ``` bash
     hpvs quotagroup create --name="${REPO_ID}" --size=5GB
@@ -128,7 +128,7 @@ source "${HOME}/.bashrc"
         ╰─────────────┴──────────────────────────────╯
         ```
 
-3. Check on the Quota Group (and see the application is indeed using it)
+3. Check on the Quotagroup (and see the application is indeed using it)
 
     ``` bash
     hpvs quotagroup show --name "${REPO_ID}"
@@ -153,7 +153,7 @@ source "${HOME}/.bashrc"
         +-------------+------------------------+
         ```
     
-    We can see the Hyper Protect Virtual Server for our application is now taking up the majority of our Quota Group.
+    We can see the Hyper Protect Virtual Server for our application is now taking up the majority of our Quotagroup.
 
 4. If you ever need to check the Hyper Protect Virtual Server you can use the show command
 
@@ -202,7 +202,7 @@ echo "https://${SB_IP}:${APP_PORT}"
     https://192.168.22.120:30100
     ```
 
-Your app is now up and running at the aaddress printed in your terminal! 
+Your app is now up and running at the address printed in your terminal! 
 
 !!! tip
     You can visit the IP address easily by right-clicking on the link (wih the line under it) in your terminal and selecting `Open Link`
