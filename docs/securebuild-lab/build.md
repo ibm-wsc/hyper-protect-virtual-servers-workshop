@@ -312,7 +312,7 @@ source "${HOME}/.bashrc"
         +---------------------+------------------------------------------------------------------------------------------+
         ```
 
-7. Output the repository registration file (just in case the `sb init` command got interrupted before completing)
+7. From the original terminal window that you ran `hpvs sb init`, output the repository registration file (just in case the `sb init` command got interrupted before completing)
 
     ``` bash
     echo "${passphrase}" | hpvs sb regfile \
@@ -328,6 +328,9 @@ source "${HOME}/.bashrc"
 
     !!! Tip 
         The `echo` command takes care of the passphrase so you don't need to enter it manually.
+    
+    !!! note
+        If you run this command from a terminal window where you did not set the `$passphrase` environment variable you will get an error saying `openpgp: invalid data: private key checksum failure`. You can also check to make sure you are in the right terminal window by running `echo $passphrase` and the output should be the passphrase you set in the beginning of the "Create repository registration GPG signing key" section.
 
     !!! note
         This registration file should be created at the end of the `sb init` command. However, given that the build is asynchronous it will complete even if you accidentally interrupt it. However, if you do interrupt it then the repository registration file won't be created. We grab it again here just to cover our bases if that command got interrupted. If it didn't get interrupted you could skip this step. However, it doesn't hurt to grab it again here as it will just retrieve it again. 
