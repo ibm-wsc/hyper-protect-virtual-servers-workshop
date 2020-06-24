@@ -709,9 +709,15 @@ EOF
 --out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span> --timeout <span class="m">1200</span> --build
 </code></pre></div>
 
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The following build will take anywhere from <strong>15-20 minutes</strong> to complete. While this is ongoing, you should open a new tab in your terminal to check the automatically updating logs and build status (steps for doing this are detailed in the next few steps).</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The following build will take anywhere from <strong>15-20 minutes</strong> to complete. While this is ongoing, you should open a new tab in your terminal to check the automatically updating logs and build status (steps for doing this are detailed in the next few steps).</p>
+<p>The secure build is asynchronous so if the command gets interrupted here don't worry! <img alt="😁" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f601.svg" title=":grin:" /></p>
+<p>That just means you will need to retrieve the registration file later since the cli couldn't grab it after the build. </p>
+<p>(We will do this anyway in <code>Step 7</code> to cover our bases)</p>
 </div>
 <details class="example" open="open"><summary>Example Output after running 15-20 minutes to completion</summary><div class="highlight"><pre><span></span><code>&gt; --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> <span class="se">\</span>
 &gt; --out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span> --timeout <span class="m">1200</span> --build
@@ -819,12 +825,32 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 
 </details>
 </li>
+<li>
+<p>Ouput the repository registration file (just in case the <code>sb init</code> command got interrupted before completing)</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">passphrase</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> hpvs sb regfile <span class="se">\</span>
+--config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> <span class="se">\</span>
+--out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span>
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary></details>
+<div class="highlight"><pre><span></span><code>Enter Sigining Private key passphrase:
+</code></pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <code>echo</code> command takes care of the passphrase so you don't need to enter it manually.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This registration file should be created at the end of the <code>sb init</code> command. However, given that the build is asynchronous it will complete even if you accidentally interrupt it. However, if you do interrupt it then the repoistory registration file won't be craeted. We grab it again here just to cover our bases if that command got interrupted. If it didn't get interrupted you could skip this step. However, it doesn't hurt to grab it again here as it will just retrieve it again. </p>
+</div>
+</li>
 </ol>
 <h2 id="verify-your-application">Verify your application<a class="headerlink" href="#verify-your-application" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Create a directory for your manifest file information and change into it</p>
-<div class="highlight"><pre><span></span><code>mkdir -p <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/manifest&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/manifest&quot;</span>
+<p>Create directories for your manifest file information and change into your new <code>manifest</code> directory.</p>
+<div class="highlight"><pre><span></span><code>mkdir -p <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/manifest/manifest_files&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/manifest&quot;</span>
 </code></pre></div>
 
 </li>
@@ -856,27 +882,73 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 <div class="highlight"><pre><span></span><code>ls
 </code></pre></div>
 
-<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>docker.io.gmoney23.hpvs_bc.latest-b3416d8.2020-06-23_08-39-48.301849-public.pem
-manifest.docker.io.gmoney23.hpvs_bc.latest-b3416d8.2020-06-23_08-39-48.301849.sig.tbz
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641-public.pem
+manifest.docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641.sig.tbz
+manifest_files
 </code></pre></div>
 
 </details>
 </li>
 <li>
-<p>Verify your manifest file with the public key
- ... continued </p>
+<p>Set <code>MANIFEST</code> to point to your manifest files.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">MANIFEST</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/manifest/manifest.</span><span class="si">${</span><span class="nv">BUILD_NAME</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+
 </li>
 <li>
-<p>Further inspect manifest files .... (I will fill this out)</p>
+<p>Set <code>MAN_KEY</code> to point to your manifest public key.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">MAN_KEY</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/manifest/</span><span class="si">${</span><span class="nv">MAN_KEY</span><span class="si">}</span><span class="s2">-public.pem&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Untar and unzip the manifest <code>.sig.tbz</code> file to reveal the <code>.sig</code> and <code>.tbz</code> files (and remove the original <code>.sig.tbz</code>)</p>
+<div class="highlight"><pre><span></span><code>tar -xjvf <span class="s2">&quot;</span><span class="si">${</span><span class="nv">MANIFEST</span><span class="si">}</span><span class="s2">.sig.tbz&quot;</span> <span class="o">&amp;&amp;</span> rm <span class="s2">&quot;</span><span class="si">${</span><span class="nv">MANIFEST</span><span class="si">}</span><span class="s2">.sig.tbz&quot;</span>
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>manifest.docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641.tbz
+manifest.docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641.sig
+</code></pre></div>
+
+</details>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>.sig.tbz</code> was a tarball compressed using bzip2 compression of both a nested <code>.tbz</code> file (containing the manifest files) and a <code>.sig</code> file containing a signature of the nested <code>.tbz</code> to verify it with the public key retrieved using the <code>hpvs sb pubkey</code> command above saved in the file referenced by <code>MAN_KEY</code>.</p>
+</div>
+</li>
+<li>
+<p>Untar and unzip the manifest <code>.tbz</code> file into the <code>manifest_files</code> directory.</p>
+<div class="highlight"><pre><span></span><code>tar -xjf <span class="s2">&quot;</span><span class="si">${</span><span class="nv">MANIFEST</span><span class="si">}</span><span class="s2">.tbz&quot;</span> -C <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/manifest/manifest_files&quot;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Change into the <code>manifest_files</code> directory with your manifest files and view the files in the directory.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/manifest/manifest_files&quot;</span> <span class="o">&amp;&amp;</span> ls
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>data  git  root_ssh
+</code></pre></div>
+
+</details>
+<div class="admonition info">
+<p class="admonition-title">Manifest explanation</p>
+<p>This <code>manifest</code> package contains three directories as shown above. The <code>data</code> directory contains the <code>build.json</code> (containing the build status of the directory updated after the image was pushed to its Docker Registry) and <code>build.log</code> (containing the logs from the secure build). The <code>git</code> directory contains the source code used for the build (cloned from git). Finally, the <code>root_ssh</code> directory contains any <code>ssh</code> material provided (if the user chose to use ssh) which is empty for us because we didn't enable ssh and provide ssh keys. This way no one can ssh into our secure build container. </p>
+</div>
 </li>
 <li>
 <p>What does this give me?</p>
-<p>This gives you awesomeness ....  (Obviously I will fill this out)</p>
+<p>This gives you a way to see the collection of files used for your build at the time of the build and signed by the manifest private key which is secured in your secure build container. By retrieving the public key and verifying the signature of the package we <em>and auditors</em> can verify what was used for our secure image build. (Since the private key was generated in the secure build server we can trust it) This gives us verification of what was used in the build as well as the verification of the images themselves we get from <a href="https://docs.docker.com/engine/security/trust/content_trust/" target="_blank">Docker Content Trust</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The secure build server also generates the keys for Docker Content Trust and stores them safely to provide a secure root of trust.</p>
+<p><em>Remember the secure build server is running as a Hyper Protect Virtual Server and thus inherits all of the security features and assurances of Hyper Protect Virtual Servers.</em></p>
+</div>
 </li>
 </ol>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>Congratulations!!! <img alt="🎉" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f389.svg" title=":tada:" /> </p>
-<p>You have securely built your application and are now ready to deploy it into a Hyper Protect Virtual Server in the next section.</p>
+<p>You have securely built your application and are ready to deploy it into a Hyper Protect Virtual Server in the next section.</p>
                 
               
               
