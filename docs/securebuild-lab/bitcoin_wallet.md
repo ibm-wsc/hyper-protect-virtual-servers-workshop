@@ -2,7 +2,7 @@
 
 ## Overview 
 
-This application is an secure [Electrum](https://electrum.org/#home){target=_blank} Bitcoin wallet found at [this GitHub repository](https://github.com/IBM/secure-bitcoin-wallet){target=_blank}. You can use it to store the identities necessary to transact on the Bitcoin public blockchain network. While this version of the wallet is just a proof of concept, running this type of wallet on Hyper Protect enables you to protect your digital assets from bad actors such as malicious server administrators.
+This application is a secure [Electrum](https://electrum.org/#home){target=_blank} Bitcoin wallet found at [this GitHub repository](https://github.com/IBM/secure-bitcoin-wallet){target=_blank}. You can use it to store the identities necessary to transact on the Bitcoin public blockchain network. While this version of the wallet is just a proof of concept, running this type of wallet on Hyper Protect enables you to protect your digital assets from bad actors such as malicious server administrators.
 
 !!! info 
     This Electrum Bitcoin wallet functions regularly, while inheriting the security benefits of the Hyper Protect Virtual Server platform. This ensures that a legitimate version of the application is running (Secure Image Build process) and that administrators cannot compromise the application (Hyper Protect Virtual Server deployment).
@@ -24,7 +24,7 @@ Registering a fake account for lab purposes.
 
 ## Wallet initialization
 
-It's time to set up your Electrum Bitcoin wallet itself! :zap:
+It's time to set up your Secure Electrum Bitcoin wallet itself! :zap:
 
 1. Bring up the wallet screen
 
@@ -62,7 +62,7 @@ A wallet without currency is blasphemy, so it's time to fill it on up with fake 
     ![Transfer Bitcoins](Bitcoin_Wallet_Images/Send_bitcoins_to_wallet.png)
 
     !!! note
-        Instead of transacting on the "real" bitcoin blockchain network we are using a [testnet](https://medium.com/myetherwallet/understanding-blockchain-changes-testnets-and-mainnets-c2171a8e835f){target=_blank}. This means that the network participants agree that the assets on the network have no value. Testnets are used for testing changes to the network, testing applications and introducing new users to the technical aspects of network. There are testnets for many of the public blockchain networks including of course bitcoin and ethereum. Test faucets (like the one we are using) act as distributors of tokens to other users on the testnet.
+        Instead of transacting on the "real" bitcoin blockchain network, we are using a [testnet](https://medium.com/myetherwallet/understanding-blockchain-changes-testnets-and-mainnets-c2171a8e835f){target=_blank}. This means that the network participants agree that the assets on the network have no value. Testnets are used for testing changes to the network, testing applications and introducing new users to the technical aspects of network. There are testnets for many of the public blockchain networks including of course bitcoin and ethereum. Test faucets (like the one we are using) act as distributors of tokens to other users on the testnet.
 
 3. Switch back to your wallet tab and go to the `History` section and then reload the page.
 
@@ -122,8 +122,12 @@ Since you are feeling charitable you decide to transfer your testnet value back 
 
 5. You can view both the initial received transaction and the newly sent transaction in the `History` tab of your bitcoin wallet.
 
+    !!! Tip
+        You have to keep reloading the page for it to update with new confirmations.
+
     !!! info 
-        If you wait eventually these transactions will gain confirmations as in the picture below
+        If you wait long enough, eventually these transactions will gain confirmations as in the picture below
+        
 
     ![Both transactions with 1 confirmation](Bitcoin_Wallet_Images/both_confirmed_transactions.png)
 
@@ -131,11 +135,10 @@ Since you are feeling charitable you decide to transfer your testnet value back 
 
 ## Summary
 
-Congratulations!!! 
+!!! Success 
 
-You have participated in the bitcoin testnet using a securely built electrum bitcoin wallet powered by a Hyper Protect Virtual Server. 
+    You have participated in the bitcoin testnet using a securely built electrum bitcoin wallet powered by a Hyper Protect Virtual Server. Congratulations!!! 
 
 :rocket:
 
 Now, it's time to clean up...
-
