@@ -4,6 +4,7 @@ edit_uri: edit/master/docs
 nav:
     - Home: index.md
     - Prerequisites: prerequisites.md
+    - Assignments: securebuild-lab/assignment.md
     - Secure Image Build Lab:
       - Process Overview: securebuild-lab/overview.md
       - Configuring your Environment: securebuild-lab/securebuild-setup.md
