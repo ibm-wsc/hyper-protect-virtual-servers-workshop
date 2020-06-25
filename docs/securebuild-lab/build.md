@@ -177,33 +177,42 @@ source "${HOME}/.bashrc"
             public_key_path: '${SB_DIR}/registration_keys/${keyName}.pub'
     EOF
     ```
+8. Continue to the [Build Application section](#build-application) if you are launching secure build for the first time or the [Troubleshooting Secure Build section](#troubleshooting-secure-build) if things didn't go as planned your first go-round and you are trying to get back on the right track.
 
 ## Build Application
 
-1. Launch secure build with a timeout of 20 minutes (1200 seconds) to complete using the above generated configuration file.
+1. Initialize Secure Build Hyper Protect Virtual server with configuration file generated in the [Set Build Configuration section](#set-build-configuration)
 
     ``` bash
-    echo "${passphrase}" | hpvs sb init \
+    hpvs sb init --config "${SB_DIR}/sb_config.yaml"
+    ```
+
+    !!! example "Example Output"
+
+        ``` bash
+        {"status":"OK"}
+        ```
+
+2. Launch secure build with a timeout of 20 minutes (1200 seconds) to complete using the configuration file generated in the [Set Build Configuration section](#set-build-configuration)
+
+    ``` bash
+    hpvs sb build \
     --config "${SB_DIR}/sb_config.yaml" \
-    --out "${SB_DIR}/yaml.${REPO_ID}.enc" --timeout 1200 --build
+    --timeout 1200
     ```
 
     !!! Tip
-        The following build will take anywhere from **15-20 minutes** to complete. While this is ongoing, you should open a new tab in your terminal to check the automatically updating logs and build status (steps for doing this are detailed in the next few steps).
+        The following build will take anywhere from **15-20 minutes** to complete. While this is ongoing, you should open a new tab in your terminal to check the automatically updating logs and build status (steps for doing this are detailed in the next few steps). If this command times out please check the status in the `step 3 to make sure nothing went wrong. If something did go wrong visit the [Troubleshooting Secure Build section](#troubleshooting-secure-build)
 
     !!! note
         The secure build is asynchronous so if the command gets interrupted here don't worry! :grin:
 
-        That just means you will need to retrieve the registration file later since the cli couldn't grab it after the build. 
-        
-        (We will do this anyway in `Step 7` to cover our bases)
+    !!! warning
+        If the secure build command gets an error this command will keep on waiting until eventually timing out. If you see an error in the `status` you can interrupt this command with `ctrl+c` instead of waiting for it to time out. 
 
     ???+ example "Example Output after running 15-20 minutes to completion"
     
-        ``` bash
-        Enter Sigining Private key passphrase: 
-        {"status":"OK"}
-
+        ``` bash 
         +--------+-------------------------+
         | status | OK: async build started |
         +--------+-------------------------+
@@ -259,6 +268,9 @@ source "${HOME}/.bashrc"
         +---------------------+---------------+
         ```
 
+    !!! error "If you see an error in your status"
+        If you see that your build ran into an error please visit the [Troubleshooting Secure Build section](#troubleshooting-secure-build)
+
 4. You can continue to check the logs to monitor the progress of your secure build with the previous logs command
 
     ``` bash
@@ -310,7 +322,10 @@ source "${HOME}/.bashrc"
         +---------------------+------------------------------------------------------------------------------------------+
         ```
 
-7. From the original terminal window that you ran `hpvs sb init`, output the repository registration file (just in case the `sb init` command got interrupted before completing)
+    !!! error "If you see an error in your status"
+        If you see that your build ran into an error please visit the [Troubleshooting Secure Build section](#troubleshooting-secure-build)
+
+7. From the original terminal window that you ran `hpvs sb init`, output the repository registration file.
 
     ``` bash
     echo "${passphrase}" | hpvs sb regfile \
@@ -320,18 +335,43 @@ source "${HOME}/.bashrc"
 
     ???+ example "Example Output"
 
-    ``` bash
-    Enter Sigining Private key passphrase:
-    ```
+        ``` bash
+        Enter Sigining Private key passphrase:
+        ```
 
     !!! Tip 
         The `echo` command takes care of the passphrase so you don't need to enter it manually.
     
     !!! warning
-        If you run this command from a terminal window where you did not set the `$passphrase` environment variable you will get an error saying `openpgp: invalid data: private key checksum failure`. You can also check to make sure you are in the right terminal window by running `echo $passphrase` and the output should be the passphrase you set in the beginning of the "Create repository registration GPG signing key" section.
+        If you run this command from a terminal window where you did not set the `passphrase` environment variable you will get an error saying `openpgp: invalid data: private key checksum failure`. You can also check to make sure you are in the right terminal window by running `echo "${passphrase}"` and the output should be the passphrase you set in the beginning of the "Create repository registration GPG signing key" section. 
 
-    !!! note
-        This registration file should be created at the end of the `sb init` command. However, given that the build is asynchronous it will complete even if you accidentally interrupt it. However, if you do interrupt it then the repository registration file won't be created. We grab it again here just to cover our bases if that command got interrupted. If it didn't get interrupted you could skip this step. However, it doesn't hurt to grab it again here as it will just retrieve it again. 
+## Troubleshooting Secure Build
+
+??? "Troubleshooting Instructions [Open by clicking on arrow on right]"
+    If your build completed successfully no need to use this section :smile:
+
+    !!! error "If your build failed continue for instructions on how to find the happy path yet again."
+        
+        If at any point you see an error in the status command you will need to restart your build with the following steps.
+
+        1. If the secure build command is still running in its own window please interrupt it with `ctrl + c`
+        2. Check the logs for more error information using:
+            ``` bash
+            hpvs sb log --config "${SB_DIR}/sb_config.yaml"
+            ```
+        3. Correct whatever information was incorrect and go back through the steps in the [Set Build Configuration section](#set-build-configuration)
+        4. Clean up the data (i.e. logs) from the old build with:
+            ``` bash
+            hpvs sb clean --config "${SB_DIR}/sb_config.yaml"
+            ```
+        5. Update the secure build server with the new configuration
+            ``` bash
+            hpvs sb update --config "${SB_DIR}/sb_config.yaml"
+            ```
+        6. Continue onward like you just initialized your build server (You did ... just for another time :grin:) at `Step 2` in the [Build Application Section](#build-application)
+
+        !!! info
+            The next command you should run will be `hpvs sb build` (`Step 2` in the [Build Application Section](#build-application))
 
 ## Verify your application
 

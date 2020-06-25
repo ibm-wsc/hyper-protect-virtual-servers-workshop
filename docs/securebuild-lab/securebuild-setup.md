@@ -2,7 +2,7 @@
 
 ## Add Docker registry to use for secure build
 
-1. See your current docker registries with:
+1. See your current Docker registries with:
 
     ``` bash
     hpvs registry list
@@ -18,7 +18,7 @@
         ```
     
 
-2. Set your Docker username to the username for your account on Docker Hub
+2. Set your `DOCKER_USERNAME` to the username for your account on [Docker Hub](https://hub.docker.com/){target=_blank}
 
     === "Command Syntax"
 
@@ -33,7 +33,7 @@
         ```
     
     !!! note 
-        This will be the username you used when you created your Docker Hub account in the [Prerequisites](../prerequisites.md#Create-a-Docker-Hub){target=_blank}
+        This will be the username you used when you created your [Docker Hub](https://hub.docker.com/){target=_blank} account in the [Prerequisites](../prerequisites.md#Create-a-Docker-Hub){target=_blank}
 
 3. Save your `DOCKER_USERNAME` to `bashrc` for later use.
 
@@ -41,7 +41,40 @@
     echo "export DOCKER_USERNAME='${DOCKER_USERNAME}'" >> "${HOME}/.bashrc"
     ```
 
-4. Set your Docker registry placeholder name 
+4. Set your `DOCKER_PASSWORD` the token you created for this lab on [Docker Hub](https://hub.docker.com/){target=_blank}.
+
+    === "Command Syntax"
+
+        ``` bash
+        export DOCKER_PASSWORD="my_docker_token"
+        ```
+
+    === "Example Command"
+
+        ``` bash
+        export DOCKER_PASSWORD="123456789"
+        ```
+
+    !!! note 
+        This will be the Docker Hub token you created for the lab in the [Prerequisites](../prerequisites.md#create-a-docker-access-token){target=_blank}
+
+5. Check your login credentials with a `docker login`
+
+    ``` bash
+    echo "${DOCKER_PASSWORD}" | docker login -u ${DOCKER_USERNAME} --password-stdin
+    ```
+
+    ???+ example "Example Output"
+
+        ``` bash
+        WARNING! Your password will be stored unencrypted in /home/multiarch-lab/.docker/config.json.
+        Configure a credential helper to remove this warning. See
+        https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+        Login Succeeded
+        ```
+
+6. Set your `REGISTRY_NAME` to a Docker registry placeholder name of your choosing.
 
     === "Command Syntax"
 
@@ -55,29 +88,30 @@
         export REGISTRY_NAME="g_docker_hub"
         ```
 
-5. Save your `REGISTRY_NAME` to `bashrc` for future shells (in case you open new terminals)
+7. Save your `REGISTRY_NAME` to `bashrc` for future shells (in case you open new terminals)
 
     ``` bash
     echo "export REGISTRY_NAME='${REGISTRY_NAME}'" >> "${HOME}/.bashrc"
     ```
 
-6. Add your Docker registry with:
+8. Add your Docker registry with:
 
     ``` bash
-    hpvs registry add --name "${REGISTRY_NAME}" --dct https://notary.docker.io \
+    echo "${DOCKER_PASSWORD}" | hpvs registry add \
+    --name "${REGISTRY_NAME}" --dct https://notary.docker.io \
     --url docker.io --user "${DOCKER_USERNAME}"
     ```
-
-    !!! note 
-        It will prompt you to enter your password. Use the Docker Hub token you have created for the lab in the [Prerequisites](../prerequisites.md#create-a-docker-access-token){target=_blank}
 
     ???+ example "Example Output"
 
         ``` bash
-        Enter Password: 
+        Enter Password:
         ```
 
-7. List your registered Docker registries again to confirm your registry has been added.
+    !!! note
+        You can ignore the `Enter Password:` prompt because the command does that for you with the `echo "${DOCKER_PASSWORD}" |` before the `hpvs registry add` command.
+
+9. List your registered Docker registries again to confirm your registry has been added.
 
     ``` bash
     hpvs registry list
@@ -93,7 +127,7 @@
         +---------------+
         ```
 
-8. Check the details of your added registry with 
+10. Check the details of your added registry with 
 
     ``` bash
     hpvs registry show --name "${REGISTRY_NAME}"
