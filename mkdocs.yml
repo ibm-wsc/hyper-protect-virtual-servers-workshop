@@ -1,16 +1,16 @@
-site_name: Hyper Protect Virtual Server Workshop
+site_name: Hyper Protect Virtual Server (HPVS) Workshop
 repo_url: https://github.ibm.com/wsc-blockchain-and-digital-assets/hyper-protect-virtual-server-workshop
 edit_uri: edit/master/docs
 nav:
     - Home: index.md
     - Prerequisites: prerequisites.md
     - Secure Image Build Lab:
-      - Process Overview: securebuild-lab/overview.md
+      - Hyper Protect Virtual Servers (HPVS) Lab Process Overview: securebuild-lab/overview.md
       - Configuring your Environment: securebuild-lab/securebuild-setup.md
-      - Create your Secure Build server: securebuild-lab/create-server.md
-      - Securely Build your Image: securebuild-lab/build.md
-      - Deploy your Application in HPVS: securebuild-lab/deploy-app.md
-      - Use your Bitcoin Wallet: securebuild-lab/bitcoin_wallet.md
+      - Create your HPVS Secure Build Server: securebuild-lab/create-server.md
+      - Securely Build your Application: securebuild-lab/build.md
+      - Deploy your Securely Built Application as a Hyper Protect Virtual Server: securebuild-lab/deploy-app.md
+      - Welcome to the Secure Bitcoin Wallet on IBM LinuxONE: securebuild-lab/bitcoin_wallet.md
       - Clean up your Environment: securebuild-lab/cleanup.md
     - GREP11 Lab: grep11.md
     - Glossary of terms: glossary.md
@@ -21,6 +21,7 @@ theme: material
 markdown_extensions:
   - admonition
   - codehilite
+  - footnotes
   - pymdownx.arithmatex
   - pymdownx.betterem:
       smart_enable: all

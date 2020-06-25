@@ -1,4 +1,4 @@
-# Secure Build Setup
+# Configuring your Environment
 
 ## Add Docker registry to use for secure build
 

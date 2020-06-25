@@ -1,4 +1,4 @@
-# Clean up Instructions
+# Clean up your Environment
 
 ## Export Variables set in previous sections to current terminal session
 

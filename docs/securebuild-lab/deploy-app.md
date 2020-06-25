@@ -1,4 +1,4 @@
-# Deploy your Securely built application into a Hyper Protect Virtual Server
+# Deploy your Securely Built Application as a Hyper Protect Virtual Server
 
 ## Export Variables set in previous sections to current terminal session
 
@@ -199,7 +199,7 @@ echo "https://${SB_IP}:${APP_PORT}/electrum"
 ???+ example "Example Output"
 
     ```
-    https://192.168.22.79:30100/electrum
+    https://192.168.22.80:30100/electrum
     ```
 
 Your app is now up and running at the address printed in your terminal! 

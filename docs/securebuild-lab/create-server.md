@@ -1,4 +1,4 @@
-# Create Secure Build Hyper Protect Virtual Server
+# Create your HPVS Secure Build Server
 
 ## Export Variables set in previous sections to current terminal session
 

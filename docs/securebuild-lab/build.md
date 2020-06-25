@@ -109,7 +109,7 @@ source "${HOME}/.bashrc"
 1. Set Secure Build Lab IP Address
 
     ``` bash
-    export SB_IP=192.168.22.79
+    export SB_IP=192.168.22.80
     ```
 
 2. Save Secure Build Lab IP Address for later use
