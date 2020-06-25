@@ -1,5 +1,7 @@
 # Lab Assignments
 
+You will be given the VPN address, and passwords for your VPN ID and CLI Server at the start of the lab.
+
 |Name|Team Number|VPN ID|CLI Server Address|
 |:--:|:---------:|:----:|:----------------:|
 |Anand Subramanian|01|zblock01|192.168.22.101|
