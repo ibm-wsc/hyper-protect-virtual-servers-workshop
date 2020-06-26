@@ -58,13 +58,13 @@
     !!! note 
         This will be the Docker Hub token you created for the lab in the [Prerequisites](../prerequisites.md#create-a-docker-access-token){target=_blank}
 
-5. Check your login credentials with a `docker login`
+5. Check your [Docker Hub](https://hub.docker.com/){target=_blank} login credentials with a `docker login`
 
     ``` bash
     echo "${DOCKER_PASSWORD}" | docker login -u ${DOCKER_USERNAME} --password-stdin
     ```
 
-    ???+ example "Example Output"
+    ???+ success "Successful login"
 
         ``` bash
         WARNING! Your password will be stored unencrypted in /home/multiarch-lab/.docker/config.json.
@@ -73,6 +73,13 @@
 
         Login Succeeded
         ```
+
+    ???+ failure "Failed Login :disappointed: Please redo [this section](#add-docker-registry-to-use-for-secure-build)"
+
+        ``` bash
+        Error response from daemon: Get https://registry-1.docker.io/v2/: unauthorized: incorrect username or password
+        ```
+    
 
 6. Set your `REGISTRY_NAME` to a Docker registry placeholder name of your choosing.
 
@@ -236,4 +243,39 @@
     !!! warning
         The above copy command (`ctrl+shift+c`) is saving the `.pub` public key **NOT** the `private` key. You keep the private key and GitHub uses the public key to verify that it is communicating with the owner of the private key (i.e. you).
 
-8. Feel at ease knowing you will delete this key from your Github account in the cleanup phase of this lab so access will be revoked soon enough :relaxed:
+8. Scan for GitHub's public key (Done to trust GitHub connection the first time)
+
+    ``` bash
+    ssh-keyscan -H github.com >> "${HOME}/.ssh/known_hosts"
+    ```
+
+    !!! example "Example Output"
+
+        ``` bash
+        # github.com:22 SSH-2.0-babeld-ffbef2ae
+        # github.com:22 SSH-2.0-babeld-ffbef2ae
+        # github.com:22 SSH-2.0-babeld-ffbef2ae
+        ```
+
+9. Check your GitHub key now has access to your account with:
+
+    ``` bash
+    ssh -T git@github.com -i "${GITHUB_SSH_KEY}"
+    ```
+
+    !!! success "Your key was added successfully"
+
+        ``` bash
+        Warning: Permanently added the RSA host key for IP address '140.82.114.3' to the list of known hosts.
+        Hi siler23! You've successfully authenticated, but GitHub does not provide shell access.
+        ```
+
+    !!! failure "Your key was **NOT** added :disappointed: Please redo [this section](#create-ssh-key-and-grant-github-access)"
+
+        ``` bash
+        Warning: Permanently added the RSA host key for IP address '140.82.113.3' to the list of known hosts.
+        git@github.com: Permission denied (publickey).
+        ```
+
+
+9. Feel at ease knowing you will delete this key from your Github account in the cleanup phase of this lab so access will be revoked soon enough :relaxed:
