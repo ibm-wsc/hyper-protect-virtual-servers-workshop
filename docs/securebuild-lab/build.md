@@ -342,8 +342,9 @@ source "${HOME}/.bashrc"
 
 ## Troubleshooting Secure Build
 
-??? "Troubleshooting Instructions [Open by clicking on arrow on right]"
-    If your build completed successfully no need to use this section :smile:
+???+ "Troubleshooting Instructions"
+
+    If your build completed successfully, feel free to [SKIP this section](#verify-your-application) :smile:
 
     !!! error "If your build failed continue for instructions on how to find the happy path yet again."
         
@@ -401,6 +402,10 @@ source "${HOME}/.bashrc"
     hpvs sb pubkey --config "${SB_DIR}/sb_config.yaml" --name "${BUILD_NAME}"
     ```
 
+    !!! info
+
+        Connections to the secure build server are secured using mutual tls. This means that proper certificates and keys have to be used on the client side to access these files (as well as when doing the previous secure build commands). This adds a layer of security to make sure that the `public key` and `manifest files` are authentic and securely distributed.
+
 5. Check that your application manifest and signing key were retrieved
 
     ``` bash
@@ -421,10 +426,10 @@ source "${HOME}/.bashrc"
     export MANIFEST="${SB_DIR}/manifest/manifest.${BUILD_NAME}"
     ```
 
-7. Set `MAN_KEY` to point to your manifest public key.
+7. Set `MAN_PUBKEY` to point to your manifest public key.
 
     ``` bash
-    export MAN_KEY="${SB_DIR}/manifest/${MAN_KEY}-public.pem"
+    export MAN_PUBKEY="${SB_DIR}/manifest/${BUILD_NAME}-public.pem"
     ```
 
 8. Untar and unzip the manifest `.sig.tbz` file to reveal the `.sig` and `.tbz` files (and remove the original `.sig.tbz`)
@@ -442,15 +447,46 @@ source "${HOME}/.bashrc"
 
     !!! note
 
-        The `.sig.tbz` was a tarball compressed using bzip2 compression of both a nested `.tbz` file (containing the manifest files) and a `.sig` file containing a signature of the nested `.tbz` to verify it with the public key retrieved using the `hpvs sb pubkey` command above saved in the file referenced by `MAN_KEY`.
+        The `.sig.tbz` was a tarball compressed using bzip2 compression of both a nested `.tbz` file (containing the manifest files) and a `.sig` file containing a signature of the nested `.tbz` to verify it with the public key retrieved using the `hpvs sb pubkey` command above saved in the file referenced by `MAN_PUBKEY`.
 
-9.  Untar and unzip the manifest `.tbz` file into the `manifest_files` directory.
+9.  Convert the signature file to binary format
+
+    ``` bash
+    cat "${MANIFEST}.sig" | xxd -r -p > "${MANIFEST}.sig.bin"
+    ```
+
+10. Hash (`SHA256`) the manifest `.tbz` file (containing the manifest files)
+
+    ``` bash
+    openssl dgst -sha256 -binary -out "${MANIFEST}.tbz.sha256" "${MANIFEST}.tbz"
+    ```
+
+11. Verify that the `.tbz` manifest package was the one signed on the secure build server.
+
+    ``` bash
+    openssl dgst -sha256 -verify "${MAN_PUBKEY}" \
+    -signature "${MANIFEST}.sig.bin" "${MANIFEST}.tbz.sha256"
+    ```
+
+    ???+ success
+
+        ``` bash
+        Verified OK
+        ```
+
+    !!! info
+        On the secure build server, the `.tbz` manifest file was hashed and then signed by the manifest private key which only exists on the server (inside its secure environment). Here, you are using the matching public key you received from the secure build server (using a mutual tls connection) in `step 4` to "undo" this signature to reveal the original hash of the file. We then compare this hash to the hash of the file we have using the above `verify` command. `Verification OK` means they are the same, implying that the `.tbz` file we have now was the same one that was signed by the manifest private key inside the safe confines of the secure build server.
+
+    !!! note
+        In this case, we are double hashing the `.tbz` file on the signature side which is why we hash the `.tbz` before the verify command here.
+
+12.  Untar and unzip the manifest `.tbz` file into the `manifest_files` directory.
 
     ``` bash
     tar -xjf "${MANIFEST}.tbz" -C "${SB_DIR}/manifest/manifest_files"
     ```
 
-10. Change into the `manifest_files` directory with your manifest files and view the files in the directory.
+13. Change into the `manifest_files` directory with your manifest files and view the files in the directory.
 
     ``` bash
     cd "${SB_DIR}/manifest/manifest_files" && ls
@@ -465,7 +501,7 @@ source "${HOME}/.bashrc"
     !!! info "Manifest explanation"
         This `manifest` package contains three directories as shown above. The `data` directory contains the `build.json` (containing the build status of the directory updated after the image was pushed to its Docker Registry) and `build.log` (containing the logs from the secure build). The `git` directory contains the source code used for the build (cloned from git). Finally, the `root_ssh` directory contains any `ssh` material provided (if the user chose to use ssh) which is empty for us because we didn't enable ssh and provide ssh keys. This way no one can ssh into our secure build container. 
 
-11. What does this give me?
+14. What does this give me?
 
     This gives you a way to see the collection of files used for your build at the time of the build and signed by the manifest private key which is secured in your secure build container. By retrieving the public key and verifying the signature of the package we *and auditors* can verify what was used for our secure image build. (Since the private key was generated in the secure build server we can trust it) This gives us verification of what was used in the build as well as the verification of the images themselves we get from [Docker Content Trust](https://docs.docker.com/engine/security/trust/content_trust/){target=_blank}.
 
