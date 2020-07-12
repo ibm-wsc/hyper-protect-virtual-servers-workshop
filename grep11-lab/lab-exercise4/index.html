@@ -117,7 +117,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/ibm-blockchain-wsc/hyper-protect-virtual-servers-workshop/" title="Go to repository" class="md-source">
+<a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -158,7 +158,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/ibm-blockchain-wsc/hyper-protect-virtual-servers-workshop/" title="Go to repository" class="md-source">
+<a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -629,7 +629,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ibm-blockchain-wsc/hyper-protect-virtual-servers-workshop/edit/master/docs/grep11-lab/lab-exercise4.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop/edit/master/docs/grep11-lab/lab-exercise4.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -639,7 +639,7 @@
                 
                 <h1 id="exercise-4-wrap-and-unwrap-a-key">Exercise 4 - Wrap and Unwrap a Key<a class="headerlink" href="#exercise-4-wrap-and-unwrap-a-key" title="Permanent link">&para;</a></h1>
 <h2 id="overview-of-exercise-4">Overview of Exercise 4<a class="headerlink" href="#overview-of-exercise-4" title="Permanent link">&para;</a></h2>
-<p>Data that is not encrypted is referrd to as plaintext.  Data that is encrypted is referred to s ciphertext.</p>
+<p>Data that is not encrypted is referrd to as plaintext.  Data that is encrypted is referred to as ciphertext.</p>
 <p>Whether this data is human readable text, like this sentence, or binary data (like a lot of the output in our exercises!), or whatever, is usually of little concern to encryption and decryption algorithms.  The input is just a bunch of bits- either <em>1</em> or <em>0</em>. </p>
 <p>Keys themselves are just a bunch of bits- <em>1</em>'s and <em>0</em>'s.  Can you encrypt and decrypt keys with other keys?  You sure can. There's nothing magical about that. But, like all disciplines, cryptographers have special terms for encrypting and decrypting keys- they use the term <em>wrapping</em> a key to refer to encrypting a key, and <em>unwrapping</em> a key refers to decrypting a key. There are valid reasons to make the distinction- for example, the PKCS #11 standard allows you to assign attributes to keys, and you can create keys such that they can or cannot wrap or unwrap keys, and you may wish to create different keys for different purposes. In fact, it is considered best practice to not use the same key to encrypt both data and keys, so using different terminology- <em>encrypting data</em> versus <em>wrapping keys</em> allows for easier separation of duties and may make key management easier.</p>
 <p>In this exercise, the following use case will be demonstrated- securely transmitting a secret key so that both parties have the same secret key and can use it for encryption during a session:</p>
