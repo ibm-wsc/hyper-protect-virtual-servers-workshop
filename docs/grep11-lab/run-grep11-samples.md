@@ -22,7 +22,7 @@ You can also enter the `pwd` ("print working directory") to be sure, e.g.,:
         /home/hyper-protect-lab/go/src/github.com/ibm-developer
         ```
 
-3. Clone the GitHub respository used in this lab:
+3. Clone the GitHub repository used in this lab:
 
     ``` bash
     git clone https://github.com/silliman/ibm-cloud-hyperprotectcrypto.git
