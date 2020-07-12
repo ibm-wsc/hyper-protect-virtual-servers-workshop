@@ -1,0 +1,1030 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
+    
+    
+      
+        <title>Exercise 2 (Encryption and Decryption) - Hyper Protect Virtual Server (HPVS) Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exercise-2-encrypt-and-decrypt-data" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Hyper Protect Virtual Server (HPVS) Workshop" class="md-header-nav__button md-logo" aria-label="Hyper Protect Virtual Server (HPVS) Workshop">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Hyper Protect Virtual Server (HPVS) Workshop
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Exercise 2 (Encryption and Decryption)
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/ibm-blockchain-wsc/hyper-protect-virtual-servers-workshop/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hyper Protect Virtual Server (HPVS) Workshop" class="md-nav__button md-logo" aria-label="Hyper Protect Virtual Server (HPVS) Workshop">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Hyper Protect Virtual Server (HPVS) Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/ibm-blockchain-wsc/hyper-protect-virtual-servers-workshop/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../prerequisites/" title="Prerequisites" class="md-nav__link">
+      Prerequisites
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../securebuild-lab/assignment/" title="Assignments" class="md-nav__link">
+      Assignments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Secure Image Build Lab
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Secure Image Build Lab" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Secure Image Build Lab
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../securebuild-lab/overview/" title="Hyper Protect Virtual Servers (HPVS) Lab Process Overview" class="md-nav__link">
+      Hyper Protect Virtual Servers (HPVS) Lab Process Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../securebuild-lab/securebuild-setup/" title="Configuring your Environment" class="md-nav__link">
+      Configuring your Environment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../securebuild-lab/create-server/" title="Create your HPVS Secure Build Server" class="md-nav__link">
+      Create your HPVS Secure Build Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../securebuild-lab/build/" title="Securely Build your Application" class="md-nav__link">
+      Securely Build your Application
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../securebuild-lab/deploy-app/" title="Deploy your Securely Built Application as a Hyper Protect Virtual Server" class="md-nav__link">
+      Deploy your Securely Built Application as a Hyper Protect Virtual Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../securebuild-lab/bitcoin_wallet/" title="Welcome to the Secure Bitcoin Wallet on IBM LinuxONE" class="md-nav__link">
+      Welcome to the Secure Bitcoin Wallet on IBM LinuxONE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../securebuild-lab/cleanup/" title="Clean up your Environment" class="md-nav__link">
+      Clean up your Environment
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      GREP11 Lab
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="GREP11 Lab" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        GREP11 Lab
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../overview/" title="Lab overview" class="md-nav__link">
+      Lab overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../grep11-setup/" title="How to set up a GREP11 server" class="md-nav__link">
+      How to set up a GREP11 server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../grep11-display/" title="Displaying your GREP11 environment" class="md-nav__link">
+      Displaying your GREP11 environment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../run-grep11-samples/" title="Run the GREP11 sample code" class="md-nav__link">
+      Run the GREP11 sample code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-5" type="checkbox" id="nav-5-5" checked>
+    
+    <label class="md-nav__link" for="nav-5-5">
+      Run the Lab exercises
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Run the Lab exercises" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Run the Lab exercises
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exercise-overview/" title="An overview of the Exercises" class="md-nav__link">
+      An overview of the Exercises
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lab-exercise1/" title="Exercise 1 (List PKCS Mechanisms)" class="md-nav__link">
+      Exercise 1 (List PKCS Mechanisms)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Exercise 2 (Encryption and Decryption)
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Exercise 2 (Encryption and Decryption)" class="md-nav__link md-nav__link--active">
+      Exercise 2 (Encryption and Decryption)
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-exercise-2" class="md-nav__link">
+    Overview of Exercise 2
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lab-exercise3/" title="Exercise 3 (Sign and Verify)" class="md-nav__link">
+      Exercise 3 (Sign and Verify)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lab-exercise4/" title="Exercise 4 (Wrap and Unwrap Key)" class="md-nav__link">
+      Exercise 4 (Wrap and Unwrap Key)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../glossary/" title="Glossary of terms" class="md-nav__link">
+      Glossary of terms
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../resources/" title="Other resources" class="md-nav__link">
+      Other resources
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../proposechange/" title="Propose a change" class="md-nav__link">
+      Propose a change
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-exercise-2" class="md-nav__link">
+    Overview of Exercise 2
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/ibm-blockchain-wsc/hyper-protect-virtual-servers-workshop/edit/master/docs/grep11-lab/lab-exercise2.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="exercise-2-encrypt-and-decrypt-data">Exercise 2 - Encrypt and Decrypt Data<a class="headerlink" href="#exercise-2-encrypt-and-decrypt-data" title="Permanent link">&para;</a></h1>
+<h2 id="overview-of-exercise-2">Overview of Exercise 2<a class="headerlink" href="#overview-of-exercise-2" title="Permanent link">&para;</a></h2>
+<p>Exercise 2 creates an AES secret key and uses it to encrypt some <em>plaintext</em> data. 
+This ciphertext is then decrypted back into plaintext using the same AES secret key that was used for encryption. The original plaintext is compared to- and is expected to be identical to- the plaintext that resulted from the encryption and decryption.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Plaintext data is often, but not necessarily, human-readable.  It is any data that could be of value to an adversary, if the adversary could obtain the data in its original, or plaintext, form.  Hence the need for encryption. Encrypted data is referred to as <em>ciphertext</em>. If an adversary were to obtain ciphertext, it is unreadable and thus of little or no value to the adversary.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The PKCS #11 standard uses the phrase <em>secret key</em> often. <em>Secret key</em> is synonoymous with the term <em>symmetric key</em>, which is also a term commonly used in cryptography.  That is, a single key is used for both encryption and decryption.</p>
+</div>
+<ol>
+<li>
+<p>Run the second exercise:</p>
+<div class="highlight"><pre><span></span><code>./lab --ex2
+</code></pre></div>
+
+<details class="example"><summary>Example Output</summary><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="hll">Generated AES Key with mechanism  CKM_AES_KEY_GEN
+</span>
+length of key blob is <span class="m">256</span> bytes
+Key blob is <span class="o">(</span>values in decimal<span class="o">)</span>:
+<span class="o">[</span><span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">3</span> <span class="m">176</span> <span class="m">130</span> <span class="m">49</span> <span class="m">65</span> <span class="m">141</span> <span class="m">152</span> <span class="m">246</span> <span class="m">85</span> <span class="m">132</span> <span class="m">150</span> <span class="m">183</span> <span class="m">226</span> <span class="m">212</span> <span class="m">36</span> <span class="m">40</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">141</span> <span class="m">38</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> <span class="m">18</span> <span class="m">52</span> <span class="m">217</span> <span class="m">158</span> <span class="m">52</span> <span class="m">159</span> <span class="m">29</span> <span class="m">220</span> <span class="m">10</span> <span class="m">126</span> <span class="m">250</span> <span class="m">240</span> <span class="m">129</span> <span class="m">168</span> <span class="m">243</span> <span class="m">15</span> <span class="m">158</span> <span class="m">220</span> <span class="m">32</span> <span class="m">30</span> <span class="m">158</span> <span class="m">254</span> <span class="m">73</span> <span class="m">111</span> <span class="m">45</span> <span class="m">102</span> <span class="m">230</span> <span class="m">162</span> <span class="m">209</span> <span class="m">246</span> <span class="m">93</span> <span class="m">216</span> <span class="m">200</span> <span class="m">108</span> <span class="m">223</span> <span class="m">116</span> <span class="m">32</span> <span class="m">109</span> <span class="m">1</span> <span class="m">82</span> <span class="m">87</span> <span class="m">166</span> <span class="m">108</span> <span class="m">227</span> <span class="m">20</span> <span class="m">9</span> <span class="m">54</span> <span class="m">59</span> <span class="m">24</span> <span class="m">126</span> <span class="m">154</span> <span class="m">14</span> <span class="m">159</span> <span class="m">250</span> <span class="m">161</span> <span class="m">203</span> <span class="m">128</span> <span class="m">27</span> <span class="m">237</span> <span class="m">27</span> <span class="m">218</span> <span class="m">243</span> <span class="m">169</span> <span class="m">235</span> <span class="m">28</span> <span class="m">112</span> <span class="m">101</span> <span class="m">109</span> <span class="m">177</span> <span class="m">94</span> <span class="m">191</span> <span class="m">251</span> <span class="m">198</span> <span class="m">126</span> <span class="m">102</span> <span class="m">93</span> <span class="m">236</span> <span class="m">51</span> <span class="m">190</span> <span class="m">157</span> <span class="m">4</span> <span class="m">188</span> <span class="m">128</span> <span class="m">1</span> <span class="m">114</span> <span class="m">120</span> <span class="m">135</span> <span class="m">191</span> <span class="m">22</span> <span class="m">7</span> <span class="m">42</span> <span class="m">191</span> <span class="m">209</span> <span class="m">135</span> <span class="m">168</span> <span class="m">241</span> <span class="m">228</span> <span class="m">137</span> <span class="m">121</span> <span class="m">180</span> <span class="m">140</span> <span class="m">113</span> <span class="m">211</span> <span class="m">159</span> <span class="m">26</span> <span class="m">192</span> <span class="m">70</span> <span class="m">74</span> <span class="m">130</span> <span class="m">25</span> <span class="m">180</span> <span class="m">75</span> <span class="m">86</span> <span class="m">230</span> <span class="m">207</span> <span class="m">240</span> <span class="m">101</span> <span class="m">164</span> <span class="m">65</span> <span class="m">179</span> <span class="m">122</span> <span class="m">59</span> <span class="m">202</span> <span class="m">213</span> <span class="m">142</span> <span class="m">244</span> <span class="m">54</span> <span class="m">151</span> <span class="m">158</span> <span class="m">46</span> <span class="m">72</span> <span class="m">52</span> <span class="m">249</span> <span class="m">87</span> <span class="m">219</span> <span class="m">11</span> <span class="m">202</span> <span class="m">69</span> <span class="m">150</span> <span class="m">45</span> <span class="m">195</span> <span class="m">200</span> <span class="m">84</span> <span class="m">134</span> <span class="m">30</span> <span class="m">148</span> <span class="m">21</span> <span class="m">70</span> <span class="m">144</span> <span class="m">235</span> <span class="m">236</span> <span class="m">141</span> <span class="m">234</span> <span class="m">135</span> <span class="m">4</span> <span class="m">120</span> <span class="m">1</span> <span class="m">180</span> <span class="m">69</span> <span class="m">84</span> <span class="m">35</span> <span class="m">73</span> <span class="m">16</span> <span class="m">71</span> <span class="m">208</span> <span class="m">212</span> <span class="m">143</span> <span class="m">135</span> <span class="m">222</span> <span class="m">115</span> <span class="m">85</span> <span class="m">26</span> <span class="m">25</span> <span class="m">172</span> <span class="m">2</span> <span class="m">202</span> <span class="m">15</span> <span class="m">2</span> <span class="m">249</span> <span class="m">109</span> <span class="m">71</span> <span class="m">41</span> <span class="m">255</span> <span class="m">177</span> <span class="m">105</span> <span class="m">20</span> <span class="m">134</span> <span class="m">33</span> <span class="m">10</span> <span class="m">54</span> <span class="m">254</span> <span class="m">210</span><span class="o">]</span>
+
+The above structure is what you would save in order to persist this key blob.
+
+Below is how the above structure would typically be saved, in PEM Format:
+
+-----BEGIN HSM ENCRYPTED AES SECRET KEY-----
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADsIIxQY2Y9lWElrfi1CQo
+AAAAAAAAjSYAAAAAAAAAARI02Z40nx3cCn768IGo8w+e3CAenv5Jby1m5qLR9l3Y
+yGzfdCBtAVJXpmzjFAk2Oxh+mg6f+qHLgBvtG9rzqesccGVtsV6/+8Z+Zl3sM76d
+BLyAAXJ4h78WByq/0Yeo8eSJebSMcdOfGsBGSoIZtEtW5s/wZaRBs3o7ytWO9DaX
+ni5INPlX2wvKRZYtw8hUhh6UFUaQ6+yN6ocEeAG0RVQjSRBH0NSPh95zVRoZrALK
+DwL5bUcp/7FpFIYhCjb+0g<span class="o">==</span>
+-----END HSM ENCRYPTED AES SECRET KEY-----
+
+WK virtualization mask is <span class="o">[</span><span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span><span class="o">]</span>
+See <span class="m">6</span>.2.2 of page <span class="m">179</span> of http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+WK ID is <span class="o">[</span><span class="m">3</span> <span class="m">176</span> <span class="m">130</span> <span class="m">49</span> <span class="m">65</span> <span class="m">141</span> <span class="m">152</span> <span class="m">246</span> <span class="m">85</span> <span class="m">132</span> <span class="m">150</span> <span class="m">183</span> <span class="m">226</span> <span class="m">212</span> <span class="m">36</span> <span class="m">40</span><span class="o">]</span>
+See <span class="m">6</span>.7.1 on page <span class="m">182</span> of  http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+Blob version is <span class="o">[</span><span class="m">18</span> <span class="m">52</span><span class="o">]</span>
+See <span class="m">3</span>.1.1 on page <span class="m">141</span> of http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+Initialization Vector is <span class="o">[</span><span class="m">217</span> <span class="m">158</span> <span class="m">52</span> <span class="m">159</span> <span class="m">29</span> <span class="m">220</span> <span class="m">10</span> <span class="m">126</span> <span class="m">250</span> <span class="m">240</span> <span class="m">129</span> <span class="m">168</span> <span class="m">243</span> <span class="m">15</span><span class="o">]</span>
+
+Encrypted part is <span class="o">[</span><span class="m">158</span> <span class="m">220</span> <span class="m">32</span> <span class="m">30</span> <span class="m">158</span> <span class="m">254</span> <span class="m">73</span> <span class="m">111</span> <span class="m">45</span> <span class="m">102</span> <span class="m">230</span> <span class="m">162</span> <span class="m">209</span> <span class="m">246</span> <span class="m">93</span> <span class="m">216</span> <span class="m">200</span> <span class="m">108</span> <span class="m">223</span> <span class="m">116</span> <span class="m">32</span> <span class="m">109</span> <span class="m">1</span> <span class="m">82</span> <span class="m">87</span> <span class="m">166</span> <span class="m">108</span> <span class="m">227</span> <span class="m">20</span> <span class="m">9</span> <span class="m">54</span> <span class="m">59</span> <span class="m">24</span> <span class="m">126</span> <span class="m">154</span> <span class="m">14</span> <span class="m">159</span> <span class="m">250</span> <span class="m">161</span> <span class="m">203</span> <span class="m">128</span> <span class="m">27</span> <span class="m">237</span> <span class="m">27</span> <span class="m">218</span> <span class="m">243</span> <span class="m">169</span> <span class="m">235</span> <span class="m">28</span> <span class="m">112</span> <span class="m">101</span> <span class="m">109</span> <span class="m">177</span> <span class="m">94</span> <span class="m">191</span> <span class="m">251</span> <span class="m">198</span> <span class="m">126</span> <span class="m">102</span> <span class="m">93</span> <span class="m">236</span> <span class="m">51</span> <span class="m">190</span> <span class="m">157</span> <span class="m">4</span> <span class="m">188</span> <span class="m">128</span> <span class="m">1</span> <span class="m">114</span> <span class="m">120</span> <span class="m">135</span> <span class="m">191</span> <span class="m">22</span> <span class="m">7</span> <span class="m">42</span> <span class="m">191</span> <span class="m">209</span> <span class="m">135</span> <span class="m">168</span> <span class="m">241</span> <span class="m">228</span> <span class="m">137</span> <span class="m">121</span> <span class="m">180</span> <span class="m">140</span> <span class="m">113</span> <span class="m">211</span> <span class="m">159</span> <span class="m">26</span> <span class="m">192</span> <span class="m">70</span> <span class="m">74</span> <span class="m">130</span> <span class="m">25</span> <span class="m">180</span> <span class="m">75</span> <span class="m">86</span> <span class="m">230</span> <span class="m">207</span> <span class="m">240</span> <span class="m">101</span> <span class="m">164</span> <span class="m">65</span> <span class="m">179</span> <span class="m">122</span> <span class="m">59</span> <span class="m">202</span> <span class="m">213</span> <span class="m">142</span> <span class="m">244</span> <span class="m">54</span> <span class="m">151</span> <span class="m">158</span> <span class="m">46</span> <span class="m">72</span> <span class="m">52</span> <span class="m">249</span> <span class="m">87</span> <span class="m">219</span> <span class="m">11</span> <span class="m">202</span> <span class="m">69</span> <span class="m">150</span> <span class="m">45</span> <span class="m">195</span> <span class="m">200</span> <span class="m">84</span> <span class="m">134</span> <span class="m">30</span> <span class="m">148</span> <span class="m">21</span> <span class="m">70</span> <span class="m">144</span> <span class="m">235</span> <span class="m">236</span> <span class="m">141</span> <span class="m">234</span> <span class="m">135</span> <span class="m">4</span> <span class="m">120</span> <span class="m">1</span> <span class="m">180</span> <span class="m">69</span> <span class="m">84</span><span class="o">]</span>
+
+MAC is <span class="o">[</span><span class="m">35</span> <span class="m">73</span> <span class="m">16</span> <span class="m">71</span> <span class="m">208</span> <span class="m">212</span> <span class="m">143</span> <span class="m">135</span> <span class="m">222</span> <span class="m">115</span> <span class="m">85</span> <span class="m">26</span> <span class="m">25</span> <span class="m">172</span> <span class="m">2</span> <span class="m">202</span> <span class="m">15</span> <span class="m">2</span> <span class="m">249</span> <span class="m">109</span> <span class="m">71</span> <span class="m">41</span> <span class="m">255</span> <span class="m">177</span> <span class="m">105</span> <span class="m">20</span> <span class="m">134</span> <span class="m">33</span> <span class="m">10</span> <span class="m">54</span> <span class="m">254</span> <span class="m">210</span><span class="o">]</span>
+MAC is <span class="m">32</span> bytes, see field <span class="m">15</span> in <span class="m">3</span>.1 on page <span class="m">140</span> of http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+Checksum is <span class="o">[</span><span class="m">144</span> <span class="m">147</span> <span class="m">65</span><span class="o">]</span>, length of checksum is <span class="m">3</span>
+
+
+Original message, prior to any encryption or decryption operations:  Hello, this is a very long and creative message without any imagination
+
+in progress ciphertext is:
+��!E�S���<span class="o">}</span>�p�!��
+
+in progress ciphertext is:
+��!E�S���<span class="o">}</span>�p�!��7I�Hd�i�7p�/N˽.�g��K�<span class="p">;</span>����_����NØtk���YH�^�
+
+Final ciphertext is:
+��!E�S���<span class="o">}</span>�p�!��7I�Hd�i�7p�/N˽.�g��K�<span class="p">;</span>����_����NØtk���YH�^���H�5f�!��&gt;-c
+
+In progress decryption is:
+
+
+In progress decryption is:
+Hello, this is a very long and creative message without any imag
+
+Final decryption is:
+Hello, this is a very long and creative message without any imagination
+
+Original message equals decrypted message!
+
+Original message:  Hello, this is a very long and creative message without any imagination
+Length of original message: <span class="m">71</span>
+
+Encrypted message
+��!E�S���<span class="o">}</span>�p�!��7I�Hd�i�7p�/N˽.�g��K�<span class="p">;</span>����_����NØtk���YH�^���H�5f�!��&gt;-c
+Length of encrypted message: <span class="m">80</span>
+
+Decrypted message: Hello, this is a very long and creative message without any imagination
+Length of decrypted message: <span class="m">71</span>
+</code></pre></div>
+</td></tr></table>
+
+</details>
+<p>The mechanism used to generate the key is <em>CKM_AES_KEY_GEN</em> which informs us that we wish to generate an AES secret key.</p>
+<p>The length of the key blob is 256 bytes.  Notice, that this key blob contains metadata used by the EP11 library, so it contains much more than the actual key, which is 256 bits, not bytes.  In fact we can't even see the key in cleartext form.  It is encrypted within the key blob by the Crypto Express 7S card domain's <em>root wrapping key</em>. The only place the key we created is every available in the clear is while it is being used inside the Crypto Express 7S card, because the root wrapping key never leaves the card.</p>
+<p>The ID of the root wrapping key of the Crypto Express 7S card domain is listed in the output in the line that starts with *WK ID is *.  This ID is the first sixteen bytes of the hash of the key. It is not the full hash, and even if it was, you cannot retrieve the original data from the hash, so the root wrapping key remains secret.</p>
+<p>The ID of the root wrapping key for our Crypto Express 7S card domain is</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span><span class="m">3</span> <span class="m">176</span> <span class="m">130</span> <span class="m">49</span> <span class="m">65</span> <span class="m">141</span> <span class="m">152</span> <span class="m">246</span> <span class="m">85</span> <span class="m">132</span> <span class="m">150</span> <span class="m">183</span> <span class="m">226</span> <span class="m">212</span> <span class="m">36</span> <span class="m">40</span><span class="o">]</span>
+</code></pre></div>
+
+<p>As you perform the exercises in this lab, you may notice that any time I print out the <em>WK ID</em>, it will always be this value.</p>
+<p>The encryption in this exercise takes place in multiple calls.  One may either encrypt all of the data in a single call to a function named <em>Encrypt()</em>, or may make multiple calls by performing one or more caalls to <em>EncryptUpdate()</em> followed by a call to <em>EncryptFinal()</em>.  This sample program uses the latter approach, so in the output you see two lines that say <em>In progress ciphertext is</em> that show the results so far after each <em>EncryptUpdate()</em> call and then a line that says <em>Final ciphertext is</em> after the call to <em>EncryptFinal()</em>.  Decryption follows the same pattern-  two calls to <em>DecryptUpdate()</em> followed by a call to *DecryptFinal(), and the output in the program indicates this.</p>
+</li>
+<li>
+<p>The program for this exercise defaults to a key length of 256 bits.  Try running with a key length of 128 bits:</p>
+<div class="highlight"><pre><span></span><code>./lab --ex2 --keyLength <span class="m">128</span>
+</code></pre></div>
+
+<details class="example"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>Generated AES Key with mechanism  CKM_AES_KEY_GEN
+
+length of key blob is 256 bytes
+Key blob is (values in decimal):
+[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 176 130 49 65 141 152 246 85 132 150 183 226 212 36 40 0 0 0 0 0 0 141 38 0 0 0 0 0 0 0 1 18 52 3 221 177 141 112 242 216 176 144 18 6 175 10 206 202 162 226 99 67 216 88 101 201 3 114 172 228 151 134 15 141 183 46 209 125 119 136 246 196 223 189 56 243 204 100 151 226 149 160 128 229 255 216 226 133 171 65 244 16 197 245 172 136 232 118 184 206 173 34 79 215 214 202 250 8 237 80 168 235 252 137 221 202 76 92 21 176 127 119 178 212 220 235 169 231 144 203 67 92 32 243 99 83 171 234 198 118 71 201 176 223 202 214 117 107 152 139 105 99 39 22 243 21 20 173 175 57 84 114 199 115 225 125 30 230 123 50 120 157 37 32 151 24 77 118 170 12 222 17 3 53 7 177 238 226 18 192 102 80 131 223 195 188 205 133 31 172 138 123 48 4 244 81 224 205 165 108 128 163 226 55 208 117 70 166 128 111 166 213 158]
+
+The above structure is what you would save in order to persist this key blob.
+
+Below is how the above structure would typically be saved, in PEM Format:
+
+-----BEGIN HSM ENCRYPTED AES SECRET KEY-----
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADsIIxQY2Y9lWElrfi1CQo
+AAAAAAAAjSYAAAAAAAAAARI0A92xjXDy2LCQEgavCs7KouJjQ9hYZckDcqzkl4YP
+jbcu0X13iPbE370488xkl+KVoIDl/9jihatB9BDF9ayI6Ha4zq0iT9fWyvoI7VCo
+6/yJ3cpMXBWwf3ey1NzrqeeQy0NcIPNjU6vqxnZHybDfytZ1a5iLaWMnFvMVFK2v
+OVRyx3PhfR7mezJ4nSUglxhNdqoM3hEDNQex7uISwGZQg9/DvM2FH6yKezAE9FHg
+zaVsgKPiN9B1RqaAb6bVng==
+-----END HSM ENCRYPTED AES SECRET KEY-----
+
+WK virtualization mask is [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+See 6.2.2 of page 179 of http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+WK ID is [3 176 130 49 65 141 152 246 85 132 150 183 226 212 36 40]
+See 6.7.1 on page 182 of  http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+Blob version is [18 52]
+See 3.1.1 on page 141 of http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+Initialization Vector is [3 221 177 141 112 242 216 176 144 18 6 175 10 206]
+
+Encrypted part is [202 162 226 99 67 216 88 101 201 3 114 172 228 151 134 15 141 183 46 209 125 119 136 246 196 223 189 56 243 204 100 151 226 149 160 128 229 255 216 226 133 171 65 244 16 197 245 172 136 232 118 184 206 173 34 79 215 214 202 250 8 237 80 168 235 252 137 221 202 76 92 21 176 127 119 178 212 220 235 169 231 144 203 67 92 32 243 99 83 171 234 198 118 71 201 176 223 202 214 117 107 152 139 105 99 39 22 243 21 20 173 175 57 84 114 199 115 225 125 30 230 123 50 120 157 37 32 151 24 77 118 170 12 222 17 3 53 7 177 238 226 18 192 102]
+
+MAC is [80 131 223 195 188 205 133 31 172 138 123 48 4 244 81 224 205 165 108 128 163 226 55 208 117 70 166 128 111 166 213 158]
+MAC is 32 bytes, see field 15 in 3.1 on page 140 of http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+Checksum is [132 58 194], length of checksum is 3
+
+
+Original message, prior to any encryption or decryption operations:  Hello, this is a very long and creative message without any imagination
+
+in progress ciphertext is:
+���[�F�Vl
+
+in progress ciphertext is:
+���[̶:���l
+        �.�W�+�]n,�#�-��{������4��uj��!�
+                                            v
+
+Final ciphertext is:
+���[̶:���l
+        �.�W�+�]n,�#�-��{������4��uj��!�
+                                            v��7Ѵ��,��5-��
+
+In progress decryption is:
+
+
+In progress decryption is:
+Hello, this is a very long and creative message without any imag
+
+Final decryption is:
+Hello, this is a very long and creative message without any imagination
+
+Original message equals decrypted message!
+
+Original message:  Hello, this is a very long and creative message without any imagination
+Length of original message: 71
+
+Encrypted message
+���[̶:���l
+        �.�W�+�]n,�#�-��{������4��uj��!�
+                                            v��7Ѵ��,��5-��
+Length of encrypted message: 80
+
+Decrypted message: Hello, this is a very long and creative message without any imagination
+Length of decrypted message: 71
+</code></pre></div>
+
+</details>
+<p>Our first run of this program used a key length of 256 bits, and this run used a key length of 128 bits.  Notice that the key blob itself is still 256 bytes in length. </p>
+<p>By the way, the gibberish printed out in the encrypted message portion of the output is because a byte of ciphertext is likely to contain any value from 0 to 255 and only a portion of those will turn out to be printable characters if you try to treat it as if it was a character string and try to print it out like this program does-  you may see one or more lines, if one of the ciphertext bytes produced happens to be the value of a linefeed character, and if it is a carriage return without a line feed it may have "overwritten" some of the preceding gibberish.  Real life use cases aren't typically going to require you to print ciphertext as this program did for education purposes.</p>
+</li>
+<li>
+<p>Try with a key length of 192 bits:</p>
+<div class="highlight"><pre><span></span><code>./lab --ex2 --keyLength <span class="m">192</span>
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Output not shown here, it should be similar to the prior two commands.</p>
+</div>
+</li>
+<li>
+<p>Try with a key length of 384 bits:</p>
+<div class="highlight"><pre><span></span><code>./lab --ex2 --keyLength <span class="m">384</span>
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>panic: GenerateKey Error: rpc error: code = Unknown desc = CKR_KEY_SIZE_RANGE
+
+goroutine 1 [running]:
+main.encryptAndDecrypt(0x180, 0xa28e3b, 0x47)
+    /home/hyper-protect-lab/go/src/github.com/ibm-developer/ibm-cloud-hyperprotectcrypto/golang/lab/exercise2.go:55 +0x2c89
+main.main()
+    /home/hyper-protect-lab/go/src/github.com/ibm-developer/ibm-cloud-hyperprotectcrypto/golang/lab/main.go:73 +0x3a3
+</code></pre></div>
+
+</details>
+<p>Don't panic!  (Even if Go did).  I meant for this to happen.</p>
+<p>This exercise uses the <em>CKM_AES_KEY_GEN</em> mechanism.  (This is in the first line of the progrram output).  If we run exercise one again and pipe its output to grep, with a fancy argument to print one extra line, we can see that the minimum key size is 128 bits and the maximum key size is 256 bits.  Try it:</p>
+<div class="highlight"><pre><span></span><code>./lab --ex1 <span class="p">|</span> grep CKM_AES_KEY_GEN --after-context <span class="m">1</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>So our key size must be in a range from 128 to 256 bits.  Let's try a key length of 224 bits:</p>
+<div class="highlight"><pre><span></span><code>./lab --ex2 --keyLength <span class="m">224</span>
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>panic: GenerateKey Error: rpc error: code = Unknown desc = CKR_KEY_SIZE_RANGE
+
+goroutine 1 [running]:
+main.encryptAndDecrypt(0xe0, 0xa28e3b, 0x47)
+    /home/hyper-protect-lab/go/src/github.com/ibm-developer/ibm-cloud-hyperprotectcrypto/golang/lab/exercise2.go:55 +0x2c89
+main.main()
+    /home/hyper-protect-lab/go/src/github.com/ibm-developer/ibm-cloud-hyperprotectcrypto/golang/lab/main.go:73 +0x3a3
+</code></pre></div>
+
+</details>
+<p>Is this the new math where 224 is not between 128 and 256? No. What's going on here is that the AES standard supports keys of a certain length-  128, 192, and 256 bits. So while the mechanism information told us the minimum and maximum key size, the expectation is that the programmer knows a little bit about the AES standard when using it!</p>
+</li>
+<li>
+<p>Would you like to encrypt and decrypt your own text?  Try it like this-  feel free to copy and paste what is provided here, or substitute your own witty banter for the value of the <code>--plaintext</code> argument.</p>
+<div class="highlight"><pre><span></span><code>./lab --ex2 --plaintext <span class="s2">&quot;The quick brown fox jumped over the lazy dog&quot;</span>
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Output not shown, but you should see the message being encrypted and decrypted.  Unless...</p>
+</div>
+<div class="admonition troubleshooting">
+<p class="admonition-title">Troubleshooting</p>
+<p>If you received this message in your output, <code>panic: Failed Encrypt [rpc error: code = Unknown desc = CKR_ARGUMENTS_BAD]</code>,
+then there is a pretty good chance that you supplied a plaintext value less than twenty-one characters in length.</p>
+<p>This exercise was based on the sample code, which performs the encryption in two steps.
+The first step passsed the first twenty bytes of input to the crypto card, and the second step passed the remainder of
+the input. The input was hard-coded and of length greater than twenty bytes, so the sample does not have logic to handle input of twenty bytes or less. The sample has not been modified to handle the case where that second pass isn't needed. </p>
+<p>Don't worry, in the real world, you can probably solve this problem if you throw enough money at it. :-)</p>
+</div>
+</li>
+</ol>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../lab-exercise1/" title="Exercise 1 (List PKCS Mechanisms)" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Exercise 1 (List PKCS Mechanisms)
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../lab-exercise3/" title="Exercise 3 (Sign and Verify)" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Exercise 3 (Sign and Verify)
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
