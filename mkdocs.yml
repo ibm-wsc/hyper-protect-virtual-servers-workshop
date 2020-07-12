@@ -13,7 +13,17 @@ nav:
       - Deploy your Securely Built Application as a Hyper Protect Virtual Server: securebuild-lab/deploy-app.md
       - Welcome to the Secure Bitcoin Wallet on IBM LinuxONE: securebuild-lab/bitcoin_wallet.md
       - Clean up your Environment: securebuild-lab/cleanup.md
-    - GREP11 Lab: grep11.md
+    - GREP11 Lab:
+      - Lab overview: grep11-lab/overview.md
+      - How to set up a GREP11 server: grep11-lab/grep11-setup.md
+      - Displaying your GREP11 environment: grep11-lab/grep11-display.md
+      - Run the GREP11 sample code: grep11-lab/run-grep11-samples.md
+      - Run the Lab exercises:
+        - An overview of the Exercises: grep11-lab/exercise-overview.md
+        - Exercise 1 (List PKCS Mechanisms): grep11-lab/lab-exercise1.md
+        - Exercise 2 (Encryption and Decryption): grep11-lab/lab-exercise2.md
+        - Exercise 3 (Sign and Verify): grep11-lab/lab-exercise3.md
+        - Exercise 4 (Wrap and Unwrap Key): grep11-lab/lab-exercise4.md
     - Glossary of terms: glossary.md
     - Other resources: resources.md
     - Propose a change: proposechange.md
