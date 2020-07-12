@@ -2,7 +2,7 @@
 
 ## Overview of Exercise 4
 
-Data that is not encrypted is referrd to as plaintext.  Data that is encrypted is referred to s ciphertext.
+Data that is not encrypted is referrd to as plaintext.  Data that is encrypted is referred to as ciphertext.
 
 Whether this data is human readable text, like this sentence, or binary data (like a lot of the output in our exercises!), or whatever, is usually of little concern to encryption and decryption algorithms.  The input is just a bunch of bits- either *1* or *0*. 
 

@@ -25,7 +25,7 @@ You can also enter the `pwd` ("print working directory") to be sure, e.g.,:
 3. Clone the GitHub respository used in this lab:
 
     ``` bash
-    git clone git@github.ibm.com:silliman/ibm-cloud-hyperprotectcrypto.git
+    git clone https://github.com/silliman/ibm-cloud-hyperprotectcrypto.git
     ```
 
     ???+ example "Example Output"
