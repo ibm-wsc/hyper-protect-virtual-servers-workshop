@@ -671,7 +671,7 @@
 </li>
 <li>
 <p>Securely Build a Docker Image for the <a href="https://github.com/IBM/secure-bitcoin-wallet" target="_blank">Secure Electrum Bitcoin Wallet Application</a>. (<a href="../create-server/" target="_blank">see <code>Create your HPVS Secure Build Server</code></a> and <a href="../build/" target="_blank"><code>Securely Build your Application</code></a>). This uses the Secure Build Process detailed below<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>:</p>
-<p><img alt="Secure Build Overview" src="../Overview/Secure_Build_Overview.png" /></p>
+<p><img alt="Secure Build Overview" src="../Overview_Images/Secure_Build_Overview.png" /></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>This secure build process leverages <a href="https://docs.docker.com/engine/security/trust/content_trust/" target="_blank">Docker Content Trust</a> to verify images using the <a href="https://docs.docker.com/notary/service_architecture/" target="_blank">Notary service architecture</a>.</p>
@@ -679,17 +679,17 @@
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>The Secure Build server used is deployed as a <strong>Hyper Protect Virtual Server</strong> which generates the repository and root keys used to establish trust with the <a href="https://docs.docker.com/notary/service_architecture/" target="_blank">Docker Notary Service</a>. This ensures that the initial keys used for a repository are trusted on first use (solving the <a href="https://en.wikipedia.org/wiki/Trust_on_first_use" target="_blank">TOFU</a> problem). See a detailed example of where all of the keys used for the secure build process are generated below.</p>
-<details class="example" open="open"><summary>Full list of the keys used during the Secure Build and BYOI lifecycle<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></summary><p><img alt="Table of Keys for Secure Build" src="../Overview/Secure_Build_Key_Table.png" /></p>
+<details class="example" open="open"><summary>Full list of the keys used during the Secure Build and BYOI lifecycle<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></summary><p><img alt="Table of Keys for Secure Build" src="../Overview_Images/Secure_Build_Key_Table.png" /></p>
 </details>
 </div>
 </li>
 <li>
 <p>Register your securely built Docker Image with your Secure Service Container to verify its validity<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> (see the end of <a href="../build/" target="_blank"><code>Securely Build your Application</code></a> and the beginning of <a href="../deploy-app/" target="_blank"><code>Deploy your Securely Built Application as a Hyper Protect Virtual Server</code></a>)
-<img alt="Image Registration Overview" src="../Overview/Image_Registration_Overview.png" />.</p>
+<img alt="Image Registration Overview" src="../Overview_Images/Image_Registration_Overview.png" />.</p>
 </li>
 <li>
 <p>Launch your Secure Bitcoin Wallet application <code>(from the verified repository created in step 3)</code> as a Hyper Protect Virtual Server within its own secure enclave<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> (see <a href="../deploy-app/" target="_blank"><code>Deploy your Securely Built Application as a Hyper Protect Virtual Server</code></a>).
-<img alt="Hyper Protect Virtual Servers Overview" src="../Overview/Hyper_Protect_Virtual_Server_Overview.png" />.</p>
+<img alt="Hyper Protect Virtual Servers Overview" src="../Overview_Images/Hyper_Protect_Virtual_Server_Overview.png" />.</p>
 </li>
 <li>
 <p>Access your <a href="https://github.com/IBM/secure-bitcoin-wallet" target="_blank">Secure Electrum Bitcoin Wallet Application</a> application to use it with security built-in (see <a href="../bitcoin_wallet/" target="_blank"><code>Welcome to the Secure Bitcoin Wallet on IBM LinuxONE</code></a>).</p>
