@@ -354,7 +354,7 @@ The information returned by *GetMechanismInfo()* includes the minimum key size a
 
 Observe that the large majority of mechanisms in the list have a name starting with *CKM_*, while a handful, such as item 77, 79, 81, and others, do not.  It appears that if the mechanism is not listed in the *golang/ep11/header_consts.go* file, within lines 205 to 594, then it will not have a name starting with *CKM_*.
 
-Note that the PKCS #11 specification does not mandate that an implementation support all defined mechanisms. Even within the subset of the 92 mechanisms that are supported by IBM's EP11 library, some are for algorithms that are considered rather outdated, and, in some cases, downright insecure.  For example, the SHA-1 cryptographic hash algorithm is considered insecure these days, so any mechanims in the list that have SHA1 or SHA_1 in their name (ane there are some) should be avoided.
+Note that the PKCS #11 specification does not mandate that an implementation support all defined mechanisms. Even within the subset of the 92 mechanisms that are supported by IBM's EP11 library, some are for algorithms that are considered rather outdated, and, in some cases, downright insecure.  For example, the SHA-1 cryptographic hash algorithm is considered insecure these days, so any mechanims in the list that have SHA1 or SHA_1 in their name (and there are some) should be avoided.
 
 Let's move on to Exercise 2.
 
