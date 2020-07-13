@@ -26,7 +26,7 @@ Other than adding a whole bunch of statements to print output, at a high level, 
     1. *exercise1.go* began life as *Example_getMechanismInfo()*
     2. *exercise2.go* started out as *Example_encryptAndDecrypt()*
     3. *exercise3.go* was *Example_signAndVerifyUsingECDSAKeyPair()*
-    4. *exercise4.go* had its originas as *Example_wrapAndUnwrapKey()*
+    4. *exercise4.go* had its origins as *Example_wrapAndUnwrapKey()*
 
 4. We deleted some of the files that we copied over that were not needed to run our lab exercises.
 
