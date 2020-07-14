@@ -185,7 +185,7 @@ A few lines of the output above have been highlighted. Notice the highlighted li
    
 ## Create a GREP11 server X.509 certificate for TLS authentication
 
-Once we created a "homegown" certification authority, we next created an X.509 certificate for our GREP11 server. This certificate was issued by our certification authority.
+Once we created a "homegrown" certification authority, we next created an X.509 certificate for our GREP11 server. This certificate was issued by our certification authority.
 
 The first step was to create another RSA private key that our GREP11 server will use:
 
