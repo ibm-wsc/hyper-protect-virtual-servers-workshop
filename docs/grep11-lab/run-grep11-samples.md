@@ -54,7 +54,7 @@ You can also enter the `pwd` ("print working directory") to be sure, e.g.,:
 1. Start Visual Studio Code within your current directory:
 
     ``` bash
-    code
+    code .
     ```
 
     In a moment you should see the Visual Studio Code window with your current directory structure shown in the Explorer pane in the upper left corner of the window:
