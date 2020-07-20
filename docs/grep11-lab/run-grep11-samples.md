@@ -43,7 +43,7 @@ You can also enter the `pwd` ("print working directory") to be sure, e.g.,:
 4. Change to the `ibm-cloud-hyperprotectcrypto` directory which the prior `git clone` command created:
 
     ``` bash
-    cd ibm-cloud-hyperprotect-crypto
+    cd ibm-cloud-hyperprotectcrypto
     ```
 
     !!! tip
