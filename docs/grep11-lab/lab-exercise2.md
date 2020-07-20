@@ -233,6 +233,9 @@ This ciphertext is then decrypted back into plaintext using the same AES secret 
     ./lab --ex1 | grep CKM_AES_KEY_GEN --after-context 1
     ```
 
+    !!! note 
+        The minimum and maximum key sizes are shown in bytes, so you must multiply the values shown by eight to get the sizes in bits.
+
 5. So our key size must be in a range from 128 to 256 bits.  Let's try a key length of 224 bits:
 
     ``` bash
