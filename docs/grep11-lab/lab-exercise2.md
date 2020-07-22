@@ -227,7 +227,7 @@ This ciphertext is then decrypted back into plaintext using the same AES secret 
 
     Don't panic!  (Even if Go did).  I meant for this to happen.
 
-    This exercise uses the *CKM_AES_KEY_GEN* mechanism.  (This is in the first line of the progrram output).  If we run exercise one again and pipe its output to grep, with a fancy argument to print one extra line, we can see that the minimum key size is 128 bits and the maximum key size is 256 bits.  Try it:
+    This exercise uses the *CKM_AES_KEY_GEN* mechanism.  (This is in the first line of the program output).  If we run exercise one again and pipe its output to grep, with a fancy argument to print one extra line, we can see that the minimum key size is 128 bits and the maximum key size is 256 bits.  Try it:
 
     ``` bash
     ./lab --ex1 | grep CKM_AES_KEY_GEN --after-context 1
