@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
     
     
       
@@ -776,17 +776,18 @@
 <p>Hyper Protect Virtual Servers runs in an LPAR that is defined in Secure Service Container (SSC) mode. Defining an LPAR is a normal task for an IBM Z or LinuxONE systems administrator, typically performed from the Hardware Management Console (HMC).</p>
 <p>The systems administrator must<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> dedicate one or more domains of one or more Crypto Express cards to the Hyper Protect Virtual Servers LPAR in order to use the GREP11 server. These Crypto Express cards must be defined in EP11 mode to your IBM Z or LinuxONE server in order to be used by a GREP11 server. 
 These tasks are documented in the Hyper Protect Virtual Servers documentation, or in IBM publications referenced in the Hyper Protect Virtual Servers documentation. </p>
-<p>The version of Hyper Protect Virtual Servers that we will be using in this lab is actually a pre-release version of 1.2.1, expected to be available soon, and this lab will be updated to include a public link to the documentation when it becomes available.</p>
+<p>The version of Hyper Protect Virtual Servers that we will be using in this lab is version 1.2.1, which became generally available on July 17, 2020.</p>
 <p>A GREP11 server communicates with one and only one Crypto Express domain, and vice versa.  You can run multiple GREP11 servers if you have multiple domains configured to your Hyper Protect Virtual Servers LPAR.</p>
+<p>The GREP11 server is stateless, so desired levels of throughput and resilience can be achieved by loading the same master key in one or more domains of one or more Crypto Express 7S cards across one or more CECs across one or more geographies.</p>
 <h2 id="overview-of-grep11-server-setup">Overview of GREP11 server setup<a class="headerlink" href="#overview-of-grep11-server-setup" title="Permanent link">&para;</a></h2>
-<p>This section provides an overview of what the remaining sections of this page will provide in detail.</p>
+<p>This section provides an overview of what the remaining sections of this page will discuss in detail.</p>
 <p>The following steps are required:</p>
 <ol>
 <li>
 <p>Create a Certification Authority (CA) certificate and key</p>
 </li>
 <li>
-<p>Create a GREP11 server X.509 certificate for TLS authentication</p>
+<p>Create a GREP11 server X.509 certificate for <a href="https://tools.ietf.org/html/rfc8446" target="_blank">Transport Layer Security (TLS)</a> authentication</p>
 </li>
 <li>
 <p>Create an X.509 certificate for your client application for TLS authentication</p>
@@ -795,7 +796,7 @@ These tasks are documented in the Hyper Protect Virtual Servers documentation, o
 <p>List Crypto Domains on your Hyper Protect Virtual Servers LPAR</p>
 </li>
 <li>
-<p>Create YAML and/or JSON configuration files for GREP11 server initialization</p>
+<p>Create <a href="https://yaml.org/" target="_blank">YAML</a> and/or <a href="https://www.json.org/" target="_blank">JSON</a> configuration files for GREP11 server initialization</p>
 </li>
 <li>
 <p>Start the GREP11 server</p>
@@ -814,7 +815,7 @@ These tasks are documented in the Hyper Protect Virtual Servers documentation, o
 </code></pre></div>
 
 <p>This created a file named <code>ca.key</code> which is an RSA private key.  </p>
-<p>What isn't commonly known, but is true, is that the RSA public key is contained within the private key.  It is for this reason that the private key is used as input to the following command, which will create a Certification Authority X.509 certificate. X.509 certificates contain information identifying the certificate holder, the attributes of the certificate, including what the certificate can be used for, and, importantly, the public key.  </p>
+<p>In most cases (and mandatory from PKCS #11 version 2.4 onwards) the RSA private key contains enough information to reconstitute the public key. It is for this reason that the private key is used as input to the following command, which will create a Certification Authority X.509 certificate. X.509 certificates contain information identifying the certificate holder, the attributes of the certificate, including what the certificate can be used for, and, importantly, the public key.  </p>
 <p>We used this command to create this certificate.</p>
 <div class="highlight"><pre><span></span><code>openssl req -new -x509 -key ca.key -out ca.pem
 </code></pre></div>
@@ -825,31 +826,30 @@ These tasks are documented in the Hyper Protect Virtual Servers documentation, o
 </code></pre></div>
 
 <details class="example"><summary>Example output</summary><div class="highlight"><pre><span></span><code>-----BEGIN CERTIFICATE-----
-MIIDtTCCAp2gAwIBAgIUe4lZppOfAoaQvSSDJ4fayWJwyd0wDQYJKoZIhvcNAQEL
-BQAwajELMAkGA1UEBhMCVVMxETAPBgNVBAgMCFZpcmdpbmlhMRAwDgYDVQQHDAdI
-ZXJuZG9uMQwwCgYDVQQKDANJQk0xEDAOBgNVBAsMB0lCTSBXU0MxFjAUBgNVBAMM
-DTE5Mi4xNjguMjIuNzkwHhcNMjAwNjExMTczOTM0WhcNMjAwNzExMTczOTM0WjBq
+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
-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
+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
+OCqkCywplgKoAyh8SGTPIkS4xhw=
 -----END CERTIFICATE-----
 </code></pre></div>
 
 </details>
-<p>The first and last lines are meant to assure you that this is a certificate, but the lines in between are less insightful. Fortunately the <em>openssl</em> utility comes to our rescue and allows us to print the certificate in geek- and human-readable form:</p>
+<p>The first and last lines are meant to assure you that this is a certificate, but the lines in between are less insightful, as it is <a href="https://en.wikipedia.org/wiki/Base64" target="_blank">base64-encoded</a> binary data. Fortunately the <em>openssl</em> utility comes to our rescue and allows us to print the certificate in a form that both geek- and human-readable form:</p>
 <div class="highlight"><pre><span></span><code>openssl x509 -in ca.pem -text
 </code></pre></div>
 
@@ -857,81 +857,82 @@ Ww7XtPnbwOm0BBkN1poL/jmeA/7lxUCGNr9IKh5PZtT1j+Laa/VhTlWt00qT6mAV
     Data:
         Version: <span class="m">3</span> <span class="o">(</span>0x2<span class="o">)</span>
         Serial Number:
-            7b:89:59:a6:93:9f:02:86:90:bd:24:83:27:87:da:c9:62:70:c9:dd
+            <span class="m">42</span>:85:e5:33:4e:1a:e2:d4:9e:ed:8f:1d:27:2f:f1:10:29:ed:31:67
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: <span class="nv">C</span> <span class="o">=</span> US, <span class="nv">ST</span> <span class="o">=</span> Virginia, <span class="nv">L</span> <span class="o">=</span> Herndon, <span class="nv">O</span> <span class="o">=</span> IBM, <span class="nv">OU</span> <span class="o">=</span> IBM WSC, <span class="nv">CN</span> <span class="o">=</span> <span class="m">192</span>.168.22.79
+        Issuer: <span class="nv">C</span> <span class="o">=</span> US, <span class="nv">ST</span> <span class="o">=</span> Virginia, <span class="nv">L</span> <span class="o">=</span> Herndon, <span class="nv">O</span> <span class="o">=</span> IBM, <span class="nv">OU</span> <span class="o">=</span> IBM Washington Systems Center, <span class="nv">CN</span> <span class="o">=</span> wschpvs
         Validity
-            Not Before: Jun <span class="m">11</span> <span class="m">17</span>:39:34 <span class="m">2020</span> GMT
-            Not After : Jul <span class="m">11</span> <span class="m">17</span>:39:34 <span class="m">2020</span> GMT
-        Subject: <span class="nv">C</span> <span class="o">=</span> US, <span class="nv">ST</span> <span class="o">=</span> Virginia, <span class="nv">L</span> <span class="o">=</span> Herndon, <span class="nv">O</span> <span class="o">=</span> IBM, <span class="nv">OU</span> <span class="o">=</span> IBM WSC, <span class="nv">CN</span> <span class="o">=</span> <span class="m">192</span>.168.22.79
+            Not Before: Jul <span class="m">23</span> <span class="m">21</span>:36:44 <span class="m">2020</span> GMT
+            Not After : Aug <span class="m">22</span> <span class="m">21</span>:36:44 <span class="m">2021</span> GMT
+        Subject: <span class="nv">C</span> <span class="o">=</span> US, <span class="nv">ST</span> <span class="o">=</span> Virginia, <span class="nv">L</span> <span class="o">=</span> Herndon, <span class="nv">O</span> <span class="o">=</span> IBM, <span class="nv">OU</span> <span class="o">=</span> IBM Washington Systems Center, <span class="nv">CN</span> <span class="o">=</span> wschpvs
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 RSA Public-Key: <span class="o">(</span><span class="m">2048</span> bit<span class="o">)</span>
                 Modulus:
-                    <span class="m">00</span>:ca:68:ac:24:6d:f8:f6:e5:a9:0e:78:c5:a9:b3:
-                    c6:7e:97:74:e4:d8:80:81:9d:8a:1d:62:7c:e4:41:
-                    fa:37:81:50:da:57:39:ca:2d:70:fe:ea:65:aa:da:
-                    7d:5c:87:2f:61:05:10:ad:5e:c4:39:8f:cf:61:ba:
-                    f6:13:6d:c3:1f:95:dd:80:f5:b8:23:ae:4e:64:50:
-                    <span class="m">42</span>:fb:6a:02:9e:8f:4e:3f:5b:e2:17:4a:b3:82:17:
-                    ce:60:d4:c6:65:8f:ef:18:be:55:bb:8f:13:d6:2c:
-                    c4:12:69:2e:4f:ee:ce:18:5f:00:50:96:5a:a2:c8:
-                    fb:f2:00:f6:ab:3f:3b:f8:4c:0d:a2:b9:a6:7f:e5:
-                    0e:50:ef:8d:1e:42:a9:e9:bc:c6:64:c0:cd:54:37:
-                    a8:4e:82:62:4e:05:3b:0c:92:da:13:46:37:aa:e9:
-                    ee:a0:a6:d7:2e:e6:0f:c8:a0:72:ee:f2:5f:2a:7b:
-                    9f:a1:c6:14:21:67:d4:51:19:6c:96:91:63:b9:6c:
-                    ee:48:3a:99:95:84:7a:3b:07:ea:66:92:37:b5:02:
-                    <span class="m">98</span>:db:2b:14:29:27:60:3f:c3:d0:57:1d:53:8b:80:
-                    e2:c4:67:82:17:ac:26:3d:a9:81:31:d9:3a:34:2c:
-                    ec:4a:17:c0:97:67:97:9b:41:6e:07:ac:9d:4b:37:
-                    1a:ef
+                    <span class="m">00</span>:dd:b6:fa:09:ab:21:6a:6c:fa:0b:e0:49:f9:f5:
+                    b6:fa:f8:4f:26:10:cf:ef:11:2a:16:c3:3a:cb:3f:
+                    9f:da:d1:62:2b:2e:e4:5f:c3:b6:ab:29:29:54:b7:
+                    9e:97:4e:59:e3:d1:b2:51:27:f9:02:2f:dd:33:95:
+                    a9:9d:14:63:c1:ea:6e:04:f4:5a:d2:51:d9:e7:ca:
+                    <span class="m">31</span>:01:5a:86:09:94:9b:0d:1e:03:3b:cb:ae:51:df:
+                    <span class="m">18</span>:ec:ec:86:a2:8f:34:6f:bd:80:c5:a6:af:be:c7:
+                    0b:d1:1b:dd:e0:9c:7d:a3:4b:00:65:a3:a5:fe:1c:
+                    bc:8b:fa:02:9d:7a:0d:7e:52:d9:6d:44:1d:5f:d7:
+                    2f:93:6b:f6:b8:e6:66:05:43:55:8d:9c:d6:ec:96:
+                    <span class="m">18</span>:0b:71:c8:c4:ad:fe:08:18:4e:e6:33:e9:5d:c9:
+                    c7:83:0b:83:2f:c4:85:7d:40:1f:6f:76:41:9f:c9:
+                    <span class="m">50</span>:15:7a:cc:57:94:df:ec:b5:5e:08:1f:95:09:ab:
+                    d6:b3:68:bb:df:39:6f:f1:ba:f3:e2:90:97:27:55:
+                    <span class="m">15</span>:5a:03:82:48:f6:ca:02:f9:90:55:f4:11:cd:31:
+                    <span class="m">34</span>:68:87:22:8b:6e:39:fc:53:ad:2e:26:9d:24:27:
+                    <span class="m">31</span>:37:25:bd:b2:4b:fb:a7:57:9c:86:d6:d8:bf:4a:
+                    ad:eb
                 Exponent: <span class="m">65537</span> <span class="o">(</span>0x10001<span class="o">)</span>
         X509v3 extensions:
 <span class="hll">            X509v3 Subject Key Identifier: 
-</span><span class="hll">                <span class="m">86</span>:63:C1:64:9E:1F:77:6D:F6:8E:B5:E3:3E:97:15:C3:0E:4E:DD:4B
+</span><span class="hll">                9B:D8:7D:1B:C2:7F:44:21:CB:18:54:0D:0A:E2:B6:E4:78:F4:F3:E5
 </span><span class="hll">            X509v3 Authority Key Identifier: 
-</span><span class="hll">                keyid:86:63:C1:64:9E:1F:77:6D:F6:8E:B5:E3:3E:97:15:C3:0E:4E:DD:4B
+</span><span class="hll">                keyid:9B:D8:7D:1B:C2:7F:44:21:CB:18:54:0D:0A:E2:B6:E4:78:F4:F3:E5
 </span>
 <span class="hll">            X509v3 Basic Constraints: critical
 </span><span class="hll">                CA:TRUE
 </span>    Signature Algorithm: sha256WithRSAEncryption
-        <span class="m">52</span>:5f:0a:aa:c7:c7:14:46:62:12:bb:d0:69:23:a2:35:92:63:
-        d3:19:d2:fb:e2:b1:31:54:b5:e0:73:e4:60:4a:c6:8d:cf:d4:
-        f9:37:66:f9:e2:58:91:ff:6f:d5:32:17:7e:a6:11:af:e2:4e:
-        <span class="m">02</span>:34:a3:e7:df:71:8b:ef:a9:9a:f7:a9:ab:f1:0d:b8:62:3e:
-        0a:8d:80:06:0f:89:79:cf:0c:9e:0c:4a:d6:39:fb:a8:42:97:
-        3c:9c:66:ba:09:a8:d2:55:79:96:e5:78:d1:c8:38:0e:b8:2c:
-        ef:b3:c0:5a:59:5c:bc:72:81:91:b1:d3:18:94:db:be:c7:be:
-        da:ce:d1:ac:96:58:2c:47:ab:d5:cd:3f:81:4f:b2:b2:30:e6:
-        6e:51:86:f0:77:74:59:ba:7f:16:12:61:32:9b:21:5d:ef:42:
-        d0:cd:7c:cc:56:5b:0e:d7:b4:f9:db:c0:e9:b4:04:19:0d:d6:
-        9a:0b:fe:39:9e:03:fe:e5:c5:40:86:36:bf:48:2a:1e:4f:66:
-        d4:f5:8f:e2:da:6b:f5:61:4e:55:ad:d3:4a:93:ea:60:15:f3:
-        ad:58:37:7b:ef:a3:65:3c:17:7e:a8:98:a2:a7:62:50:b1:a2:
-        <span class="m">37</span>:9a:d0:40:93:44:da:74:f4:1d:c2:1c:40:c1:18:ab:fa:25:
-        d0:57:be:d4
+        6e:ca:cf:a8:f8:0c:bf:59:d8:c9:85:48:bc:d8:3c:7a:a0:da:
+        <span class="m">18</span>:b7:23:b2:40:ce:df:44:a9:f1:e2:8d:0e:c1:e3:b7:00:48:
+        <span class="m">71</span>:81:01:b9:42:b8:61:87:9b:85:4e:ca:27:71:b5:d1:c4:46:
+        cd:57:91:2a:04:54:b9:ab:f5:df:82:16:aa:80:11:27:7b:ba:
+        ef:11:d3:88:b1:46:d3:43:32:fb:ac:04:3c:9d:f1:c6:53:74:
+        <span class="m">36</span>:bd:e2:cb:ff:d2:a6:56:fa:3c:97:f6:e9:7c:63:93:2a:46:
+        d4:1c:bf:c1:86:4e:52:9d:f6:0a:b4:73:21:7b:52:93:0f:3b:
+        d5:83:f1:f8:22:ec:6a:02:26:22:6f:d7:e0:0d:5f:83:94:40:
+        <span class="m">46</span>:f6:5e:af:bc:c1:9b:86:2c:aa:e8:95:59:f6:11:31:0a:5a:
+        1a:36:69:b8:b0:11:32:61:cb:16:3b:3d:7f:56:08:1a:5f:5b:
+        <span class="m">15</span>:e2:4e:2f:c8:46:4a:ce:02:12:90:af:74:b9:81:34:0c:dd:
+        b7:0f:fc:88:49:d6:37:d0:25:72:4d:e1:b5:69:a0:79:b4:38:
+        <span class="m">02</span>:47:c1:30:cf:6b:14:12:e8:d8:b9:e2:c6:68:60:00:6a:e8:
+        <span class="m">14</span>:08:bd:7f:5c:df:d9:73:1a:51:f8:b9:4a:a6:0a:b8:6c:04:
+        bf:34:94:49
 -----BEGIN CERTIFICATE-----
-MIIDtTCCAp2gAwIBAgIUe4lZppOfAoaQvSSDJ4fayWJwyd0wDQYJKoZIhvcNAQEL
-BQAwajELMAkGA1UEBhMCVVMxETAPBgNVBAgMCFZpcmdpbmlhMRAwDgYDVQQHDAdI
-ZXJuZG9uMQwwCgYDVQQKDANJQk0xEDAOBgNVBAsMB0lCTSBXU0MxFjAUBgNVBAMM
-DTE5Mi4xNjguMjIuNzkwHhcNMjAwNjExMTczOTM0WhcNMjAwNzExMTczOTM0WjBq
-MQswCQYDVQQGEwJVUzERMA8GA1UECAwIVmlyZ2luaWExEDAOBgNVBAcMB0hlcm5k
-b24xDDAKBgNVBAoMA0lCTTEQMA4GA1UECwwHSUJNIFdTQzEWMBQGA1UEAwwNMTky
-LjE2OC4yMi43OTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMporCRt
-+PblqQ54xamzxn6XdOTYgIGdih1ifORB+jeBUNpXOcotcP7qZarafVyHL2EFEK1e
-xDmPz2G69hNtwx+V3YD1uCOuTmRQQvtqAp6PTj9b4hdKs4IXzmDUxmWP7xi+VbuP
-E9YsxBJpLk/uzhhfAFCWWqLI+/IA9qs/O/hMDaK5pn/lDlDvjR5Cqem8xmTAzVQ3
-qE6CYk4FOwyS2hNGN6rp7qCm1y7mD8igcu7yXyp7n6HGFCFn1FEZbJaRY7ls7kg6
-mZWEejsH6maSN7UCmNsrFCknYD/D0FcdU4uA4sRnghesJj2pgTHZOjQs7EoXwJdn
-l5tBbgesnUs3Gu8CAwEAAaNTMFEwHQYDVR0OBBYEFIZjwWSeH3dt9o614z6XFcMO
-Tt1LMB8GA1UdIwQYMBaAFIZjwWSeH3dt9o614z6XFcMOTt1LMA8GA1UdEwEB/wQF
-MAMBAf8wDQYJKoZIhvcNAQELBQADggEBAFJfCqrHxxRGYhK70GkjojWSY9MZ0vvi
-sTFUteBz5GBKxo3P1Pk3ZvniWJH/b9UyF36mEa/iTgI0o+ffcYvvqZr3qavxDbhi
-PgqNgAYPiXnPDJ4MStY5+6hClzycZroJqNJVeZbleNHIOA64LO+zwFpZXLxygZGx
-0xiU277HvtrO0ayWWCxHq9XNP4FPsrIw5m5RhvB3dFm6fxYSYTKbIV3vQtDNfMxW
-Ww7XtPnbwOm0BBkN1poL/jmeA/7lxUCGNr9IKh5PZtT1j+Laa/VhTlWt00qT6mAV
-<span class="nv">861YN3vvo2U8F36omKKnYlCxojea0ECTRNp09B3CHEDBGKv6JdBXvtQ</span><span class="o">=</span>
+MIID1TCCAr2gAwIBAgIUQoXlM04a4tSe7Y8dJy/xECntMWcwDQYJKoZIhvcNAQEL
+BQAwejELMAkGA1UEBhMCVVMxETAPBgNVBAgMCFZpcmdpbmlhMRAwDgYDVQQHDAdI
+ZXJuZG9uMQwwCgYDVQQKDANJQk0xJjAkBgNVBAsMHUlCTSBXYXNoaW5ndG9uIFN5
+c3RlbXMgQ2VudGVyMRAwDgYDVQQDDAd3c2NocHZzMB4XDTIwMDcyMzIxMzY0NFoX
+DTIxMDgyMjIxMzY0NFowejELMAkGA1UEBhMCVVMxETAPBgNVBAgMCFZpcmdpbmlh
+MRAwDgYDVQQHDAdIZXJuZG9uMQwwCgYDVQQKDANJQk0xJjAkBgNVBAsMHUlCTSBX
+YXNoaW5ndG9uIFN5c3RlbXMgQ2VudGVyMRAwDgYDVQQDDAd3c2NocHZzMIIBIjAN
+BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3bb6Cashamz6C+BJ+fW2+vhPJhDP
+7xEqFsM6yz+f2tFiKy7kX8O2qykpVLeel05Z49GyUSf5Ai/dM5WpnRRjwepuBPRa
+0lHZ58oxAVqGCZSbDR4DO8uuUd8Y7OyGoo80b72AxaavvscL0Rvd4Jx9o0sAZaOl
+/hy8i/oCnXoNflLZbUQdX9cvk2v2uOZmBUNVjZzW7JYYC3HIxK3+CBhO5jPpXcnH
+gwuDL8SFfUAfb3ZBn8lQFXrMV5Tf7LVeCB+VCavWs2i73zlv8brz4pCXJ1UVWgOC
+SPbKAvmQVfQRzTE0aIcii245/FOtLiadJCcxNyW9skv7p1echtbYv0qt6wIDAQAB
+o1MwUTAdBgNVHQ4EFgQUm9h9G8J/RCHLGFQNCuK25Hj08+UwHwYDVR0jBBgwFoAU
+m9h9G8J/RCHLGFQNCuK25Hj08+UwDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0B
+AQsFAAOCAQEAbsrPqPgMv1nYyYVIvNg8eqDaGLcjskDO30Sp8eKNDsHjtwBIcYEB
+uUK4YYebhU7KJ3G10cRGzVeRKgRUuav134IWqoARJ3u67xHTiLFG00My+6wEPJ3x
+xlN0Nr3iy//Splb6PJf26XxjkypG1By/wYZOUp32CrRzIXtSkw871YPx+CLsagIm
+Im/X4A1fg5RARvZer7zBm4YsquiVWfYRMQpaGjZpuLARMmHLFjs9f1YIGl9bFeJO
+L8hGSs4CEpCvdLmBNAzdtw/8iEnWN9Alck3htWmgebQ4AkfBMM9rFBLo2Lnixmhg
+<span class="nv">AGroFAi9f1zf2XMaUfi5SqYKuGwEvzSUSQ</span><span class="o">==</span>
 -----END CERTIFICATE-----
 </code></pre></div>
 
@@ -952,7 +953,7 @@ Ww7XtPnbwOm0BBkN1poL/jmeA/7lxUCGNr9IKh5PZtT1j+Laa/VhTlWt00qT6mAV
 </code></pre></div>
 
 <p>The certificate signing request will be passed to our certification authority which will use the information to create an X.509 certificate.  We used <em>openssl</em> for this, too:</p>
-<div class="highlight"><pre><span></span><code>openssl x509 -sha256 -req -in server80-9876-19876.csr -CA ca.pem -CAkey ca.key -set_serial <span class="m">8086</span> -extfile openssl.cnf -extensions server -days <span class="m">36500</span> -outform PEM -out server80-9876-19876.pem
+<div class="highlight"><pre><span></span><code>openssl x509 -sha256 -req -in server80-9876-19876.csr -CA ca.pem -CAkey ca.key -set_serial <span class="m">8086</span> -extfile openssl.cnf -extensions server -days <span class="m">365</span> -outform PEM -out server80-9876-19876.pem
 </code></pre></div>
 
 <p>The file name of the certificate that was created by the preceding command is the value of the <code>-out</code> argument, <code>server80-9876-19876.pem</code>.  <code>openssl</code> allows us to list this certificate in human-friendly form:</p>
@@ -964,33 +965,33 @@ Ww7XtPnbwOm0BBkN1poL/jmeA/7lxUCGNr9IKh5PZtT1j+Laa/VhTlWt00qT6mAV
         Version: 3 (0x2)
         Serial Number: 8086 (0x1f96)
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = IBM WSC, CN = 192.168.22.79
+        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = IBM Washington Systems Center, CN = wschpvs
         Validity
-            Not Before: Jun 30 19:45:06 2020 GMT
-            Not After : Jun  6 19:45:06 2120 GMT
-        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = IBM WSC, CN = 192.168.22.80
+            Not Before: Jul 23 21:47:22 2020 GMT
+            Not After : Jul 23 21:47:22 2021 GMT
+        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = IBM Washington Systems Center, CN = 192.168.22.80
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 RSA Public-Key: (2048 bit)
                 Modulus:
-                    00:c2:66:77:9d:ef:38:ab:48:05:8d:ad:7d:aa:03:
-                    b6:b1:23:d9:39:81:20:6b:d1:60:21:64:a2:b4:c3:
-                    71:9d:c7:36:0b:12:f9:51:ea:75:62:bd:02:11:54:
-                    7d:22:bd:38:75:2e:7b:77:05:4b:5e:63:a0:2d:55:
-                    72:51:b7:28:03:0c:1a:72:8e:d3:b1:64:b2:40:4e:
-                    25:61:ab:d7:fe:44:e7:d1:0d:5e:dd:19:d6:af:e2:
-                    9e:1f:34:f9:44:c0:8c:c3:b0:e4:f3:43:4b:48:dd:
-                    34:8c:82:25:01:0b:a0:ad:f7:80:92:f2:84:d9:55:
-                    4d:e0:7d:85:78:b9:f6:de:e6:9f:61:cf:ff:b1:ed:
-                    93:24:06:e7:51:fd:ae:c0:7f:f4:49:61:ab:c8:c8:
-                    46:1d:da:f2:76:97:f8:87:4f:a3:3c:c4:c4:46:00:
-                    83:77:11:86:78:4f:cb:c2:b7:7d:18:fc:15:10:78:
-                    90:10:96:3e:9c:cb:1f:ce:c5:1d:4f:88:72:11:88:
-                    36:8e:42:34:7f:a0:51:0c:82:ee:d5:46:d4:b3:f5:
-                    7d:d0:53:6f:22:18:01:d5:08:fa:73:12:6c:02:d6:
-                    9f:53:c9:23:e7:46:c9:21:7e:66:3e:e0:01:44:f8:
-                    34:e4:d8:37:30:ff:f0:83:a2:ba:a3:fb:ec:cd:01:
-                    89:43
+                    00:b8:1a:5d:37:d6:c5:5b:2a:40:90:e5:e9:7f:c7:
+                    19:e4:83:fd:ce:f7:1b:f7:37:09:c1:f6:1f:03:10:
+                    78:70:52:27:66:1c:49:20:75:03:12:2f:7c:1b:ea:
+                    7b:37:0e:95:46:08:41:c9:7a:b8:89:f6:74:7f:84:
+                    14:aa:3f:91:94:78:df:8d:b0:47:9b:1f:2e:88:67:
+                    eb:13:71:a7:57:a8:c3:cd:fe:22:ea:05:35:42:6f:
+                    33:f5:46:05:27:c1:16:06:8c:66:14:fc:44:d3:56:
+                    ae:8f:60:1b:df:72:02:a0:cb:89:bc:50:56:5f:aa:
+                    97:57:03:7e:71:bc:71:7d:f3:9c:53:ae:12:0e:56:
+                    f0:46:45:e6:61:de:37:fa:40:b0:3b:fa:7e:a5:26:
+                    b0:06:67:49:b0:c1:c0:a1:35:5c:3d:c1:1b:d7:79:
+                    bf:c3:93:d3:e4:fa:72:06:ec:84:1f:0c:6a:d0:92:
+                    33:f4:8a:22:bf:af:53:78:48:bd:3d:63:f5:78:d0:
+                    08:bf:52:a1:ea:40:4e:74:9a:89:dc:7a:b0:dd:c7:
+                    e3:fe:35:58:91:65:c9:d2:00:d3:e9:fb:34:1e:39:
+                    77:ac:2a:49:79:53:37:aa:59:16:ce:8c:18:d6:99:
+                    af:e7:8f:9b:dc:b7:33:7e:00:41:3a:73:c0:5e:d7:
+                    92:63
                 Exponent: 65537 (0x10001)
         X509v3 extensions:
             X509v3 Basic Constraints: 
@@ -1009,21 +1010,21 @@ Ww7XtPnbwOm0BBkN1poL/jmeA/7lxUCGNr9IKh5PZtT1j+Laa/VhTlWt00qT6mAV
             X509v3 Subject Alternative Name: 
                 DNS:192.168.22.80:9876, DNS:192.168.22.80:19876, IP Address:192.168.22.80
     Signature Algorithm: sha256WithRSAEncryption
-        c1:64:4d:f9:81:66:0f:a8:44:63:8f:1c:82:3b:1e:05:45:b2:
-        51:5f:b2:8a:cd:e3:e9:5b:1e:83:e8:a9:54:21:01:57:20:49:
-        b6:6a:e2:a4:58:24:44:73:5c:e4:81:88:57:e1:d9:ca:ef:2c:
-        d9:b3:20:05:e4:0d:e9:46:22:3f:82:27:1e:b5:8a:7b:84:ef:
-        2a:af:b2:78:58:c2:a2:37:fa:dc:8d:75:4b:09:6d:67:b7:eb:
-        f4:91:fc:2b:14:ef:94:75:1e:93:f1:7b:5d:69:23:8e:de:1e:
-        69:9e:a8:b9:62:47:28:ab:18:6a:00:0b:9f:b6:5e:cf:62:74:
-        57:df:1f:15:a0:81:4f:21:bc:c3:08:05:c1:c1:8d:a1:fa:78:
-        3d:e8:be:b8:eb:03:9c:3e:fa:8a:7d:70:09:56:47:4b:20:ea:
-        02:3e:85:dc:a0:af:81:77:c9:1d:91:a2:68:b7:9c:c4:8f:a1:
-        dc:48:16:4f:38:5d:c7:d3:dc:51:b0:ff:a4:1b:aa:71:fe:34:
-        b0:59:04:43:a6:88:69:78:41:56:70:cb:7b:e1:2a:55:e1:1b:
-        f0:2a:11:25:ac:58:81:15:b0:9b:7f:f0:45:3f:ef:70:05:ce:
-        81:4f:3e:9f:17:4a:70:f2:65:65:3d:52:7e:af:59:46:d3:f8:
-        44:71:e6:c9
+        8f:f2:7e:60:69:de:80:85:7b:9a:3e:c8:8a:c7:ee:ee:66:29:
+        d7:bc:5b:54:0d:ae:50:7a:1a:9e:86:2e:ba:77:51:53:d3:c5:
+        64:e6:ca:1c:69:45:3c:db:1a:a8:cb:b4:7b:f7:1d:16:59:cb:
+        3c:89:80:1b:89:a3:cf:f3:6d:08:40:83:6f:f5:f5:f3:87:1f:
+        3c:0a:42:e3:c6:7c:56:be:5c:50:15:f5:2b:e7:cb:33:03:43:
+        30:e9:30:81:91:66:d7:34:70:ac:7b:09:bf:b0:32:41:09:7d:
+        0d:7d:ee:6a:19:4b:0e:18:a8:8d:0c:d7:3b:c7:c2:28:7a:c3:
+        c8:4a:34:cb:2a:90:2a:70:af:03:04:3c:93:6b:ee:3f:c0:47:
+        45:10:59:67:3d:36:50:29:30:38:b2:f7:ff:a7:06:b3:b5:3b:
+        66:64:21:87:ef:ab:0e:e7:e7:4c:4d:06:5a:3b:4c:1e:0f:d4:
+        de:08:6c:cc:24:6f:c1:1b:03:3d:27:4c:62:ea:a6:79:ab:f3:
+        a7:13:8a:26:e3:2a:e7:c2:bf:28:f4:de:58:6d:e2:d7:ed:e6:
+        bf:a7:b4:eb:61:c6:89:0c:df:fc:41:6d:b0:9a:ae:64:59:a8:
+        4e:86:5d:11:7e:1d:f6:b1:df:98:02:97:d8:12:63:dc:bf:3a:
+        10:5e:46:6c
 </code></pre></div>
 
 </details>
@@ -1038,6 +1039,63 @@ Ww7XtPnbwOm0BBkN1poL/jmeA/7lxUCGNr9IKh5PZtT1j+Laa/VhTlWt00qT6mAV
 <div class="highlight"><pre><span></span><code>openssl x509 -req -days <span class="m">1000</span> -in client.csr -CA ca.pem -CAcreateserial -CAkey ca.key -out client.pem
 </code></pre></div>
 
+<p>Here is a listing of the client certificate that you will be using in the lab. It will be configured properly for you so that your client program can present it to the GREP11 server:</p>
+<div class="highlight"><pre><span></span><code>openssl x509 -in client.pem -noout -text
+</code></pre></div>
+
+<details class="example"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>Certificate:
+    Data:
+        Version: 1 (0x0)
+        Serial Number:
+            4f:07:1f:6e:5e:09:33:8d:6f:39:52:01:36:06:3e:bb:28:50:c9:41
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = IBM Washington Systems Center, CN = wschpvs
+        Validity
+            Not Before: Jul 23 21:52:13 2020 GMT
+            Not After : Apr 19 21:52:13 2023 GMT
+<span class="hll">        Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = IBM Washington Systems Center, CN = GREP11 Lab Students
+</span>        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:c4:ab:d2:80:e2:38:b8:9d:6b:7f:f0:ae:09:72:
+                    c4:64:57:1a:32:f9:eb:b5:31:e9:bf:81:0b:c1:d7:
+                    01:b6:6d:c7:7c:26:d3:49:6b:3b:fd:54:11:cc:5e:
+                    7e:2f:be:59:54:4d:a4:c4:5c:08:87:1f:2b:0f:bc:
+                    cf:91:cd:21:a9:8e:bd:34:87:bb:3c:dd:e7:64:e4:
+                    e2:5e:30:d1:27:74:d4:7e:9f:3b:2f:40:68:3d:d9:
+                    7d:d7:ff:e8:b6:ad:3a:ab:ca:d9:74:51:fa:12:59:
+                    a3:e1:2a:13:e2:20:34:01:6a:a3:6a:7c:36:be:81:
+                    37:2a:cb:3b:85:a0:59:f1:60:ca:be:de:ce:d0:0d:
+                    ab:31:e4:09:09:31:39:06:cb:8d:48:73:56:ec:4f:
+                    93:cd:85:d9:59:89:9a:f3:d2:e5:d6:de:8e:e5:a5:
+                    4d:20:89:07:e0:1b:bd:a0:09:6f:94:92:e7:77:f6:
+                    76:f3:da:16:01:7c:80:76:cf:29:11:39:bc:6d:71:
+                    4a:bd:08:ca:29:da:d0:16:22:f5:f0:4d:c2:83:e4:
+                    8c:72:9b:b4:17:bf:48:09:29:6b:bd:4d:35:3b:44:
+                    9f:2f:75:7f:e2:a6:08:e7:ae:bb:4d:77:10:83:e6:
+                    cd:09:21:18:68:b2:ad:0a:f0:74:e5:47:ad:41:e5:
+                    41:6d
+                Exponent: 65537 (0x10001)
+    Signature Algorithm: sha256WithRSAEncryption
+        3f:ce:22:e4:ba:6b:1d:68:aa:b4:07:35:22:0c:d7:55:e7:dc:
+        4f:21:ca:17:ca:14:cd:b9:7e:ad:f1:93:84:9f:e4:96:84:10:
+        39:d7:36:1f:66:2d:15:1b:40:96:a6:79:5e:e4:a2:00:c8:fa:
+        fe:1a:42:9f:37:45:c4:c7:d9:21:c7:04:82:37:21:a0:41:ca:
+        92:b7:b8:15:db:62:55:c8:55:02:d6:d7:3a:fb:1d:96:33:54:
+        c8:f2:fd:d7:65:39:7c:12:13:e6:b5:91:fd:0e:68:21:30:41:
+        82:f0:c0:74:a5:12:18:5e:e4:4b:83:1a:7f:a3:cc:f7:0a:aa:
+        8f:f0:4e:0a:01:45:64:98:10:9a:f1:41:48:46:ec:df:3b:db:
+        c5:2f:bb:ec:f7:dc:77:f0:98:e2:99:f4:20:fc:ff:45:24:af:
+        8a:56:e7:60:2f:aa:cc:af:8a:ae:a8:1f:33:a0:8e:5e:3e:46:
+        69:10:f0:b9:6c:02:6d:b3:4e:ef:cd:ac:06:86:67:9b:c9:44:
+        73:00:37:61:06:df:32:ce:e5:c3:28:04:8f:c8:e4:81:ec:16:
+        2c:dd:63:37:bd:07:ab:fc:f9:ac:55:e2:4a:b0:9b:5e:5d:f5:
+        f1:89:90:0b:59:50:da:21:cb:db:96:c7:6d:fa:54:e4:f2:74:
+        86:e2:71:6e
+</code></pre></div>
+
+</details>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For the lab, each student will use a copy of the same client certificate. In most production use cases each client would use their own certificate which uniquely identifies them.</p>
@@ -1219,14 +1277,14 @@ ports:
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: [],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.9b3611bd.min.js"
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>

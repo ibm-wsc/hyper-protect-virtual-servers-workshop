@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
     
     
       
@@ -677,11 +677,11 @@
                 
                 <h1 id="grep11-lab-overview">GREP11 Lab Overview<a class="headerlink" href="#grep11-lab-overview" title="Permanent link">&para;</a></h1>
 <h2 id="grep11-overview">GREP11 Overview<a class="headerlink" href="#grep11-overview" title="Permanent link">&para;</a></h2>
-<p>In this lab you will be working with the GREP11 feature of the Hyper Protect Virtual Servers on-premises offering.</p>
+<p>In this lab you will be working with the GREP11 feature of the <a href="https://www.ibm.com/support/knowledgecenter/SSHPMH_1.2.x/kc_welcome_page.html" target="_blank">Hyper Protect Virtual Servers on-premises</a> offering.</p>
 <p>GREP11 is a shorthand term for <em>gRPC protocol-based Enterprise PKCS#11</em>.</p>
-<p>PKCS #11 refers to the Public Key Cryptography Standard #11 Cryptographic Token Interface, which is a standard for devices that hold cryptographic information and perform cryptographic functions.</p>
-<p>gRPC stands for Google Remote Procedure Call, which is a protocol developed by Google, and contributed to open source. gRPC uses HTTP/2 for its transport protocol.</p>
-<p><em>Enterprise PKCS#11</em>, often referred to as <em>EP11</em>, refers to IBM's library, designed for enterprise usage, that is very similar to the PKCS #11 standard. </p>
+<p>PKCS #11 refers to the <a href="http://docs.oasis-open.org/pkcs11/pkcs11-base/v2.40/pkcs11-base-v2.40.html" target="_blank">Public Key Cryptography Standard #11 Cryptographic Token Interface</a>, which is a standard for devices that hold cryptographic information and perform cryptographic functions.</p>
+<p><a href="https://grpc.io/" target="_blank">gRPC</a> stands for Google Remote Procedure Call, which is a protocol developed by Google, and contributed to open source. gRPC uses HTTP/2 for its transport protocol.</p>
+<p><em>Enterprise PKCS#11</em>, often referred to as <em>EP11</em>, refers to <a href="http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf" target="_blank">IBM's library</a>, designed for enterprise usage, that is very similar to the PKCS #11 standard. </p>
 <p>The PKCS #11 standard covers the following cryptographic categories, and the GREP11 library provides functions in each of these categories:</p>
 <ol>
 <li>Encryption</li>
@@ -696,8 +696,13 @@
 <p>You will be working with the Hyper Protect Virtual Server command line interface (CLI) running on an x86_64 virtual machine running the Ubuntu 18.04.4 Linux distribution. You will also be using this virtual machine to run programs, written in the Go programming language, that will communicate with the GREP11 server. This virtual machine is provisioned on SkyTap in the IBM Cloud, and you will access it through your web browser. <strong>Your instructor will provide you the information needed to access your virtual machine under separate cover.</strong></p>
 <p>The GREP11 server runs as a Docker container running in a Hyper Protect Virtual Servers LPAR that runs as a Secure Service Container (SSC) LPAR on an IBM z15 server in the IBM Washington Systems Center in Herndon, Virginia, USA.</p>
 <p>The Hyper Protect Virtual Servers LPAR is in a private network at the IBM Washington Systems Center and your Ubuntu virtual machine communicates with it through a VPN connection. <strong>Your instructor will provide you the information needed to establish a VPN connection under separate cover.</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The client program code used in this lab could also be run on the s390x architecture.  IBM provides sample client code, which connects to a GREP11 Server, in two programming lanugages - <a href="https://golang.org" target="_blank">Go</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">JavaScript</a>, both of which are supported on s390x.
+This lab will utilize client code written in Go.</p>
+</div>
 <h2 id="what-has-been-done-for-you-already">What has been done for you already<a class="headerlink" href="#what-has-been-done-for-you-already" title="Permanent link">&para;</a></h2>
-<p>Our starting point for the lab is having the GREP11 servers running on our Hyper Protect Virtual Servers LPAR. Each GREP11 server is connected to a single domain on an IBM Crypto Express 7S card that is configured to our LPAR. Our Hyper Protect Virtual Servers LPAR has two Crypto Expess 7S cards configured to it, with one domain on each card dedicated to our LPAR.  So, with only two domains and many students, we had to provision the GREP11 servers ahead of time.  </p>
+<p>Our starting point for the lab is having the GREP11 servers running on our Hyper Protect Virtual Servers LPAR. Each GREP11 server is connected to a single domain on an <a href="https://www.ibm.com/security/cryptocards/pciecc4/overview" target="_blank">IBM Crypto Express 7S</a> card that is configured to our LPAR. Our Hyper Protect Virtual Servers LPAR has two Crypto Expess 7S cards configured to it, with one domain on each card dedicated to our LPAR.  So, with only two domains and many students, we had to provision the GREP11 servers ahead of time.  </p>
 <p>We will describe the process of setting this up so that you will have a reference.</p>
 <h2 id="detailed-lab-process">Detailed Lab Process<a class="headerlink" href="#detailed-lab-process" title="Permanent link">&para;</a></h2>
 <ol>
@@ -711,7 +716,7 @@
 <p>Clone the GitHub repository which the lab uses</p>
 </li>
 <li>
-<p>Run Hyper Protect Virtual Server commands to inspect the GREP11 setup</p>
+<p>Run Hyper Protect Virtual Servers commands to inspect the GREP11 setup</p>
 </li>
 <li>
 <p>Run the GREP11 samples that IBM documentation points to</p>
@@ -787,14 +792,14 @@
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: [],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.9b3611bd.min.js"
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
