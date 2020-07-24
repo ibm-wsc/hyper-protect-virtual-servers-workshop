@@ -11,13 +11,16 @@ Running the `go test -v` command in the *golang/examples* directory was good for
 We left the `golang/examples` directory intact, and copied the source code into a new directory that we created, `golang/lab`, and made our program modifications in that directory. 
 
 !!! Note
-    These exercises are meant to illustrate various concepts for learning about the functionality that the GREP11 server and the Crypto Express card in EP11 mode provide, and are not meant to illustrate Go programming lanuage best practices!  In fact, we violated one best practice (DRY - Don't Repeat Yourself) when we copied the *examples* directory into the *lab* directory! 
+    These exercises are meant to illustrate various concepts for learning about the functionality that the GREP11 server and the Crypto Express card in EP11 mode provide, and are not meant to illustrate Go programming lanuage best practices.  In fact, we violated one best practice (DRY - Don't Repeat Yourself) when we copied the *examples* directory into the *lab* directory! 
 
     Feel free to copy our source code and use it as you see fit, but it is provided "as is", without support or warranty of any kind.
 
 Other than adding a whole bunch of statements to print output, at a high level, the following changes in program structure were made after copying the source code from *golang/examples* into *golang/labs*
 
 1. The routine to set the variables needed to connect to the GREP11 server was moved into a separate file, *callopt.go*.  This routine specifies the IP address and port where the GREP11 server is listening, and it also contains variables specifying the certificates and keys necessary to establish a session between our program and the GREP11 server using mutual TLS authentication.
+
+    !!! Note
+        The information in the *callopt.go* file is the type of information that would be provided by an administrator, such as the Hyper Protect Virtual Servers administrator for hostname or IP address and port for connection, and perhaps the same or a different security administrator for the certficates and keys necessary to successfully establish the connection with mutual TLS authentication.
 
 2. A main() function, which is the entry point for the program, was created, in the file *main.go*.  It uses arguments to determine which of the four exercises to invoke.  (You can actually invoke any combination of them in one program invocation but in our lab instructions we only have you do one at a time).  We added some extra arguments that work with exercises two, three, and four, in order to illustrate concepts of interest.
 
