@@ -35,6 +35,12 @@ The Hyper Protect Virtual Servers LPAR is in a private network at the IBM Washin
     The client program code used in this lab could also be run on the s390x architecture.  IBM provides sample client code, which connects to a GREP11 Server, in two programming lanugages - [Go](https://golang.org){target=_blank} and [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript){target=_blank}, both of which are supported on s390x.
     This lab will utilize client code written in Go.
     
+The following diagram summarizes the data flow from the client application you will be running in this lab, to the GREP11 server which runs in the Hyper Protect Virtual Servers LPAR on an IBM Z or LinuxONE server, through kernel calls that call the cryptographic device driver (represented by */dev/ap* in the drawing) which then accesses the Crypto Express 7S card through the PCIe bus.
+
+![GREP11 flow](images/grep11-000_flow.png)
+
+There is no inherent significance to the highlighted boxes in the drawing.  We highlighted the client application box to point out that the client application does not have to reside on the same host as the GREP11 server.  We highlighted the Go box since we will be working with the Go language GREP11 client in this lab and not the JavaScript GREP11 client. We highlighted GRPC just because, well, the *G* in GREP11 stands for gRPC.  :smile:
+
 ## What has been done for you already
 
 Our starting point for the lab is having the GREP11 servers running on our Hyper Protect Virtual Servers LPAR. Each GREP11 server is connected to a single domain on an [IBM Crypto Express 7S](https://www.ibm.com/security/cryptocards/pciecc4/overview){target=_blank} card that is configured to our LPAR. Our Hyper Protect Virtual Servers LPAR has two Crypto Expess 7S cards configured to it, with one domain on each card dedicated to our LPAR.  So, with only two domains and many students, we had to provision the GREP11 servers ahead of time.  
