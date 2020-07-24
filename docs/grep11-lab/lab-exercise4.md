@@ -2,7 +2,7 @@
 
 ## Overview of Exercise 4
 
-Data that is not encrypted is referrd to as plaintext.  Data that is encrypted is referred to as ciphertext.
+Data that is not encrypted is referred to as plaintext.  Data that is encrypted is referred to as ciphertext.
 
 Whether this data is human readable text, like this sentence, or binary data (like a lot of the output in our exercises!), or whatever, is usually of little concern to encryption and decryption algorithms.  The input is just a bunch of bits- either *1* or *0*. 
 
@@ -44,7 +44,7 @@ In this exercise, the following use case will be demonstrated- securely transmit
 
         ```
 
-    I mentioned in the overview of this exercise that you can assign attributes to keys when you create them. The code for this exercise, by default, assigns an attribute that allows the public key it creates to wrap keys, and it assigns an attribute to the private key to unwrap keys. 
+    I mentioned in the overview of this exercise that you can assign attributes to keys when you create them. The code for this exercise, by default, assigns an attribute that allows the public key it creates to wrap keys, and it assigns an attribute to the private key to allow it to unwrap keys. 
 
 2. Run this command which will cause the program to set the applicable attribute for the private key such that it is not allowed to unwrap a key. Observe in the output that, while the wrap operation proceeds, the unwrap fails:
 
@@ -103,3 +103,9 @@ In this exercise, the following use case will be demonstrated- securely transmit
         The public key has been prevented from wrapping a key, but it could still be used to encrypt data.
 
     Congratulations for reaching the end of the lab!
+
+    We hope you have gotten a taste of the functionality offered by the Crypto Express cards and made accessible to you via the GREP11 server feature of Hyper Protect Virtual Servers. And if you know a bit more about security after doing this lab than you did before, we're pleased about that!
+
+    We welome your suggestions for improvements or enhancements to the lab.
+
+    Please do not forget to take your survey for the Webinar and your survey about your Workshop Manager/SkyTap experience.
