@@ -982,9 +982,9 @@ MinKeySize:16 MaxKeySize:24 Flags:10240
 <h2 id="explanation-of-exercise-output">Explanation of exercise output<a class="headerlink" href="#explanation-of-exercise-output" title="Permanent link">&para;</a></h2>
 <p>Near the top of the output, you see the line:</p>
 <p><code>Got mechanism list of length 92:</code> </p>
-<p>This indicates there were 92 mechanisms returned by the call to <em>GetMechanismList()</em></p>
-<p>Then, for each mechanism, two lines of output are created, one with the mechanism name, which usually start with <code>CKM_</code>.  The mechanism number has no significance, this is just an index number (starting at 0), incremented by the program as it iterates over the list.</p>
-<p>The information returned by <em>GetMechanismInfo()</em> includes the minimum key size and maximum key size for the mechanism, if applicable, and flags that are associated with the mechanism.  The numbers shown are in decimal, and the key sizes are in bits, not bytes.</p>
+<p>This indicates there were 92 mechanisms returned by the call to <em>GetMechanismList()</em>.</p>
+<p>Then, for each mechanism, two lines of output are created, one with the mechanism name, which usually start with <code>CKM_</code>.  The mechanism number has no significance, this is just an index number assigned by our lab program, starting at 0 and incremented by the program as it iterates over the list.</p>
+<p>The information returned by <em>GetMechanismInfo()</em> includes the minimum key size and maximum key size for the mechanism, if applicable, and flags that are associated with the mechanism.  The numbers shown are in decimal, and the key sizes shown are in bytes.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>If you are doing this lab at your leisure on your own system, you could look in <em>golang/ep11/header_consts.go</em> and find the flags within lines 596 through 649 of that file.  You'd have to convert the decimal value shown to hexadecimal.  If you are taking this lab as part of a virtual event, do not take the time now to deconstruct these flags-  you can always do that later since this lab is publicly available.</p>
