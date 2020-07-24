@@ -1,7 +1,7 @@
 This glossary of terms consolidates the terms for the Hyper Protect Virtual Servers offering in alphabetical order to help both customers and internal team members to understand our offering better.
 
 ## Appliance
-IBM Secure Service Container based appliance provided by an Appliance Vendor. From Hosting Appliance perspective, it is the combination of IBM Secure Service Container and the Hyper Protect Virtual Server Hosting Appliance.
+IBM Secure Service Container based appliance provided by an Appliance Vendor. From Hosting Appliance perspective, it is the combination of IBM Secure Service Container and the Hyper Protect Servers Hosting Appliance.
 
 ## Appliance Administrator
 The person administrating an appliance which includes tasks, such as configuring storage, or memory to the appliance or performing other configuration tasks through the API provided by SSC/the Hosting Appliance.
@@ -19,7 +19,7 @@ An internal, or external exploiter of SSC, packaging SSC into an appliance.
 The abbreviation of Bring Your Own Key, which allows you to import your existing keys to Hyper Protect Crypto Services service instances that protect your keys with advanced encryption.
 
 ## BYOI
-The abbreviation of Bring Your Own Image, which is a part of IBM Hyper Protect Virtual Server solution to support the development and deployment of your own container images on top of the Secure Service Container framework.
+The abbreviation of Bring Your Own Image, which is a part of the IBM Hyper Protect Virtual Servers solution to support the development and deployment of your own container images on top of the Secure Service Container framework.
 
 ## Container
 A runtime instance of an Open Container Image (OCI) image.
