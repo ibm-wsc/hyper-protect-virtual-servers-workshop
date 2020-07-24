@@ -651,7 +651,7 @@
                 
                 <h1 id="exercise-4-wrap-and-unwrap-a-key">Exercise 4 - Wrap and Unwrap a Key<a class="headerlink" href="#exercise-4-wrap-and-unwrap-a-key" title="Permanent link">&para;</a></h1>
 <h2 id="overview-of-exercise-4">Overview of Exercise 4<a class="headerlink" href="#overview-of-exercise-4" title="Permanent link">&para;</a></h2>
-<p>Data that is not encrypted is referrd to as plaintext.  Data that is encrypted is referred to as ciphertext.</p>
+<p>Data that is not encrypted is referred to as plaintext.  Data that is encrypted is referred to as ciphertext.</p>
 <p>Whether this data is human readable text, like this sentence, or binary data (like a lot of the output in our exercises!), or whatever, is usually of little concern to encryption and decryption algorithms.  The input is just a bunch of bits- either <em>1</em> or <em>0</em>. </p>
 <p>Keys themselves are just a bunch of bits- <em>1</em>'s and <em>0</em>'s.  Can you encrypt and decrypt keys with other keys?  You sure can. There's nothing magical about that. But, like all disciplines, cryptographers have special terms for encrypting and decrypting keys- they use the term <em>wrapping</em> a key to refer to encrypting a key, and <em>unwrapping</em> a key refers to decrypting a key. There are valid reasons to make the distinction- for example, the PKCS #11 standard allows you to assign attributes to keys, and you can create keys such that they can or cannot wrap or unwrap keys, and you may wish to create different keys for different purposes. In fact, it is considered best practice to not use the same key to encrypt both data and keys, so using different terminology- <em>encrypting data</em> versus <em>wrapping keys</em> allows for easier separation of duties and may make key management easier.</p>
 <p>In this exercise, the following use case will be demonstrated- securely transmitting a secret key so that both parties have the same secret key and can use it for encryption during a session:</p>
@@ -686,7 +686,7 @@ the checksum of the unwrapped AES key is: [147 241 235 0 0 1 0]
 </code></pre></div>
 
 </details>
-<p>I mentioned in the overview of this exercise that you can assign attributes to keys when you create them. The code for this exercise, by default, assigns an attribute that allows the public key it creates to wrap keys, and it assigns an attribute to the private key to unwrap keys. </p>
+<p>I mentioned in the overview of this exercise that you can assign attributes to keys when you create them. The code for this exercise, by default, assigns an attribute that allows the public key it creates to wrap keys, and it assigns an attribute to the private key to allow it to unwrap keys. </p>
 </li>
 <li>
 <p>Run this command which will cause the program to set the applicable attribute for the private key such that it is not allowed to unwrap a key. Observe in the output that, while the wrap operation proceeds, the unwrap fails:</p>
@@ -741,6 +741,9 @@ main.main()
 <p>The public key has been prevented from wrapping a key, but it could still be used to encrypt data.</p>
 </div>
 <p>Congratulations for reaching the end of the lab!</p>
+<p>We hope you have gotten a taste of the functionality offered by the Crypto Express cards and made accessible to you via the GREP11 server feature of Hyper Protect Virtual Servers. And if you know a bit more about security after doing this lab than you did before, we're pleased about that!</p>
+<p>We welome your suggestions for improvements or enhancements to the lab.</p>
+<p>Please do not forget to take your survey for the Webinar and your survey about your Workshop Manager/SkyTap experience.</p>
 </li>
 </ol>
                 
