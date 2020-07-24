@@ -804,7 +804,7 @@ These tasks are documented in the Hyper Protect Virtual Servers documentation, o
 </ol>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>The commands shown on this page are for reference only- they have already been performed by the lab instructors in order to set up the lab environment for you.  </p>
+<p><strong>The commands shown on this page are for reference only</strong>- they have already been performed by the lab instructors in order to set up the lab environment for you.</p>
 </div>
 <h2 id="create-a-certification-authority-ca-certificate-and-key">Create a Certification Authority (CA) certificate and key<a class="headerlink" href="#create-a-certification-authority-ca-certificate-and-key" title="Permanent link">&para;</a></h2>
 <p>The <em>openssl</em> utility is used to generate a private key and a certificate that will act as a certification authority (CA). This will be used in later steps to issue certificates for the GREP11 server and for the client application which will connect to the GREP11 server.</p>
@@ -1122,57 +1122,57 @@ L8hGSs4CEpCvdLmBNAzdtw/8iEnWN9Alck3htWmgebQ4AkfBMM9rFBLo2Lnixmhg
 <li>Using <code>hpvs deploy</code> with a YAML file as input</li>
 <li>Using <code>hpvs vs create</code> with a JSON file as input</li>
 </ol>
-<p>I will show both files formats (YAML and JSON) first.  Then I will show both methods of starting the GREP11 server, and then explain the difference between the two start methods.</p>
+<p>I will show both the YAML and JSON files first, then I will show both methods of starting the GREP11 server, and then I'll explain the difference between the two start methods.</p>
 <h3 id="yaml-file-for-grep11-server-configuration">YAML file for GREP11 server configuration<a class="headerlink" href="#yaml-file-for-grep11-server-configuration" title="Permanent link">&para;</a></h3>
 <p>This is the YAML file for a GREP11 server that will listen for client connections on port 9876, and will use domain 22 (hex 16) of Crypto Express 7S card 08:</p>
-<details class="example"><summary>GREP11 server YAML configuration file</summary><div class="highlight"><pre><span></span><code>version: v1
-#
-# use this file with the &#39;hpvs deploy&#39; command, e.g.,
-#
-#  hpvs deploy --config $HOME/hpvs/config/grep11/vs_grep11_80-9876.yml 
-#
+<details class="example"><summary>GREP11 server YAML configuration file</summary><div class="highlight"><pre><span></span><code>version: v1 
+<span class="c1">#</span>
+<span class="c1"># use this file with the &#39;hpvs deploy&#39; command, e.g.,</span>
+<span class="c1">#</span>
+<span class="c1">#  hpvs deploy --config $HOME/hpvs/config/grep11/vs_grep11_80-9876.yml </span>
+<span class="c1">#</span>
 type: virtualserver
 virtualservers:
 - name: grep11-08-0016-9876
 host: wsclpar80
 repoid: hpcsKpGrep11_runq
-imagetag: 1.2.1
+imagetag: <span class="m">1</span>.2.1
 imagefile: hpcsKpGrep11_runq.tar.gz
 crypto:
     crypto_matrix:
-    - 08.0016
-environment:
+<span class="hll">    - <span class="m">08</span>.0016
+</span>environment:
 - key: EP11SERVER_EP11CRYPTO_DOMAIN
-    value: &quot;08.0016&quot;
-#
+<span class="hll">    value: <span class="s2">&quot;08.0016&quot;</span>
+</span><span class="c1">#</span>
 - key: EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CERTFILEBYTES
-    value: &quot;@/home/hyper-protect-lab/hpvs/config/grep11/keys/server80-9876-19876.pem&quot;
+    value: <span class="s2">&quot;@/home/hyper-protect-lab/hpvs/config/grep11/keys/server80-9876-19876.pem&quot;</span>
 - key: EP11SERVER_EP11CRYPTO_CONNECTION_TLS_KEYFILEBYTES
-    value: &quot;@/home/hyper-protect-lab/hpvs/config/grep11/keys/server80-9876-19876-key.pem&quot;
+    value: <span class="s2">&quot;@/home/hyper-protect-lab/hpvs/config/grep11/keys/server80-9876-19876-key.pem&quot;</span>
 - key: EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CACERTBYTES
-    value: &quot;@/home/hyper-protect-lab/hpvs/config/grep11/keys/ca.pem&quot;
+    value: <span class="s2">&quot;@/home/hyper-protect-lab/hpvs/config/grep11/keys/ca.pem&quot;</span>
 - key: EP11SERVER_EP11CRYPTO_CONNECTION_TLS_ENABLED
-    value: &quot;true&quot;
+    value: <span class="s2">&quot;true&quot;</span>
 - key: EP11SERVER_EP11CRYPTO_CONNECTION_TLS_MUTUAL
-    value: &quot;true&quot;
+    value: <span class="s2">&quot;true&quot;</span>
 - key: TLS_GRPC_CERTS_DOMAIN_CRT
-    value: &quot;\\n&quot;
+    value: <span class="s2">&quot;\\n&quot;</span>
 - key: TLS_GRPC_CERTS_DOMAIN_KEY
-    value: &quot;\\n&quot;
+    value: <span class="s2">&quot;\\n&quot;</span>
 - key: TLS_GRPC_CERTS_ROOTCA_CRT
-    value: &quot;\\n&quot;
+    value: <span class="s2">&quot;\\n&quot;</span>
 ports:
-- hostport: 9876
-    protocol: tcp
-    containerport: 9876
+<span class="hll">- hostport: <span class="m">9876</span>
+</span>    protocol: tcp
+    containerport: <span class="m">9876</span>
 </code></pre></div>
 
 </details>
 <h3 id="json-file-for-grep11-server-configuration">JSON file for GREP11 server configuration<a class="headerlink" href="#json-file-for-grep11-server-configuration" title="Permanent link">&para;</a></h3>
 <p>This is a JSON file for a GREP11 server that will listen for client connections on port 9876, and will use domain 22 (hex 16) of Crypto Express 7S card 08:</p>
 <details class="example"><summary>GREP11 server JSON configuration file</summary><div class="highlight"><pre><span></span><code>{
-&quot;EP11SERVER_EP11CRYPTO_DOMAIN&quot;:&quot;08.0016&quot;,
-&quot;EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CERTFILEBYTES&quot;:&quot;@/home/hyper-protect-lab/hpvs/config/grep11/keys/server80-9876-19876.pem&quot;,
+<span class="hll">&quot;EP11SERVER_EP11CRYPTO_DOMAIN&quot;:&quot;08.0016&quot;,
+</span>&quot;EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CERTFILEBYTES&quot;:&quot;@/home/hyper-protect-lab/hpvs/config/grep11/keys/server80-9876-19876.pem&quot;,
 &quot;EP11SERVER_EP11CRYPTO_CONNECTION_TLS_KEYFILEBYTES&quot;:&quot;@/home/hyper-protect-lab/hpvs/config/grep11/keys/server80-9876-19876-key.pem&quot;,
 &quot;EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CACERTBYTES&quot;:&quot;@/home/hyper-protect-lab/hpvs/config/grep11/keys/ca.pem&quot;,
 &quot;EP11SERVER_EP11CRYPTO_CONNECTION_TLS_ENABLED&quot;:true,
@@ -1196,11 +1196,11 @@ ports:
 </details>
 <div class="admonition note">
 <p class="admonition-title">Difference between the two commands</p>
-<p>I like the simplicity of the <code>hpvs deploy</code>method much better than the long syntax of the <code>hpvs vs create</code> command.  But the <code>hpvs vs create</code> command has a benefit-  the <code>hpvs deploy</code> command uploads the GREP11 server Docker image from your workstation where you run the CLI to the Hyper Protect Virtual Server LPAR, every single time.  This Docker image only needs to be sent up once.  The <code>hpvs vs create</code> command is smart enough to have this figured out and not do the unnecessary upload of the Docker image the second and subsequent times you run it.</p>
+<p>I like the simplicity of the <code>hpvs deploy</code>method much better than the long syntax of the <code>hpvs vs create</code> command.  But the <code>hpvs vs create</code> command has a benefit-  the <code>hpvs deploy</code> command uploads the GREP11 server Docker image from your workstation where you run the CLI to the Hyper Protect Virtual Servers LPAR, every single time.  This Docker image only needs to be sent up once.  The <code>hpvs vs create</code> command is smart enough to have this figured out and not do the unnecessary upload of the Docker image the second and subsequent times you run it.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Starting now, when you navigate to the next section of the lab, you should enter all the commands shown in the lab.  Only the commands in this section were for reference.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Starting now, as you navigate to the next section of the lab, you should enter all the commands shown in the lab.</strong>  Only the commands in this section were for reference.</p>
 </div>
 <div class="footnote">
 <hr />

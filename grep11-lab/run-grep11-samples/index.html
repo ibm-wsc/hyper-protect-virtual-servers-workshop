@@ -671,7 +671,7 @@
 
 </li>
 <li>
-<p>Ensure you are in the directory mentioned in the prior step. You may be able to tell from the command prompt. 
+<p>Ensure you are in the directory mentioned in the prior step<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. You may be able to tell from the command prompt. 
 You can also enter the <code>pwd</code> ("print working directory") to be sure, e.g.,:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">pwd</span>
 </code></pre></div>
@@ -834,6 +834,14 @@ ok      github.com/ibm-developer/ibm-cloud-hyperprotectcrypto/golang/examples   
 <p><em>Example_tls</em> creates an X.509 certificate, starts up an http server that uses this certificate, and has a client connect to the server with TLS authentication, which uses this certificate to establish a session.  This test is in the <em>tls_test.go</em> source file.</p>
 </li>
 </ol>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>The Go compiler has traditionally been very picky about where source code files must reside. This situation has eased recently with the introduction of <em>Go modules</em> in newer releases, but our lab is not using Go modules.  Go expects to find source files in the ${GOPATH}/src directory hierarchy, and if you do not have the GOPATH environment variable set, it expects fo find source files in the ${HOME}/go/src directory hierarchy.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
               
               
