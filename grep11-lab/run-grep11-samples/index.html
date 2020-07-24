@@ -712,7 +712,7 @@ Resolving deltas: 100% (227/227), done.
 <ol>
 <li>
 <p>Start Visual Studio Code within your current directory:</p>
-<div class="highlight"><pre><span></span><code>code .
+<div class="highlight"><pre><span></span><code>code .  <span class="c1"># if typing by hand don&#39;t forget the period (for current directory)</span>
 </code></pre></div>
 
 <p>In a moment you should see the Visual Studio Code window with your current directory structure shown in the Explorer pane in the upper left corner of the window:</p>
@@ -743,7 +743,7 @@ Resolving deltas: 100% (227/227), done.
 <p><img alt="Change to golang/examples" src="../images/grep11-0050_cd-golang-examples.png" /></p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>I have shown you how to use the Terminal window with Visual Studio Code, which you may find convenient.  Your Ubuntu Desktop also provides a Terminal application that you can use to open one or more terminal windows with.  They behave the same, and which one you use is a personal choice, as long as you are in the correct directory that the instructions expect you to be in.</p>
+<p>I have shown you how to use the Terminal window with Visual Studio Code, which you may find convenient.  Your Ubuntu Desktop also provides a Terminal application that you can use to open one or more terminal windows.  They behave the same, and which one you use is a personal choice, as long as you are in the correct directory that the instructions expect you to be in.</p>
 <p>It is convenient to have a terminal window inside Visual Studio Code, but it comes at the expense of some screen real estate being taken away from the source code used in the exercises.</p>
 <p>Use whichever method works best for you.</p>
 </div>
@@ -791,7 +791,7 @@ ok      github.com/ibm-developer/ibm-cloud-hyperprotectcrypto/golang/examples   
 <p>At the bottom of each of these functions, a series of comment lines, starting with a header line, specifies what the expected output from the function should be. If the output from the function call matches the lines (except for the header line), then the test passes.  Otherwise the test fails.</p>
 </li>
 </ol>
-<p>In the explorer pane, click on <em>server_test.go</em> or <em>tls_test.go</em> and examine the source code to see these lines.  For example, lines 211-216 in <em>server_test.go</em> indicate what the expected output of the <em>Example_encryptAndDecrypt</em> function should be:</p>
+<p>In the explorer pane, click on <em>server_test.go</em> or <em>tls_test.go</em> and examine the source code to see these lines.  For example, lines 222-227 in <em>server_test.go</em> indicate what the expected output of the <em>Example_encryptAndDecrypt</em> function should be:</p>
 <div class="highlight"><pre><span></span><code>// Output:
 // Generated AES Key
 // Generated IV
@@ -813,16 +813,16 @@ ok      github.com/ibm-developer/ibm-cloud-hyperprotectcrypto/golang/examples   
 <p><em>Example_encryptAndDecrypt</em> creates a secret (i.e., symmetric) key, encrypts data with it, then decrypts it, and ensures the data was unchanged after going through the encryption and decryption.  We will look more into this in the second exercise.</p>
 </li>
 <li>
-<p><em>Example_digest</em> creates a digest, or hash, against some data.  A hash is a fixed-length, unique fingerprint for a set of input data of any size.  Since there are an infinite number of possible input combinations, and the hash is fixed-length, in theory two different sets of data could produce the same hash.  This is called a <em>collision</em>.  In practice, the hash is of sufficient size, and the algorithm to produce it sufficiently complex, that it is computationally infeasible to produce the same hash with two different sets of input.  Digests are used in digital signatures, which the next two tests cover.</p>
+<p><em>Example_digest</em> creates a digest<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>, or hash, against some data. Digests are used in digital signatures, which the next two tests cover.</p>
 </li>
 <li>
 <p><em>Example_signAndVerifyUsingRSAKeyPair</em> creates an RSA public and private key pair and uses the private key to create a digital signature and the public key to verify the digital signature.</p>
 </li>
 <li>
-<p><em>Example_signAndVerifyUsingECDSAKeyPair</em> creates and elliptic curve public and private key pair and uses the private key to create a digital signature and uses the public key to verify the digital signature. We go into greater depth (and discuss the differences between RSA and Elliptic Curves) in the third exercise.</p>
+<p><em>Example_signAndVerifyUsingECDSAKeyPair</em> creates an elliptic curve public and private key pair and uses the private key to create a digital signature and uses the public key to verify the digital signature. We go into greater depth (and discuss the differences between RSA and Elliptic Curves) in the third exercise.</p>
 </li>
 <li>
-<p><em>Example_signAndVerifyToTestErrorHandling</em> intentionally causes an error-  after a signature is created, the program modifies a byte in it, so that when the signature is verified later, an error occurs- the test passes because the expected error message is listed in the expected test output.</p>
+<p><em>Example_signAndVerifyToTestErrorHandling</em> intentionally causes an error-  after a signature is created, the program modifies a byte in it, so that when the signature is verified later, an error occurs. The test passes because the expected error message is listed in the expected test output.</p>
 </li>
 <li>
 <p><em>Example_wrapAndUnwrapKey</em> creates a public and private key pair and uses the public key to encrypt, or wrap, a symmetric key, which can then only be decrypted, or unwrapped, by the private key.  The fourth and final exercise covers this topic.</p>
@@ -834,11 +834,15 @@ ok      github.com/ibm-developer/ibm-cloud-hyperprotectcrypto/golang/examples   
 <p><em>Example_tls</em> creates an X.509 certificate, starts up an http server that uses this certificate, and has a client connect to the server with TLS authentication, which uses this certificate to establish a session.  This test is in the <em>tls_test.go</em> source file.</p>
 </li>
 </ol>
+<p>Please proceed to the next section.</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
 <p>The Go compiler has traditionally been very picky about where source code files must reside. This situation has eased recently with the introduction of <em>Go modules</em> in newer releases, but our lab is not using Go modules.  Go expects to find source files in the ${GOPATH}/src directory hierarchy, and if you do not have the GOPATH environment variable set, it expects fo find source files in the ${HOME}/go/src directory hierarchy.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>A hash is a fixed-length fingerprint for a set of input data of any size.  Since there are an infinite number of possible input combinations, and the hash is fixed-length, in theory two different sets of data could produce the same hash.  This is called a <em>collision</em>.  In practice, the hash is of sufficient size, and the algorithm to produce it sufficiently complex, that it is computationally infeasible to produce the same hash with two different sets of input. If it can be demonstrated that two different sets of input can produce the same fingerprint by a hashing algorithm, then that algorithm will be considered insecure and fall into disuse in favor of stronger hashing algorithms.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
