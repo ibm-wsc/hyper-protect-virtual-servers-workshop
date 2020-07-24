@@ -343,11 +343,11 @@ Near the top of the output, you see the line:
 
 `Got mechanism list of length 92:` 
 
-This indicates there were 92 mechanisms returned by the call to *GetMechanismList()*
+This indicates there were 92 mechanisms returned by the call to *GetMechanismList()*.
 
-Then, for each mechanism, two lines of output are created, one with the mechanism name, which usually start with `CKM_`.  The mechanism number has no significance, this is just an index number (starting at 0), incremented by the program as it iterates over the list.
+Then, for each mechanism, two lines of output are created, one with the mechanism name, which usually start with `CKM_`.  The mechanism number has no significance, this is just an index number assigned by our lab program, starting at 0 and incremented by the program as it iterates over the list.
 
-The information returned by *GetMechanismInfo()* includes the minimum key size and maximum key size for the mechanism, if applicable, and flags that are associated with the mechanism.  The numbers shown are in decimal, and the key sizes are in bits, not bytes.
+The information returned by *GetMechanismInfo()* includes the minimum key size and maximum key size for the mechanism, if applicable, and flags that are associated with the mechanism.  The numbers shown are in decimal, and the key sizes shown are in bytes.
 
 !!! Tip
     If you are doing this lab at your leisure on your own system, you could look in *golang/ep11/header_consts.go* and find the flags within lines 596 through 649 of that file.  You'd have to convert the decimal value shown to hexadecimal.  If you are taking this lab as part of a virtual event, do not take the time now to deconstruct these flags-  you can always do that later since this lab is publicly available.
