@@ -592,13 +592,17 @@
 <p>We left the <code>golang/examples</code> directory intact, and copied the source code into a new directory that we created, <code>golang/lab</code>, and made our program modifications in that directory. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>These exercises are meant to illustrate various concepts for learning about the functionality that the GREP11 server and the Crypto Express card in EP11 mode provide, and are not meant to illustrate Go programming lanuage best practices!  In fact, we violated one best practice (DRY - Don't Repeat Yourself) when we copied the <em>examples</em> directory into the <em>lab</em> directory! </p>
+<p>These exercises are meant to illustrate various concepts for learning about the functionality that the GREP11 server and the Crypto Express card in EP11 mode provide, and are not meant to illustrate Go programming lanuage best practices.  In fact, we violated one best practice (DRY - Don't Repeat Yourself) when we copied the <em>examples</em> directory into the <em>lab</em> directory! </p>
 <p>Feel free to copy our source code and use it as you see fit, but it is provided "as is", without support or warranty of any kind.</p>
 </div>
 <p>Other than adding a whole bunch of statements to print output, at a high level, the following changes in program structure were made after copying the source code from <em>golang/examples</em> into <em>golang/labs</em></p>
 <ol>
 <li>
 <p>The routine to set the variables needed to connect to the GREP11 server was moved into a separate file, <em>callopt.go</em>.  This routine specifies the IP address and port where the GREP11 server is listening, and it also contains variables specifying the certificates and keys necessary to establish a session between our program and the GREP11 server using mutual TLS authentication.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The information in the <em>callopt.go</em> file is the type of information that would be provided by an administrator, such as the Hyper Protect Virtual Servers administrator for hostname or IP address and port for connection, and perhaps the same or a different security administrator for the certficates and keys necessary to successfully establish the connection with mutual TLS authentication.</p>
+</div>
 </li>
 <li>
 <p>A main() function, which is the entry point for the program, was created, in the file <em>main.go</em>.  It uses arguments to determine which of the four exercises to invoke.  (You can actually invoke any combination of them in one program invocation but in our lab instructions we only have you do one at a time).  We added some extra arguments that work with exercises two, three, and four, in order to illustrate concepts of interest.</p>
