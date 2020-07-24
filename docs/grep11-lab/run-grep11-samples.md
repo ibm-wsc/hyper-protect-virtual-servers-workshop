@@ -54,7 +54,7 @@ You can also enter the `pwd` ("print working directory") to be sure, e.g.,:
 1. Start Visual Studio Code within your current directory:
 
     ``` bash
-    code .
+    code .  # if typing by hand don't forget the period (for current directory)
     ```
 
     In a moment you should see the Visual Studio Code window with your current directory structure shown in the Explorer pane in the upper left corner of the window:
@@ -87,7 +87,7 @@ You can also enter the `pwd` ("print working directory") to be sure, e.g.,:
     ![Change to golang/examples](images/grep11-0050_cd-golang-examples.png)
 
     !!! tip
-        I have shown you how to use the Terminal window with Visual Studio Code, which you may find convenient.  Your Ubuntu Desktop also provides a Terminal application that you can use to open one or more terminal windows with.  They behave the same, and which one you use is a personal choice, as long as you are in the correct directory that the instructions expect you to be in.
+        I have shown you how to use the Terminal window with Visual Studio Code, which you may find convenient.  Your Ubuntu Desktop also provides a Terminal application that you can use to open one or more terminal windows.  They behave the same, and which one you use is a personal choice, as long as you are in the correct directory that the instructions expect you to be in.
 
         It is convenient to have a terminal window inside Visual Studio Code, but it comes at the expense of some screen real estate being taken away from the source code used in the exercises.
 
@@ -134,7 +134,7 @@ The test used the *go test* subcommand, which does the following:
 
 3. At the bottom of each of these functions, a series of comment lines, starting with a header line, specifies what the expected output from the function should be. If the output from the function call matches the lines (except for the header line), then the test passes.  Otherwise the test fails.
 
-In the explorer pane, click on *server_test.go* or *tls_test.go* and examine the source code to see these lines.  For example, lines 211-216 in *server_test.go* indicate what the expected output of the *Example_encryptAndDecrypt* function should be:
+In the explorer pane, click on *server_test.go* or *tls_test.go* and examine the source code to see these lines.  For example, lines 222-227 in *server_test.go* indicate what the expected output of the *Example_encryptAndDecrypt* function should be:
 
 ``` bash
 // Output:
@@ -154,13 +154,13 @@ Here is an itemization of the functions that our `go test -v` command tested, wi
 
 2. *Example_encryptAndDecrypt* creates a secret (i.e., symmetric) key, encrypts data with it, then decrypts it, and ensures the data was unchanged after going through the encryption and decryption.  We will look more into this in the second exercise.
 
-3. *Example_digest* creates a digest, or hash, against some data.  A hash is a fixed-length, unique fingerprint for a set of input data of any size.  Since there are an infinite number of possible input combinations, and the hash is fixed-length, in theory two different sets of data could produce the same hash.  This is called a *collision*.  In practice, the hash is of sufficient size, and the algorithm to produce it sufficiently complex, that it is computationally infeasible to produce the same hash with two different sets of input.  Digests are used in digital signatures, which the next two tests cover.
+3. *Example_digest* creates a digest[^2], or hash, against some data. Digests are used in digital signatures, which the next two tests cover.
 
 4. *Example_signAndVerifyUsingRSAKeyPair* creates an RSA public and private key pair and uses the private key to create a digital signature and the public key to verify the digital signature.
 
-5. *Example_signAndVerifyUsingECDSAKeyPair* creates and elliptic curve public and private key pair and uses the private key to create a digital signature and uses the public key to verify the digital signature. We go into greater depth (and discuss the differences between RSA and Elliptic Curves) in the third exercise.
+5. *Example_signAndVerifyUsingECDSAKeyPair* creates an elliptic curve public and private key pair and uses the private key to create a digital signature and uses the public key to verify the digital signature. We go into greater depth (and discuss the differences between RSA and Elliptic Curves) in the third exercise.
 
-6. *Example_signAndVerifyToTestErrorHandling* intentionally causes an error-  after a signature is created, the program modifies a byte in it, so that when the signature is verified later, an error occurs- the test passes because the expected error message is listed in the expected test output.
+6. *Example_signAndVerifyToTestErrorHandling* intentionally causes an error-  after a signature is created, the program modifies a byte in it, so that when the signature is verified later, an error occurs. The test passes because the expected error message is listed in the expected test output.
 
 7. *Example_wrapAndUnwrapKey* creates a public and private key pair and uses the public key to encrypt, or wrap, a symmetric key, which can then only be decrypted, or unwrapped, by the private key.  The fourth and final exercise covers this topic.
 
@@ -168,4 +168,8 @@ Here is an itemization of the functions that our `go test -v` command tested, wi
 
 8. *Example_tls* creates an X.509 certificate, starts up an http server that uses this certificate, and has a client connect to the server with TLS authentication, which uses this certificate to establish a session.  This test is in the *tls_test.go* source file.
 
+Please proceed to the next section.
+
 [^1]: The Go compiler has traditionally been very picky about where source code files must reside. This situation has eased recently with the introduction of *Go modules* in newer releases, but our lab is not using Go modules.  Go expects to find source files in the ${GOPATH}/src directory hierarchy, and if you do not have the GOPATH environment variable set, it expects fo find source files in the ${HOME}/go/src directory hierarchy.
+
+[^2]: A hash is a fixed-length fingerprint for a set of input data of any size.  Since there are an infinite number of possible input combinations, and the hash is fixed-length, in theory two different sets of data could produce the same hash.  This is called a *collision*.  In practice, the hash is of sufficient size, and the algorithm to produce it sufficiently complex, that it is computationally infeasible to produce the same hash with two different sets of input. If it can be demonstrated that two different sets of input can produce the same fingerprint by a hashing algorithm, then that algorithm will be considered insecure and fall into disuse in favor of stronger hashing algorithms.
