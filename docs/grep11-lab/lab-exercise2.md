@@ -2,11 +2,11 @@
 
 ## Overview of Exercise 2
 
-Exercise 2 creates an AES secret key and uses it to encrypt some *plaintext* data. 
+Exercise 2 creates an AES secret key and uses it to encrypt some *plaintext* data. Plaintext which has been encrypted is referred to as *ciphertext*.
 This ciphertext is then decrypted back into plaintext using the same AES secret key that was used for encryption. The original plaintext is compared to- and is expected to be identical to- the plaintext that resulted from the encryption and decryption.
 
 !!! note
-    Plaintext data is often, but not necessarily, human-readable.  It is any data that could be of value to an adversary, if the adversary could obtain the data in its original, or plaintext, form.  Hence the need for encryption. Encrypted data is referred to as *ciphertext*. If an adversary were to obtain ciphertext, it is unreadable and thus of little or no value to the adversary.
+    Plaintext data is often, but not necessarily, human-readable.  It is any data that could be of value to an adversary, if the adversary could obtain the data in its original, or plaintext, form.  Hence the need for encryption. If an adversary were to obtain ciphertext, it is unreadable and thus of little or no value to the adversary.
 
 !!! note
     The PKCS #11 standard uses the phrase *secret key* often. *Secret key* is synonoymous with the term *symmetric key*, which is also a term commonly used in cryptography.  That is, a single key is used for both encryption and decryption.
@@ -20,7 +20,7 @@ This ciphertext is then decrypted back into plaintext using the same AES secret 
 
     ??? example "Example Output"
 
-        ``` bash  linenums="1" hl_lines="1"
+        ``` bash  linenums="1" hl_lines="1 23"
         Generated AES Key with mechanism  CKM_AES_KEY_GEN
 
         length of key blob is 256 bytes
@@ -94,9 +94,9 @@ This ciphertext is then decrypted back into plaintext using the same AES secret 
 
     The mechanism used to generate the key is *CKM_AES_KEY_GEN* which informs us that we wish to generate an AES secret key.
 
-    The length of the key blob is 256 bytes.  Notice, that this key blob contains metadata used by the EP11 library, so it contains much more than the actual key, which is 256 bits, not bytes.  In fact we can't even see the key in cleartext form.  It is encrypted within the key blob by the Crypto Express 7S card domain's _root wrapping key_. The only place the key we created is every available in the clear is while it is being used inside the Crypto Express 7S card, because the root wrapping key never leaves the card.
+    The length of the key blob is 256 bytes.  Notice that this key blob contains metadata used by the EP11 library, so it contains much more than the actual key, which is 256 bits, not bytes.  In fact we can't even see the key in cleartext form.  It is encrypted within the key blob by the Crypto Express 7S card domain's _root wrapping key_. The only place the key we created is ever available in the clear is while it is being used inside the Crypto Express 7S card, because the root wrapping key never leaves the card.
 
-    The ID of the root wrapping key of the Crypto Express 7S card domain is listed in the output in the line that starts with *WK ID is *.  This ID is the first sixteen bytes of the hash of the key. It is not the full hash, and even if it was, you cannot retrieve the original data from the hash, so the root wrapping key remains secret.
+    The ID of the root wrapping key of the Crypto Express 7S card domain is listed in the output in the line that starts with *WK ID is*.  This ID is the first sixteen bytes of the hash of the key. It is not the full hash, and even if it was, you cannot retrieve the original data from the hash, so the root wrapping key remains secret.
 
     The ID of the root wrapping key for our Crypto Express 7S card domain is
 
@@ -106,7 +106,7 @@ This ciphertext is then decrypted back into plaintext using the same AES secret 
 
     As you perform the exercises in this lab, you may notice that any time I print out the *WK ID*, it will always be this value.
 
-    The encryption in this exercise takes place in multiple calls.  One may either encrypt all of the data in a single call to a function named *Encrypt()*, or may make multiple calls by performing one or more caalls to *EncryptUpdate()* followed by a call to *EncryptFinal()*.  This sample program uses the latter approach, so in the output you see two lines that say *In progress ciphertext is* that show the results so far after each *EncryptUpdate()* call and then a line that says *Final ciphertext is* after the call to *EncryptFinal()*.  Decryption follows the same pattern-  two calls to *DecryptUpdate()* followed by a call to *DecryptFinal(), and the output in the program indicates this.
+    The encryption in this exercise takes place in multiple calls.  One may either encrypt all of the data in a single call to a function named *Encrypt()*, or may make multiple calls by performing one or more calls to *EncryptUpdate()* followed by a call to *EncryptFinal()*.  This sample program uses the latter approach, so in the output you see two lines that say *In progress ciphertext is* that show the results so far after each *EncryptUpdate()* call and then a line that says *Final ciphertext is* after the call to *EncryptFinal()*.  Decryption follows the same pattern-  two calls to *DecryptUpdate()* followed by a call to *DecryptFinal()*, and the output in the program indicates this.
 
 2. The program for this exercise defaults to a key length of 256 bits.  Try running with a key length of 128 bits:
 
@@ -270,7 +270,7 @@ This ciphertext is then decrypted back into plaintext using the same AES secret 
         then there is a pretty good chance that you supplied a plaintext value less than twenty-one characters in length.
 
         This exercise was based on the sample code, which performs the encryption in two steps.
-        The first step passsed the first twenty bytes of input to the crypto card, and the second step passed the remainder of
+        The first step passed the first twenty bytes of input to the crypto card, and the second step passed the remainder of
         the input. The input was hard-coded and of length greater than twenty bytes, so the sample does not have logic to handle input of twenty bytes or less. The sample has not been modified to handle the case where that second pass isn't needed. 
 
         Don't worry, in the real world, you can probably solve this problem if you throw enough money at it. :-)

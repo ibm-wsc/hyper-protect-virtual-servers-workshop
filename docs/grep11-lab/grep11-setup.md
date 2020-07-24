@@ -91,7 +91,7 @@ cat cat.pem
     OCqkCywplgKoAyh8SGTPIkS4xhw=
     -----END CERTIFICATE-----
     ```
-The first and last lines are meant to assure you that this is a certificate, but the lines in between are less insightful, as it is [base64-encoded](https://en.wikipedia.org/wiki/Base64){target=_blank} binary data. Fortunately the *openssl* utility comes to our rescue and allows us to print the certificate in a form that both geek- and human-readable form:
+The first and last lines are meant to assure you that this is a certificate, but the lines in between are less insightful, as it is [base64-encoded](https://en.wikipedia.org/wiki/Base64){target=_blank} binary data. Fortunately the *openssl* utility comes to our rescue and allows us to print the certificate in a form that a human can hope to understand:
 
 ``` bash
 openssl x509 -in ca.pem -text
