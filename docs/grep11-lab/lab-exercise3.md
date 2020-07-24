@@ -28,7 +28,7 @@ These key pairs can be used for encryption and decryption, as well as for creati
     2. You encrypt this hash with your private key. This is your digital signature.
     3. You send the data, and your digital signature, to the intended recipient.
     4. The recipient calculates the digest, or hash, of the data, using the same algorithm that you used in step 1. If the data has remained intact in transit, they will calculate the same hash that you did in step 1.
-    5. They then decrypt your signature (from step 2) with your public key. This retrieves in plaintext the hash you signed in step 1.
+    5. They then decrypt your signature (from step 2) with your public key. This retrieves in plaintext the hash you signed in step 2.
     6. If the hash they calculated in step 4 matches the hash that you encrypted with your private key in step 2 (and retrieved by them in step 5), then it is proof that you have seen the data they have received.
 
     The fundamental assumption is that you have kept your private key in your sole possession. If an adversary stole your private key they could impersonate you.
@@ -45,7 +45,7 @@ In simple terms, an RSA public key contains the product of the two primes, and t
 
 If I multiplied two small prime numbers like 7 x 13 and gave you the product 91, it probably wouldn't take you too long to factor it back to 7 and 13.  Computers need to use incredibliy large prime numbers in order to calculate a product that another computer can't quickly factor.  That is why RSA keys are usually 2048 or 4096 bits in length.  You can create smaller RSA keys but today's computers can factor the product contained in the public key quicker, the smaller the key.
 
-On the other hand, the size of elliptic curve public keys can be much smaller than RSA public keys, and provide the equivalent strength. That is, a relatively small-sized ellipctic curve key is just as difficult for a computer to crack by brute force than it is for a much larger-sized RSA key.  
+On the other hand, the size of elliptic curve public keys can be much smaller than RSA public keys, and provide the equivalent strength. That is, a relatively small-sized elliptic curve key is just as difficult for a computer to crack by brute force than it is for a much larger-sized RSA key.  
 
 For this reason, elliptic curve cryptography is becoming increasingly popular- the smaller key size means less computational power is needed to work with these keys, so they are more efficient and use less power, which is more appealing for devices that are typically drawing on battery power, like smartphones and tablets.
 
