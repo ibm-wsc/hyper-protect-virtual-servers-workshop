@@ -1,4 +1,4 @@
-This glossary of terms consolidates the terms for the Hyper Protect Virtual Server offering in alphabetical order to help both customers and internal team members to understand our offering better.
+This glossary of terms consolidates the terms for the Hyper Protect Virtual Servers offering in alphabetical order to help both customers and internal team members to understand our offering better.
 
 ## Appliance
 IBM Secure Service Container based appliance provided by an Appliance Vendor. From Hosting Appliance perspective, it is the combination of IBM Secure Service Container and the Hyper Protect Virtual Server Hosting Appliance.

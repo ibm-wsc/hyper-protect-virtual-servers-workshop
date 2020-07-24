@@ -13,7 +13,7 @@ In this exercise, the following use case will be demonstrated- securely transmit
 1. Sender wishes to send a secret (i.e., symmetric) key to a recipient.  
 2. Sender generates a secret key and wraps it with the recipient's public key
 3. Sender sends the wrapped key to the recipient-  this is safe since it is wrapped with the recipient's public key
-4. Recipient receives the wrapped key, and unwrarps it with her private key
+4. Recipient receives the wrapped key, and unwraps it with her private key
 
 ## Run Exercise 4
 
