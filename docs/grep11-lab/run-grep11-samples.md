@@ -9,7 +9,7 @@
     cd ${HOME}/go/src/github.com/ibm-developer
     ```
 
-2. Ensure you are in the directory mentioned in the prior step. You may be able to tell from the command prompt. 
+2. Ensure you are in the directory mentioned in the prior step[^1]. You may be able to tell from the command prompt. 
 You can also enter the `pwd` ("print working directory") to be sure, e.g.,:
 
     ``` bash
@@ -167,3 +167,5 @@ Here is an itemization of the functions that our `go test -v` command tested, wi
 7. *Example_deriveKey* illustrates a common algorithm where two sides of a connection each have a public and private key pair, and they use each other's public key in an algorithm that allows each of them to derive an identical secret, i.e., symmetric, key, without ever having sent that secret key across the connection.  This is a common use case because encryption and decryption with a symmetric key is much faster than encryption and decryption with public and private keys.  The two parties use relatively slow public key cryptography to derive this shared symmetric key at the beginning of their session, and then switch to using this symmetric key for the remainder of the session.  This function and all of the functions preceding it in this list are in the *server_test.go* source file.
 
 8. *Example_tls* creates an X.509 certificate, starts up an http server that uses this certificate, and has a client connect to the server with TLS authentication, which uses this certificate to establish a session.  This test is in the *tls_test.go* source file.
+
+[^1]: The Go compiler has traditionally been very picky about where source code files must reside. This situation has eased recently with the introduction of *Go modules* in newer releases, but our lab is not using Go modules.  Go expects to find source files in the ${GOPATH}/src directory hierarchy, and if you do not have the GOPATH environment variable set, it expects fo find source files in the ${HOME}/go/src directory hierarchy.
