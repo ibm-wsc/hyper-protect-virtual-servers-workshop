@@ -637,11 +637,11 @@
                 
                 <h1 id="exercise-2-encrypt-and-decrypt-data">Exercise 2 - Encrypt and Decrypt Data<a class="headerlink" href="#exercise-2-encrypt-and-decrypt-data" title="Permanent link">&para;</a></h1>
 <h2 id="overview-of-exercise-2">Overview of Exercise 2<a class="headerlink" href="#overview-of-exercise-2" title="Permanent link">&para;</a></h2>
-<p>Exercise 2 creates an AES secret key and uses it to encrypt some <em>plaintext</em> data. 
+<p>Exercise 2 creates an AES secret key and uses it to encrypt some <em>plaintext</em> data. Plaintext which has been encrypted is referred to as <em>ciphertext</em>.
 This ciphertext is then decrypted back into plaintext using the same AES secret key that was used for encryption. The original plaintext is compared to- and is expected to be identical to- the plaintext that resulted from the encryption and decryption.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Plaintext data is often, but not necessarily, human-readable.  It is any data that could be of value to an adversary, if the adversary could obtain the data in its original, or plaintext, form.  Hence the need for encryption. Encrypted data is referred to as <em>ciphertext</em>. If an adversary were to obtain ciphertext, it is unreadable and thus of little or no value to the adversary.</p>
+<p>Plaintext data is often, but not necessarily, human-readable.  It is any data that could be of value to an adversary, if the adversary could obtain the data in its original, or plaintext, form.  Hence the need for encryption. If an adversary were to obtain ciphertext, it is unreadable and thus of little or no value to the adversary.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -743,8 +743,8 @@ DwL5bUcp/7FpFIYhCjb+0g<span class="o">==</span>
 WK virtualization mask is <span class="o">[</span><span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span><span class="o">]</span>
 See <span class="m">6</span>.2.2 of page <span class="m">179</span> of http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
 
-WK ID is <span class="o">[</span><span class="m">3</span> <span class="m">176</span> <span class="m">130</span> <span class="m">49</span> <span class="m">65</span> <span class="m">141</span> <span class="m">152</span> <span class="m">246</span> <span class="m">85</span> <span class="m">132</span> <span class="m">150</span> <span class="m">183</span> <span class="m">226</span> <span class="m">212</span> <span class="m">36</span> <span class="m">40</span><span class="o">]</span>
-See <span class="m">6</span>.7.1 on page <span class="m">182</span> of  http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+<span class="hll">WK ID is <span class="o">[</span><span class="m">3</span> <span class="m">176</span> <span class="m">130</span> <span class="m">49</span> <span class="m">65</span> <span class="m">141</span> <span class="m">152</span> <span class="m">246</span> <span class="m">85</span> <span class="m">132</span> <span class="m">150</span> <span class="m">183</span> <span class="m">226</span> <span class="m">212</span> <span class="m">36</span> <span class="m">40</span><span class="o">]</span>
+</span>See <span class="m">6</span>.7.1 on page <span class="m">182</span> of  http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
 
 Blob version is <span class="o">[</span><span class="m">18</span> <span class="m">52</span><span class="o">]</span>
 See <span class="m">3</span>.1.1 on page <span class="m">141</span> of http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
@@ -795,14 +795,14 @@ Length of decrypted message: <span class="m">71</span>
 
 </details>
 <p>The mechanism used to generate the key is <em>CKM_AES_KEY_GEN</em> which informs us that we wish to generate an AES secret key.</p>
-<p>The length of the key blob is 256 bytes.  Notice, that this key blob contains metadata used by the EP11 library, so it contains much more than the actual key, which is 256 bits, not bytes.  In fact we can't even see the key in cleartext form.  It is encrypted within the key blob by the Crypto Express 7S card domain's <em>root wrapping key</em>. The only place the key we created is every available in the clear is while it is being used inside the Crypto Express 7S card, because the root wrapping key never leaves the card.</p>
-<p>The ID of the root wrapping key of the Crypto Express 7S card domain is listed in the output in the line that starts with *WK ID is *.  This ID is the first sixteen bytes of the hash of the key. It is not the full hash, and even if it was, you cannot retrieve the original data from the hash, so the root wrapping key remains secret.</p>
+<p>The length of the key blob is 256 bytes.  Notice that this key blob contains metadata used by the EP11 library, so it contains much more than the actual key, which is 256 bits, not bytes.  In fact we can't even see the key in cleartext form.  It is encrypted within the key blob by the Crypto Express 7S card domain's <em>root wrapping key</em>. The only place the key we created is ever available in the clear is while it is being used inside the Crypto Express 7S card, because the root wrapping key never leaves the card.</p>
+<p>The ID of the root wrapping key of the Crypto Express 7S card domain is listed in the output in the line that starts with <em>WK ID is</em>.  This ID is the first sixteen bytes of the hash of the key. It is not the full hash, and even if it was, you cannot retrieve the original data from the hash, so the root wrapping key remains secret.</p>
 <p>The ID of the root wrapping key for our Crypto Express 7S card domain is</p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span><span class="m">3</span> <span class="m">176</span> <span class="m">130</span> <span class="m">49</span> <span class="m">65</span> <span class="m">141</span> <span class="m">152</span> <span class="m">246</span> <span class="m">85</span> <span class="m">132</span> <span class="m">150</span> <span class="m">183</span> <span class="m">226</span> <span class="m">212</span> <span class="m">36</span> <span class="m">40</span><span class="o">]</span>
 </code></pre></div>
 
 <p>As you perform the exercises in this lab, you may notice that any time I print out the <em>WK ID</em>, it will always be this value.</p>
-<p>The encryption in this exercise takes place in multiple calls.  One may either encrypt all of the data in a single call to a function named <em>Encrypt()</em>, or may make multiple calls by performing one or more caalls to <em>EncryptUpdate()</em> followed by a call to <em>EncryptFinal()</em>.  This sample program uses the latter approach, so in the output you see two lines that say <em>In progress ciphertext is</em> that show the results so far after each <em>EncryptUpdate()</em> call and then a line that says <em>Final ciphertext is</em> after the call to <em>EncryptFinal()</em>.  Decryption follows the same pattern-  two calls to <em>DecryptUpdate()</em> followed by a call to *DecryptFinal(), and the output in the program indicates this.</p>
+<p>The encryption in this exercise takes place in multiple calls.  One may either encrypt all of the data in a single call to a function named <em>Encrypt()</em>, or may make multiple calls by performing one or more calls to <em>EncryptUpdate()</em> followed by a call to <em>EncryptFinal()</em>.  This sample program uses the latter approach, so in the output you see two lines that say <em>In progress ciphertext is</em> that show the results so far after each <em>EncryptUpdate()</em> call and then a line that says <em>Final ciphertext is</em> after the call to <em>EncryptFinal()</em>.  Decryption follows the same pattern-  two calls to <em>DecryptUpdate()</em> followed by a call to <em>DecryptFinal()</em>, and the output in the program indicates this.</p>
 </li>
 <li>
 <p>The program for this exercise defaults to a key length of 256 bits.  Try running with a key length of 128 bits:</p>
@@ -956,7 +956,7 @@ main.main()
 <p>If you received this message in your output, <code>panic: Failed Encrypt [rpc error: code = Unknown desc = CKR_ARGUMENTS_BAD]</code>,
 then there is a pretty good chance that you supplied a plaintext value less than twenty-one characters in length.</p>
 <p>This exercise was based on the sample code, which performs the encryption in two steps.
-The first step passsed the first twenty bytes of input to the crypto card, and the second step passed the remainder of
+The first step passed the first twenty bytes of input to the crypto card, and the second step passed the remainder of
 the input. The input was hard-coded and of length greater than twenty bytes, so the sample does not have logic to handle input of twenty bytes or less. The sample has not been modified to handle the case where that second pass isn't needed. </p>
 <p>Don't worry, in the real world, you can probably solve this problem if you throw enough money at it. :-)</p>
 </div>

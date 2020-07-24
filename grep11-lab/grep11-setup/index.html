@@ -849,7 +849,7 @@ OCqkCywplgKoAyh8SGTPIkS4xhw=
 </code></pre></div>
 
 </details>
-<p>The first and last lines are meant to assure you that this is a certificate, but the lines in between are less insightful, as it is <a href="https://en.wikipedia.org/wiki/Base64" target="_blank">base64-encoded</a> binary data. Fortunately the <em>openssl</em> utility comes to our rescue and allows us to print the certificate in a form that both geek- and human-readable form:</p>
+<p>The first and last lines are meant to assure you that this is a certificate, but the lines in between are less insightful, as it is <a href="https://en.wikipedia.org/wiki/Base64" target="_blank">base64-encoded</a> binary data. Fortunately the <em>openssl</em> utility comes to our rescue and allows us to print the certificate in a form that a human can hope to understand:</p>
 <div class="highlight"><pre><span></span><code>openssl x509 -in ca.pem -text
 </code></pre></div>
 
