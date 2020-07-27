@@ -13,8 +13,8 @@
 |Lyn Elkins|http://ibm.biz/grep11team09|07qsnhft|zblock09|
 |Dale Revers|http://ibm.biz/grep11team10|155f2z08|zblock10|
 |Alex Kim|http://ibm.biz/grep11team11|khc8d7ad|zblock11|
-||http://ibm.biz/grep11team12|3it45tbu|zblock12|
-|OPEN|http://ibm.biz/grep11team13|d7pcaooc|zblock13|
+|Livio de Sousa|http://ibm.biz/grep11team12|3it45tbu|zblock12|
+|Robert Green|http://ibm.biz/grep11team13|d7pcaooc|zblock13|
 |OPEN|http://ibm.biz/grep11team14|k2twcw8b|zblock14|
 |OPEN|http://ibm.biz/grep11team15|z6t4u7xw|zblock15|
 |OPEN|http://ibm.biz/grep11team16|1rrhnmwg|zblock16|
