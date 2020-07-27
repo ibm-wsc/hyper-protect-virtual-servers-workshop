@@ -2,16 +2,16 @@
 
 |Name|Skytap URL |Skytap Password| VPN ID|
 |:--:|:---------:|:-------------:|:-----:|
-|OPEN|http://ibm.biz/grep11team01|givc8584|zblock01|
-|OPEN|http://ibm.biz/grep11team02|ip68v9oq|zblock02|
-|OPEN|http://ibm.biz/grep11team03|lxm3lu4h|zblock03|
-|OPEN|http://ibm.biz/grep11team04|qyy50bku|zblock04|
-|OPEN|http://ibm.biz/grep11team05|xzt8nkuv|zblock05|
-|OPEN|http://ibm.biz/grep11team06|s5avt0fd|zblock06|
-|OPEN|http://ibm.biz/grep11team07|16apyeia|zblock07|
-|OPEN|http://ibm.biz/grep11team08|b01azr9e|zblock08|
-|OPEN|http://ibm.biz/grep11team09|07qsnhft|zblock09|
-|OPEN|http://ibm.biz/grep11team10|155f2z08|zblock10|
+|Paul Johnson|http://ibm.biz/grep11team01|givc8584|zblock01|
+|Robert Hartwig|http://ibm.biz/grep11team02|ip68v9oq|zblock02|
+|Diane Mandle|http://ibm.biz/grep11team03|lxm3lu4h|zblock03|
+|Jocelyn Hamel|http://ibm.biz/grep11team04|qyy50bku|zblock04|
+|John Picklo|http://ibm.biz/grep11team05|xzt8nkuv|zblock05|
+|Dave Perrault|http://ibm.biz/grep11team06|s5avt0fd|zblock06|
+|Henry Meetze|http://ibm.biz/grep11team07|16apyeia|zblock07|
+|Dave Mazza|http://ibm.biz/grep11team08|b01azr9e|zblock08|
+|Lyn Elkins|http://ibm.biz/grep11team09|07qsnhft|zblock09|
+|Dale Revers|http://ibm.biz/grep11team10|155f2z08|zblock10|
 |OPEN|http://ibm.biz/grep11team11|khc8d7ad|zblock11|
 |OPEN|http://ibm.biz/grep11team12|3it45tbu|zblock12|
 |OPEN|http://ibm.biz/grep11team13|d7pcaooc|zblock13|
