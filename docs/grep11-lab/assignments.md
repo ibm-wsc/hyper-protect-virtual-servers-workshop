@@ -15,7 +15,7 @@
 |Alex Kim|http://ibm.biz/grep11team11|khc8d7ad|zblock11|
 |Livio de Sousa|http://ibm.biz/grep11team12|3it45tbu|zblock12|
 |Robert Green|http://ibm.biz/grep11team13|d7pcaooc|zblock13|
-|OPEN|http://ibm.biz/grep11team14|k2twcw8b|zblock14|
+|Charles Gregg|http://ibm.biz/grep11team14|k2twcw8b|zblock14|
 |OPEN|http://ibm.biz/grep11team15|z6t4u7xw|zblock15|
 |OPEN|http://ibm.biz/grep11team16|1rrhnmwg|zblock16|
 |OPEN|http://ibm.biz/grep11team17|qdm5w0iu|zblock17|
