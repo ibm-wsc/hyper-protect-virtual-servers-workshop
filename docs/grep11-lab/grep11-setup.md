@@ -63,7 +63,7 @@ The `ca.key` file was input to this command, and the `ca.pem` file is the output
 I will use the Linux `cat` command to get a raw listing of the root certificate we just created:
 
 ``` bash
-cat cat.pem
+cat ca.pem
 ```
 
 ??? example "Example output"
