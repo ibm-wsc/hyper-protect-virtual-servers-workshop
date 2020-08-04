@@ -95,6 +95,7 @@ You will be assigned a number for the lab so as not to interfere with other user
     ``` bash
     echo "export HPVS_NUMBER='${HPVS_NUMBER}'" >> "${HOME}/.bashrc"
     ```
+    
 3. Set Secure Build Server Port
 
     ``` bash
