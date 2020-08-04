@@ -163,10 +163,6 @@ source "${HOME}/.bashrc"
             repo: '${DOCKER_USERNAME}/${IMAGE_NAME}'
             image_tag_prefix: 'latest'
             content_trust_base: 'False'
-        env:
-            whitelist: []
-        build:
-            args: []
         signing_key:
             private_key_path: '${SB_DIR}/registration_keys/${keyName}.private'
             public_key_path: '${SB_DIR}/registration_keys/${keyName}.pub'
