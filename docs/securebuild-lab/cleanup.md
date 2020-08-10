@@ -39,7 +39,7 @@ source "${HOME}/.bashrc"
 ## Cleanup Repository
 
 ``` bash
-hpvs repository  delete --id ${REPO_ID}
+hpvs repository  delete --id ${REPO_ID} --force
 ```
 
 ???+ example "Example Output"
