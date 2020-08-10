@@ -4,7 +4,7 @@ edit_uri: edit/master/docs
 nav:
     - Home: index.md
     - Prerequisites: prerequisites.md
-    - Assignments: assignment.md
+    - Lab Assignments: assignment.md
     - Secure Image Build Lab:
       - Hyper Protect Virtual Servers (HPVS) Lab Process Overview: securebuild-lab/overview.md
       - Configuring your Environment: securebuild-lab/securebuild-setup.md
@@ -13,7 +13,6 @@ nav:
       - Deploy your Securely Built Application as a Hyper Protect Virtual Server: securebuild-lab/deploy-app.md
       - Welcome to the Secure Bitcoin Wallet on IBM LinuxONE: securebuild-lab/bitcoin_wallet.md
       - Clean up your Environment: securebuild-lab/cleanup.md
-    - GREP11 Lab virtual machine assignments: grep11-lab/assignments.md
     - GREP11 Lab:
       - Lab overview: grep11-lab/overview.md
       - How to set up a GREP11 server: grep11-lab/grep11-setup.md
