@@ -6,7 +6,7 @@ See the [`Prerequisites` page](../prerequisites.md){target=_blank} to complete t
 
 ## The Big Picture
 
-Here is a big picture of what is going on in the lab. The different sections of this are explained in more detail in the next [Detailed Lab Process Section](#detailed-lab-process) below. 
+Here is a big picture of what is going on in the lab. The different sections of this are explained in more detail in the [Detailed Lab Process Section](#detailed-lab-process) below.
 
 ![Secure Build Big Picture](Overview_Images/SecureBuild_BigPicture.png)
 
