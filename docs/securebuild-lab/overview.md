@@ -4,6 +4,15 @@
 
 See the [`Prerequisites` page](../prerequisites.md){target=_blank} to complete the prerequisites for this lab. This includes creating accounts and credentials to access the Source Code Management (SCM) [GitHub](https://github.com){target=_blank} and the Docker Image Management (Docker Registry) [Docker Hub](https://hub.docker.com/){target=_blank} for the lab.
 
+## The Big Picture
+
+Here is a big picture of what is going on in the lab. The different sections of this are explained in more detail in the next [Detailed Lab Process Section](#detailed-lab-process) below. 
+
+![Secure Build Big Picture](Overview_Images/SecureBuild_BigPicture.png)
+
+!!! note
+    Student 1 and Student 2 in the illustration are 2 example students. In the actual lab, more students will be present.
+
 ## Detailed Lab Process
 
 1. Configure your environment with the necessary credentials to connect to [GitHub](https://github.com){target=_blank} and [Docker Hub](https://hub.docker.com/){target=_blank} respectively. ([See `Configuring your Environment`](securebuild-setup.md){target=_blank})
