@@ -1,6 +1,10 @@
 # Lab Assignments
 
-You will be given the VPN address, and passwords for your VPN ID and CLI Server at the start of the lab.
+Your instructors will log you into the VPN so you do not need to worry about the userid and password for the VPN.
+
+You will need to enter the "Skytap Password" one time only (assuming you don't switch browsers or clear cache).
+
+If your Ubuntu desktop asks for a login password for userid *hyper-protect-lab*, the password, for all teams, is **xJXUz8KBjqJ**.  Your desktop will lock and ask for this password if your session is idle for 30 minutes.
 
 |Name|Team Number|Skytap URL |Skytap Password|
 |:--:|:---------:|:---------:|:-------------:|
