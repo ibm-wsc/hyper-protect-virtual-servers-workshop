@@ -765,9 +765,12 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 </li>
 <li>
 <p>Save your number to <code>bashrc</code> for later use.</p>
-<p><div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;export HPVS_NUMBER=&#39;</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&#39;&quot;</span> &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;export HPVS_NUMBER=&#39;</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&#39;&quot;</span> &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
 </code></pre></div>
-3. Set Secure Build Server Port</p>
+
+</li>
+<li>
+<p>Set Secure Build Server Port</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">SB_PORT</span><span class="o">=</span><span class="m">300</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span>
 </code></pre></div>
 
