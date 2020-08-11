@@ -122,8 +122,8 @@ hpvs quotagroup create --name "sb_user${HPVS_NUMBER}" --size=40GB
     | filesystem  | btrfs        |
     | passthrough | false        |
     | pool_id     | lv_data_pool |
-    | size        | 30GB         |
-    | available   | 30GB         |
+    | size        | 40GB         |
+    | available   | 40GB         |
     | containers  | []           |
     +-------------+--------------+
     ```
@@ -183,8 +183,8 @@ hpvs quotagroup show --name "sb_user${HPVS_NUMBER}"
     | filesystem  | btrfs                          |
     | passthrough | false                          |
     | pool_id     | lv_data_pool                   |
-    | size        | 30GB                           |
-    | available   | 2GB                            |
+    | size        | 40GB                           |
+    | available   | 12GB                            |
     | containers  | Container:sbserver_00          |
     |             | Mountids:"new","data","docker" |
     |             |                                |
@@ -234,4 +234,3 @@ You will use this secure build server to securely build your application in the 
 
 !!! note
     You can assign IP addresses and hostnames for containers as necessary for your purposes but using the docker network and host ports is a nice way to quickly get running without having to use up IP addresses on your network.
-
