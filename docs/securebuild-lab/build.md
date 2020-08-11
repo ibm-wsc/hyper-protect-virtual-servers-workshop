@@ -163,10 +163,12 @@ source "${HOME}/.bashrc"
             repo: '${DOCKER_USERNAME}/${IMAGE_NAME}'
             image_tag_prefix: 'latest'
             content_trust_base: 'False'
-        env:
-            whitelist: []
-        build:
-            args: []
+        #env:
+        # You would enter environment variables that you want to use in your application container in the whitelist array.
+        #    whitelist: []
+        #build:
+        # You would enter any desired docker build arguments in the args array.
+        #    args: []
         signing_key:
             private_key_path: '${SB_DIR}/registration_keys/${keyName}.private'
             public_key_path: '${SB_DIR}/registration_keys/${keyName}.pub'
@@ -188,11 +190,11 @@ source "${HOME}/.bashrc"
         {"status":"OK"}
         ```
 
-2. Launch secure build with a timeout of 20 minutes (1200 seconds) to complete using the configuration file generated in the [Set Build Configuration section](#set-build-configuration)
+2. Launch secure build with a timeout of 20 minutes to complete using the configuration file generated in the [Set Build Configuration section](#set-build-configuration)
 
     ``` bash
     hpvs sb build \
-    --timeout 1200 \
+    --timeout 20 \
     --config "${SB_DIR}/sb_config.yaml"
     ```
 
