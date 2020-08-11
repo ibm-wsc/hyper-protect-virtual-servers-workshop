@@ -7,7 +7,7 @@ Welcome to our Hyper Protect Virtual Servers workshop. IBM Hyper Protect Virtual
 * Hyper Protect Use Cases & Demo
 * Introduction to the Secure Image Build Process
 * [Lab: Build and Deploy Your First Hyper Protect Virtual Server Image](securebuild-lab/overview.md)
-* Introduction to HSM-backed Crypto Service
+* [Introduction to HSM-backed Crypto Service](Grep11-Intro.pdf)
 * [Lab: Crypto Service Exploitation](grep11-lab/overview.md)
 * Next Steps on Your Journey & Wrap Up
 
