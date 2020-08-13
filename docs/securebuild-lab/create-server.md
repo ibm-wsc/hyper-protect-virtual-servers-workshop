@@ -75,7 +75,7 @@ source "${HOME}/.bashrc"
 You will be assigned a number for the lab so as not to interfere with other users.
 
 !!! note
-    [This table](assignment.md){target=_blank} tells you which number you are assigned.
+    [This table](../assignment.md){target=_blank} tells you which number you are assigned.
 
 1. Set the `HPVS_NUMBER` variable with your assigned 2 digit number
 

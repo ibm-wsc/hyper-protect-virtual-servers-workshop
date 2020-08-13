@@ -285,4 +285,4 @@
         git@github.com: Permission denied (publickey).
         ```
 
-10. Feel at ease knowing you will delete this key from your Github account in the cleanup phase of this lab so access will be revoked soon enough :relaxed
+10. Feel at ease knowing you will delete this key from your Github account in the cleanup phase of this lab so access will be revoked soon enough :relaxed:
