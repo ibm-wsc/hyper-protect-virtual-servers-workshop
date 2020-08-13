@@ -776,7 +776,7 @@ Login Succeeded
 </details>
 </li>
 <li>
-<p>Check the details of your added registry with </p>
+<p>Check the details of your added registry with</p>
 <div class="highlight"><pre><span></span><code>hpvs registry show --name <span class="s2">&quot;</span><span class="si">${</span><span class="nv">REGISTRY_NAME</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
@@ -869,18 +869,31 @@ The key<span class="err">&#39;</span>s randomart image is:
 </details>
 </li>
 <li>
-<p>Copy your output to the clipboard with <code>ctrl+shift+c</code>.</p>
-</li>
-<li>
-<p>Add this key to your public GitHub (paste copied content into GitHub keys textbox)</p>
-<p><strong>Follow <a href="https://help.github.com/en/enterprise/2.15/user/articles/adding-a-new-ssh-key-to-your-github-account" target="_blank">these instructions</a></strong> for adding this <em>public</em> key to your <code>github.com</code> GitHub account.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You created this <em>public</em> <code>github.com</code> GitHub in the <a href="../../prerequisites/#Create-a-GitHub" target="_blank">Prerequisites</a> (or already had one).</p>
-</div>
+<p>Copy <strong>your</strong> output (<strong>not</strong> the <code>Example Output</code> above) to the clipboard with <code>ctrl+shift+c</code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The above copy command (<code>ctrl+shift+c</code>) is saving the <code>.pub</code> public key <strong>NOT</strong> the <code>private</code> key. You keep the private key and GitHub uses the public key to verify that it is communicating with the owner of the private key (i.e. you).</p>
+</div>
+</li>
+<li>
+<p>Add this key to your public GitHub at <a href="https://github.com/settings/ssh/new" target="_blank">https://github.com/settings/ssh/new</a></p>
+<ol>
+<li>
+<p>Login or confirm your password if prompted</p>
+<p><img alt="GitHub login page" src="../securebuild-setup_Images/GitHub_login_setup.png" /></p>
+</li>
+<li>
+<p>Add SSH Key</p>
+<p><img alt="Add GitHub SSH Key" src="../securebuild-setup_Images/Add_SSH_Key_GitHub.png" /></p>
+</li>
+<li>
+<p>See your new SSH key has been added with your chosen title.</p>
+<p><img alt="GitHub SSH Key Added" src="../securebuild-setup_Images/SSH_key_added_to_GitHub.png" /></p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You created this <em>public</em> <code>github.com</code> GitHub in the <a href="../../prerequisites/#Create-a-GitHub" target="_blank">Prerequisites</a> (or already had one).</p>
 </div>
 </li>
 <li>
@@ -918,7 +931,7 @@ git@github.com: Permission denied <span class="o">(</span>publickey<span class="
 </div>
 </li>
 <li>
-<p>Feel at ease knowing you will delete this key from your Github account in the cleanup phase of this lab so access will be revoked soon enough <img alt="☺" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/263a.svg" title=":relaxed:" /></p>
+<p>Feel at ease knowing you will delete this key from your Github account in the cleanup phase of this lab so access will be revoked soon enough :relaxed</p>
 </li>
 </ol>
                 

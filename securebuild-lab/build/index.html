@@ -793,7 +793,7 @@ gpg: <span class="k">done</span>
 
 </li>
 <li>
-<p>List newly generated key files </p>
+<p>List newly generated key files</p>
 <div class="highlight"><pre><span></span><code> ls <span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span>/registration_keys/
 </code></pre></div>
 
@@ -843,41 +843,44 @@ gpg: <span class="k">done</span>
 </li>
 <li>
 <p>Create config file</p>
-<p><div class="highlight"><pre><span></span><code>cat &gt; &quot;${SB_DIR}/sb_config.yaml&quot; &lt;&lt;EOF
-secure_build_workers:
-    sbs:
-        url: &#39;https://${SB_IP}&#39;
-        port: &#39;${SB_PORT}&#39;
-        cert_path: &#39;${SB_DIR}/sbs_keys/sbs.cert&#39;
-        key_path: &#39;${SB_DIR}/sbs_keys/sbs.key&#39;
-    regfile:
-        id: &#39;${REPO_ID}&#39;
-    github:
-        url: &#39;${GH_REPO}&#39;
-        branch: &#39;master&#39;
-        ssh_private_key_path: &#39;${GITHUB_SSH_KEY}&#39;
-        recurse_submodules: &#39;False&#39;
-        dockerfile_path: &#39;./Dockerfile&#39;
-        docker_build_path: &#39;./&#39;
-    docker:
-        push_server: &#39;${REGISTRY_NAME}&#39;
-        #base_server: &#39;${REGISTRY_NAME}&#39;
-        pull_server: &#39;${REGISTRY_NAME}&#39;
-        repo: &#39;${DOCKER_USERNAME}/${IMAGE_NAME}&#39;
-        image_tag_prefix: &#39;latest&#39;
-        content_trust_base: &#39;False&#39;
-    #env:
-    # You would enter environment variables that you want to use in your application container in the whitelist array.
-    #    whitelist: []
-    #build:
-    # You would enter any desired docker build arguments in the args array.
-    #    args: []
-    signing_key:
-        private_key_path: &#39;${SB_DIR}/registration_keys/${keyName}.private&#39;
-        public_key_path: &#39;${SB_DIR}/registration_keys/${keyName}.pub&#39;
-EOF
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">cat &gt; &quot;${SB_DIR}/sb_config.yaml&quot; &lt;&lt;EOF</span>
+<span class="l l-Scalar l-Scalar-Plain">secure_build_workers</span><span class="p p-Indicator">:</span>
+    <span class="nt">sbs</span><span class="p">:</span>
+        <span class="nt">url</span><span class="p">:</span> <span class="s">&#39;https://${SB_IP}&#39;</span>
+        <span class="nt">port</span><span class="p">:</span> <span class="s">&#39;${SB_PORT}&#39;</span>
+        <span class="nt">cert_path</span><span class="p">:</span> <span class="s">&#39;${SB_DIR}/sbs_keys/sbs.cert&#39;</span>
+        <span class="nt">key_path</span><span class="p">:</span> <span class="s">&#39;${SB_DIR}/sbs_keys/sbs.key&#39;</span>
+    <span class="nt">regfile</span><span class="p">:</span>
+        <span class="nt">id</span><span class="p">:</span> <span class="s">&#39;${REPO_ID}&#39;</span>
+    <span class="nt">github</span><span class="p">:</span>
+        <span class="nt">url</span><span class="p">:</span> <span class="s">&#39;${GH_REPO}&#39;</span>
+        <span class="nt">branch</span><span class="p">:</span> <span class="s">&#39;master&#39;</span>
+        <span class="nt">ssh_private_key_path</span><span class="p">:</span> <span class="s">&#39;${GITHUB_SSH_KEY}&#39;</span>
+        <span class="nt">recurse_submodules</span><span class="p">:</span> <span class="s">&#39;False&#39;</span>
+        <span class="nt">dockerfile_path</span><span class="p">:</span> <span class="s">&#39;./Dockerfile&#39;</span>
+        <span class="nt">docker_build_path</span><span class="p">:</span> <span class="s">&#39;./&#39;</span>
+    <span class="nt">docker</span><span class="p">:</span>
+        <span class="nt">push_server</span><span class="p">:</span> <span class="s">&#39;${REGISTRY_NAME}&#39;</span>
+        <span class="c1">#base_server: &#39;${REGISTRY_NAME}&#39;</span>
+        <span class="nt">pull_server</span><span class="p">:</span> <span class="s">&#39;${REGISTRY_NAME}&#39;</span>
+        <span class="nt">repo</span><span class="p">:</span> <span class="s">&#39;${DOCKER_USERNAME}/${IMAGE_NAME}&#39;</span>
+        <span class="nt">image_tag_prefix</span><span class="p">:</span> <span class="s">&#39;latest&#39;</span>
+        <span class="nt">content_trust_base</span><span class="p">:</span> <span class="s">&#39;False&#39;</span>
+    <span class="c1">#env:</span>
+    <span class="c1"># You would enter environment variables that you want to use in your application container in the whitelist array.</span>
+    <span class="c1">#    whitelist: []</span>
+    <span class="c1">#build:</span>
+    <span class="c1"># You would enter any desired docker build arguments in the args array.</span>
+    <span class="c1">#    args: []</span>
+    <span class="nt">signing_key</span><span class="p">:</span>
+        <span class="nt">private_key_path</span><span class="p">:</span> <span class="s">&#39;${SB_DIR}/registration_keys/${keyName}.private&#39;</span>
+        <span class="nt">public_key_path</span><span class="p">:</span> <span class="s">&#39;${SB_DIR}/registration_keys/${keyName}.pub&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">EOF</span>
 </code></pre></div>
-8. Continue to the <a href="#build-application">Build Application section</a> if you are launching secure build for the first time or the <a href="#troubleshooting-secure-build">Troubleshooting Secure Build section</a> if things didn't go as planned your first go-round and you are trying to get back on the right track.</p>
+
+</li>
+<li>
+<p>Continue to the <a href="#build-application">Build Application section</a> if you are launching secure build for the first time or the <a href="#troubleshooting-secure-build">Troubleshooting Secure Build section</a> if things didn't go as planned your first go-round and you are trying to get back on the right track.</p>
 </li>
 </ol>
 <h2 id="build-application">Build Application<a class="headerlink" href="#build-application" title="Permanent link">&para;</a></h2>
@@ -911,7 +914,7 @@ EOF
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>If the secure build command gets an error this command will keep on waiting until eventually timing out. If you see an error in the <code>status</code> you can interrupt this command with <code>ctrl+c</code> instead of waiting for it to time out. </p>
+<p>If the secure build command gets an error this command will keep on waiting until eventually timing out. If you see an error in the <code>status</code> you can interrupt this command with <code>ctrl+c</code> instead of waiting for it to time out.</p>
 </div>
 <details class="example" open="open"><summary>Example Output after running 15-20 minutes to completion</summary><div class="highlight"><pre><span></span><code>+--------+-------------------------+
 <span class="p">|</span> status <span class="p">|</span> OK: async build started <span class="p">|</span>
@@ -930,7 +933,7 @@ EOF
 </details>
 </li>
 <li>
-<p>Please look at the logs in another terminal window while the secure build is running (don't interrupt the current terminal window which is waiting for the secure build) </p>
+<p>Please look at the logs in another terminal window while the secure build is running (don't interrupt the current terminal window which is waiting for the secure build)</p>
 <div class="highlight"><pre><span></span><code>hpvs sb log --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span>
 </code></pre></div>
 
@@ -1029,7 +1032,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 --out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span>
 </code></pre></div>
 
-<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>Enter Sigining Private key passphrase:
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>Enter Signing Private key passphrase:
 </code></pre></div>
 
 </details>
@@ -1039,7 +1042,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>If you run this command from a terminal window where you did not set the <code>passphrase</code> environment variable you will get an error saying <code>openpgp: invalid data: private key checksum failure</code>. You can also check to make sure you are in the right terminal window by running <code>echo "${passphrase}"</code> and the output should be the passphrase you set in the beginning of the "Create repository registration GPG signing key" section. </p>
+<p>If you run this command from a terminal window where you did not set the <code>passphrase</code> environment variable you will get an error saying <code>openpgp: invalid data: private key checksum failure</code>. You can also check to make sure you are in the right terminal window by running <code>echo "${passphrase}"</code> and the output should be the passphrase you set in the beginning of the "Create repository registration GPG signing key" section.</p>
 </div>
 </li>
 </ol>
@@ -1190,7 +1193,7 @@ manifest.docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641.
 </details>
 <div class="admonition info">
 <p class="admonition-title">Manifest explanation</p>
-<p>This <code>manifest</code> package contains three directories as shown above. The <code>data</code> directory contains the <code>build.json</code> (containing the build status of the directory updated after the image was pushed to its Docker Registry) and <code>build.log</code> (containing the logs from the secure build). The <code>git</code> directory contains the source code used for the build (cloned from git). Finally, the <code>root_ssh</code> directory contains any <code>ssh</code> material provided (if the user chose to use ssh) which is empty for us because we didn't enable ssh and provide ssh keys. This way no one can ssh into our secure build container. </p>
+<p>This <code>manifest</code> package contains three directories as shown above. The <code>data</code> directory contains the <code>build.json</code> (containing the build status of the directory updated after the image was pushed to its Docker Registry) and <code>build.log</code> (containing the logs from the secure build). The <code>git</code> directory contains the source code used for the build (cloned from git). Finally, the <code>root_ssh</code> directory contains any <code>ssh</code> material provided (if the user chose to use ssh) which is empty for us because we didn't enable ssh and provide ssh keys. This way no one can ssh into our secure build container.</p>
 </div>
 </li>
 <li>
@@ -1204,7 +1207,7 @@ manifest.docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641.
 </li>
 </ol>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>Congratulations!!! <img alt="🎉" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f389.svg" title=":tada:" /> </p>
+<p>Congratulations!!! <img alt="🎉" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f389.svg" title=":tada:" /></p>
 <p>You have securely built your application and are ready to deploy it into a Hyper Protect Virtual Server in the next section.</p>
                 
               

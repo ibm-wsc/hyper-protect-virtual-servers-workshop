@@ -306,8 +306,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-certificate-and-key-for-mutual-tls" class="md-nav__link">
-    Create Certificate and Key for mutual tls
+  <a href="#create-certificate-and-key-for-server-side-certificate-checking-in-tls" class="md-nav__link">
+    Create Certificate and Key for server side certificate checking in tls
   </a>
   
 </li>
@@ -630,8 +630,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-certificate-and-key-for-mutual-tls" class="md-nav__link">
-    Create Certificate and Key for mutual tls
+  <a href="#create-certificate-and-key-for-server-side-certificate-checking-in-tls" class="md-nav__link">
+    Create Certificate and Key for server side certificate checking in tls
   </a>
   
 </li>
@@ -683,7 +683,11 @@
 <div class="highlight"><pre><span></span><code><span class="nb">source</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
 </code></pre></div>
 
-<h2 id="create-certificate-and-key-for-mutual-tls">Create Certificate and Key for mutual tls<a class="headerlink" href="#create-certificate-and-key-for-mutual-tls" title="Permanent link">&para;</a></h2>
+<h2 id="create-certificate-and-key-for-server-side-certificate-checking-in-tls">Create Certificate and Key for server side certificate checking in tls<a class="headerlink" href="#create-certificate-and-key-for-server-side-certificate-checking-in-tls" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In this process you will create the <code>client certificate and key</code> referenced in the <a href="../overview/#fnref:2">key table</a>. You will keep the private key on your linux vm and pass the corresponding certificate to the secure build server you are deploying in this section. Then, whenever you interact with the secure build server to build your applications and get your manifest files it will check that your private key matches the public key of the certificate (i.e. server side checking in mutual tls) so that only you (or others / CI tools with the necessary private key) can access the server to perform secure build operations (<code>hpvs sb</code> commands) on it (i.e. build, log, status, manifest, etc.).</p>
+</div>
 <ol>
 <li>
 <p>Generate rand file</p>
@@ -698,7 +702,7 @@
 
 </li>
 <li>
-<p>Generate cert and key to use mutual tls </p>
+<p>Generate cert and key to use mutual tls</p>
 <div class="highlight"><pre><span></span><code>openssl req -newkey rsa:2048 <span class="se">\</span>
 -new -nodes -x509 <span class="se">\</span>
 -days <span class="m">3650</span> <span class="se">\</span>
@@ -724,7 +728,7 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 
 </li>
 <li>
-<p>Save the cert as an environment variable </p>
+<p>Save the cert as an environment variable</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">cert</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sbs_keys/sbs_base64.cert&quot;</span><span class="k">)</span>
 </code></pre></div>
 
@@ -786,7 +790,7 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 <div class="highlight"><pre><span></span><code>hpvs quotagroup create --name <span class="s2">&quot;sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span> --size<span class="o">=</span>40GB
 </code></pre></div>
 
-<details class="example" open="open"><summary>Example Ouput</summary><div class="highlight"><pre><span></span><code>+-------------+--------------+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+-------------+--------------+
 <span class="p">|</span> name        <span class="p">|</span> sb_user00    <span class="p">|</span>
 <span class="p">|</span> filesystem  <span class="p">|</span> btrfs        <span class="p">|</span>
 <span class="p">|</span> passthrough <span class="p">|</span> <span class="nb">false</span>        <span class="p">|</span>
@@ -885,7 +889,7 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 </details>
 <p>Your secure build server is now up and running! <img alt="🔥" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f525.svg" title=":fire:" /></p>
 <p>It is available at the IP Address of the Hyper Protect Virtual Server LPAR and port (GuestPort) specified.</p>
-<p>You will use this secure build server to securely build your application in the next section. </p>
+<p>You will use this secure build server to securely build your application in the next section.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You can assign IP addresses and hostnames for containers as necessary for your purposes but using the docker network and host ports is a nice way to quickly get running without having to use up IP addresses on your network.</p>
