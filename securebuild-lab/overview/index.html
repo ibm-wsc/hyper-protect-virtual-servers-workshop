@@ -762,7 +762,61 @@
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>The Secure Build server used is deployed as a <strong>Hyper Protect Virtual Server</strong> which generates the repository and root keys used to establish trust with the <a href="https://docs.docker.com/notary/service_architecture/" target="_blank">Docker Notary Service</a>. This ensures that the initial keys used for a repository are trusted on first use (solving the <a href="https://en.wikipedia.org/wiki/Trust_on_first_use" target="_blank">TOFU</a> problem). See a detailed example of where all of the keys used for the secure build process are generated below.</p>
-<details class="example" open="open"><summary>Full list of the keys used during the Secure Build and BYOI lifecycle<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></summary><p><img alt="Table of Keys for Secure Build" src="../Overview_Images/Secure_Build_Key_Table.png" /></p>
+<details class="example" open="open"><summary>Full list of the keys used during the Secure Build Lab <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></summary><table>
+<thead>
+<tr>
+<th>Key Name</th>
+<th>Key Function</th>
+<th>Private Key Location</th>
+<th>How Created</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Root Key</code></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg></span> Signs the <code>root.json</code> metadata file which specifies which keys are valid for image signing, snapshots, and timestamps for a given secure build server</td>
+<td>Encrypted in Secure Build Server Quotagroup</td>
+<td>Docker Content Trust CLI on first push to remote Docker repository</td>
+<td>ISV or application developer</td>
+</tr>
+<tr>
+<td><code>Image Signing/Targets Key</code></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg></span> Signs the <code>targets.json</code> metadata file which specifies the hashes of securely built Docker images</td>
+<td>Encrypted in Secure Build Server Quotagroup</td>
+<td>Docker Content Trust CLI on first push to a remote Docker repository</td>
+<td>ISV or application developer</td>
+</tr>
+<tr>
+<td><code>Snapshot Key</code></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg></span> Signs the <code>snapshot.json</code> metadata file which specifies the filenames, sizes, and hashes of the <code>targets.json</code>, <code>timestamp.json</code> metadata files to prevent mix and match attacks.</td>
+<td>Stored in /notary server</td>
+<td>Created by the Notary server on first push to remote Docker repository</td>
+<td>Image Registry administrator</td>
+</tr>
+<tr>
+<td><code>Timestamp Key</code></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg></span> Signs the <code>timestamp.json</code> metadata file which specifies the</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Manifest Signing Key</code></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M.41 13.41L6 19l1.41-1.42L1.83 12m20.41-6.42L11.66 16.17 7.5 12l-1.43 1.41L11.66 19l12-12M18 7l-1.41-1.42-6.35 6.35 1.42 1.41L18 7z"/></svg></span> Update resource</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg></span>     Delete resource</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </details>
 </div>
 <h3 id="register">REGISTER<a class="headerlink" href="#register" title="Permanent link">&para;</a></h3>
