@@ -59,7 +59,7 @@ Delete the existing Docker Token by logging into your `Docker Hub` account and f
 
 Delete the ssh key you added for the lab following steps 1-3 of [these instructions](https://help.github.com/en/github/authenticating-to-github/reviewing-your-ssh-keys){target=_blank}
 
-## Cleanup Lab directory 
+## Cleanup Lab directory
 
 You can remove the directory you stored your files in throughout the lab. This is a personal choice as the lab machine will be deleted after the lab anyway.
 

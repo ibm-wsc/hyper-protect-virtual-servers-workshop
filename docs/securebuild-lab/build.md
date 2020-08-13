@@ -9,6 +9,7 @@ source "${HOME}/.bashrc"
 ```
 
 ## Create repository registration GPG signing key
+
 1. Set key name
 
     ``` bash
@@ -25,7 +26,7 @@ source "${HOME}/.bashrc"
         ``` bash
         export passphrase="your_passphrase"
         ```
-    
+
     === "Example Command"
 
         ``` bash
@@ -88,11 +89,11 @@ source "${HOME}/.bashrc"
     gpg --armor --export ${keyName} > "${SB_DIR}/registration_keys/${keyName}.pub"
     ```
 
-8. List newly generated key files 
+8. List newly generated key files
 
     ``` bash
      ls ${SB_DIR}/registration_keys/
-    ``` 
+    ```
 
     ???+ example "Example Output"
         ``` bash
@@ -139,7 +140,7 @@ source "${HOME}/.bashrc"
 
 7. Create config file
 
-    ```
+    ``` yaml
     cat > "${SB_DIR}/sb_config.yaml" <<EOF
     secure_build_workers:
         sbs:
@@ -174,6 +175,7 @@ source "${HOME}/.bashrc"
             public_key_path: '${SB_DIR}/registration_keys/${keyName}.pub'
     EOF
     ```
+
 8. Continue to the [Build Application section](#build-application) if you are launching secure build for the first time or the [Troubleshooting Secure Build section](#troubleshooting-secure-build) if things didn't go as planned your first go-round and you are trying to get back on the right track.
 
 ## Build Application
@@ -205,10 +207,10 @@ source "${HOME}/.bashrc"
         The secure build is asynchronous so if the command gets interrupted here don't worry! :grin:
 
     !!! warning
-        If the secure build command gets an error this command will keep on waiting until eventually timing out. If you see an error in the `status` you can interrupt this command with `ctrl+c` instead of waiting for it to time out. 
+        If the secure build command gets an error this command will keep on waiting until eventually timing out. If you see an error in the `status` you can interrupt this command with `ctrl+c` instead of waiting for it to time out.
 
     ???+ example "Example Output after running 15-20 minutes to completion"
-    
+
         ``` bash 
         +--------+-------------------------+
         | status | OK: async build started |
@@ -224,7 +226,7 @@ source "${HOME}/.bashrc"
         +---------------------+--------------------------------------------------------------------------------------------+
         ```
 
-2. Please look at the logs in another terminal window while the secure build is running (don't interrupt the current terminal window which is waiting for the secure build) 
+3. Please look at the logs in another terminal window while the secure build is running (don't interrupt the current terminal window which is waiting for the secure build)
 
     ``` bash
     hpvs sb log --config "${SB_DIR}/sb_config.yaml"
@@ -246,7 +248,7 @@ source "${HOME}/.bashrc"
         .....
         ```
 
-3. You can also look at the secure build status in another window. This can be useful if you accidentally interrupted the secure build command or it times out due to the timeout not being long enough. It will also fill out the additional fields that are initially blank when the build completes (such as `build_name` and `manifest_public_key`, etc.).
+4. You can also look at the secure build status in another window. This can be useful if you accidentally interrupted the secure build command or it times out due to the timeout not being long enough. It will also fill out the additional fields that are initially blank when the build completes (such as `build_name` and `manifest_public_key`, etc.).
 
     ``` bash
     hpvs sb status --config "${SB_DIR}/sb_config.yaml"
@@ -268,13 +270,13 @@ source "${HOME}/.bashrc"
     !!! error "If you see an error in your status"
         If you see that your build ran into an error please visit the [Troubleshooting Secure Build section](#troubleshooting-secure-build)
 
-4. You can continue to check the logs to monitor the progress of your secure build with the previous logs command
+5. You can continue to check the logs to monitor the progress of your secure build with the previous logs command
 
     ``` bash
     hpvs sb log --config "${SB_DIR}/sb_config.yaml"
     ```
 
-5. When the secure build successfully completes, it will have ending logs similar to the following:
+6. When the secure build successfully completes, it will have ending logs similar to the following:
 
     ???+ example "Example Output"
 
@@ -300,7 +302,7 @@ source "${HOME}/.bashrc"
         2020-06-23 08:39:49,217  root       INFO    completed a build
         ```
 
-6. When the secure build successfully completes, you can check the status again to see a `completed` status.
+7. When the secure build successfully completes, you can check the status again to see a `completed` status.
 
     ``` bash
     hpvs sb status --config "${SB_DIR}/sb_config.yaml"
@@ -322,7 +324,7 @@ source "${HOME}/.bashrc"
     !!! error "If you see an error in your status"
         If you see that your build ran into an error please visit the [Troubleshooting Secure Build section](#troubleshooting-secure-build)
 
-7. From the original terminal window that you ran `hpvs sb init`, output the repository registration file.
+8. From the original terminal window that you ran `hpvs sb init`, output the repository registration file.
 
     ``` bash
     echo "${passphrase}" | hpvs sb regfile \
@@ -333,14 +335,14 @@ source "${HOME}/.bashrc"
     ???+ example "Example Output"
 
         ``` bash
-        Enter Sigining Private key passphrase:
+        Enter Signing Private key passphrase:
         ```
 
-    !!! Tip 
+    !!! Tip
         The `echo` command takes care of the passphrase so you don't need to enter it manually.
-    
+
     !!! warning
-        If you run this command from a terminal window where you did not set the `passphrase` environment variable you will get an error saying `openpgp: invalid data: private key checksum failure`. You can also check to make sure you are in the right terminal window by running `echo "${passphrase}"` and the output should be the passphrase you set in the beginning of the "Create repository registration GPG signing key" section. 
+        If you run this command from a terminal window where you did not set the `passphrase` environment variable you will get an error saying `openpgp: invalid data: private key checksum failure`. You can also check to make sure you are in the right terminal window by running `echo "${passphrase}"` and the output should be the passphrase you set in the beginning of the "Create repository registration GPG signing key" section.
 
 ## Troubleshooting Secure Build
 
@@ -400,7 +402,7 @@ source "${HOME}/.bashrc"
 
 4. Get your manifest public verification key
 
-    ``` bash 
+    ``` bash
     hpvs sb pubkey --config "${SB_DIR}/sb_config.yaml" --name "${BUILD_NAME}"
     ```
 
@@ -451,7 +453,7 @@ source "${HOME}/.bashrc"
 
         The `.sig.tbz` was a tarball compressed using bzip2 compression of both a nested `.tbz` file (containing the manifest files) and a `.sig` file containing a signature of the nested `.tbz` to verify it with the public key retrieved using the `hpvs sb pubkey` command above saved in the file referenced by `MAN_PUBKEY`.
 
-9.  Convert the signature file to binary format
+9. Convert the signature file to binary format
 
     ``` bash
     cat "${MANIFEST}.sig" | xxd -r -p > "${MANIFEST}.sig.bin"
@@ -482,7 +484,7 @@ source "${HOME}/.bashrc"
     !!! note
         In this case, we are double hashing the `.tbz` file on the signature side which is why we hash the `.tbz` before the verify command here.
 
-12.  Untar and unzip the manifest `.tbz` file into the `manifest_files` directory.
+12. Untar and unzip the manifest `.tbz` file into the `manifest_files` directory.
 
     ``` bash
     tar -xjf "${MANIFEST}.tbz" -C "${SB_DIR}/manifest/manifest_files"
@@ -499,9 +501,9 @@ source "${HOME}/.bashrc"
         ``` bash
         data  git  root_ssh
         ```
-    
+
     !!! info "Manifest explanation"
-        This `manifest` package contains three directories as shown above. The `data` directory contains the `build.json` (containing the build status of the directory updated after the image was pushed to its Docker Registry) and `build.log` (containing the logs from the secure build). The `git` directory contains the source code used for the build (cloned from git). Finally, the `root_ssh` directory contains any `ssh` material provided (if the user chose to use ssh) which is empty for us because we didn't enable ssh and provide ssh keys. This way no one can ssh into our secure build container. 
+        This `manifest` package contains three directories as shown above. The `data` directory contains the `build.json` (containing the build status of the directory updated after the image was pushed to its Docker Registry) and `build.log` (containing the logs from the secure build). The `git` directory contains the source code used for the build (cloned from git). Finally, the `root_ssh` directory contains any `ssh` material provided (if the user chose to use ssh) which is empty for us because we didn't enable ssh and provide ssh keys. This way no one can ssh into our secure build container.
 
 14. What does this give me?
 
@@ -514,6 +516,6 @@ source "${HOME}/.bashrc"
 
 ## Summary
 
-Congratulations!!! :tada: 
+Congratulations!!! :tada:
 
 You have securely built your application and are ready to deploy it into a Hyper Protect Virtual Server in the next section.

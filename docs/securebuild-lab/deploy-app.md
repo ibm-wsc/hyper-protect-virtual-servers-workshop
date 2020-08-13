@@ -42,7 +42,7 @@ source "${HOME}/.bashrc"
         +-----------------+------------------------------+
         ```
 
-##  Set up your Quotagroup for storage
+## Set up your Quotagroup for storage
 
 1. Create Quotagroup
 
@@ -152,7 +152,7 @@ source "${HOME}/.bashrc"
         |             |                        |
         +-------------+------------------------+
         ```
-    
+
     We can see the Hyper Protect Virtual Server for our application is now taking up the majority of our Quotagroup.
 
 4. If you ever need to check the Hyper Protect Virtual Server you can use the show command
@@ -202,7 +202,7 @@ echo "https://${SB_IP}:${APP_PORT}/electrum"
     https://192.168.22.80:30100/electrum
     ```
 
-Your app is now up and running at the address printed in your terminal! 
+Your app is now up and running at the address printed in your terminal!
 
 !!! tip
     You can visit the IP address easily by right-clicking on the link (wih the line under it) in your terminal and selecting `Open Link`

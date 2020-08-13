@@ -16,7 +16,6 @@
         +---------------+
         +---------------+
         ```
-    
 
 2. Set your `DOCKER_USERNAME` to the username for your account on [Docker Hub](https://hub.docker.com/){target=_blank}
 
@@ -31,8 +30,8 @@
         ``` bash
         export DOCKER_USERNAME="gmoney23"
         ```
-    
-    !!! note 
+
+    !!! note
         This will be the username you used when you created your [Docker Hub](https://hub.docker.com/){target=_blank} account in the [Prerequisites](../prerequisites.md#Create-a-Docker-Hub){target=_blank}
 
 3. Save your `DOCKER_USERNAME` to `bashrc` for later use.
@@ -55,7 +54,7 @@
         export DOCKER_PASSWORD="123456789"
         ```
 
-    !!! note 
+    !!! note
         This will be the Docker Hub token you created for the lab in the [Prerequisites](../prerequisites.md#create-a-docker-access-token){target=_blank}
 
 5. Check your [Docker Hub](https://hub.docker.com/){target=_blank} login credentials with a `docker login`
@@ -79,7 +78,6 @@
         ``` bash
         Error response from daemon: Get https://registry-1.docker.io/v2/: unauthorized: incorrect username or password
         ```
-    
 
 6. Set your `REGISTRY_NAME` to a Docker registry placeholder name of your choosing.
 
@@ -134,7 +132,7 @@
         +---------------+
         ```
 
-10. Check the details of your added registry with 
+10. Check the details of your added registry with
 
     ``` bash
     hpvs registry show --name "${REGISTRY_NAME}"
@@ -155,7 +153,7 @@
 
 1. Set your secure build directory
 
-    ``` bash 
+    ``` bash
     export SB_DIR="$HOME/securebuild-lab"
     ```
 
@@ -231,17 +229,27 @@
         ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC6zsnjH4fXaR/imYkzRaYVgWsNVIY4LzCftygKGTFJVBDMqVErsbkvF810RUTPIIowwe7Bx2UGLtwv3kL2omUJaHjol/+nzQjdmFrV2qnZosMUCn4xSpdffCmMyFWE8FnWw1ZSc7STcTD/NFzLjrN/vbJgMvla0aSxsENio2RvyFQkMKbwfojE22Q/MOtJAg0wyr9/0JNXiAyLYUEwfi1qVoF4F1mvXgLtNgTSx4VzokUKBsiSaDDbEa70ik154dtWLY9nemUsrSfUluCrHLaJhUy9cg6Jc+/9tco0cZhyZDnLIhT/4+n1XGfZxb83c5WElrg/IEYHGOHfqp+lMfusMj/0ppopz+f66dWDabVQCbrkqa+yfbw0ItC0+sZ7opIYGRLt+OelkrIECo7utzCTxdCCJ+2iUIiBV14my7xAFR+fNLKzl9KD+FTT/QoUPlqTmUQNo6NFNGG15znWVRtMDOdDiA6fugl6RrFJHDpaw9/lh+7g7tqwHGF83ZomvvFdKFMsXY6JTpj6rb7gtKzEapB9imCr0aw0ZTWTdlzTs9ksSNr1gZRf/eiztP5puC4weGDRXVjPwHOFOGbUH7Wk8ywQAmUJdEg03bz01U1htYryiNTD4VD2QfVTmxTltocj/2yv7Apv6gQ+Gb0LsgTp2aWbAnbeWX7qfjpYt0j/iw== multiarch-lab@ubuntu
         ```
 
-6. Copy your output to the clipboard with `ctrl+shift+c`.
-
-7. Add this key to your public GitHub (paste copied content into GitHub keys textbox)
-
-    **Follow [these instructions](https://help.github.com/en/enterprise/2.15/user/articles/adding-a-new-ssh-key-to-your-github-account){target=_blank}** for adding this *public* key to your `github.com` GitHub account.
-
-    !!! note 
-        You created this *public* `github.com` GitHub in the [Prerequisites](../prerequisites.md#Create-a-GitHub){target=_blank} (or already had one).
+6. Copy **your** output (**not** the `Example Output` above) to the clipboard with `ctrl+shift+c`.
 
     !!! warning
         The above copy command (`ctrl+shift+c`) is saving the `.pub` public key **NOT** the `private` key. You keep the private key and GitHub uses the public key to verify that it is communicating with the owner of the private key (i.e. you).
+
+7. Add this key to your public GitHub at [https://github.com/settings/ssh/new](https://github.com/settings/ssh/new){target=_blank}
+
+    1. Login or confirm your password if prompted
+
+        ![GitHub login page](securebuild-setup_Images/GitHub_login_setup.png)
+
+    2. Add SSH Key
+
+        ![Add GitHub SSH Key](securebuild-setup_Images/Add_SSH_Key_GitHub.png)
+
+    3. See your new SSH key has been added with your chosen title.
+
+        ![GitHub SSH Key Added](securebuild-setup_Images/SSH_key_added_to_GitHub.png)
+
+    !!! note
+        You created this *public* `github.com` GitHub in the [Prerequisites](../prerequisites.md#Create-a-GitHub){target=_blank} (or already had one).
 
 8. Scan for GitHub's public key (Done to trust GitHub connection the first time)
 
@@ -277,5 +285,4 @@
         git@github.com: Permission denied (publickey).
         ```
 
-
-9. Feel at ease knowing you will delete this key from your Github account in the cleanup phase of this lab so access will be revoked soon enough :relaxed:
+10. Feel at ease knowing you will delete this key from your Github account in the cleanup phase of this lab so access will be revoked soon enough :relaxed

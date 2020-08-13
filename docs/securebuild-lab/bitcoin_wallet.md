@@ -1,10 +1,10 @@
 # Welcome to the Secure Bitcoin Wallet on IBM LinuxONE
 
-## Overview 
+## Overview
 
 This application is a secure [Electrum](https://electrum.org/#home){target=_blank} Bitcoin wallet found at [this GitHub repository](https://github.com/IBM/secure-bitcoin-wallet){target=_blank}. You can use it to store the identities necessary to transact on the Bitcoin public blockchain network. While this version of the wallet is just a proof of concept, running this type of wallet on Hyper Protect enables you to protect your digital assets from bad actors such as malicious server administrators.
 
-!!! info 
+!!! info
     This Electrum Bitcoin wallet functions regularly, while inheriting the security benefits of the Hyper Protect Virtual Server platform. This ensures that a legitimate version of the application is running (Secure Image Build process) and that administrators cannot compromise the application (Hyper Protect Virtual Server deployment).
 
 ## Account Registration
@@ -48,7 +48,7 @@ It's time to set up your Secure Electrum Bitcoin wallet itself! :zap:
 
 ## Receiving Bitcoins
 
-A wallet without currency is blasphemy, so it's time to fill it on up with fake bitcoins. 
+A wallet without currency is blasphemy, so it's time to fill it on up with fake bitcoins.
 
 1. Go to the `Receive` section of the wallet and get the bitcoin wallet address.  
 
@@ -95,7 +95,7 @@ A wallet without currency is blasphemy, so it's time to fill it on up with fake 
 
 ## Returning Bitcoins
 
-Since you are feeling charitable you decide to transfer your testnet value back to the faucet's address. 
+Since you are feeling charitable you decide to transfer your testnet value back to the faucet's address.
 
 1. Go back to [the faucet site](https://bitcoinfaucet.uo1.net/send.php){target=_blank} and get it's bitcoin address
 
@@ -125,9 +125,8 @@ Since you are feeling charitable you decide to transfer your testnet value back 
     !!! Tip
         You have to keep reloading the page for it to update with new confirmations.
 
-    !!! info 
+    !!! info
         If you wait long enough, eventually these transactions will gain confirmations as in the picture below
-        
 
     ![Both transactions with 1 confirmation](Bitcoin_Wallet_Images/both_confirmed_transactions.png)
 
@@ -135,7 +134,7 @@ Since you are feeling charitable you decide to transfer your testnet value back 
 
 ## Summary
 
-!!! Success 
+!!! Success
 
     You have participated in the bitcoin testnet using a securely built electrum bitcoin wallet powered by a Hyper Protect Virtual Server. Congratulations!!! 
 
