@@ -30,6 +30,8 @@ nav:
 
 theme: 
   name: material
+  palette:
+    scheme: preference
   favicon: images/hpvs-logo.svg
   logo: images/hpvs-logo.svg
 extra:
