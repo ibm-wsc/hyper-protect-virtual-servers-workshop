@@ -12,7 +12,7 @@ Here is a big picture of what is going on in the lab (i.e. lab architecture).
 
 !!! note
     Student 1 and Student 2 in the illustration are 2 example students. In the actual lab, more students will be present.
-:favicon:
+
 The 5 different pieces of this puzzle:
 
 1. [SETUP](#setup)
@@ -25,7 +25,7 @@ The 5 different pieces of this puzzle:
 
 ### SETUP
 
-Configure your environment with the necessary credentials to connect to [GitHub](https://github.com){target=_blank} and [Docker Hub](https://hub.docker.com/){target=_blank} respectively. ([See `Configuring your Environment`](securebuild-setup.md){target=_blank})
+Configure your environment with the necessary credentials to connect to [GitHub](https://github.com){target=_blank} and [Docker Hub](https://hub.docker.com/){target=_blank} respectively ([see `Configuring your Environment`](securebuild-setup.md){target=_blank}).
 
 ### BUILD
 
@@ -56,15 +56,15 @@ Securely build a Docker Image for the [Secure Electrum Bitcoin Wallet Applicatio
 
 ### REGISTER
 
-Register your securely built Docker Image with your Secure Service Container to verify its validity[^3] (see the end of [`Securely Build your Application`](build.md){target=_blank} and the beginning of [`Deploy your Securely Built Application as a Hyper Protect Virtual Server`](deploy-app.md){target=_blank})
-![Image Registration Overview](Overview_Images/Image_Registration_Overview.png).
+Register your securely built Docker Image with your Secure Service Container to verify its validity[^3] (see the end of [`Securely Build your Application`](build.md){target=_blank} and the beginning of [`Deploy your Securely Built Application as a Hyper Protect Virtual Server`](deploy-app.md){target=_blank}).
+![Image Registration Overview](Overview_Images/Image_Registration_Overview.png)
 
 [^3]: The `Image Registration Experience` graphic is adapted from charts provided by the Hyper Protect Virtual Servers On-Premises development team.
 
 ### DEPLOY
 
 Deploy your Secure Bitcoin Wallet application `(from the verified repository created in step 3)` as a Hyper Protect Virtual Server within its own secure enclave[^4] (see [`Deploy your Securely Built Application as a Hyper Protect Virtual Server`](deploy-app.md){target=_blank}).
-![Hyper Protect Virtual Servers Overview](Overview_Images/Hyper_Protect_Virtual_Server_Overview.png).
+![Hyper Protect Virtual Servers Overview](Overview_Images/Hyper_Protect_Virtual_Server_Overview.png)
 
 [^4]: The `Hyper Protect Virtual Server Experience` graphic is adapted from charts provided by the Hyper Protect Virtual Servers On-Premises development team.
 
