@@ -750,8 +750,7 @@
 <p class="admonition-title">Note</p>
 <p>Student 1 and Student 2 in the illustration are 2 example students. In the actual lab, more students will be present.</p>
 </div>
-<p>:favicon:
-The 5 different pieces of this puzzle:</p>
+<p>The 5 different pieces of this puzzle:</p>
 <ol>
 <li><a href="#setup">SETUP</a></li>
 <li><a href="#build">BUILD</a></li>
@@ -761,7 +760,7 @@ The 5 different pieces of this puzzle:</p>
 </ol>
 <p>(and how to <a href="#cleanup">CLEAN UP</a>) are explained in more detail in their respective sections below.</p>
 <h3 id="setup">SETUP<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
-<p>Configure your environment with the necessary credentials to connect to <a href="https://github.com" target="_blank">GitHub</a> and <a href="https://hub.docker.com/" target="_blank">Docker Hub</a> respectively. (<a href="../securebuild-setup/" target="_blank">See <code>Configuring your Environment</code></a>)</p>
+<p>Configure your environment with the necessary credentials to connect to <a href="https://github.com" target="_blank">GitHub</a> and <a href="https://hub.docker.com/" target="_blank">Docker Hub</a> respectively (<a href="../securebuild-setup/" target="_blank">see <code>Configuring your Environment</code></a>).</p>
 <h3 id="build">BUILD<a class="headerlink" href="#build" title="Permanent link">&para;</a></h3>
 <p>Securely build a Docker Image for the <a href="https://github.com/IBM/secure-bitcoin-wallet" target="_blank">Secure Electrum Bitcoin Wallet Application</a>. (<a href="../create-server/" target="_blank">see <code>Create your HPVS Secure Build Server</code></a> and <a href="../build/" target="_blank"><code>Securely Build your Application</code></a>). This uses the Secure Build Process detailed below<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>:</p>
 <p><img alt="Secure Build Overview" src="../Overview_Images/Secure_Build_Overview.png" /></p>
@@ -844,11 +843,11 @@ The 5 different pieces of this puzzle:</p>
 </details>
 </div>
 <h3 id="register">REGISTER<a class="headerlink" href="#register" title="Permanent link">&para;</a></h3>
-<p>Register your securely built Docker Image with your Secure Service Container to verify its validity<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> (see the end of <a href="../build/" target="_blank"><code>Securely Build your Application</code></a> and the beginning of <a href="../deploy-app/" target="_blank"><code>Deploy your Securely Built Application as a Hyper Protect Virtual Server</code></a>)
-<img alt="Image Registration Overview" src="../Overview_Images/Image_Registration_Overview.png" />.</p>
+<p>Register your securely built Docker Image with your Secure Service Container to verify its validity<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> (see the end of <a href="../build/" target="_blank"><code>Securely Build your Application</code></a> and the beginning of <a href="../deploy-app/" target="_blank"><code>Deploy your Securely Built Application as a Hyper Protect Virtual Server</code></a>).
+<img alt="Image Registration Overview" src="../Overview_Images/Image_Registration_Overview.png" /></p>
 <h3 id="deploy">DEPLOY<a class="headerlink" href="#deploy" title="Permanent link">&para;</a></h3>
 <p>Deploy your Secure Bitcoin Wallet application <code>(from the verified repository created in step 3)</code> as a Hyper Protect Virtual Server within its own secure enclave<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> (see <a href="../deploy-app/" target="_blank"><code>Deploy your Securely Built Application as a Hyper Protect Virtual Server</code></a>).
-<img alt="Hyper Protect Virtual Servers Overview" src="../Overview_Images/Hyper_Protect_Virtual_Server_Overview.png" />.</p>
+<img alt="Hyper Protect Virtual Servers Overview" src="../Overview_Images/Hyper_Protect_Virtual_Server_Overview.png" /></p>
 <h3 id="access">ACCESS<a class="headerlink" href="#access" title="Permanent link">&para;</a></h3>
 <p>Access your <a href="https://github.com/IBM/secure-bitcoin-wallet" target="_blank">Secure Electrum Bitcoin Wallet Application</a> application to use it with security built-in (see <a href="../bitcoin_wallet/" target="_blank"><code>Welcome to the Secure Bitcoin Wallet on IBM LinuxONE</code></a>).</p>
 <h3 id="cleanup">CLEANUP<a class="headerlink" href="#cleanup" title="Permanent link">&para;</a></h3>
