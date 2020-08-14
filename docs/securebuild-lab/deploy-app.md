@@ -8,7 +8,7 @@ Source `bashrc` to set necessary variables if unset
 source "${HOME}/.bashrc"
 ```
 
-## Set up you Docker Image Repository
+## Set up your Docker Image Repository
 
 1. Register your repository
 
