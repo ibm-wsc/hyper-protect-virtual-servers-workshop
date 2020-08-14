@@ -171,6 +171,9 @@
 
 ## Create SSH Key and Grant GitHub access
 
+!!! info
+    This section goes through adding the `GitHub SSH Key` referenced in the [key table](overview.md#fnref:2) to your GitHub account to enable cloning GitHub repositories via SSH for secure builds.
+
 1. Create GitHub keys directory
 
     ``` bash

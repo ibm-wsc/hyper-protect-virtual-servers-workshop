@@ -10,6 +10,9 @@ source "${HOME}/.bashrc"
 
 ## Create repository registration GPG signing key
 
+!!! info
+    This section creates the `Repository Registration Signing Key` referenced in the [key table](overview.md#fnref:2). [The GNU Privacy Guard (GPG)](https://gnupg.org/){target=_blank} utility (a free implementation of the OpenPGP standard or PGP) generates this key pair (protected by a user defined password) and then exports the public and private keys to files in the `${SB_DIR}/registration_keys/` directory. Later, you will employ these keys to sign a registration file for your securely built image to register it with your Hyper Protect Virtual Servers Appliance such that only the holder of the private key can change the registered repository on the Hyper Protect Virtual Servers appliance.
+
 1. Set key name
 
     ``` bash
@@ -375,6 +378,9 @@ source "${HOME}/.bashrc"
 
 ## Verify your application
 
+!!! info
+    On the secure build server, the `.tbz` manifest file was hashed and then signed by the `Manifest Signing Key` referenced in the [key table](overview.md#fnref:2) which only exists on the server (inside its secure environment). In steps 1-11 below, you are using the matching public key you received from the secure build server (using a secure tls connection) in `step 4` to "undo" this signature to reveal the original hash of the file. We then compare this hash to the hash of the file we have using the `verify` command in `step 11`. `Verification OK` means they are the same, implying that the `.tbz` file we have now was the same one that was signed by the manifest private key inside the safe confines of the secure build server.
+
 1. Create directories for your manifest file information and change into your new `manifest` directory.
 
     ``` bash
@@ -477,9 +483,6 @@ source "${HOME}/.bashrc"
         ``` bash
         Verified OK
         ```
-
-    !!! info
-        On the secure build server, the `.tbz` manifest file was hashed and then signed by the manifest private key which only exists on the server (inside its secure environment). Here, you are using the matching public key you received from the secure build server (using a mutual tls connection) in `step 4` to "undo" this signature to reveal the original hash of the file. We then compare this hash to the hash of the file we have using the above `verify` command. `Verification OK` means they are the same, implying that the `.tbz` file we have now was the same one that was signed by the manifest private key inside the safe confines of the secure build server.
 
     !!! note
         In this case, we are double hashing the `.tbz` file on the signature side which is why we hash the `.tbz` before the verify command here.

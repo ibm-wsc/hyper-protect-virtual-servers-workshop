@@ -30,8 +30,17 @@ nav:
 
 theme: 
   name: material
-  custom_dir: overrides
-  logo: hpvs-logo.svg
+  favicon: images/hpvs-logo.svg
+  logo: images/hpvs-logo.svg
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ibm-wsc
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/u/s390x
+google_analytics:
+  - UA-174658170-2
+  - auto
 markdown_extensions:
   - admonition
   - codehilite
@@ -45,9 +54,6 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
-      options:
-        custom_icons:
-          - overrides/.icons
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
