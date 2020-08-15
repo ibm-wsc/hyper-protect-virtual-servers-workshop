@@ -1,5 +1,505 @@
 # Configuring your Environment
 
+## Explore the Hyper Protect Virtual Servers CLI
+
+!!! info
+    In this lab, we will use the Hyper Protect Virtual Servers CLI (`hpvs` command) to interact with our Hyper Protect Virtual Servers Hosting Appliance in order to perform the various actions necessary for the Secure Build. Below is a quick introduction to the commands available through this CLI.
+
+1. See the different commands you could enter with:
+
+    ``` bash
+    hpvs --help
+    ```
+
+    ???+ example "Example Output"
+
+        ``` bash
+        IBM® Hyper Protect Virtual Servers, the evolution of the
+        IBM® Secure Service Container for IBM® Cloud Private offering,
+        protects Linux workloads on IBM Z and LinuxONE throughout their
+        lifecycle build management and deployment.
+        This solution delivers the security needed to protect
+        mission critical applications in hybrid multi-cloud deployments.
+
+        Usage:
+        hpvs [command]
+
+        Available Commands:
+        crypto      Crypto command
+        deploy      Deploy command
+        help        Help about any command
+        host        Host command
+        image       Image Command
+        network     Network command
+        quotagroup  Quotagroup command
+        regfile     Generate encrypted repository registration file. If you have already image build on s390x arch
+        registry    Registry command
+        repository  Repository command
+        sb          SecureBuild command
+        snapshot    Snapshot command
+        version     Print hpvs version
+        vs          Virtual Server command
+
+        Flags:
+            --debug                   If --debug is passed, it will enable debug logs
+        -h, --help                    Help for hpvs
+            --host string             Host LPAR name
+            --log-output-dir string   Set log output directory
+
+        Use "hpvs [command] --help" for more information about a command.
+        ```
+
+2. See more information for the `Available Commands` listed above with:
+
+    === "crypto"
+
+        ``` bash
+        hpvs crypto --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            List crypto
+
+            Usage:
+            hpvs crypto [command]
+
+            Available Commands:
+            list        List crypto
+
+            Flags:
+            -h, --help   Help for crypto
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --host string             Host LPAR name
+                --log-output-dir string   Set log output directory
+
+            Use "hpvs crypto [command] --help" for more information about a command.
+            ```
+
+    === "deploy"
+
+        ``` bash
+        hpvs deploy --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            Deploy virtual servers
+
+            Usage:
+            hpvs deploy [flags]
+
+            Flags:
+                --config string         YAML configuration file for the virtual server deployment
+            -h, --help                  Help for deploy
+                --templatefile string   YAML resource template file for the virtual server deployment
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --host string             Host LPAR name
+                --log-output-dir string   Set log output directory
+            ```
+
+    === "help"
+
+        ``` bash
+        hpvs help --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            Help provides help for any command in the application.
+            Simply type hpvs help [path to command] for full details.
+
+            Usage:
+            hpvs help [command] [flags]
+
+            Flags:
+            -h, --help   help for help
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --host string             Host LPAR name
+                --log-output-dir string   Set log output directory`
+            ```
+
+    === "host"
+
+        ``` bash
+        hpvs host --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            add, delete, update, list, set Host
+
+            Usage:
+            hpvs host [command]
+
+            Available Commands:
+            add         Add host
+            delete      Delete host
+            list        List host
+            set         Set host
+            update      Update host
+
+            Flags:
+            -h, --help   Help for host
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --host string             Host LPAR name
+                --log-output-dir string   Set log output directory
+
+            Use "hpvs host [command] --help" for more information about a command.
+            ```
+
+    === "image"
+
+        ``` bash
+        hpvs image --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            list, delete, show, load, pull Image
+
+            Usage:
+            hpvs image [command]
+
+            Available Commands:
+            delete      Delete image
+            list        List image
+            load        Upload image
+            pull        Pull image
+            show        Show image
+
+            Flags:
+            -h, --help   Help for image
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --host string             Host LPAR name
+                --log-output-dir string   Set log output directory
+
+            Use "hpvs image [command] --help" for more information about a command.
+            ```
+
+    === "network"
+
+        ``` bash
+        hpvs network --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            list, create, delete, show Network
+
+            Usage:
+            hpvs network [command]
+
+            Available Commands:
+            create      Create network
+            delete      Delete network
+            list        List network
+            show        Show network
+
+            Flags:
+            -h, --help   Help for network
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --host string             Host LPAR name
+                --log-output-dir string   Set log output directory
+
+            Use "hpvs network [command] --help" for more information about a command.
+            ```
+
+    === "quotagroup"
+
+        ``` bash
+        hpvs quotagroup --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            create, delete, list, show, update Quotagroup
+
+            Usage:
+            hpvs quotagroup [command]
+
+            Available Commands:
+            create      Create quotagroup
+            delete      Delete quotagroup
+            list        List quotagroup
+            show        Show quotagroup
+            update      Update quotagroup
+
+            Flags:
+            -h, --help   Help for quotagroup
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --host string             Host LPAR name
+                --log-output-dir string   Set log output directory
+
+            Use "hpvs quotagroup [command] --help" for more information about a command.
+            ```
+
+    === "regfile"
+
+        ``` bash
+        hpvs regfile --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            Generate encrypted repository registration file. If you have already image build on s390x arch
+
+            Usage:
+            hpvs regfile [command]
+
+            Available Commands:
+            create      Create encrypted repository registration file
+
+            Flags:
+            -h, --help   Help for regfile
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --host string             Host LPAR name
+                --log-output-dir string   Set log output directory
+
+            Use "hpvs regfile [command] --help" for more information about a command.
+            ```
+
+    === "registry"
+
+        ``` bash
+        hpvs registry --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            add, delete, update, list, show Registry
+
+            Usage:
+            hpvs registry [command]
+
+            Available Commands:
+            add         Add registry
+            delete      Delete registry
+            list        List registry
+            show        Show registry
+            update      Update registry
+
+            Flags:
+            -h, --help   Help for registry
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --host string             Host LPAR name
+                --log-output-dir string   Set log output directory
+
+            Use "hpvs registry [command] --help" for more information about a command.
+            ```
+
+    === "repository"
+
+        ``` bash
+        hpvs repository --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            list, register, delete, show, update Repository
+
+            Usage:
+            hpvs repository [command]
+
+            Available Commands:
+            delete      Delete repository
+            list        List repository
+            register    Register repository
+            show        Show repository
+            update      Update repository
+
+            Flags:
+            -h, --help   Help for repository
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --host string             Host LPAR name
+                --log-output-dir string   Set log output directory
+
+            Use "hpvs repository [command] --help" for more information about a command.
+            ```
+
+    === "sb"
+
+        ``` bash
+        hpvs sb --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            SecureBuild command
+
+            Usage:
+            hpvs sb [command]
+
+            Available Commands:
+            build       Securely build your image
+            clean       Secure build clean. It will clean vs data eg - logs
+            init        Initialize secure build configuration
+            log         Get logs
+            manifest    Get manifest file
+            pubkey      Get manifest public key
+            regfile     Get encrypted repository registration file
+            status      Get secure build status
+            update      Update secure build environment
+
+            Flags:
+            -h, --help   Help for sb
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --host string             Host LPAR name
+                --log-output-dir string   Set log output directory
+
+            Use "hpvs sb [command] --help" for more information about a command.
+            ```
+
+    === "snapshot"
+
+        ``` bash
+        hpvs snapshot --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            list, create, delete, restore Snapshot
+
+            Usage:
+            hpvs snapshot [command]
+
+            Available Commands:
+            create      Create snapshot
+            delete      Delete snapshot
+            list        List snapshots
+            restore     Restore snapshot
+
+            Flags:
+            -h, --help   Help for snapshot
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --host string             Host LPAR name
+                --log-output-dir string   Set log output directory
+
+            Use "hpvs snapshot [command] --help" for more information about a command.
+            ```
+
+    === "version"
+
+        ``` bash
+        hpvs version --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            Print hpvs version
+
+            Usage:
+            hpvs version [flags]
+
+            Flags:
+            -h, --help   Help for version
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --host string             Host LPAR name
+                --log-output-dir string   Set log output directory
+            ```
+
+    === "vs"
+
+        ``` bash
+        hpvs vs --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            crate, delete, list, log, restart, show, start, stop VS
+
+            Usage:
+            hpvs vs [command]
+
+            Available Commands:
+            create      Create virtual server
+            delete      Delete virtual server
+            list        List virtual servers
+            log         Get virtual server log
+            restart     Restart virtual server
+            show        Show virtual server
+            start       Start virtual server
+            stop        Stop virtual server
+            update      Update virtual server
+
+            Flags:
+            -h, --help   Help for vs
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --host string             Host LPAR name
+                --log-output-dir string   Set log output directory
+
+            Use "hpvs vs [command] --help" for more information about a command.
+            ```
+
+3. You can get even dive into the `Available Commands` of the above commands with another `--help` :open_mouth:
+
+    ``` bash
+    hpvs sb build --help
+    ```
+
+    ???+ example "Example Output"
+
+        ``` bash
+        Securely build your image
+
+        Usage:
+        hpvs sb build [flags]
+
+        Flags:
+            --config string   Config file path
+        -h, --help            Help for build
+            --timeout int     Build timeout in minutes (default 10)
+
+        Global Flags:
+            --debug                   If --debug is passed, it will enable debug logs
+            --host string             Host LPAR name
+            --log-output-dir string   Set log output directory
+        ```
+
+4. For further exploration of the Hyper Protect Virtual Servers CLI [see the Knowledge Center](https://www.ibm.com/support/knowledgecenter/en/SSHPMH_1.2.x/topics/cmd_hpvs.html){target_blank}
+
 ## Add Docker registry to use for secure build
 
 !!! info
