@@ -897,6 +897,11 @@ gpg: <span class="k">done</span>
 </li>
 </ol>
 <h2 id="build-application">Build Application<a class="headerlink" href="#build-application" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In this section, you finally use all of your configuration information to build your application securely over TLS by connecting to the secure build server you deployed in the <a href="../create-server/" target="_blank">previous part of the lab</a> with the <code>Secure Build Server Client Certificate and Key</code>. This build securely updates the application using <a href="https://docs.docker.com/engine/security/trust/content_trust/" target="_blank">Docker Content Trust</a>, an implementation of <a href="https://theupdateframework.io/overview/" target="_blank">The Update Framework</a>. This involves securely signing a series of <a href="https://theupdateframework.io/metadata/" target="_blank">metadata files</a> with corresponding keys (<code>Root Key</code>, <code>Image Signing "Targets" Key</code>, <code>Snapshot Key</code>, and <code>Timestamp Key</code> referenced in the <a href="../overview/#fnref:2">key table</a>) and pushing this trust metadata to a <a href="https://docs.docker.com/notary/service_architecture/" target="_blank">Notary Server</a> to provide assurances regarding the integrity of the Docker Images when users pull them to run in their environments. This conforms to <a href="https://github.com/theupdateframework/specification/blob/master/tuf-spec.md#the-update-framework-specification" target="_blank">The Update Framework Specification</a></p>
+<p>Additionally, this process generates a <code>Manifest Signing Key</code> which it employs to sign the contents of the build for attestation of the build contents by internal and/or third party auditors. The <code>Manifest Signing Key</code> is discussed in more detail in the <a href="#verify-your-application"><code>Verify your application section</code></a> later in the lab.</p>
+</div>
 <ol>
 <li>
 <p>Initialize Secure Build Hyper Protect Virtual server with configuration file generated in the <a href="#set-build-configuration">Set Build Configuration section</a></p>
@@ -924,10 +929,6 @@ gpg: <span class="k">done</span>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The secure build is asynchronous so if the command gets interrupted here don't worry! <img alt="😁" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f601.svg" title=":grin:" /></p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If the secure build command gets an error this command will keep on waiting until eventually timing out. If you see an error in the <code>status</code> you can interrupt this command with <code>ctrl+c</code> instead of waiting for it to time out.</p>
 </div>
 <details class="example" open="open"><summary>Example Output after running 15-20 minutes to completion</summary><div class="highlight"><pre><span></span><code>+--------+-------------------------+
 <span class="p">|</span> status <span class="p">|</span> OK: async build started <span class="p">|</span>
