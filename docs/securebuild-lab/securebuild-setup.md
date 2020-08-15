@@ -60,7 +60,7 @@
     !!! note
         This will be the Docker Hub token you created for the lab in the [Prerequisites](../prerequisites.md#create-a-docker-access-token){target=_blank}
 
-5. Check your [Docker Hub](https://hub.docker.com/){target=_blank} login credentials with a `docker login` and do a `docker logout` to remove unencyrpted Docker credentials locally.
+5. Check your [Docker Hub](https://hub.docker.com/){target=_blank} login credentials with a `docker login` and do a `docker logout` to remove unencrypted Docker credentials locally.
 
     ``` bash
     echo "${DOCKER_PASSWORD}" | docker login -u ${DOCKER_USERNAME} --password-stdin && docker logout
