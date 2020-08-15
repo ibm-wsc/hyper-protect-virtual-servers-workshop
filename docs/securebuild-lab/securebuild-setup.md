@@ -2,6 +2,9 @@
 
 ## Add Docker registry to use for secure build
 
+!!! info
+    In this section you will add the details to connect to your Docker Hub Registry so your secure build container can push your securely built images there. Don't worry, your Docker token is safely encrypted on your Skytap Linux VM using the `HPVS Registry CLI Encryption Key` referenced in the [key table](overview.md#fnref:2).
+
 1. See your current Docker registries with:
 
     ``` bash
@@ -57,20 +60,21 @@
     !!! note
         This will be the Docker Hub token you created for the lab in the [Prerequisites](../prerequisites.md#create-a-docker-access-token){target=_blank}
 
-5. Check your [Docker Hub](https://hub.docker.com/){target=_blank} login credentials with a `docker login`
+5. Check your [Docker Hub](https://hub.docker.com/){target=_blank} login credentials with a `docker login` and do a `docker logout` to remove unencyrpted Docker credentials locally.
 
     ``` bash
-    echo "${DOCKER_PASSWORD}" | docker login -u ${DOCKER_USERNAME} --password-stdin
+    echo "${DOCKER_PASSWORD}" | docker login -u ${DOCKER_USERNAME} --password-stdin && docker logout
     ```
 
     ???+ success "Successful login"
 
         ``` bash
-        WARNING! Your password will be stored unencrypted in /home/multiarch-lab/.docker/config.json.
+        WARNING! Your password will be stored unencrypted in /home/hyper-protect-lab/.docker/config.json.
         Configure a credential helper to remove this warning. See
         https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 
         Login Succeeded
+        Removing login credentials for https://index.docker.io/v1/
         ```
 
     ???+ failure "Failed Login :disappointed: Please redo [this section](#add-docker-registry-to-use-for-secure-build)"

@@ -183,6 +183,11 @@ source "${HOME}/.bashrc"
 
 ## Build Application
 
+!!! info
+    In this section, you finally use all of your configuration information to build your application securely over TLS by connecting to the secure build server you deployed in the [previous part of the lab](create-server.md){target=_blank} with the `Secure Build Server Client Certificate and Key`. This build securely updates the application using [Docker Content Trust](https://docs.docker.com/engine/security/trust/content_trust/){target=_blank}, an implementation of [The Update Framework](https://theupdateframework.io/overview/){target=_blank}. This involves securely signing a series of [metadata files](https://theupdateframework.io/metadata/){target=_blank} with corresponding keys (`Root Key`, `Image Signing "Targets" Key`, `Snapshot Key`, and `Timestamp Key` referenced in the [key table](overview.md#fnref:2)) and pushing this trust metadata to a [Notary Server](https://docs.docker.com/notary/service_architecture/){target=_blank} to provide assurances regarding the integrity of the Docker Images when users pull them to run in their environments. This conforms to [The Update Framework Specification](https://github.com/theupdateframework/specification/blob/master/tuf-spec.md#the-update-framework-specification){target=_blank}
+
+    Additionally, this process generates a `Manifest Signing Key` which it employs to sign the contents of the build for attestation of the build contents by internal and/or third party auditors. The `Manifest Signing Key` is discussed in more detail in the [`Verify your application section`](#verify-your-application) later in the lab.
+
 1. Initialize Secure Build Hyper Protect Virtual server with configuration file generated in the [Set Build Configuration section](#set-build-configuration)
 
     ``` bash
@@ -208,9 +213,6 @@ source "${HOME}/.bashrc"
 
     !!! note
         The secure build is asynchronous so if the command gets interrupted here don't worry! :grin:
-
-    !!! warning
-        If the secure build command gets an error this command will keep on waiting until eventually timing out. If you see an error in the `status` you can interrupt this command with `ctrl+c` instead of waiting for it to time out.
 
     ???+ example "Example Output after running 15-20 minutes to completion"
 
