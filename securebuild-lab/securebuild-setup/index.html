@@ -296,6 +296,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#explore-the-hyper-protect-virtual-servers-cli" class="md-nav__link">
+    Explore the Hyper Protect Virtual Servers CLI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#add-docker-registry-to-use-for-secure-build" class="md-nav__link">
     Add Docker registry to use for secure build
   </a>
@@ -618,6 +625,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#explore-the-hyper-protect-virtual-servers-cli" class="md-nav__link">
+    Explore the Hyper Protect Virtual Servers CLI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#add-docker-registry-to-use-for-secure-build" class="md-nav__link">
     Add Docker registry to use for secure build
   </a>
@@ -659,6 +673,465 @@
                 
                 
                 <h1 id="configuring-your-environment">Configuring your Environment<a class="headerlink" href="#configuring-your-environment" title="Permanent link">&para;</a></h1>
+<h2 id="explore-the-hyper-protect-virtual-servers-cli">Explore the Hyper Protect Virtual Servers CLI<a class="headerlink" href="#explore-the-hyper-protect-virtual-servers-cli" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In this lab, we will use the Hyper Protect Virtual Servers CLI (<code>hpvs</code> command) to interact with our Hyper Protect Virtual Servers Hosting Appliance in order to perform the various actions necessary for the Secure Build. Below is a quick introduction to the commands available through this CLI.</p>
+</div>
+<ol>
+<li>
+<p>See the different commands you could enter with:</p>
+<div class="highlight"><pre><span></span><code>hpvs --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>IBM® Hyper Protect Virtual Servers, the evolution of the
+IBM® Secure Service Container <span class="k">for</span> IBM® Cloud Private offering,
+protects Linux workloads on IBM Z and LinuxONE throughout their
+lifecycle build management and deployment.
+This solution delivers the security needed to protect
+mission critical applications in hybrid multi-cloud deployments.
+
+Usage:
+hpvs <span class="o">[</span>command<span class="o">]</span>
+
+Available Commands:
+crypto      Crypto <span class="nb">command</span>
+deploy      Deploy <span class="nb">command</span>
+<span class="nb">help</span>        Help about any <span class="nb">command</span>
+host        Host <span class="nb">command</span>
+image       Image Command
+network     Network <span class="nb">command</span>
+quotagroup  Quotagroup <span class="nb">command</span>
+regfile     Generate encrypted repository registration file. If you have already image build on s390x arch
+registry    Registry <span class="nb">command</span>
+repository  Repository <span class="nb">command</span>
+sb          SecureBuild <span class="nb">command</span>
+snapshot    Snapshot <span class="nb">command</span>
+version     Print hpvs version
+vs          Virtual Server <span class="nb">command</span>
+
+Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+-h, --help                    Help <span class="k">for</span> hpvs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory
+
+Use <span class="s2">&quot;hpvs [command] --help&quot;</span> <span class="k">for</span> more information about a command.
+</code></pre></div>
+
+</details>
+</li>
+<li>
+<p>See more information for the <code>Available Commands</code> listed above with:</p>
+<div class="tabbed-set" data-tabs="1:14"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">crypto</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>hpvs crypto --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>List crypto
+
+Usage:
+hpvs crypto <span class="o">[</span>command<span class="o">]</span>
+
+Available Commands:
+list        List crypto
+
+Flags:
+-h, --help   Help <span class="k">for</span> crypto
+
+Global Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory
+
+Use <span class="s2">&quot;hpvs crypto [command] --help&quot;</span> <span class="k">for</span> more information about a command.
+</code></pre></div>
+
+</details>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">deploy</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>hpvs deploy --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>Deploy virtual servers
+
+Usage:
+hpvs deploy <span class="o">[</span>flags<span class="o">]</span>
+
+Flags:
+    --config string         YAML configuration file <span class="k">for</span> the virtual server deployment
+-h, --help                  Help <span class="k">for</span> deploy
+    --templatefile string   YAML resource template file <span class="k">for</span> the virtual server deployment
+
+Global Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory
+</code></pre></div>
+
+</details>
+</div>
+<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">help</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>hpvs <span class="nb">help</span> --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>Help provides <span class="nb">help</span> <span class="k">for</span> any <span class="nb">command</span> in the application.
+Simply <span class="nb">type</span> hpvs <span class="nb">help</span> <span class="o">[</span>path to command<span class="o">]</span> <span class="k">for</span> full details.
+
+Usage:
+hpvs <span class="nb">help</span> <span class="o">[</span>command<span class="o">]</span> <span class="o">[</span>flags<span class="o">]</span>
+
+Flags:
+-h, --help   <span class="nb">help</span> <span class="k">for</span> <span class="nb">help</span>
+
+Global Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory<span class="sb">`</span>
+</code></pre></div>
+
+</details>
+</div>
+<input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><label for="__tabbed_1_4">host</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>hpvs host --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>add, delete, update, list, <span class="nb">set</span> Host
+
+Usage:
+hpvs host <span class="o">[</span>command<span class="o">]</span>
+
+Available Commands:
+add         Add host
+delete      Delete host
+list        List host
+<span class="nb">set</span>         Set host
+update      Update host
+
+Flags:
+-h, --help   Help <span class="k">for</span> host
+
+Global Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory
+
+Use <span class="s2">&quot;hpvs host [command] --help&quot;</span> <span class="k">for</span> more information about a command.
+</code></pre></div>
+
+</details>
+</div>
+<input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><label for="__tabbed_1_5">image</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>hpvs image --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>list, delete, show, load, pull Image
+
+Usage:
+hpvs image <span class="o">[</span>command<span class="o">]</span>
+
+Available Commands:
+delete      Delete image
+list        List image
+load        Upload image
+pull        Pull image
+show        Show image
+
+Flags:
+-h, --help   Help <span class="k">for</span> image
+
+Global Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory
+
+Use <span class="s2">&quot;hpvs image [command] --help&quot;</span> <span class="k">for</span> more information about a command.
+</code></pre></div>
+
+</details>
+</div>
+<input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><label for="__tabbed_1_6">network</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>hpvs network --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>list, create, delete, show Network
+
+Usage:
+hpvs network <span class="o">[</span>command<span class="o">]</span>
+
+Available Commands:
+create      Create network
+delete      Delete network
+list        List network
+show        Show network
+
+Flags:
+-h, --help   Help <span class="k">for</span> network
+
+Global Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory
+
+Use <span class="s2">&quot;hpvs network [command] --help&quot;</span> <span class="k">for</span> more information about a command.
+</code></pre></div>
+
+</details>
+</div>
+<input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><label for="__tabbed_1_7">quotagroup</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>hpvs quotagroup --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>create, delete, list, show, update Quotagroup
+
+Usage:
+hpvs quotagroup <span class="o">[</span>command<span class="o">]</span>
+
+Available Commands:
+create      Create quotagroup
+delete      Delete quotagroup
+list        List quotagroup
+show        Show quotagroup
+update      Update quotagroup
+
+Flags:
+-h, --help   Help <span class="k">for</span> quotagroup
+
+Global Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory
+
+Use <span class="s2">&quot;hpvs quotagroup [command] --help&quot;</span> <span class="k">for</span> more information about a command.
+</code></pre></div>
+
+</details>
+</div>
+<input id="__tabbed_1_8" name="__tabbed_1" type="radio" /><label for="__tabbed_1_8">regfile</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>hpvs regfile --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>Generate encrypted repository registration file. If you have already image build on s390x arch
+
+Usage:
+hpvs regfile <span class="o">[</span>command<span class="o">]</span>
+
+Available Commands:
+create      Create encrypted repository registration file
+
+Flags:
+-h, --help   Help <span class="k">for</span> regfile
+
+Global Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory
+
+Use <span class="s2">&quot;hpvs regfile [command] --help&quot;</span> <span class="k">for</span> more information about a command.
+</code></pre></div>
+
+</details>
+</div>
+<input id="__tabbed_1_9" name="__tabbed_1" type="radio" /><label for="__tabbed_1_9">registry</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>hpvs registry --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>add, delete, update, list, show Registry
+
+Usage:
+hpvs registry <span class="o">[</span>command<span class="o">]</span>
+
+Available Commands:
+add         Add registry
+delete      Delete registry
+list        List registry
+show        Show registry
+update      Update registry
+
+Flags:
+-h, --help   Help <span class="k">for</span> registry
+
+Global Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory
+
+Use <span class="s2">&quot;hpvs registry [command] --help&quot;</span> <span class="k">for</span> more information about a command.
+</code></pre></div>
+
+</details>
+</div>
+<input id="__tabbed_1_10" name="__tabbed_1" type="radio" /><label for="__tabbed_1_10">repository</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>hpvs repository --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>list, register, delete, show, update Repository
+
+Usage:
+hpvs repository <span class="o">[</span>command<span class="o">]</span>
+
+Available Commands:
+delete      Delete repository
+list        List repository
+register    Register repository
+show        Show repository
+update      Update repository
+
+Flags:
+-h, --help   Help <span class="k">for</span> repository
+
+Global Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory
+
+Use <span class="s2">&quot;hpvs repository [command] --help&quot;</span> <span class="k">for</span> more information about a command.
+</code></pre></div>
+
+</details>
+</div>
+<input id="__tabbed_1_11" name="__tabbed_1" type="radio" /><label for="__tabbed_1_11">sb</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>hpvs sb --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>SecureBuild <span class="nb">command</span>
+
+Usage:
+hpvs sb <span class="o">[</span>command<span class="o">]</span>
+
+Available Commands:
+build       Securely build your image
+clean       Secure build clean. It will clean vs data eg - logs
+init        Initialize secure build configuration
+log         Get logs
+manifest    Get manifest file
+pubkey      Get manifest public key
+regfile     Get encrypted repository registration file
+status      Get secure build status
+update      Update secure build environment
+
+Flags:
+-h, --help   Help <span class="k">for</span> sb
+
+Global Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory
+
+Use <span class="s2">&quot;hpvs sb [command] --help&quot;</span> <span class="k">for</span> more information about a command.
+</code></pre></div>
+
+</details>
+</div>
+<input id="__tabbed_1_12" name="__tabbed_1" type="radio" /><label for="__tabbed_1_12">snapshot</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>hpvs snapshot --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>list, create, delete, restore Snapshot
+
+Usage:
+hpvs snapshot <span class="o">[</span>command<span class="o">]</span>
+
+Available Commands:
+create      Create snapshot
+delete      Delete snapshot
+list        List snapshots
+restore     Restore snapshot
+
+Flags:
+-h, --help   Help <span class="k">for</span> snapshot
+
+Global Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory
+
+Use <span class="s2">&quot;hpvs snapshot [command] --help&quot;</span> <span class="k">for</span> more information about a command.
+</code></pre></div>
+
+</details>
+</div>
+<input id="__tabbed_1_13" name="__tabbed_1" type="radio" /><label for="__tabbed_1_13">version</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>hpvs version --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>Print hpvs version
+
+Usage:
+hpvs version <span class="o">[</span>flags<span class="o">]</span>
+
+Flags:
+-h, --help   Help <span class="k">for</span> version
+
+Global Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory
+</code></pre></div>
+
+</details>
+</div>
+<input id="__tabbed_1_14" name="__tabbed_1" type="radio" /><label for="__tabbed_1_14">vs</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>hpvs vs --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>crate, delete, list, log, restart, show, start, stop VS
+
+Usage:
+hpvs vs <span class="o">[</span>command<span class="o">]</span>
+
+Available Commands:
+create      Create virtual server
+delete      Delete virtual server
+list        List virtual servers
+log         Get virtual server log
+restart     Restart virtual server
+show        Show virtual server
+start       Start virtual server
+stop        Stop virtual server
+update      Update virtual server
+
+Flags:
+-h, --help   Help <span class="k">for</span> vs
+
+Global Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory
+
+Use <span class="s2">&quot;hpvs vs [command] --help&quot;</span> <span class="k">for</span> more information about a command.
+</code></pre></div>
+
+</details>
+</div>
+</div>
+</li>
+<li>
+<p>You can get even dive into the <code>Available Commands</code> of the above commands with another <code>--help</code> <img alt="😮" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f62e.svg" title=":open_mouth:" /></p>
+<div class="highlight"><pre><span></span><code>hpvs sb build --help
+</code></pre></div>
+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>Securely build your image
+
+Usage:
+hpvs sb build <span class="o">[</span>flags<span class="o">]</span>
+
+Flags:
+    --config string   Config file path
+-h, --help            Help <span class="k">for</span> build
+    --timeout int     Build timeout in minutes <span class="o">(</span>default <span class="m">10</span><span class="o">)</span>
+
+Global Flags:
+    --debug                   If --debug is passed, it will <span class="nb">enable</span> debug logs
+    --host string             Host LPAR name
+    --log-output-dir string   Set log output directory
+</code></pre></div>
+
+</details>
+</li>
+<li>
+<p>For further exploration of the Hyper Protect Virtual Servers CLI <a href="https://www.ibm.com/support/knowledgecenter/en/SSHPMH_1.2.x/topics/cmd_hpvs.html" target_blank="target_blank">see the Knowledge Center</a></p>
+</li>
+</ol>
 <h2 id="add-docker-registry-to-use-for-secure-build">Add Docker registry to use for secure build<a class="headerlink" href="#add-docker-registry-to-use-for-secure-build" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -680,12 +1153,12 @@
 </li>
 <li>
 <p>Set your <code>DOCKER_USERNAME</code> to the username for your account on <a href="https://hub.docker.com/" target="_blank">Docker Hub</a></p>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Command Syntax</label><div class="tabbed-content">
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Command Syntax</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">DOCKER_USERNAME</span><span class="o">=</span><span class="s2">&quot;my_username&quot;</span>
 </code></pre></div>
 
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Example Command</label><div class="tabbed-content">
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Example Command</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">DOCKER_USERNAME</span><span class="o">=</span><span class="s2">&quot;gmoney23&quot;</span>
 </code></pre></div>
 
@@ -704,12 +1177,12 @@
 </li>
 <li>
 <p>Set your <code>DOCKER_PASSWORD</code> the token you created for this lab on <a href="https://hub.docker.com/" target="_blank">Docker Hub</a>.</p>
-<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Command Syntax</label><div class="tabbed-content">
+<div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Command Syntax</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">DOCKER_PASSWORD</span><span class="o">=</span><span class="s2">&quot;my_docker_token&quot;</span>
 </code></pre></div>
 
 </div>
-<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Example Command</label><div class="tabbed-content">
+<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Example Command</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">DOCKER_PASSWORD</span><span class="o">=</span><span class="s2">&quot;123456789&quot;</span>
 </code></pre></div>
 
@@ -741,12 +1214,12 @@ Removing login credentials <span class="k">for</span> https://index.docker.io/v1
 </li>
 <li>
 <p>Set your <code>REGISTRY_NAME</code> to a Docker registry placeholder name of your choosing.</p>
-<div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Command Syntax</label><div class="tabbed-content">
+<div class="tabbed-set" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">Command Syntax</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">REGISTRY_NAME</span><span class="o">=</span><span class="s2">&quot;my_registry&quot;</span>
 </code></pre></div>
 
 </div>
-<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Example Command</label><div class="tabbed-content">
+<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">Example Command</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">REGISTRY_NAME</span><span class="o">=</span><span class="s2">&quot;g_docker_hub&quot;</span>
 </code></pre></div>
 
