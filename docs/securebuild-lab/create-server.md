@@ -136,7 +136,7 @@ hpvs quotagroup create --name "sb_user${HPVS_NUMBER}" --size=40GB
 
 ``` bash
 hpvs vs create --name sbserver_${HPVS_NUMBER} --repo SecureDockerBuild \
---tag 1.2.1-release-9b63b43 --cpu 2 --ram 2048 \
+--tag 1.2.1.1-release-bf10b8e --cpu 2 --ram 2048 \
 --quotagroup "{quotagroup = sb_user${HPVS_NUMBER}, mountid = new, mount = /newroot, filesystem = ext4, size = 10GB}" \
 --quotagroup "{quotagroup = sb_user${HPVS_NUMBER}, mountid = data, mount = /data, filesystem = ext4, size = 2GB}" \
 --quotagroup "{quotagroup = sb_user${HPVS_NUMBER}, mountid = docker, mount = /docker, filesystem = ext4, size = 16GB}" \
