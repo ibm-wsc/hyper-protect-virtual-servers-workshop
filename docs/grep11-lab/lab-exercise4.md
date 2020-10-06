@@ -109,4 +109,4 @@ In this exercise, the following use case will be demonstrated- securely transmit
     We welome your suggestions for improvements or enhancements to the lab.
 
     Please do not forget to take your survey for the Webinar and your survey about your Workshop Manager/SkyTap experience.
-    Here is the link for the Workshop Manager/SkyTap survey: [Workshop Manager survey](https://www.surveygizmo.com/s3/5541805/Workshop-Manager-Survey?ws=https://ibm.biz/BdqJCG){target=_blank}
+    Here is the link for the Workshop Manager/SkyTap survey: [Workshop Manager survey](https://www.surveygizmo.com/s3/5541805/Workshop-Manager-Survey?ws=https://ibm.biz/Bdq3TL){target=_blank}
