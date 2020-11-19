@@ -777,7 +777,7 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 </details>
 <h2 id="create-securebuild-server">Create Securebuild server<a class="headerlink" href="#create-securebuild-server" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>hpvs vs create --name sbserver_<span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span> --repo SecureDockerBuild <span class="se">\</span>
---tag <span class="m">1</span>.2.1.1-release-bf10b8e --cpu <span class="m">2</span> --ram <span class="m">2048</span> <span class="se">\</span>
+--tag <span class="m">1</span>.2.2.1-release-4dbd783 --cpu <span class="m">2</span> --ram <span class="m">2048</span> <span class="se">\</span>
 --quotagroup <span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = new, mount = /newroot, filesystem = ext4, size = 10GB}&quot;</span> <span class="se">\</span>
 --quotagroup <span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = data, mount = /data, filesystem = ext4, size = 2GB}&quot;</span> <span class="se">\</span>
 --quotagroup <span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = docker, mount = /docker, filesystem = ext4, size = 16GB}&quot;</span> <span class="se">\</span>
