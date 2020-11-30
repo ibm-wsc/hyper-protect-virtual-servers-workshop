@@ -3,16 +3,7 @@ repo_url: https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop
 edit_uri: edit/master/docs
 nav:
     - Home: index.md
-    - Prerequisites: prerequisites.md
     - Lab Assignments: assignment.md
-    - Secure Image Build Lab:
-      - Hyper Protect Virtual Servers (HPVS) Lab Process Overview: securebuild-lab/overview.md
-      - Configuring your Environment: securebuild-lab/securebuild-setup.md
-      - Create your HPVS Secure Build Server: securebuild-lab/create-server.md
-      - Securely Build your Application: securebuild-lab/build.md
-      - Deploy your Securely Built Application as a Hyper Protect Virtual Server: securebuild-lab/deploy-app.md
-      - Welcome to the Secure Bitcoin Wallet on IBM LinuxONE: securebuild-lab/bitcoin_wallet.md
-      - Clean up your Environment: securebuild-lab/cleanup.md
     - GREP11 Lab:
       - Lab overview: grep11-lab/overview.md
       - How to set up a GREP11 server: grep11-lab/grep11-setup.md
@@ -24,6 +15,15 @@ nav:
         - Exercise 2 (Encryption and Decryption): grep11-lab/lab-exercise2.md
         - Exercise 3 (Sign and Verify): grep11-lab/lab-exercise3.md
         - Exercise 4 (Wrap and Unwrap Key): grep11-lab/lab-exercise4.md
+    - Secure Image Build Lab:
+      - Prerequisites: prerequisites.md
+      - Hyper Protect Virtual Servers (HPVS) Lab Process Overview: securebuild-lab/overview.md
+      - Configuring your Environment: securebuild-lab/securebuild-setup.md
+      - Create your HPVS Secure Build Server: securebuild-lab/create-server.md
+      - Securely Build your Application: securebuild-lab/build.md
+      - Deploy your Securely Built Application as a Hyper Protect Virtual Server: securebuild-lab/deploy-app.md
+      - Welcome to the Secure Bitcoin Wallet on IBM LinuxONE: securebuild-lab/bitcoin_wallet.md
+      - Clean up your Environment: securebuild-lab/cleanup.md
     - Glossary of terms: glossary.md
     - Other resources: resources.md
     - Propose a change: proposechange.md
