@@ -10,7 +10,7 @@
       
       
       <link rel="shortcut icon" href="../../images/hpvs-logo.svg">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.4">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.6">
     
     
       
@@ -18,10 +18,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.358818c7.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6910b76c.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.f0267088.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.196e0c26.min.css">
         
       
     
@@ -107,7 +107,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -218,8 +218,7 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
-    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     <label class="md-nav__link" for="nav-3">
       GREP11 Lab
       <span class="md-nav__icon md-icon"></span>
@@ -283,6 +282,13 @@
         <li class="md-nav__item">
   <a href="#hyper-protect-virtual-servers-lpar-setup" class="md-nav__link">
     Hyper Protect Virtual Servers LPAR setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#note-all-commands-on-this-page-are-for-reference-only-and-not-to-be-entered-by-you-in-the-lab" class="md-nav__link">
+    NOTE: All commands on this page are for reference only and not to be entered by you in the lab
   </a>
   
 </li>
@@ -394,8 +400,7 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
-    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
     <label class="md-nav__link" for="nav-3-5">
       Run the Lab exercises
       <span class="md-nav__icon md-icon"></span>
@@ -485,8 +490,7 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
-    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
     <label class="md-nav__link" for="nav-4">
       Secure Image Build Lab
       <span class="md-nav__icon md-icon"></span>
@@ -667,6 +671,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#note-all-commands-on-this-page-are-for-reference-only-and-not-to-be-entered-by-you-in-the-lab" class="md-nav__link">
+    NOTE: All commands on this page are for reference only and not to be entered by you in the lab
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#overview-of-grep11-server-setup" class="md-nav__link">
     Overview of GREP11 server setup
   </a>
@@ -754,6 +765,7 @@
                 
                 <h1 id="how-to-set-up-a-grep11-server">How to set up a GREP11 server<a class="headerlink" href="#how-to-set-up-a-grep11-server" title="Permanent link">&para;</a></h1>
 <h2 id="hyper-protect-virtual-servers-lpar-setup">Hyper Protect Virtual Servers LPAR setup<a class="headerlink" href="#hyper-protect-virtual-servers-lpar-setup" title="Permanent link">&para;</a></h2>
+<h2 id="note-all-commands-on-this-page-are-for-reference-only-and-not-to-be-entered-by-you-in-the-lab">NOTE: All commands on this page are for reference only and not to be entered by you in the lab<a class="headerlink" href="#note-all-commands-on-this-page-are-for-reference-only-and-not-to-be-entered-by-you-in-the-lab" title="Permanent link">&para;</a></h2>
 <p>Hyper Protect Virtual Servers runs in an LPAR that is defined in Secure Service Container (SSC) mode. Defining an LPAR is a normal task for an IBM Z or LinuxONE systems administrator, typically performed from the Hardware Management Console (HMC).</p>
 <p>The systems administrator must<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> dedicate one or more domains of one or more Crypto Express cards to the Hyper Protect Virtual Servers LPAR in order to use the GREP11 server. These Crypto Express cards must be defined in EP11 mode to your IBM Z or LinuxONE server in order to be used by a GREP11 server. 
 These tasks are documented in the Hyper Protect Virtual Servers documentation, or in IBM publications referenced in the Hyper Protect Virtual Servers documentation. </p>
@@ -792,15 +804,27 @@ These tasks are documented in the Hyper Protect Virtual Servers documentation, o
 <p>Whenever you browse the web to a site with <em>https</em>, the server presents its certificate to your browser. This is known as <em>server-side</em> or <em>one-way</em> TLS authentication.  Most websites do not ask you to present a certificate. The website makes itself available to anybody who browses to it. </p>
 <p>With mutual TLS authentication, the client does need to present a certificate.  The server will only establish a session with a client who presents a certificate that is trusted by the server. This prevents our GREP11 server from being used by unauthorized clients.</p>
 <p>The following command was used to create the RSA private key which will be used by our soon to be created CA</p>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p><strong>The command shown below is for reference only</strong>- it has already been performed by the lab instructors in order to set up the lab environment for you.</p>
+</div>
 <div class="highlight"><pre><span></span><code>openssl genrsa -out ca.key <span class="m">2048</span>
 </code></pre></div>
 <p>This created a file named <code>ca.key</code> which is an RSA private key.  </p>
 <p>In most cases (and mandatory from PKCS #11 version 2.4 onwards) the RSA private key contains enough information to reconstitute the public key. It is for this reason that the private key is used as input to the following command, which will create a Certification Authority X.509 certificate. X.509 certificates contain information identifying the certificate holder, the attributes of the certificate, including what the certificate can be used for, and, importantly, the public key.  </p>
 <p>We used this command to create this certificate.</p>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p><strong>The command shown below is for reference only</strong>- it has already been performed by the lab instructors in order to set up the lab environment for you.</p>
+</div>
 <div class="highlight"><pre><span></span><code>openssl req -new -x509 -key ca.key -out ca.pem
 </code></pre></div>
 <p>The <code>ca.key</code> file was input to this command, and the <code>ca.pem</code> file is the output of this command.  This <code>ca.pem</code> file is our "homegrown" certification authority root certificate.  </p>
 <p>I will use the Linux <code>cat</code> command to get a raw listing of the root certificate we just created:</p>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p><strong>The command shown below is for reference only</strong>- it has already been performed by the lab instructors in order to set up the lab environment for you.</p>
+</div>
 <div class="highlight"><pre><span></span><code>cat ca.pem
 </code></pre></div>
 <details class="example"><summary>Example output</summary><div class="highlight"><pre><span></span><code>-----BEGIN CERTIFICATE-----
@@ -827,6 +851,10 @@ OCqkCywplgKoAyh8SGTPIkS4xhw=
 </code></pre></div>
 </details>
 <p>The first and last lines are meant to assure you that this is a certificate, but the lines in between are less insightful, as it is <a href="https://en.wikipedia.org/wiki/Base64" target="_blank">base64-encoded</a> binary data. Fortunately the <em>openssl</em> utility comes to our rescue and allows us to print the certificate in a form that a human can hope to understand:</p>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p><strong>The command shown below is for reference only</strong>- it has already been performed by the lab instructors in order to set up the lab environment for you.</p>
+</div>
 <div class="highlight"><pre><span></span><code>openssl x509 -in ca.pem -text
 </code></pre></div>
 <details class="example"><summary>Example output</summary><div class="highlight"><pre><span></span><code>Certificate:
@@ -916,6 +944,10 @@ L8hGSs4CEpCvdLmBNAzdtw/8iEnWN9Alck3htWmgebQ4AkfBMM9rFBLo2Lnixmhg
 <h2 id="create-a-grep11-server-x509-certificate-for-tls-authentication">Create a GREP11 server X.509 certificate for TLS authentication<a class="headerlink" href="#create-a-grep11-server-x509-certificate-for-tls-authentication" title="Permanent link">&para;</a></h2>
 <p>Once we created a "homegrown" certification authority, we next created an X.509 certificate for our GREP11 server. This certificate was issued by our certification authority.</p>
 <p>The first step was to create another RSA private key that our GREP11 server will use:</p>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p><strong>The command shown below is for reference only</strong>- it has already been performed by the lab instructors in order to set up the lab environment for you.</p>
+</div>
 <div class="highlight"><pre><span></span><code>openssl genrsa -out server80-9876-19876-key.pem <span class="m">2048</span>
 </code></pre></div>
 <div class="admonition note">
@@ -923,12 +955,24 @@ L8hGSs4CEpCvdLmBNAzdtw/8iEnWN9Alck3htWmgebQ4AkfBMM9rFBLo2Lnixmhg
 <p>The value of the <code>-out</code> argument, <code>server80-9876-19876-key.pem</code> can be whatever you want it to be. I named it what I did for a reason.  the <em>80</em> in <em>server80</em> is for the last octet of my Hyper Protect Virtual Servers LPAR's IP adresss, 192.168.22.80, and I intend to use this certificate for two GREP11 servers, one listening on port 9876 on one of the LPAR's Crypto Express 7S domains, and the second server will listen on port 19876 on the LPAR's second Crypto Express 7S domain.</p>
 </div>
 <p>Then, this private key was used as input to <em>openssl</em> in order to create a <em>certificate signing request</em>:</p>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p><strong>The command shown below is for reference only</strong>- it has already been performed by the lab instructors in order to set up the lab environment for you.</p>
+</div>
 <div class="highlight"><pre><span></span><code>openssl req -new -key server80-9876-19876-key.pem -out server80-9876-19876.csr
 </code></pre></div>
 <p>The certificate signing request will be passed to our certification authority which will use the information to create an X.509 certificate.  We used <em>openssl</em> for this, too:</p>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p><strong>The command shown below is for reference only</strong>- it has already been performed by the lab instructors in order to set up the lab environment for you.</p>
+</div>
 <div class="highlight"><pre><span></span><code>openssl x509 -sha256 -req -in server80-9876-19876.csr -CA ca.pem -CAkey ca.key -set_serial <span class="m">8086</span> -extfile openssl.cnf -extensions server -days <span class="m">365</span> -outform PEM -out server80-9876-19876.pem
 </code></pre></div>
 <p>The file name of the certificate that was created by the preceding command is the value of the <code>-out</code> argument, <code>server80-9876-19876.pem</code>.  <code>openssl</code> allows us to list this certificate in human-friendly form:</p>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p><strong>The command shown below is for reference only</strong>- it has already been performed by the lab instructors in order to set up the lab environment for you.</p>
+</div>
 <div class="highlight"><pre><span></span><code>openssl x509 -in server80-9876-19876.pem -noout -text
 </code></pre></div>
 <details class="example"><summary>Example output</summary><div class="highlight"><pre><span></span><code>Certificate:
@@ -1000,13 +1044,29 @@ L8hGSs4CEpCvdLmBNAzdtw/8iEnWN9Alck3htWmgebQ4AkfBMM9rFBLo2Lnixmhg
 </details>
 <h2 id="create-an-x509-certificate-for-your-client-application-for-tls-authentication">Create an X.509 certificate for your client application for TLS authentication<a class="headerlink" href="#create-an-x509-certificate-for-your-client-application-for-tls-authentication" title="Permanent link">&para;</a></h2>
 <p>The client applications need a certificate that is issued by the same certification authority that the GREP11 server uses. The process is similar- create a private key, pass that as input for the creation of a certificte signing request, and then pass that to the certification authority in order to receive a certificate.  We used these commands:</p>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p><strong>The command shown below is for reference only</strong>- it has already been performed by the lab instructors in order to set up the lab environment for you.</p>
+</div>
 <div class="highlight"><pre><span></span><code>openssl genrsa -out client-key.pem <span class="m">2048</span>
 </code></pre></div>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p><strong>The command shown below is for reference only</strong>- it has already been performed by the lab instructors in order to set up the lab environment for you.</p>
+</div>
 <div class="highlight"><pre><span></span><code>openssl req -new -key client-key.pem -out client.csr
 </code></pre></div>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p><strong>The command shown below is for reference only</strong>- it has already been performed by the lab instructors in order to set up the lab environment for you.</p>
+</div>
 <div class="highlight"><pre><span></span><code>openssl x509 -req -days <span class="m">1000</span> -in client.csr -CA ca.pem -CAcreateserial -CAkey ca.key -out client.pem
 </code></pre></div>
 <p>Here is a listing of the client certificate that you will be using in the lab. It will be configured properly for you so that your client program can present it to the GREP11 server:</p>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p><strong>The command shown below is for reference only</strong>- it has already been performed by the lab instructors in order to set up the lab environment for you.</p>
+</div>
 <div class="highlight"><pre><span></span><code>openssl x509 -in client.pem -noout -text
 </code></pre></div>
 <details class="example"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>Certificate:
@@ -1067,6 +1127,10 @@ L8hGSs4CEpCvdLmBNAzdtw/8iEnWN9Alck3htWmgebQ4AkfBMM9rFBLo2Lnixmhg
 </div>
 <h2 id="list-crypto-domains-on-your-hyper-protect-virtual-servers-lpar">List Crypto Domains on your Hyper Protect Virtual Servers LPAR<a class="headerlink" href="#list-crypto-domains-on-your-hyper-protect-virtual-servers-lpar" title="Permanent link">&para;</a></h2>
 <p>You can list your available domains with the Hyper Protect Virtual Server CLI:</p>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p><strong>The command shown below is for reference only</strong>- it has already been performed by the lab instructors in order to set up the lab environment for you.</p>
+</div>
 <div class="highlight"><pre><span></span><code>hpvs crypto list
 </code></pre></div>
 <details class="example" open="open"><summary>Example output</summary><div class="highlight"><pre><span></span><code> hpvs crypto list
@@ -1147,6 +1211,10 @@ ports:
 </details>
 <h2 id="start-the-grep11-server">Start the GREP11 server<a class="headerlink" href="#start-the-grep11-server" title="Permanent link">&para;</a></h2>
 <p>If you looked carefully at the JSON file and the YAML file in the previous section, you may have noticed that the YAML file contains more information than the JSON file contains.  As a result, the syntax is simpler for the command that uses the YAML file.  The command that uses the JSON file uses command line arguments to provide some of the information that the YAML file contained.  Compare the two methods:</p>
+<div class="admonition reminder">
+<p class="admonition-title">Reminder</p>
+<p><strong>The commands shown below are for reference only</strong>- they have already been performed by the lab instructors in order to set up the lab environment for you.</p>
+</div>
 <details class="example" open="open"><summary>Command to start the GREP11 server with the YAML file</summary><div class="highlight"><pre><span></span><code>hpvs deploy --config $HOME/hpvs/config/grep11/vs_grep11_80-9876.yml
 </code></pre></div>
 </details>
@@ -1257,8 +1325,8 @@ ports:
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.7e0ee788.min.js"></script>
-      <script src="../../assets/javascripts/bundle.b3a72adc.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/vendor.fd16492e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.7836ba4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
