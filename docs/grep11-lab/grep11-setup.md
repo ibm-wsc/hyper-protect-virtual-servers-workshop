@@ -2,6 +2,8 @@
 
 ## Hyper Protect Virtual Servers LPAR setup
 
+## NOTE: All commands on this page are for reference only and not to be entered by you in the lab
+
 Hyper Protect Virtual Servers runs in an LPAR that is defined in Secure Service Container (SSC) mode. Defining an LPAR is a normal task for an IBM Z or LinuxONE systems administrator, typically performed from the Hardware Management Console (HMC).
 
 The systems administrator must[^1] dedicate one or more domains of one or more Crypto Express cards to the Hyper Protect Virtual Servers LPAR in order to use the GREP11 server. These Crypto Express cards must be defined in EP11 mode to your IBM Z or LinuxONE server in order to be used by a GREP11 server. 
@@ -44,6 +46,9 @@ With mutual TLS authentication, the client does need to present a certificate.  
 
 The following command was used to create the RSA private key which will be used by our soon to be created CA
 
+!!! Reminder
+    **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
+
 ``` bash
 openssl genrsa -out ca.key 2048
 ```
@@ -54,6 +59,9 @@ In most cases (and mandatory from PKCS #11 version 2.4 onwards) the RSA private 
 
 We used this command to create this certificate.
 
+!!! Reminder
+    **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
+
 ``` bash
 openssl req -new -x509 -key ca.key -out ca.pem
 ```
@@ -61,6 +69,9 @@ openssl req -new -x509 -key ca.key -out ca.pem
 The `ca.key` file was input to this command, and the `ca.pem` file is the output of this command.  This `ca.pem` file is our "homegrown" certification authority root certificate.  
 
 I will use the Linux `cat` command to get a raw listing of the root certificate we just created:
+
+!!! Reminder
+    **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
 cat ca.pem
@@ -92,6 +103,9 @@ cat ca.pem
     -----END CERTIFICATE-----
     ```
 The first and last lines are meant to assure you that this is a certificate, but the lines in between are less insightful, as it is [base64-encoded](https://en.wikipedia.org/wiki/Base64){target=_blank} binary data. Fortunately the *openssl* utility comes to our rescue and allows us to print the certificate in a form that a human can hope to understand:
+
+!!! Reminder
+    **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
 openssl x509 -in ca.pem -text
@@ -191,6 +205,9 @@ Once we created a "homegrown" certification authority, we next created an X.509 
 
 The first step was to create another RSA private key that our GREP11 server will use:
 
+!!! Reminder
+    **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
+
 ``` bash
 openssl genrsa -out server80-9876-19876-key.pem 2048
 ```
@@ -200,17 +217,26 @@ openssl genrsa -out server80-9876-19876-key.pem 2048
 
 Then, this private key was used as input to *openssl* in order to create a *certificate signing request*:
 
+!!! Reminder
+    **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
+
 ``` bash
 openssl req -new -key server80-9876-19876-key.pem -out server80-9876-19876.csr
 ```
 
 The certificate signing request will be passed to our certification authority which will use the information to create an X.509 certificate.  We used *openssl* for this, too:
 
+!!! Reminder
+    **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
+
 ```bash
 openssl x509 -sha256 -req -in server80-9876-19876.csr -CA ca.pem -CAkey ca.key -set_serial 8086 -extfile openssl.cnf -extensions server -days 365 -outform PEM -out server80-9876-19876.pem
 ```
 
 The file name of the certificate that was created by the preceding command is the value of the `-out` argument, `server80-9876-19876.pem`.  `openssl` allows us to list this certificate in human-friendly form:
+
+!!! Reminder
+    **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
 openssl x509 -in server80-9876-19876.pem -noout -text
@@ -290,19 +316,31 @@ openssl x509 -in server80-9876-19876.pem -noout -text
 
 The client applications need a certificate that is issued by the same certification authority that the GREP11 server uses. The process is similar- create a private key, pass that as input for the creation of a certificte signing request, and then pass that to the certification authority in order to receive a certificate.  We used these commands:
 
+!!! Reminder
+    **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
+
 ``` bash
 openssl genrsa -out client-key.pem 2048
 ```
 
+!!! Reminder
+    **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
+
 ``` bash
 openssl req -new -key client-key.pem -out client.csr
 ```
+
+!!! Reminder
+    **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
 openssl x509 -req -days 1000 -in client.csr -CA ca.pem -CAcreateserial -CAkey ca.key -out client.pem
 ```
 
 Here is a listing of the client certificate that you will be using in the lab. It will be configured properly for you so that your client program can present it to the GREP11 server:
+
+!!! Reminder
+    **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
 openssl x509 -in client.pem -noout -text
@@ -369,6 +407,9 @@ openssl x509 -in client.pem -noout -text
 ## List Crypto Domains on your Hyper Protect Virtual Servers LPAR
 
 You can list your available domains with the Hyper Protect Virtual Server CLI:
+
+!!! Reminder
+    **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
 hpvs crypto list
@@ -469,6 +510,9 @@ This is a JSON file for a GREP11 server that will listen for client connections 
 ## Start the GREP11 server
 
 If you looked carefully at the JSON file and the YAML file in the previous section, you may have noticed that the YAML file contains more information than the JSON file contains.  As a result, the syntax is simpler for the command that uses the YAML file.  The command that uses the JSON file uses command line arguments to provide some of the information that the YAML file contained.  Compare the two methods:
+
+!!! Reminder
+    **The commands shown below are for reference only**- they have already been performed by the lab instructors in order to set up the lab environment for you.
 
 ???+ example "Command to start the GREP11 server with the YAML file"
 
