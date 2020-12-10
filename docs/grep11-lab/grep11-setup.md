@@ -450,7 +450,7 @@ This is the YAML file for a GREP11 server that will listen for client connection
 
 ??? example "GREP11 server YAML configuration file"
 
-    ``` bash hl_lines="16 19 38"
+    ``` bash hl_lines="16 19 40"
     version: v1 
     #
     # use this file with the 'hpvs deploy' command, e.g.,
