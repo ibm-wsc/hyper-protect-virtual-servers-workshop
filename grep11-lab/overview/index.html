@@ -10,7 +10,7 @@
       
       
       <link rel="shortcut icon" href="../../images/hpvs-logo.svg">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.4">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.6">
     
     
       
@@ -18,10 +18,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.358818c7.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6910b76c.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.f0267088.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.196e0c26.min.css">
         
       
     
@@ -107,7 +107,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -218,8 +218,7 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
-    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     <label class="md-nav__link" for="nav-3">
       GREP11 Lab
       <span class="md-nav__icon md-icon"></span>
@@ -346,8 +345,7 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
-    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
     <label class="md-nav__link" for="nav-3-5">
       Run the Lab exercises
       <span class="md-nav__icon md-icon"></span>
@@ -437,8 +435,7 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
-    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
     <label class="md-nav__link" for="nav-4">
       Secure Image Build Lab
       <span class="md-nav__icon md-icon"></span>
@@ -675,8 +672,8 @@
 </ol>
 <h2 id="lab-environment">Lab Environment<a class="headerlink" href="#lab-environment" title="Permanent link">&para;</a></h2>
 <p>You will be working with the Hyper Protect Virtual Servers command line interface (CLI) running on an x86_64 virtual machine running the Ubuntu 18.04.4 Linux distribution. You will also be using this virtual machine to run programs, written in the Go programming language, that will communicate with the GREP11 server. This virtual machine is provisioned on SkyTap in the IBM Cloud, and you will access it through your web browser. <strong>Your instructor will provide you the information needed to access your virtual machine under separate cover.</strong></p>
-<p>The GREP11 server runs as a Docker container running in a Hyper Protect Virtual Servers LPAR that runs as a Secure Service Container (SSC) LPAR on an IBM z15 server in the IBM Washington Systems Center in Herndon, Virginia, USA.</p>
-<p>The Hyper Protect Virtual Servers LPAR is in a private network at the IBM Washington Systems Center and your Ubuntu virtual machine communicates with it through a VPN connection. <strong>Your instructor will provide you the information needed to establish a VPN connection under separate cover.</strong></p>
+<p>The GREP11 server runs as a Docker container running in Hyper Protect Virtual Servers.  Hyper Protect Virtual Servers runs in a Secure Service Container (SSC) LPAR on an IBM z15 server located in Herndon, Virginia, USA, and managed by the <em>Advanced Technology Group - IBM Z</em> team.</p>
+<p>The Hyper Protect Virtual Servers LPAR is in an Advanced Technology Group private network and your Ubuntu virtual machine communicates with it through a VPN connection. <strong>Your instructor will provide you the information needed to establish a VPN connection under separate cover.</strong></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The client program code used in this lab could also be run on the s390x architecture.  IBM provides sample client code, which connects to a GREP11 Server, in two programming lanugages - <a href="https://golang.org" target="_blank">Go</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">JavaScript</a>, both of which are supported on s390x.
@@ -797,8 +794,8 @@ This lab will utilize client code written in Go.</p>
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.7e0ee788.min.js"></script>
-      <script src="../../assets/javascripts/bundle.b3a72adc.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/vendor.fd16492e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.7836ba4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
