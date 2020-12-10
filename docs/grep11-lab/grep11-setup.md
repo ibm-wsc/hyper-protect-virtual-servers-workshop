@@ -9,7 +9,7 @@ Hyper Protect Virtual Servers runs in an LPAR that is defined in Secure Service 
 The systems administrator must[^1] dedicate one or more domains of one or more Crypto Express cards to the Hyper Protect Virtual Servers LPAR in order to use the GREP11 server. These Crypto Express cards must be defined in EP11 mode to your IBM Z or LinuxONE server in order to be used by a GREP11 server. 
 These tasks are documented in the Hyper Protect Virtual Servers documentation, or in IBM publications referenced in the Hyper Protect Virtual Servers documentation. 
 
-The version of Hyper Protect Virtual Servers that we will be using in this lab is version 1.2.1, which became generally available on July 17, 2020.
+The version of Hyper Protect Virtual Servers that we will be using in this lab is version 1.2.2.1, which was released on November 6, 2020.
 
 A GREP11 server communicates with one and only one Crypto Express domain, and vice versa.  You can run multiple GREP11 servers if you have multiple domains configured to your Hyper Protect Virtual Servers LPAR.
 
@@ -50,10 +50,10 @@ The following command was used to create the RSA private key which will be used 
     **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
-openssl genrsa -out ca.key 2048
+openssl genrsa -out atgz-hpvs-ca.key 2048
 ```
 
-This created a file named `ca.key` which is an RSA private key.  
+This created a file named `atgz-hpvs-ca.key` which is an RSA private key.  
 
 In most cases (and mandatory from PKCS #11 version 2.4 onwards) the RSA private key contains enough information to reconstitute the public key. It is for this reason that the private key is used as input to the following command, which will create a Certification Authority X.509 certificate. X.509 certificates contain information identifying the certificate holder, the attributes of the certificate, including what the certificate can be used for, and, importantly, the public key.  
 
@@ -63,10 +63,10 @@ We used this command to create this certificate.
     **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
-openssl req -new -x509 -key ca.key -out ca.pem
+openssl req -new -x509 -key atgz-hpvs-ca.key -out atgz-hpvs-ca.pem
 ```
 
-The `ca.key` file was input to this command, and the `ca.pem` file is the output of this command.  This `ca.pem` file is our "homegrown" certification authority root certificate.  
+The `atgz-hpvs-ca.key` file was input to this command, and the `atgz-hpvs-ca.pem` file is the output of this command.  This `atgz-hpvs-ca.pem` file is our "homegrown" certification authority root certificate.  
 
 I will use the Linux `cat` command to get a raw listing of the root certificate we just created:
 
@@ -74,32 +74,36 @@ I will use the Linux `cat` command to get a raw listing of the root certificate 
     **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
-cat ca.pem
+cat atgz-hpvs-ca.pem
 ```
 
 ??? example "Example output"
 
     ```
     -----BEGIN CERTIFICATE-----
-    MIIDcDCCAlgCCQDrH6CQd+lq9DANBgkqhkiG9w0BAQsFADB6MQswCQYDVQQGEwJV
-    UzERMA8GA1UECAwIVmlyZ2luaWExEDAOBgNVBAcMB0hlcm5kb24xDDAKBgNVBAoM
-    A0lCTTEmMCQGA1UECwwdSUJNIFdhc2hpbmd0b24gU3lzdGVtcyBDZW50ZXIxEDAO
-    BgNVBAMMB3dzY2hwdnMwHhcNMjAwNzEyMTQ0MDUzWhcNMjEwODExMTQ0MDUzWjB6
-    MQswCQYDVQQGEwJVUzERMA8GA1UECAwIVmlyZ2luaWExEDAOBgNVBAcMB0hlcm5k
-    b24xDDAKBgNVBAoMA0lCTTEmMCQGA1UECwwdSUJNIFdhc2hpbmd0b24gU3lzdGVt
-    cyBDZW50ZXIxEDAOBgNVBAMMB3dzY2hwdnMwggEiMA0GCSqGSIb3DQEBAQUAA4IB
-    DwAwggEKAoIBAQDRxnTkDFqdSmgDGlsrKHljg9+Lbf8HLLwuopXzdLukCoGvlIAf
-    SzZPBsHd4JbMnYLqsxQzLDC1CGb7mz0wzk75wzy4yyhKXFqsEsSoZNMtA0HzWghZ
-    MVrebaBh27oiKHNBMwZWTHeW4GkiVQFjDwXr63VKv6R03I9CdxARyErfF6qLp++e
-    CoQz43BLVbaT9wCzRcqChg5BhnIwBuO9cghJLiWT9EalQ0mndr8YSwkWfhcOniqA
-    iB6mHRKRLh0SoEL1Zoqbf585SpysjkRRM8yjB4Ju4EnyiLxmTDjjuaJ8CUOuNz+m
-    PhJf4bax9sOO4IVI63jHpmSJUVR2yiUB0HYVAgMBAAEwDQYJKoZIhvcNAQELBQAD
-    ggEBAH2amw0xySsZj4NNo5QYVN209wUqRGSjsNCyIqO6j0k2Sastm1nxX8Yv7hNJ
-    WUqgKpHSLQVCOpgld6V7YZnBd+53Iq87iymbQ1oA5D5bjoQLzAtRHHku6Kf0p08D
-    NCXQOS197Z41hNmMYT1sqbgSv+z2aahCoQKD3Wdh0lXHL621UEMk3Qo5SqfZ+RCm
-    m69v5KpG7YT3irABSAkYi8z2dN/lzHVfgEUa7+Im4NEVVCQwBld/+hX/64pd2Op7
-    tyvWa0MXc0O//D5NLNVyzZJcnps2ru1P6IeBEEsdfwkVNEBqUXxK4i5eFBkar5Qx
-    OCqkCywplgKoAyh8SGTPIkS4xhw=
+    MIIEMzCCAxugAwIBAgIUallVg6GrWPfoiwwUcCBdB+f7kPQwDQYJKoZIhvcNAQEL
+    BQAwgagxCzAJBgNVBAYTAlVTMREwDwYDVQQIDAhWaXJnaW5pYTEQMA4GA1UEBwwH
+    SGVybmRvbjEMMAoGA1UECgwDSUJNMSowKAYDVQQLDCFBZHZhbmNlZCBUZWNobm9s
+    b2d5IEdyb3VwIC0gSUJNIFoxFjAUBgNVBAMMDUFURy1aIEhQVlMgQ0ExIjAgBgkq
+    hkiG9w0BCQEWE3NpbGxpbWFuQHVzLmlibS5jb20wHhcNMjAxMjEwMTkyODI4WhcN
+    MjIwMTA5MTkyODI4WjCBqDELMAkGA1UEBhMCVVMxETAPBgNVBAgMCFZpcmdpbmlh
+    MRAwDgYDVQQHDAdIZXJuZG9uMQwwCgYDVQQKDANJQk0xKjAoBgNVBAsMIUFkdmFu
+    Y2VkIFRlY2hub2xvZ3kgR3JvdXAgLSBJQk0gWjEWMBQGA1UEAwwNQVRHLVogSFBW
+    UyBDQTEiMCAGCSqGSIb3DQEJARYTc2lsbGltYW5AdXMuaWJtLmNvbTCCASIwDQYJ
+    KoZIhvcNAQEBBQADggEPADCCAQoCggEBAMAUfJAKBdbbCMn0N9DHvA4Chz/ihBBU
+    xsCaTAUmJpVzDjv49rYTXY9YcxQpNYKyexsKjDlCfr+9gNlus1tKU0CrZD63ZLiA
+    JCZZoomIZOoZQNquhj5f46/9x2d299FHxKY5z729hbHhHbjD+UkG60inyxS6Qm42
+    OaILx8bjrrcHyOzhwKn4zm3RsaEOWcgqJP8yQvH8Bm7UElmKLADI5Ngp/+WWvNFE
+    +QeXfYmKUSpLaJ0/4BD54Bbk780RSyOohvjv1O/JaLdHRXrJUYMSNNYQ3oK/7qRM
+    CjOBnuaFY9FSdaGNvY2vS5vM44TaCy5DyMZ1GLCrCb9y13TvEVA9jFMCAwEAAaNT
+    MFEwHQYDVR0OBBYEFN7BgpkfqiCTKIp/9JglwCDDgGJ5MB8GA1UdIwQYMBaAFN7B
+    gpkfqiCTKIp/9JglwCDDgGJ5MA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQEL
+    BQADggEBALFAM8/LQ9lkBAih7M6HrKR3efKh/Aj0UgRP6iYpprpW2H88Osw0lEnD
+    ZZ2CTKeaHMDFHBUHapprLM3B0UnE/hchMxb4xQKihls6MRk9w3ZlZdUseStLYbS5
+    LHkZWr2VnTjMg5n6QRaVEbJ/BE/65uzXAJ+3TukSRjeqnJUQlmOy+j3t6/hnuVhd
+    5t9FI3bbF5Qi4ZpwpBnaAH74MMu/fvh7MXjUcwxgHOIvnY204FoNB5koGc4S0OK+
+    sJ+dnL8L7J8Lq9mvi2+SmpU6lmWfAW09R5WsPomYIWKyTTplpt+4qJah87A4OSyJ
+    mgvWNcD4Irl+wTtS0FixMdiLA5Z2+n0=
     -----END CERTIFICATE-----
     ```
 The first and last lines are meant to assure you that this is a certificate, but the lines in between are less insightful, as it is [base64-encoded](https://en.wikipedia.org/wiki/Base64){target=_blank} binary data. Fortunately the *openssl* utility comes to our rescue and allows us to print the certificate in a form that a human can hope to understand:
@@ -108,7 +112,7 @@ The first and last lines are meant to assure you that this is a certificate, but
     **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
-openssl x509 -in ca.pem -text
+openssl x509 -in atgz-hpvs-ca.pem -text
 ```
 
 ??? example "Example output"
@@ -118,82 +122,84 @@ openssl x509 -in ca.pem -text
         Data:
             Version: 3 (0x2)
             Serial Number:
-                42:85:e5:33:4e:1a:e2:d4:9e:ed:8f:1d:27:2f:f1:10:29:ed:31:67
+                6a:59:55:83:a1:ab:58:f7:e8:8b:0c:14:70:20:5d:07:e7:fb:90:f4
             Signature Algorithm: sha256WithRSAEncryption
-            Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = IBM Washington Systems Center, CN = wschpvs
+            Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Advanced Technology Group - IBM Z, CN = ATG-Z HPVS CA, emailAddress = silliman@us.ibm.com
             Validity
-                Not Before: Jul 23 21:36:44 2020 GMT
-                Not After : Aug 22 21:36:44 2021 GMT
-            Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = IBM Washington Systems Center, CN = wschpvs
+                Not Before: Dec 10 19:28:28 2020 GMT
+                Not After : Jan  9 19:28:28 2022 GMT
+            Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Advanced Technology Group - IBM Z, CN = ATG-Z HPVS CA, emailAddress = silliman@us.ibm.com
             Subject Public Key Info:
                 Public Key Algorithm: rsaEncryption
                     RSA Public-Key: (2048 bit)
                     Modulus:
-                        00:dd:b6:fa:09:ab:21:6a:6c:fa:0b:e0:49:f9:f5:
-                        b6:fa:f8:4f:26:10:cf:ef:11:2a:16:c3:3a:cb:3f:
-                        9f:da:d1:62:2b:2e:e4:5f:c3:b6:ab:29:29:54:b7:
-                        9e:97:4e:59:e3:d1:b2:51:27:f9:02:2f:dd:33:95:
-                        a9:9d:14:63:c1:ea:6e:04:f4:5a:d2:51:d9:e7:ca:
-                        31:01:5a:86:09:94:9b:0d:1e:03:3b:cb:ae:51:df:
-                        18:ec:ec:86:a2:8f:34:6f:bd:80:c5:a6:af:be:c7:
-                        0b:d1:1b:dd:e0:9c:7d:a3:4b:00:65:a3:a5:fe:1c:
-                        bc:8b:fa:02:9d:7a:0d:7e:52:d9:6d:44:1d:5f:d7:
-                        2f:93:6b:f6:b8:e6:66:05:43:55:8d:9c:d6:ec:96:
-                        18:0b:71:c8:c4:ad:fe:08:18:4e:e6:33:e9:5d:c9:
-                        c7:83:0b:83:2f:c4:85:7d:40:1f:6f:76:41:9f:c9:
-                        50:15:7a:cc:57:94:df:ec:b5:5e:08:1f:95:09:ab:
-                        d6:b3:68:bb:df:39:6f:f1:ba:f3:e2:90:97:27:55:
-                        15:5a:03:82:48:f6:ca:02:f9:90:55:f4:11:cd:31:
-                        34:68:87:22:8b:6e:39:fc:53:ad:2e:26:9d:24:27:
-                        31:37:25:bd:b2:4b:fb:a7:57:9c:86:d6:d8:bf:4a:
-                        ad:eb
+                        00:c0:14:7c:90:0a:05:d6:db:08:c9:f4:37:d0:c7:
+                        bc:0e:02:87:3f:e2:84:10:54:c6:c0:9a:4c:05:26:
+                        26:95:73:0e:3b:f8:f6:b6:13:5d:8f:58:73:14:29:
+                        35:82:b2:7b:1b:0a:8c:39:42:7e:bf:bd:80:d9:6e:
+                        b3:5b:4a:53:40:ab:64:3e:b7:64:b8:80:24:26:59:
+                        a2:89:88:64:ea:19:40:da:ae:86:3e:5f:e3:af:fd:
+                        c7:67:76:f7:d1:47:c4:a6:39:cf:bd:bd:85:b1:e1:
+                        1d:b8:c3:f9:49:06:eb:48:a7:cb:14:ba:42:6e:36:
+                        39:a2:0b:c7:c6:e3:ae:b7:07:c8:ec:e1:c0:a9:f8:
+                        ce:6d:d1:b1:a1:0e:59:c8:2a:24:ff:32:42:f1:fc:
+                        06:6e:d4:12:59:8a:2c:00:c8:e4:d8:29:ff:e5:96:
+                        bc:d1:44:f9:07:97:7d:89:8a:51:2a:4b:68:9d:3f:
+                        e0:10:f9:e0:16:e4:ef:cd:11:4b:23:a8:86:f8:ef:
+                        d4:ef:c9:68:b7:47:45:7a:c9:51:83:12:34:d6:10:
+                        de:82:bf:ee:a4:4c:0a:33:81:9e:e6:85:63:d1:52:
+                        75:a1:8d:bd:8d:af:4b:9b:cc:e3:84:da:0b:2e:43:
+                        c8:c6:75:18:b0:ab:09:bf:72:d7:74:ef:11:50:3d:
+                        8c:53
                     Exponent: 65537 (0x10001)
             X509v3 extensions:
                 X509v3 Subject Key Identifier: 
-                    9B:D8:7D:1B:C2:7F:44:21:CB:18:54:0D:0A:E2:B6:E4:78:F4:F3:E5
+                    DE:C1:82:99:1F:AA:20:93:28:8A:7F:F4:98:25:C0:20:C3:80:62:79
                 X509v3 Authority Key Identifier: 
-                    keyid:9B:D8:7D:1B:C2:7F:44:21:CB:18:54:0D:0A:E2:B6:E4:78:F4:F3:E5
+                    keyid:DE:C1:82:99:1F:AA:20:93:28:8A:7F:F4:98:25:C0:20:C3:80:62:79
 
                 X509v3 Basic Constraints: critical
                     CA:TRUE
         Signature Algorithm: sha256WithRSAEncryption
-            6e:ca:cf:a8:f8:0c:bf:59:d8:c9:85:48:bc:d8:3c:7a:a0:da:
-            18:b7:23:b2:40:ce:df:44:a9:f1:e2:8d:0e:c1:e3:b7:00:48:
-            71:81:01:b9:42:b8:61:87:9b:85:4e:ca:27:71:b5:d1:c4:46:
-            cd:57:91:2a:04:54:b9:ab:f5:df:82:16:aa:80:11:27:7b:ba:
-            ef:11:d3:88:b1:46:d3:43:32:fb:ac:04:3c:9d:f1:c6:53:74:
-            36:bd:e2:cb:ff:d2:a6:56:fa:3c:97:f6:e9:7c:63:93:2a:46:
-            d4:1c:bf:c1:86:4e:52:9d:f6:0a:b4:73:21:7b:52:93:0f:3b:
-            d5:83:f1:f8:22:ec:6a:02:26:22:6f:d7:e0:0d:5f:83:94:40:
-            46:f6:5e:af:bc:c1:9b:86:2c:aa:e8:95:59:f6:11:31:0a:5a:
-            1a:36:69:b8:b0:11:32:61:cb:16:3b:3d:7f:56:08:1a:5f:5b:
-            15:e2:4e:2f:c8:46:4a:ce:02:12:90:af:74:b9:81:34:0c:dd:
-            b7:0f:fc:88:49:d6:37:d0:25:72:4d:e1:b5:69:a0:79:b4:38:
-            02:47:c1:30:cf:6b:14:12:e8:d8:b9:e2:c6:68:60:00:6a:e8:
-            14:08:bd:7f:5c:df:d9:73:1a:51:f8:b9:4a:a6:0a:b8:6c:04:
-            bf:34:94:49
+            b1:40:33:cf:cb:43:d9:64:04:08:a1:ec:ce:87:ac:a4:77:79:
+            f2:a1:fc:08:f4:52:04:4f:ea:26:29:a6:ba:56:d8:7f:3c:3a:
+            cc:34:94:49:c3:65:9d:82:4c:a7:9a:1c:c0:c5:1c:15:07:6a:
+            9a:6b:2c:cd:c1:d1:49:c4:fe:17:21:33:16:f8:c5:02:a2:86:
+            5b:3a:31:19:3d:c3:76:65:65:d5:2c:79:2b:4b:61:b4:b9:2c:
+            79:19:5a:bd:95:9d:38:cc:83:99:fa:41:16:95:11:b2:7f:04:
+            4f:fa:e6:ec:d7:00:9f:b7:4e:e9:12:46:37:aa:9c:95:10:96:
+            63:b2:fa:3d:ed:eb:f8:67:b9:58:5d:e6:df:45:23:76:db:17:
+            94:22:e1:9a:70:a4:19:da:00:7e:f8:30:cb:bf:7e:f8:7b:31:
+            78:d4:73:0c:60:1c:e2:2f:9d:8d:b4:e0:5a:0d:07:99:28:19:
+            ce:12:d0:e2:be:b0:9f:9d:9c:bf:0b:ec:9f:0b:ab:d9:af:8b:
+            6f:92:9a:95:3a:96:65:9f:01:6d:3d:47:95:ac:3e:89:98:21:
+            62:b2:4d:3a:65:a6:df:b8:a8:96:a1:f3:b0:38:39:2c:89:9a:
+            0b:d6:35:c0:f8:22:b9:7e:c1:3b:52:d0:58:b1:31:d8:8b:03:
+            96:76:fa:7d
     -----BEGIN CERTIFICATE-----
-    MIID1TCCAr2gAwIBAgIUQoXlM04a4tSe7Y8dJy/xECntMWcwDQYJKoZIhvcNAQEL
-    BQAwejELMAkGA1UEBhMCVVMxETAPBgNVBAgMCFZpcmdpbmlhMRAwDgYDVQQHDAdI
-    ZXJuZG9uMQwwCgYDVQQKDANJQk0xJjAkBgNVBAsMHUlCTSBXYXNoaW5ndG9uIFN5
-    c3RlbXMgQ2VudGVyMRAwDgYDVQQDDAd3c2NocHZzMB4XDTIwMDcyMzIxMzY0NFoX
-    DTIxMDgyMjIxMzY0NFowejELMAkGA1UEBhMCVVMxETAPBgNVBAgMCFZpcmdpbmlh
-    MRAwDgYDVQQHDAdIZXJuZG9uMQwwCgYDVQQKDANJQk0xJjAkBgNVBAsMHUlCTSBX
-    YXNoaW5ndG9uIFN5c3RlbXMgQ2VudGVyMRAwDgYDVQQDDAd3c2NocHZzMIIBIjAN
-    BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3bb6Cashamz6C+BJ+fW2+vhPJhDP
-    7xEqFsM6yz+f2tFiKy7kX8O2qykpVLeel05Z49GyUSf5Ai/dM5WpnRRjwepuBPRa
-    0lHZ58oxAVqGCZSbDR4DO8uuUd8Y7OyGoo80b72AxaavvscL0Rvd4Jx9o0sAZaOl
-    /hy8i/oCnXoNflLZbUQdX9cvk2v2uOZmBUNVjZzW7JYYC3HIxK3+CBhO5jPpXcnH
-    gwuDL8SFfUAfb3ZBn8lQFXrMV5Tf7LVeCB+VCavWs2i73zlv8brz4pCXJ1UVWgOC
-    SPbKAvmQVfQRzTE0aIcii245/FOtLiadJCcxNyW9skv7p1echtbYv0qt6wIDAQAB
-    o1MwUTAdBgNVHQ4EFgQUm9h9G8J/RCHLGFQNCuK25Hj08+UwHwYDVR0jBBgwFoAU
-    m9h9G8J/RCHLGFQNCuK25Hj08+UwDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0B
-    AQsFAAOCAQEAbsrPqPgMv1nYyYVIvNg8eqDaGLcjskDO30Sp8eKNDsHjtwBIcYEB
-    uUK4YYebhU7KJ3G10cRGzVeRKgRUuav134IWqoARJ3u67xHTiLFG00My+6wEPJ3x
-    xlN0Nr3iy//Splb6PJf26XxjkypG1By/wYZOUp32CrRzIXtSkw871YPx+CLsagIm
-    Im/X4A1fg5RARvZer7zBm4YsquiVWfYRMQpaGjZpuLARMmHLFjs9f1YIGl9bFeJO
-    L8hGSs4CEpCvdLmBNAzdtw/8iEnWN9Alck3htWmgebQ4AkfBMM9rFBLo2Lnixmhg
-    AGroFAi9f1zf2XMaUfi5SqYKuGwEvzSUSQ==
+    MIIEMzCCAxugAwIBAgIUallVg6GrWPfoiwwUcCBdB+f7kPQwDQYJKoZIhvcNAQEL
+    BQAwgagxCzAJBgNVBAYTAlVTMREwDwYDVQQIDAhWaXJnaW5pYTEQMA4GA1UEBwwH
+    SGVybmRvbjEMMAoGA1UECgwDSUJNMSowKAYDVQQLDCFBZHZhbmNlZCBUZWNobm9s
+    b2d5IEdyb3VwIC0gSUJNIFoxFjAUBgNVBAMMDUFURy1aIEhQVlMgQ0ExIjAgBgkq
+    hkiG9w0BCQEWE3NpbGxpbWFuQHVzLmlibS5jb20wHhcNMjAxMjEwMTkyODI4WhcN
+    MjIwMTA5MTkyODI4WjCBqDELMAkGA1UEBhMCVVMxETAPBgNVBAgMCFZpcmdpbmlh
+    MRAwDgYDVQQHDAdIZXJuZG9uMQwwCgYDVQQKDANJQk0xKjAoBgNVBAsMIUFkdmFu
+    Y2VkIFRlY2hub2xvZ3kgR3JvdXAgLSBJQk0gWjEWMBQGA1UEAwwNQVRHLVogSFBW
+    UyBDQTEiMCAGCSqGSIb3DQEJARYTc2lsbGltYW5AdXMuaWJtLmNvbTCCASIwDQYJ
+    KoZIhvcNAQEBBQADggEPADCCAQoCggEBAMAUfJAKBdbbCMn0N9DHvA4Chz/ihBBU
+    xsCaTAUmJpVzDjv49rYTXY9YcxQpNYKyexsKjDlCfr+9gNlus1tKU0CrZD63ZLiA
+    JCZZoomIZOoZQNquhj5f46/9x2d299FHxKY5z729hbHhHbjD+UkG60inyxS6Qm42
+    OaILx8bjrrcHyOzhwKn4zm3RsaEOWcgqJP8yQvH8Bm7UElmKLADI5Ngp/+WWvNFE
+    +QeXfYmKUSpLaJ0/4BD54Bbk780RSyOohvjv1O/JaLdHRXrJUYMSNNYQ3oK/7qRM
+    CjOBnuaFY9FSdaGNvY2vS5vM44TaCy5DyMZ1GLCrCb9y13TvEVA9jFMCAwEAAaNT
+    MFEwHQYDVR0OBBYEFN7BgpkfqiCTKIp/9JglwCDDgGJ5MB8GA1UdIwQYMBaAFN7B
+    gpkfqiCTKIp/9JglwCDDgGJ5MA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQEL
+    BQADggEBALFAM8/LQ9lkBAih7M6HrKR3efKh/Aj0UgRP6iYpprpW2H88Osw0lEnD
+    ZZ2CTKeaHMDFHBUHapprLM3B0UnE/hchMxb4xQKihls6MRk9w3ZlZdUseStLYbS5
+    LHkZWr2VnTjMg5n6QRaVEbJ/BE/65uzXAJ+3TukSRjeqnJUQlmOy+j3t6/hnuVhd
+    5t9FI3bbF5Qi4ZpwpBnaAH74MMu/fvh7MXjUcwxgHOIvnY204FoNB5koGc4S0OK+
+    sJ+dnL8L7J8Lq9mvi2+SmpU6lmWfAW09R5WsPomYIWKyTTplpt+4qJah87A4OSyJ
+    mgvWNcD4Irl+wTtS0FixMdiLA5Z2+n0=
     -----END CERTIFICATE-----
     ```
 
@@ -209,11 +215,11 @@ The first step was to create another RSA private key that our GREP11 server will
     **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
-openssl genrsa -out server80-9876-19876-key.pem 2048
+openssl genrsa -out grep11-server80-9876-key.pem 2048
 ```
 
 !!! note
-    The value of the `-out` argument, `server80-9876-19876-key.pem` can be whatever you want it to be. I named it what I did for a reason.  the _80_ in _server80_ is for the last octet of my Hyper Protect Virtual Servers LPAR's IP adresss, 192.168.22.80, and I intend to use this certificate for two GREP11 servers, one listening on port 9876 on one of the LPAR's Crypto Express 7S domains, and the second server will listen on port 19876 on the LPAR's second Crypto Express 7S domain.
+    The value of the `-out` argument, `grep11-server80-9876-key.pem` can be whatever you want it to be. I named it what I did for a reason.  the _80_ in _server80_ is for the last octet of my Hyper Protect Virtual Servers LPAR's IP adresss, 192.168.22.80, and I intend to use this certificate for a GREP11 server listening on port 9876 on one of the LPAR's Crypto Express 7S domains.
 
 Then, this private key was used as input to *openssl* in order to create a *certificate signing request*:
 
@@ -221,7 +227,7 @@ Then, this private key was used as input to *openssl* in order to create a *cert
     **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
-openssl req -new -key server80-9876-19876-key.pem -out server80-9876-19876.csr
+openssl req -new -key grep11-server80-9876-key.pem -out grep11-server80-9876.csr
 ```
 
 The certificate signing request will be passed to our certification authority which will use the information to create an X.509 certificate.  We used *openssl* for this, too:
@@ -230,16 +236,16 @@ The certificate signing request will be passed to our certification authority wh
     **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ```bash
-openssl x509 -sha256 -req -in server80-9876-19876.csr -CA ca.pem -CAkey ca.key -set_serial 8086 -extfile openssl.cnf -extensions server -days 365 -outform PEM -out server80-9876-19876.pem
+openssl x509 -sha256 -req -in grep11-server80-9876.csr -CA atgz-hpvs-ca.pem -CAkey atgz-hpvs-ca.key -set_serial 8086 -extfile openssl.cnf -extensions server -days 365 -outform PEM -out grep11-server80-9876.pem
 ```
 
-The file name of the certificate that was created by the preceding command is the value of the `-out` argument, `server80-9876-19876.pem`.  `openssl` allows us to list this certificate in human-friendly form:
+The file name of the certificate that was created by the preceding command is the value of the `-out` argument, `grep11-server80-9876.pem`.  `openssl` allows us to list this certificate in human-friendly form:
 
 !!! Reminder
     **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
-openssl x509 -in server80-9876-19876.pem -noout -text
+openssl x509 -in grep11-server80-9876.pem -noout -text
 ```
 
 ??? example "Example output"
@@ -250,33 +256,33 @@ openssl x509 -in server80-9876-19876.pem -noout -text
             Version: 3 (0x2)
             Serial Number: 8086 (0x1f96)
             Signature Algorithm: sha256WithRSAEncryption
-            Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = IBM Washington Systems Center, CN = wschpvs
+            Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Advanced Technology Group - IBM Z, CN = ATG-Z HPVS CA, emailAddress = silliman@us.ibm.com
             Validity
-                Not Before: Jul 23 21:47:22 2020 GMT
-                Not After : Jul 23 21:47:22 2021 GMT
-            Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = IBM Washington Systems Center, CN = 192.168.22.80
+                Not Before: Dec 10 19:28:28 2020 GMT
+                Not After : Jan  4 19:28:28 2022 GMT
+            Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Advanced Technology Group - IBM Z, CN = 192.168.22.80
             Subject Public Key Info:
                 Public Key Algorithm: rsaEncryption
                     RSA Public-Key: (2048 bit)
                     Modulus:
-                        00:b8:1a:5d:37:d6:c5:5b:2a:40:90:e5:e9:7f:c7:
-                        19:e4:83:fd:ce:f7:1b:f7:37:09:c1:f6:1f:03:10:
-                        78:70:52:27:66:1c:49:20:75:03:12:2f:7c:1b:ea:
-                        7b:37:0e:95:46:08:41:c9:7a:b8:89:f6:74:7f:84:
-                        14:aa:3f:91:94:78:df:8d:b0:47:9b:1f:2e:88:67:
-                        eb:13:71:a7:57:a8:c3:cd:fe:22:ea:05:35:42:6f:
-                        33:f5:46:05:27:c1:16:06:8c:66:14:fc:44:d3:56:
-                        ae:8f:60:1b:df:72:02:a0:cb:89:bc:50:56:5f:aa:
-                        97:57:03:7e:71:bc:71:7d:f3:9c:53:ae:12:0e:56:
-                        f0:46:45:e6:61:de:37:fa:40:b0:3b:fa:7e:a5:26:
-                        b0:06:67:49:b0:c1:c0:a1:35:5c:3d:c1:1b:d7:79:
-                        bf:c3:93:d3:e4:fa:72:06:ec:84:1f:0c:6a:d0:92:
-                        33:f4:8a:22:bf:af:53:78:48:bd:3d:63:f5:78:d0:
-                        08:bf:52:a1:ea:40:4e:74:9a:89:dc:7a:b0:dd:c7:
-                        e3:fe:35:58:91:65:c9:d2:00:d3:e9:fb:34:1e:39:
-                        77:ac:2a:49:79:53:37:aa:59:16:ce:8c:18:d6:99:
-                        af:e7:8f:9b:dc:b7:33:7e:00:41:3a:73:c0:5e:d7:
-                        92:63
+                        00:d9:c4:97:86:cc:d9:a8:d7:0e:e4:d5:7e:6a:97:
+                        e6:03:f4:85:4c:4d:2f:c5:bc:1e:88:da:ab:31:68:
+                        3b:1b:b7:eb:ae:81:a6:0f:34:1f:b0:90:bb:a7:1a:
+                        7a:2c:c1:6b:be:b6:8b:9d:b4:b8:71:78:ff:fb:84:
+                        61:c4:22:4e:8f:42:52:90:15:de:58:c8:1f:3d:5d:
+                        3c:15:c7:9f:9d:bb:13:c4:0c:d8:a1:53:83:56:18:
+                        ec:75:fd:69:5a:f4:ed:6e:61:5e:f0:1b:57:58:7c:
+                        89:28:5b:b7:81:c9:6d:4e:fa:63:33:a1:98:ee:7a:
+                        18:5b:ad:c5:53:8a:fe:3e:c7:99:07:7f:45:e2:15:
+                        fa:2a:bc:e2:eb:2a:dc:7e:38:7a:8c:ec:1f:89:b1:
+                        e3:91:6f:1a:36:d3:17:03:54:c3:56:57:65:7f:d4:
+                        6b:56:dc:94:21:d9:5d:43:06:26:a6:fa:48:06:85:
+                        95:e9:f3:10:b3:26:cb:69:c3:67:28:d3:ef:74:40:
+                        50:7b:2a:f9:56:20:79:e4:92:64:2d:ea:6b:bc:07:
+                        2a:95:3e:d2:80:5e:c5:61:b7:84:ca:63:83:e0:0a:
+                        67:fe:e3:9c:af:12:54:f0:22:82:b3:84:30:87:08:
+                        b5:8c:bf:05:af:dd:80:94:a3:0f:39:d4:d7:2e:d5:
+                        d3:e7
                     Exponent: 65537 (0x10001)
             X509v3 extensions:
                 X509v3 Basic Constraints: 
@@ -293,23 +299,23 @@ openssl x509 -in server80-9876-19876.pem -noout -text
                     URI:http://localhost/ca.crl
 
                 X509v3 Subject Alternative Name: 
-                    DNS:192.168.22.80:9876, DNS:192.168.22.80:19876, IP Address:192.168.22.80
+                    DNS:192.168.22.80:9876, IP Address:192.168.22.80
         Signature Algorithm: sha256WithRSAEncryption
-            8f:f2:7e:60:69:de:80:85:7b:9a:3e:c8:8a:c7:ee:ee:66:29:
-            d7:bc:5b:54:0d:ae:50:7a:1a:9e:86:2e:ba:77:51:53:d3:c5:
-            64:e6:ca:1c:69:45:3c:db:1a:a8:cb:b4:7b:f7:1d:16:59:cb:
-            3c:89:80:1b:89:a3:cf:f3:6d:08:40:83:6f:f5:f5:f3:87:1f:
-            3c:0a:42:e3:c6:7c:56:be:5c:50:15:f5:2b:e7:cb:33:03:43:
-            30:e9:30:81:91:66:d7:34:70:ac:7b:09:bf:b0:32:41:09:7d:
-            0d:7d:ee:6a:19:4b:0e:18:a8:8d:0c:d7:3b:c7:c2:28:7a:c3:
-            c8:4a:34:cb:2a:90:2a:70:af:03:04:3c:93:6b:ee:3f:c0:47:
-            45:10:59:67:3d:36:50:29:30:38:b2:f7:ff:a7:06:b3:b5:3b:
-            66:64:21:87:ef:ab:0e:e7:e7:4c:4d:06:5a:3b:4c:1e:0f:d4:
-            de:08:6c:cc:24:6f:c1:1b:03:3d:27:4c:62:ea:a6:79:ab:f3:
-            a7:13:8a:26:e3:2a:e7:c2:bf:28:f4:de:58:6d:e2:d7:ed:e6:
-            bf:a7:b4:eb:61:c6:89:0c:df:fc:41:6d:b0:9a:ae:64:59:a8:
-            4e:86:5d:11:7e:1d:f6:b1:df:98:02:97:d8:12:63:dc:bf:3a:
-            10:5e:46:6c
+            1f:bb:b0:26:34:62:82:62:ca:7f:1c:a6:ef:54:15:d9:44:88:
+            e4:97:19:5b:2c:fc:dd:1c:01:70:ee:27:1c:ec:49:58:25:a5:
+            dc:9e:9a:55:71:9b:05:bb:c1:1b:6e:85:a3:ab:9c:ce:05:bf:
+            29:3b:cb:ed:98:f5:01:e8:cb:e2:e6:14:c1:74:0d:96:38:14:
+            58:ca:84:ad:af:35:fd:12:50:16:10:f3:6d:c1:fe:ba:04:12:
+            ea:19:17:dd:95:a8:8b:65:83:da:bc:ef:6e:23:00:2c:52:6e:
+            80:af:a9:93:7a:5f:40:8d:e7:55:ea:1d:90:d8:8c:04:59:91:
+            91:b4:22:19:9f:9a:b6:20:ee:36:4d:c1:75:29:54:e1:a0:47:
+            cd:82:14:86:75:37:60:4e:1a:54:f5:81:ec:5a:3a:de:64:93:
+            51:fb:c6:44:b1:66:d7:41:59:b6:95:27:c9:81:fc:d9:76:a5:
+            f2:16:74:47:8c:c8:a3:b1:1d:f3:98:34:b1:fa:52:d9:3e:d1:
+            63:8b:70:d3:a3:aa:ac:47:1c:90:13:76:df:98:47:ae:19:e2:
+            c4:d5:81:eb:44:66:45:09:6a:75:c6:5f:0c:aa:e0:44:52:16:
+            35:be:49:f0:10:65:3f:df:a3:50:0d:3b:ae:94:59:9c:28:a5:
+            41:24:a5:45
     ```
 
 ## Create an X.509 certificate for your client application for TLS authentication
@@ -353,52 +359,52 @@ openssl x509 -in client.pem -noout -text
         Data:
             Version: 1 (0x0)
             Serial Number:
-                4f:07:1f:6e:5e:09:33:8d:6f:39:52:01:36:06:3e:bb:28:50:c9:41
+                7a:dc:83:ab:72:46:2f:30:b9:d2:71:b4:9b:00:43:4f:53:63:a7:ce
             Signature Algorithm: sha256WithRSAEncryption
-            Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = IBM Washington Systems Center, CN = wschpvs
+            Issuer: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Advanced Technology Group - IBM Z, CN = ATG-Z HPVS CA, emailAddress = silliman@us.ibm.com
             Validity
-                Not Before: Jul 23 21:52:13 2020 GMT
-                Not After : Apr 19 21:52:13 2023 GMT
-            Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = IBM Washington Systems Center, CN = GREP11 Lab Students
+                Not Before: Dec 10 19:28:28 2020 GMT
+                Not After : Mar 20 19:28:28 2021 GMT
+            Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Advanced Technology Group - IBM Z, CN = GREP11 Lab Student, emailAddress = silliman@us.ibm.com
             Subject Public Key Info:
                 Public Key Algorithm: rsaEncryption
                     RSA Public-Key: (2048 bit)
                     Modulus:
-                        00:c4:ab:d2:80:e2:38:b8:9d:6b:7f:f0:ae:09:72:
-                        c4:64:57:1a:32:f9:eb:b5:31:e9:bf:81:0b:c1:d7:
-                        01:b6:6d:c7:7c:26:d3:49:6b:3b:fd:54:11:cc:5e:
-                        7e:2f:be:59:54:4d:a4:c4:5c:08:87:1f:2b:0f:bc:
-                        cf:91:cd:21:a9:8e:bd:34:87:bb:3c:dd:e7:64:e4:
-                        e2:5e:30:d1:27:74:d4:7e:9f:3b:2f:40:68:3d:d9:
-                        7d:d7:ff:e8:b6:ad:3a:ab:ca:d9:74:51:fa:12:59:
-                        a3:e1:2a:13:e2:20:34:01:6a:a3:6a:7c:36:be:81:
-                        37:2a:cb:3b:85:a0:59:f1:60:ca:be:de:ce:d0:0d:
-                        ab:31:e4:09:09:31:39:06:cb:8d:48:73:56:ec:4f:
-                        93:cd:85:d9:59:89:9a:f3:d2:e5:d6:de:8e:e5:a5:
-                        4d:20:89:07:e0:1b:bd:a0:09:6f:94:92:e7:77:f6:
-                        76:f3:da:16:01:7c:80:76:cf:29:11:39:bc:6d:71:
-                        4a:bd:08:ca:29:da:d0:16:22:f5:f0:4d:c2:83:e4:
-                        8c:72:9b:b4:17:bf:48:09:29:6b:bd:4d:35:3b:44:
-                        9f:2f:75:7f:e2:a6:08:e7:ae:bb:4d:77:10:83:e6:
-                        cd:09:21:18:68:b2:ad:0a:f0:74:e5:47:ad:41:e5:
-                        41:6d
+                        00:d2:4f:86:c1:d6:9a:6b:f4:2c:7d:6f:91:59:b9:
+                        98:12:6e:d1:5f:ea:ca:90:b4:74:0e:dd:99:ce:20:
+                        ca:f6:75:df:fe:54:76:ef:fd:3a:a2:f9:cf:15:0d:
+                        1e:19:5c:e5:0f:55:50:ff:64:7f:2b:a6:1f:35:8b:
+                        38:f8:f4:2a:a6:c7:66:0c:ef:17:d9:40:46:fb:d1:
+                        ca:28:dd:a0:6b:08:28:b9:55:95:9d:cc:67:9b:f4:
+                        26:da:04:76:fb:d3:02:e3:8e:af:f7:c3:4c:01:30:
+                        04:47:e3:e3:0a:58:33:47:8e:11:50:1d:1a:ca:30:
+                        a8:09:76:fc:b9:a7:86:05:2b:46:44:f6:dd:48:e2:
+                        5e:64:78:8b:06:42:32:5f:cf:7d:e6:80:e1:32:94:
+                        6f:fe:8a:b9:f5:a1:3a:c0:d5:3a:c7:5f:4e:e3:7b:
+                        2e:0f:58:a2:35:26:57:0c:0d:c7:7f:2d:8f:8c:09:
+                        84:ee:eb:d4:0e:da:5a:3a:e3:09:2f:f2:be:b9:b0:
+                        48:cd:c7:d0:4c:03:d6:25:68:5d:5f:7e:3a:b1:9b:
+                        4b:a4:09:b3:40:30:be:6d:be:9c:de:77:e7:18:4c:
+                        ff:6d:cf:70:9c:37:bd:8e:5b:6d:75:1f:a5:c2:55:
+                        ec:38:25:c9:cd:38:4b:8e:63:47:63:4e:e7:90:21:
+                        6b:a1
                     Exponent: 65537 (0x10001)
         Signature Algorithm: sha256WithRSAEncryption
-            3f:ce:22:e4:ba:6b:1d:68:aa:b4:07:35:22:0c:d7:55:e7:dc:
-            4f:21:ca:17:ca:14:cd:b9:7e:ad:f1:93:84:9f:e4:96:84:10:
-            39:d7:36:1f:66:2d:15:1b:40:96:a6:79:5e:e4:a2:00:c8:fa:
-            fe:1a:42:9f:37:45:c4:c7:d9:21:c7:04:82:37:21:a0:41:ca:
-            92:b7:b8:15:db:62:55:c8:55:02:d6:d7:3a:fb:1d:96:33:54:
-            c8:f2:fd:d7:65:39:7c:12:13:e6:b5:91:fd:0e:68:21:30:41:
-            82:f0:c0:74:a5:12:18:5e:e4:4b:83:1a:7f:a3:cc:f7:0a:aa:
-            8f:f0:4e:0a:01:45:64:98:10:9a:f1:41:48:46:ec:df:3b:db:
-            c5:2f:bb:ec:f7:dc:77:f0:98:e2:99:f4:20:fc:ff:45:24:af:
-            8a:56:e7:60:2f:aa:cc:af:8a:ae:a8:1f:33:a0:8e:5e:3e:46:
-            69:10:f0:b9:6c:02:6d:b3:4e:ef:cd:ac:06:86:67:9b:c9:44:
-            73:00:37:61:06:df:32:ce:e5:c3:28:04:8f:c8:e4:81:ec:16:
-            2c:dd:63:37:bd:07:ab:fc:f9:ac:55:e2:4a:b0:9b:5e:5d:f5:
-            f1:89:90:0b:59:50:da:21:cb:db:96:c7:6d:fa:54:e4:f2:74:
-            86:e2:71:6e
+            ac:89:54:fc:40:06:1f:84:99:08:f8:70:ab:b0:24:1d:b3:6c:
+            a2:86:bd:b8:82:e3:6d:aa:c1:c7:7a:b8:3c:1d:59:80:89:92:
+            57:07:ca:28:cd:80:de:11:e7:ed:d9:40:29:0b:90:1a:b7:9b:
+            ed:b5:15:6a:6c:1c:31:3f:82:0f:01:1f:64:05:bb:12:16:67:
+            d2:b2:3d:84:ef:74:34:56:80:11:69:ab:85:5b:43:ac:ba:13:
+            e2:ca:b3:12:4a:39:ff:f1:4f:47:60:e9:16:49:75:34:95:1d:
+            e0:51:c4:05:96:5e:1b:50:31:cf:ba:1a:a5:e1:1f:ed:8b:62:
+            84:6d:a4:f3:6c:d4:20:d1:f1:b1:6e:79:de:57:c9:93:f7:12:
+            68:86:45:dd:f4:2d:a9:c9:41:b4:6c:5e:79:01:5a:91:64:a1:
+            01:14:c5:81:04:fb:64:7e:d1:42:ef:2c:e8:9f:6c:ba:b9:01:
+            53:4b:32:30:0f:2a:30:4d:84:d1:11:a6:b6:cc:56:58:b0:1c:
+            4f:ea:dc:3e:6e:4f:60:5b:ed:a1:0d:c8:f1:6b:dc:1a:05:00:
+            ad:a9:72:ce:ff:d1:d6:ae:0a:a9:56:36:5a:ab:d0:33:41:59:
+            80:8f:17:90:8a:71:f6:df:bd:6c:8e:4b:10:5d:5b:8f:94:9a:
+            2d:03:85:0b
     ```
 
 !!! note
@@ -454,7 +460,7 @@ This is the YAML file for a GREP11 server that will listen for client connection
     type: virtualserver
     virtualservers:
     - name: grep11-08-0016-9876
-    host: wsclpar80
+    host: atgzlpar80
     repoid: hpcsKpGrep11_runq
     imagetag: 1.2.1
     imagefile: hpcsKpGrep11_runq.tar.gz
@@ -466,11 +472,11 @@ This is the YAML file for a GREP11 server that will listen for client connection
         value: "08.0016"
     #
     - key: EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CERTFILEBYTES
-        value: "@/home/hyper-protect-lab/hpvs/config/grep11/keys/server80-9876-19876.pem"
+        value: "@/home/hyper-protect-lab/hpvs/config/grep11/keys/grep11-server80-9876.pem"
     - key: EP11SERVER_EP11CRYPTO_CONNECTION_TLS_KEYFILEBYTES
-        value: "@/home/hyper-protect-lab/hpvs/config/grep11/keys/server80-9876-19876-key.pem"
+        value: "@/home/hyper-protect-lab/hpvs/config/grep11/keys/grep11-server80-9876-key.pem"
     - key: EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CACERTBYTES
-        value: "@/home/hyper-protect-lab/hpvs/config/grep11/keys/ca.pem"
+        value: "@/home/hyper-protect-lab/hpvs/config/grep11/keys/atgz-hpvs-ca.pem"
     - key: EP11SERVER_EP11CRYPTO_CONNECTION_TLS_ENABLED
         value: "true"
     - key: EP11SERVER_EP11CRYPTO_CONNECTION_TLS_MUTUAL
@@ -496,9 +502,9 @@ This is a JSON file for a GREP11 server that will listen for client connections 
     ``` hl_lines="2"
     {
     "EP11SERVER_EP11CRYPTO_DOMAIN":"08.0016",
-    "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CERTFILEBYTES":"@/home/hyper-protect-lab/hpvs/config/grep11/keys/server80-9876-19876.pem",
-    "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_KEYFILEBYTES":"@/home/hyper-protect-lab/hpvs/config/grep11/keys/server80-9876-19876-key.pem",
-    "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CACERTBYTES":"@/home/hyper-protect-lab/hpvs/config/grep11/keys/ca.pem",
+    "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CERTFILEBYTES":"@/home/hyper-protect-lab/hpvs/config/grep11/keys/grep11-server80-9876.pem",
+    "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_KEYFILEBYTES":"@/home/hyper-protect-lab/hpvs/config/grep11/keys/grep11-server80-9876-key.pem",
+    "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CACERTBYTES":"@/home/hyper-protect-lab/hpvs/config/grep11/keys/atgz-hpvs-ca.pem",
     "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_ENABLED":true,
     "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_MUTUAL":true,
     "TLS_GRPC_CERTS_DOMAIN_CRT":"\\n",
@@ -523,7 +529,7 @@ If you looked carefully at the JSON file and the YAML file in the previous secti
 ???+ example "Command to start the GREP11 server with the JSON file"
 
     ```
-    hpvs vs create --name grep11-08-0016-9876 --repo hpcsKpGrep11_runq --tag 1.2.1 --crypto_matrix=08.0016 --cpu 2 --ram 2048 --envjsonpath ${HOME}/hpvs/config/grep11/grep11_env_08.0016.json --ports "{containerport = 9876, protocol = tcp, hostport = 9876}"
+    hpvs vs create --name grep11-08-0016-9876 --repo hpcsKpGrep11_runq --tag 1.2.2.1 --crypto_matrix=08.0016 --cpu 2 --ram 2048 --envjsonpath ${HOME}/hpvs/config/grep11/grep11_env_08.0016.json --ports "{containerport = 9876, protocol = tcp, hostport = 9876}"
     ```
 
 !!! note "Difference between the two commands"
