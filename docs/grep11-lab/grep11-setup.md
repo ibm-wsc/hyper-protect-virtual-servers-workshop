@@ -219,7 +219,7 @@ openssl genrsa -out grep11-server80-9876-key.pem 2048
 ```
 
 !!! note
-    The value of the `-out` argument, `grep11-server80-9876-key.pem` can be whatever you want it to be. I named it what I did for a reason.  the _80_ in _server80_ is for the last octet of my Hyper Protect Virtual Servers LPAR's IP adresss, 192.168.22.80, and I intend to use this certificate for a GREP11 server listening on port 9876 on one of the LPAR's Crypto Express 7S domains.
+    The value of the `-out` argument, `grep11-server80-9876-key.pem` can be whatever you want it to be. I named it what I did for a reason.  The _80_ in _server80_ is for the last octet of my Hyper Protect Virtual Servers LPAR's IP adresss, 192.168.22.80, and I intend to use this certificate for a GREP11 server listening on port 9876 on one of the LPAR's Crypto Express 7S domains.
 
 Then, this private key was used as input to *openssl* in order to create a *certificate signing request*:
 
@@ -481,6 +481,8 @@ This is the YAML file for a GREP11 server that will listen for client connection
         value: "true"
     - key: EP11SERVER_EP11CRYPTO_CONNECTION_TLS_MUTUAL
         value: "true"
+    - key: EP11SERVER_EP11CRYPTO_ENABLED
+        value: "true"
     - key: TLS_GRPC_CERTS_DOMAIN_CRT
         value: "\\n"
     - key: TLS_GRPC_CERTS_DOMAIN_KEY
@@ -507,6 +509,7 @@ This is a JSON file for a GREP11 server that will listen for client connections 
     "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CACERTBYTES":"@/home/hyper-protect-lab/hpvs/config/grep11/keys/atgz-hpvs-ca.pem",
     "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_ENABLED":true,
     "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_MUTUAL":true,
+    "EP11SERVER_EP11CRYPTO_ENABLED":true,
     "TLS_GRPC_CERTS_DOMAIN_CRT":"\\n",
     "TLS_GRPC_CERTS_DOMAIN_KEY":"\\n",
     "TLS_GRPC_CERTS_ROOTCA_CRT":"\\n"
