@@ -26,9 +26,9 @@ The PKCS #11 standard covers the following cryptographic categories, and the GRE
 
 You will be working with the Hyper Protect Virtual Servers command line interface (CLI) running on an x86_64 virtual machine running the Ubuntu 18.04.4 Linux distribution. You will also be using this virtual machine to run programs, written in the Go programming language, that will communicate with the GREP11 server. This virtual machine is provisioned on SkyTap in the IBM Cloud, and you will access it through your web browser. **Your instructor will provide you the information needed to access your virtual machine under separate cover.**
 
-The GREP11 server runs as a Docker container running in a Hyper Protect Virtual Servers LPAR that runs as a Secure Service Container (SSC) LPAR on an IBM z15 server in the IBM Washington Systems Center in Herndon, Virginia, USA.
+The GREP11 server runs as a Docker container running in Hyper Protect Virtual Servers.  Hyper Protect Virtual Servers runs in a Secure Service Container (SSC) LPAR on an IBM z15 server located in Herndon, Virginia, USA, and managed by the *Advanced Technology Group - IBM Z* team.
 
-The Hyper Protect Virtual Servers LPAR is in a private network at the IBM Washington Systems Center and your Ubuntu virtual machine communicates with it through a VPN connection. **Your instructor will provide you the information needed to establish a VPN connection under separate cover.**
+The Hyper Protect Virtual Servers LPAR is in an Advanced Technology Group private network and your Ubuntu virtual machine communicates with it through a VPN connection. **Your instructor will provide you the information needed to establish a VPN connection under separate cover.**
 
 !!! note
 
