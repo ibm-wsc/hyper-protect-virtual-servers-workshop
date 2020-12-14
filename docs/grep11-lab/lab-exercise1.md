@@ -58,7 +58,7 @@ Run the program and then a brief discussion of the results will follow:
     ??? example "Example output"
 
         ```
-        Got mechanism list of length 92:
+        Got mechanism list of length 94:
 
         Mechanism  0 : CKM_RSA_PKCS 
         MinKeySize:512 MaxKeySize:4096 Flags:404224  
@@ -309,41 +309,47 @@ Run the program and then a brief discussion of the results will follow:
         Mechanism  82 : CKM_IBM_ECDSA_SHA512 
         MinKeySize:192 MaxKeySize:521 Flags:26224640  
         
-        Mechanism  83 : CKM_IBM_EC_C25519 
+        Mechanism  83 : Mechanism(0x80010031) 
+        MinKeySize:192 MaxKeySize:521 Flags:26224640  
+        
+        Mechanism  84 : CKM_IBM_EC_C25519 
         MinKeySize:256 MaxKeySize:256 Flags:18350080  
         
-        Mechanism  84 : CKM_IBM_EC_C448 
+        Mechanism  85 : CKM_IBM_EC_C448 
         MinKeySize:448 MaxKeySize:448 Flags:18350080  
         
-        Mechanism  85 : CKM_IBM_EDDSA_SHA512 
+        Mechanism  86 : CKM_IBM_EDDSA_SHA512 
         MinKeySize:256 MaxKeySize:256 Flags:17836032  
         
-        Mechanism  86 : CKM_IBM_ED448_SHA3 
+        Mechanism  87 : CKM_IBM_ED448_SHA3 
         MinKeySize:448 MaxKeySize:448 Flags:17836032  
         
-        Mechanism  87 : CKM_IBM_EAC 
+        Mechanism  88 : CKM_IBM_EAC 
         Flags:524288  
         
-        Mechanism  88 : CKM_IBM_RETAINKEY 
+        Mechanism  89 : CKM_IBM_RETAINKEY 
         MaxKeySize:256 Flags:131072  
         
-        Mechanism  89 : CKM_IBM_CMAC 
+        Mechanism  90 : CKM_IBM_CMAC 
         MinKeySize:16 MaxKeySize:32 Flags:10240  
         
-        Mechanism  90 : CKM_AES_CMAC 
+        Mechanism  91 : CKM_AES_CMAC 
         MinKeySize:16 MaxKeySize:32 Flags:10240  
         
-        Mechanism  91 : CKM_DES3_CMAC 
+        Mechanism  92 : CKM_DES3_CMAC 
         MinKeySize:16 MaxKeySize:24 Flags:10240  
+        
+        Mechanism  93 : Mechanism(0x80070001) 
+        MinKeySize:16 MaxKeySize:64 Flags:524288  
         ```
 
 ## Explanation of exercise output
 
 Near the top of the output, you see the line:
 
-`Got mechanism list of length 92:` 
+`Got mechanism list of length 94:` 
 
-This indicates there were 92 mechanisms returned by the call to *GetMechanismList()*.
+This indicates there were 94 mechanisms returned by the call to *GetMechanismList()*.
 
 Then, for each mechanism, two lines of output are created, one with the mechanism name, which usually start with `CKM_`.  The mechanism number has no significance, this is just an index number assigned by our lab program, starting at 0 and incremented by the program as it iterates over the list.
 
@@ -354,7 +360,7 @@ The information returned by *GetMechanismInfo()* includes the minimum key size a
 
 Observe that the large majority of mechanisms in the list have a name starting with *CKM_*, while a handful, such as item 77, 79, 81, and others, do not.  It appears that if the mechanism is not listed in the *golang/ep11/header_consts.go* file, within lines 205 to 594, then it will not have a name starting with *CKM_*.
 
-Note that the PKCS #11 specification does not mandate that an implementation support all defined mechanisms. Even within the subset of the 92 mechanisms that are supported by IBM's EP11 library, some are for algorithms that are considered rather outdated, and, in some cases, downright insecure.  For example, the SHA-1 cryptographic hash algorithm is considered insecure these days, so any mechanims in the list that have SHA1 or SHA_1 in their name (and there are some) should be avoided.
+Note that the PKCS #11 specification does not mandate that an implementation support all defined mechanisms. Even within the subset of the 94 mechanisms that are supported by IBM's EP11 library, some are for algorithms that are considered rather outdated, and, in some cases, downright insecure.  For example, the SHA-1 cryptographic hash algorithm is considered insecure these days, so any mechanims in the list that have SHA1 or SHA_1 in their name (and there are some) should be avoided.
 
 Let's move on to Exercise 2.
 
