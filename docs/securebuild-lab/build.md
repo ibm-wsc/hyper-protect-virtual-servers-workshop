@@ -209,7 +209,7 @@ source "${HOME}/.bashrc"
     ```
 
     !!! Tip
-        The following build will take anywhere from **15-20 minutes** to complete. While this is ongoing, you should open a new tab in your terminal to check the automatically updating logs and build status (steps for doing this are detailed in the next few steps). If this command times out please check the status in the `step 3` to make sure nothing went wrong. It might just be that your build took to long and everything will be ok. If something did go wrong, visit the [Troubleshooting Secure Build section](#troubleshooting-secure-build)
+        The following build will take anywhere from **15-20 minutes** to complete. While this is ongoing, you should open a new tab in your terminal to check the automatically updating logs and build status (steps for doing this are detailed in the next few steps). If this command times out please check the status in the `step 3` to make sure nothing went wrong. It might just be that your build took too long and everything will be ok. If something did go wrong, visit the [Troubleshooting Secure Build section](#troubleshooting-secure-build)
 
     !!! note
         The secure build is asynchronous so if the command gets interrupted here don't worry! :grin:
