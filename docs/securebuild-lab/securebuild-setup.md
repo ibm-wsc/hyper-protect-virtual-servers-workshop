@@ -473,7 +473,7 @@
             Use "hpvs vs [command] --help" for more information about a command.
             ```
 
-3. You can get even dive into the `Available Commands` of the above commands with another `--help` :open_mouth:
+3. You can even dive into the `Available Commands` of the above commands with another `--help` :open_mouth:
 
     ``` bash
     hpvs sb build --help
