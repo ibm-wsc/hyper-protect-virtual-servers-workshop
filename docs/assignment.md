@@ -6,9 +6,9 @@ If your Ubuntu desktop asks for a login password for userid *hyper-protect-lab*,
 
 |Name|Team Number|Skytap URL |Skytap Password|
 |:--:|:---------:|:---------:|:-------------:|
-|Daaniel|01|[http://ibm.biz/hpvsteam01](http://ibm.biz/hpvsteam01){target=_new}|3wfzsf0r|
-|Kurt|02|[http://ibm.biz/hpvsteam02](http://ibm.biz/hpvsteam02){target=_new}|v8pwmvg9|
-|Nate|03|[http://ibm.biz/hpvsteam03](http://ibm.biz/hpvsteam03){target=_new}|98gkmoti|
+|TBD|01|[http://ibm.biz/hpvsteam01](http://ibm.biz/hpvsteam01){target=_new}||
+|TBD|02|[http://ibm.biz/hpvsteam02](http://ibm.biz/hpvsteam02){target=_new}||
+|TBD|03|[http://ibm.biz/hpvsteam03](http://ibm.biz/hpvsteam03){target=_new}||
 |TBD|04|[http://ibm.biz/hpvsteam04](http://ibm.biz/hpvsteam04){target=_new}||
 |TBD|05|[http://ibm.biz/hpvsteam05](http://ibm.biz/hpvsteam05){target=_new}||
 |TBD|06|[http://ibm.biz/hpvsteam06](http://ibm.biz/hpvsteam06){target=_new}||
