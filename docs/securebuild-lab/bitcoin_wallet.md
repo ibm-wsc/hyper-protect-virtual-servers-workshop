@@ -97,15 +97,15 @@ A wallet without currency is blasphemy, so it's time to fill it on up with fake 
 
 Since you are feeling charitable you decide to transfer your testnet value back to the faucet's address.
 
-1. Go back to [the faucet site](https://bitcoinfaucet.uo1.net/send.php){target=_blank} and get it's bitcoin address
+1. Go back to [the faucet site](https://bitcoinfaucet.uo1.net/send.php){target=_blank} and get its bitcoin address
 
     ![Faucet Address](Bitcoin_Wallet_Images/testnet_faucet_address.png)
 
     !!! tip
-        This address is here for easy copy and paste:
+        This address is here for easy copy and paste (ensure this matches what the application shows in the browser before using this, as the bitcoin address they use for returning funds changes occasionally):
 
         ``` bash
-        2NGZrVvZG92qGYqzTLjCAewvPZ7JE8S8VxE
+        tb1qm5tfegjevj27yvvna9elym9lnzcf0zraxgl8z2
         ```
 
 2. Send bitcoins to faucet using `Send` section of wallet
