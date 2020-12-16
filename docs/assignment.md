@@ -6,13 +6,13 @@ If your Ubuntu desktop asks for a login password for userid *hyper-protect-lab*,
 
 |Name|Team Number|Skytap URL |Skytap Password|
 |:--:|:---------:|:---------:|:-------------:|
-|TBD|01|[http://ibm.biz/hpvsteam01](http://ibm.biz/hpvsteam01){target=_new}||
-|TBD|02|[http://ibm.biz/hpvsteam02](http://ibm.biz/hpvsteam02){target=_new}||
-|TBD|03|[http://ibm.biz/hpvsteam03](http://ibm.biz/hpvsteam03){target=_new}||
-|TBD|04|[http://ibm.biz/hpvsteam04](http://ibm.biz/hpvsteam04){target=_new}||
-|TBD|05|[http://ibm.biz/hpvsteam05](http://ibm.biz/hpvsteam05){target=_new}||
-|TBD|06|[http://ibm.biz/hpvsteam06](http://ibm.biz/hpvsteam06){target=_new}||
-|TBD|07|[http://ibm.biz/hpvsteam07](http://ibm.biz/hpvsteam07){target=_new}||
+|Andre|01|[http://ibm.biz/hpvsteam01](http://ibm.biz/hpvsteam01){target=_new}|ask instructor|
+|Clay|02|[http://ibm.biz/hpvsteam02](http://ibm.biz/hpvsteam02){target=_new}|ask instructor|
+|Dale|03|[http://ibm.biz/hpvsteam03](http://ibm.biz/hpvsteam03){target=_new}|ask instructor|
+|Joe|04|[http://ibm.biz/hpvsteam04](http://ibm.biz/hpvsteam04){target=_new}|ask instructor|
+|Terry|05|[http://ibm.biz/hpvsteam05](http://ibm.biz/hpvsteam05){target=_new}|ask instructor|
+|Todd|06|[http://ibm.biz/hpvsteam06](http://ibm.biz/hpvsteam06){target=_new}|ask instructor|
+|Mike|07|[http://ibm.biz/hpvsteam07](http://ibm.biz/hpvsteam07){target=_new}|ask instructor|
 |TBD|08|[http://ibm.biz/hpvsteam08](http://ibm.biz/hpvsteam08){target=_new}||
 |TBD|09|[http://ibm.biz/hpvsteam09](http://ibm.biz/hpvsteam09){target=_new}||
 |TBD|10|[http://ibm.biz/hpvsteam10](http://ibm.biz/hpvsteam10){target=_new}||
