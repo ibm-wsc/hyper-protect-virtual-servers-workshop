@@ -11,7 +11,7 @@ If your Ubuntu desktop asks for a login password for userid *hyper-protect-lab*,
 |Dale|03|[http://ibm.biz/hpvsteam03](http://ibm.biz/hpvsteam03){target=_new}|ask instructor|
 |Joe|04|[http://ibm.biz/hpvsteam04](http://ibm.biz/hpvsteam04){target=_new}|ask instructor|
 |Terry|05|[http://ibm.biz/hpvsteam05](http://ibm.biz/hpvsteam05){target=_new}|ask instructor|
-|Todd|06|[http://ibm.biz/hpvsteam06](http://ibm.biz/hpvsteam06){target=_new}|ask instructor|
+|Tom|06|[http://ibm.biz/hpvsteam06](http://ibm.biz/hpvsteam06){target=_new}|ask instructor|
 |Mike|07|[http://ibm.biz/hpvsteam07](http://ibm.biz/hpvsteam07){target=_new}|ask instructor|
 |TBD|08|[http://ibm.biz/hpvsteam08](http://ibm.biz/hpvsteam08){target=_new}||
 |TBD|09|[http://ibm.biz/hpvsteam09](http://ibm.biz/hpvsteam09){target=_new}||
