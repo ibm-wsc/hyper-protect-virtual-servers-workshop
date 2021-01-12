@@ -2,17 +2,17 @@
 
 You will need to enter the "Skytap Password" one time only (assuming you don't switch browsers or clear cache).
 
-If your Ubuntu desktop asks for a login password for userid *hyper-protect-lab*, the password, for all teams, will be provided by an instructor in the WebEx meeting chat. Your desktop will lock and ask for this password if your session is idle for 30 minutes.
+If your Ubuntu desktop asks for a login password for userid *hyper-protect-lab*, the password, for all teams, will be provided by an instructor in the WebEx meeting chat. Your desktop will lock and ask for this password if your session is idle for one hour.
 
 |Name|Team Number|Skytap URL |Skytap Password|
 |:--:|:---------:|:---------:|:-------------:|
-|Andre|01|[http://ibm.biz/hpvsteam01](http://ibm.biz/hpvsteam01){target=_new}|ask instructor|
-|Clay|02|[http://ibm.biz/hpvsteam02](http://ibm.biz/hpvsteam02){target=_new}|ask instructor|
-|Dale|03|[http://ibm.biz/hpvsteam03](http://ibm.biz/hpvsteam03){target=_new}|ask instructor|
-|Joe|04|[http://ibm.biz/hpvsteam04](http://ibm.biz/hpvsteam04){target=_new}|ask instructor|
-|Terry|05|[http://ibm.biz/hpvsteam05](http://ibm.biz/hpvsteam05){target=_new}|ask instructor|
-|Tom|06|[http://ibm.biz/hpvsteam06](http://ibm.biz/hpvsteam06){target=_new}|ask instructor|
-|Mike|07|[http://ibm.biz/hpvsteam07](http://ibm.biz/hpvsteam07){target=_new}|ask instructor|
+|TBD|01|[http://ibm.biz/hpvsteam01](http://ibm.biz/hpvsteam01){target=_new}||
+|TBD|02|[http://ibm.biz/hpvsteam02](http://ibm.biz/hpvsteam02){target=_new}||
+|TBD|03|[http://ibm.biz/hpvsteam03](http://ibm.biz/hpvsteam03){target=_new}||
+|TBD|04|[http://ibm.biz/hpvsteam04](http://ibm.biz/hpvsteam04){target=_new}||
+|TBD|05|[http://ibm.biz/hpvsteam05](http://ibm.biz/hpvsteam05){target=_new}||
+|TBD|06|[http://ibm.biz/hpvsteam06](http://ibm.biz/hpvsteam06){target=_new}||
+|TBD|07|[http://ibm.biz/hpvsteam07](http://ibm.biz/hpvsteam07){target=_new}||
 |TBD|08|[http://ibm.biz/hpvsteam08](http://ibm.biz/hpvsteam08){target=_new}||
 |TBD|09|[http://ibm.biz/hpvsteam09](http://ibm.biz/hpvsteam09){target=_new}||
 |TBD|10|[http://ibm.biz/hpvsteam10](http://ibm.biz/hpvsteam10){target=_new}||
