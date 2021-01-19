@@ -1155,7 +1155,7 @@ mgvWNcD4Irl+wTtS0FixMdiLA5Z2+n0<span class="o">=</span>
 <li>Using <code>hpvs deploy</code> with a YAML file as input</li>
 <li>Using <code>hpvs vs create</code> with a JSON file as input</li>
 </ol>
-<p>I will show both the YAML and JSON files first, then I will show both methods of starting the GREP11 server, and then I'll explain the difference between the two start methods.</p>
+<p>I will show both the YAML and JSON files first, then I will show both methods of starting the GREP11 server.</p>
 <h3 id="yaml-file-for-grep11-server-configuration">YAML file for GREP11 server configuration<a class="headerlink" href="#yaml-file-for-grep11-server-configuration" title="Permanent link">&para;</a></h3>
 <p>This is the YAML file for a GREP11 server that will listen for client connections on port 9876, and will use domain 22 (hex 16) of Crypto Express 7S card 08:</p>
 <details class="example"><summary>GREP11 server YAML configuration file</summary><div class="highlight"><pre><span></span><code>version: v1 
@@ -1230,10 +1230,6 @@ ports:
 <details class="example" open="open"><summary>Command to start the GREP11 server with the JSON file</summary><div class="highlight"><pre><span></span><code>hpvs vs create --name grep11-08-0016-9876 --repo hpcsKpGrep11_runq --tag 1.2.2.1 --crypto_matrix=08.0016 --cpu 2 --ram 2048 --envjsonpath ${HOME}/hpvs/config/grep11/grep11_env_08.0016.json --ports &quot;{containerport = 9876, protocol = tcp, hostport = 9876}&quot;
 </code></pre></div>
 </details>
-<div class="admonition note">
-<p class="admonition-title">Difference between the two commands</p>
-<p>I like the simplicity of the <code>hpvs deploy</code>method much better than the long syntax of the <code>hpvs vs create</code> command.  But the <code>hpvs vs create</code> command has a benefit-  the <code>hpvs deploy</code> command uploads the GREP11 server Docker image from your workstation where you run the CLI to the Hyper Protect Virtual Servers LPAR, every single time.  This Docker image only needs to be sent up once.  The <code>hpvs vs create</code> command is smart enough to have this figured out and not do the unnecessary upload of the Docker image the second and subsequent times you run it.</p>
-</div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p><strong>Starting now, as you navigate to the next section of the lab, you should enter all the commands shown in the lab.</strong>  Only the commands in this section were for reference.</p>
