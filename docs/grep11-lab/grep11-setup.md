@@ -442,7 +442,7 @@ There are two alternative ways to start your GREP11 server:
 1. Using `hpvs deploy` with a YAML file as input
 2. Using `hpvs vs create` with a JSON file as input
 
-I will show both the YAML and JSON files first, then I will show both methods of starting the GREP11 server, and then I'll explain the difference between the two start methods.
+I will show both the YAML and JSON files first, then I will show both methods of starting the GREP11 server.
 
 ### YAML file for GREP11 server configuration
 
@@ -534,9 +534,6 @@ If you looked carefully at the JSON file and the YAML file in the previous secti
     ```
     hpvs vs create --name grep11-08-0016-9876 --repo hpcsKpGrep11_runq --tag 1.2.2.1 --crypto_matrix=08.0016 --cpu 2 --ram 2048 --envjsonpath ${HOME}/hpvs/config/grep11/grep11_env_08.0016.json --ports "{containerport = 9876, protocol = tcp, hostport = 9876}"
     ```
-
-!!! note "Difference between the two commands"
-    I like the simplicity of the `hpvs deploy`method much better than the long syntax of the `hpvs vs create` command.  But the `hpvs vs create` command has a benefit-  the `hpvs deploy` command uploads the GREP11 server Docker image from your workstation where you run the CLI to the Hyper Protect Virtual Servers LPAR, every single time.  This Docker image only needs to be sent up once.  The `hpvs vs create` command is smart enough to have this figured out and not do the unnecessary upload of the Docker image the second and subsequent times you run it.
 
 !!! Important
     **Starting now, as you navigate to the next section of the lab, you should enter all the commands shown in the lab.**  Only the commands in this section were for reference.
