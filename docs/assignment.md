@@ -4,7 +4,7 @@ You will need to enter the "Skytap Password" one time only (assuming you don't s
 
 If your Ubuntu desktop asks for a login password for userid *hyper-protect-lab*, the password, for all teams, will be provided by an instructor in the WebEx meeting chat. Your desktop will lock and ask for this password if your session is idle for one hour.
 
-Your two-digit team number will be used in the *Secure Image Build* lab in [Step 1 here](../securebuild-lab/create-server/#set-your-provided-number-and-save-it-for-later-use) . You must use both digits, including the leading zero (for teams 01-10).
+Your two-digit team number will be used in the *Secure Image Build* lab in [Step 1 here](../securebuild-lab/create-server/#set-your-provided-number-and-save-it-for-later-use) . You must use both digits, including the leading zero (for teams 01-09).
 
 |Name|Team Number|Skytap URL |Skytap Password|
 |:--:|:---------:|:---------:|:-------------:|
