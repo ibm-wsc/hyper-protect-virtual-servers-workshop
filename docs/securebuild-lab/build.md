@@ -141,7 +141,17 @@ source "${HOME}/.bashrc"
     echo "export REPO_ID='${REPO_ID}'" >> "${HOME}/.bashrc"
     ```
 
-7. Create config file
+7. Save your GitHub personal access token that you created in this lab into an environment variable.  The value of this environment variable, along with several others that you have set already, will be substituted into your secure build configuration file in the next step.
+
+    ``` bash
+    export GITHUB_ACCESS_TOKEN="your_github_access_token"
+    ```
+
+    !!! note
+        This will be the GitHub personal access token you created for the lab in the [Prerequisites](../prerequisites.md#create-a-github-personal-access-token){target=_blank}
+
+
+8. Create config file
 
     ``` yaml
     cat > "${SB_DIR}/sb_config.yaml" <<EOF
@@ -170,16 +180,15 @@ source "${HOME}/.bashrc"
         #env:
         # You would enter environment variables that you want to use in your application container in the whitelist array.
         #    whitelist: []
-        #build:
-        # You would enter any desired docker build arguments in the args array.
-        #    args: []
+        build:
+            args: { 'ACCESS_TOKEN' : '${GITHUB_ACCESS_TOKEN}' }
         signing_key:
             private_key_path: '${SB_DIR}/registration_keys/${keyName}.private'
             public_key_path: '${SB_DIR}/registration_keys/${keyName}.pub'
     EOF
     ```
 
-8. Continue to the [Build Application section](#build-application) if you are launching secure build for the first time or the [Troubleshooting Secure Build section](#troubleshooting-secure-build) if things didn't go as planned your first go-round and you are trying to get back on the right track.
+9. Continue to the [Build Application section](#build-application) if you are launching secure build for the first time or the [Troubleshooting Secure Build section](#troubleshooting-secure-build) if things didn't go as planned your first go-round and you are trying to get back on the right track.
 
 ## Build Application
 
