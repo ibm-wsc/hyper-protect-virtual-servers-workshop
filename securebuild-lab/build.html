@@ -862,6 +862,15 @@ gpg: <span class="k">done</span>
 </code></pre></div>
 </li>
 <li>
+<p>Save your GitHub personal access token that you created in this lab into an environment variable.  The value of this environment variable, along with several others that you have set already, will be substituted into your secure build configuration file in the next step.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">GITHUB_ACCESS_TOKEN</span><span class="o">=</span><span class="s2">&quot;your_github_access_token&quot;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will be the GitHub personal access token you created for the lab in the <a href="../prerequisites.html#create-a-github-personal-access-token" target="_blank">Prerequisites</a></p>
+</div>
+</li>
+<li>
 <p>Create config file</p>
 <div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">cat &gt; &quot;${SB_DIR}/sb_config.yaml&quot; &lt;&lt;EOF</span>
 <span class="l l-Scalar l-Scalar-Plain">secure_build_workers</span><span class="p p-Indicator">:</span>
@@ -889,9 +898,8 @@ gpg: <span class="k">done</span>
     <span class="c1">#env:</span>
     <span class="c1"># You would enter environment variables that you want to use in your application container in the whitelist array.</span>
     <span class="c1">#    whitelist: []</span>
-    <span class="c1">#build:</span>
-    <span class="c1"># You would enter any desired docker build arguments in the args array.</span>
-    <span class="c1">#    args: []</span>
+    <span class="nt">build</span><span class="p">:</span>
+        <span class="nt">args</span><span class="p">:</span> <span class="p p-Indicator">{</span> <span class="s">&#39;ACCESS_TOKEN&#39;</span><span class="nt"> </span><span class="p">:</span> <span class="s">&#39;${GITHUB_ACCESS_TOKEN}&#39;</span> <span class="p p-Indicator">}</span>
     <span class="nt">signing_key</span><span class="p">:</span>
         <span class="nt">private_key_path</span><span class="p">:</span> <span class="s">&#39;${SB_DIR}/registration_keys/${keyName}.private&#39;</span>
         <span class="nt">public_key_path</span><span class="p">:</span> <span class="s">&#39;${SB_DIR}/registration_keys/${keyName}.pub&#39;</span>
