@@ -37,13 +37,13 @@
         repository  Repository command
         sb          SecureBuild command
         snapshot    Snapshot command
+        undeploy    Undeploy command
         version     Print hpvs version
         vs          Virtual Server command
 
         Flags:
             --debug                   If --debug is passed, it will enable debug logs
         -h, --help                    Help for hpvs
-            --host string             Host LPAR name
             --log-output-dir string   Set log output directory
 
         Use "hpvs [command] --help" for more information about a command.
@@ -69,11 +69,12 @@
             list        List crypto
 
             Flags:
-            -h, --help   Help for crypto
+            -h, --help          Help for crypto
+                --host string   Host LPAR name
+                --json          if --json flag is passed , the output will be in json format
 
             Global Flags:
                 --debug                   If --debug is passed, it will enable debug logs
-                --host string             Host LPAR name
                 --log-output-dir string   Set log output directory
 
             Use "hpvs crypto [command] --help" for more information about a command.
@@ -95,12 +96,18 @@
 
             Flags:
                 --config string         YAML configuration file for the virtual server deployment
-            -h, --help                  Help for deploy
+                --exclude strings       Virtual servers e.g vs1,vs2; to be excluded from
+                                        deploying, other vs will be included for deployment, by default all
+                                        vs will be deployed
+            -h, --help                  help for deploy
+                --include strings       Virtual servers e.g vs1,vs2; to be included for
+                                        deploying, other vs will be excluded from deployment by default all
+                                        vs will be deployed
                 --templatefile string   YAML resource template file for the virtual server deployment
+            -u, --update                If -u is passed virtual server deployment setup gets updated
 
             Global Flags:
                 --debug                   If --debug is passed, it will enable debug logs
-                --host string             Host LPAR name
                 --log-output-dir string   Set log output directory
             ```
 
@@ -124,7 +131,6 @@
 
             Global Flags:
                 --debug                   If --debug is passed, it will enable debug logs
-                --host string             Host LPAR name
                 --log-output-dir string   Set log output directory`
             ```
 
@@ -137,7 +143,7 @@
         ???+ example "Example Output"
 
             ``` bash
-            add, delete, update, list, set Host
+            add, delete, update, list, unset, show, set Host
 
             Usage:
             hpvs host [command]
@@ -147,6 +153,8 @@
             delete      Delete host
             list        List host
             set         Set host
+            show        Show host
+            unset       Unset host
             update      Update host
 
             Flags:
@@ -154,7 +162,6 @@
 
             Global Flags:
                 --debug                   If --debug is passed, it will enable debug logs
-                --host string             Host LPAR name
                 --log-output-dir string   Set log output directory
 
             Use "hpvs host [command] --help" for more information about a command.
@@ -182,11 +189,12 @@
             show        Show image
 
             Flags:
-            -h, --help   Help for image
+            -h, --help          Help for image
+                --host string   Host LPAR name
+                --json          if --json flag is passed , the output will be in json format
 
             Global Flags:
                 --debug                   If --debug is passed, it will enable debug logs
-                --host string             Host LPAR name
                 --log-output-dir string   Set log output directory
 
             Use "hpvs image [command] --help" for more information about a command.
@@ -201,7 +209,7 @@
         ???+ example "Example Output"
 
             ``` bash
-            list, create, delete, show Network
+            list, create, update, delete, show Network
 
             Usage:
             hpvs network [command]
@@ -211,13 +219,15 @@
             delete      Delete network
             list        List network
             show        Show network
+            update      Update network
 
             Flags:
-            -h, --help   Help for network
+            -h, --help          Help for network
+                --host string   Host LPAR name
+                --json          if --json flag is passed , the output will be in json format
 
             Global Flags:
                 --debug                   If --debug is passed, it will enable debug logs
-                --host string             Host LPAR name
                 --log-output-dir string   Set log output directory
 
             Use "hpvs network [command] --help" for more information about a command.
@@ -245,11 +255,12 @@
             update      Update quotagroup
 
             Flags:
-            -h, --help   Help for quotagroup
+            -h, --help          Help for quotagroup
+                --host string   Host LPAR name
+                --json          if --json flag is passed , the output will be in json format
 
             Global Flags:
                 --debug                   If --debug is passed, it will enable debug logs
-                --host string             Host LPAR name
                 --log-output-dir string   Set log output directory
 
             Use "hpvs quotagroup [command] --help" for more information about a command.
@@ -277,7 +288,6 @@
 
             Global Flags:
                 --debug                   If --debug is passed, it will enable debug logs
-                --host string             Host LPAR name
                 --log-output-dir string   Set log output directory
 
             Use "hpvs regfile [command] --help" for more information about a command.
@@ -306,10 +316,10 @@
 
             Flags:
             -h, --help   Help for registry
+                --json   if --json flag is passed , the output will be in json format
 
             Global Flags:
                 --debug                   If --debug is passed, it will enable debug logs
-                --host string             Host LPAR name
                 --log-output-dir string   Set log output directory
 
             Use "hpvs registry [command] --help" for more information about a command.
@@ -337,11 +347,12 @@
             update      Update repository
 
             Flags:
-            -h, --help   Help for repository
+            -h, --help          Help for repository
+                --host string   Host LPAR name
+                --json          if --json flag is passed , the output will be in json format
 
             Global Flags:
                 --debug                   If --debug is passed, it will enable debug logs
-                --host string             Host LPAR name
                 --log-output-dir string   Set log output directory
 
             Use "hpvs repository [command] --help" for more information about a command.
@@ -377,7 +388,6 @@
 
             Global Flags:
                 --debug                   If --debug is passed, it will enable debug logs
-                --host string             Host LPAR name
                 --log-output-dir string   Set log output directory
 
             Use "hpvs sb [command] --help" for more information about a command.
@@ -404,14 +414,44 @@
             restore     Restore snapshot
 
             Flags:
-            -h, --help   Help for snapshot
+            -h, --help          Help for snapshot
+                --host string   Host LPAR name
+                --json          if --json flag is passed , the output will be in json format
 
             Global Flags:
                 --debug                   If --debug is passed, it will enable debug logs
-                --host string             Host LPAR name
                 --log-output-dir string   Set log output directory
 
             Use "hpvs snapshot [command] --help" for more information about a command.
+            ```
+
+    === "undeploy"
+
+        ``` bash
+        hpvs undeploy --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            Undeploy virtual servers
+
+            Usage:
+            hpvs undeploy [flags]
+
+            Flags:
+                --config string     YAML configuration file used for the virtual server deployment
+                --exclude strings   Virtual servers e.g vs1,vs2; to be excluded from
+                                    undeploying, other vs will be included for undeployment, by default all
+                                    vs will be undeployed
+            -h, --help              help for undeploy
+                --include strings   Virtual servers e.g vs1,vs2; to be included for
+                                    undeploying, other vs will be excluded from undeployment by default all
+                                    vs will be undeployed
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --log-output-dir string   Set log output directory
             ```
 
     === "version"
@@ -433,7 +473,6 @@
 
             Global Flags:
                 --debug                   If --debug is passed, it will enable debug logs
-                --host string             Host LPAR name
                 --log-output-dir string   Set log output directory
             ```
 
@@ -446,7 +485,7 @@
         ???+ example "Example Output"
 
             ``` bash
-            crate, delete, list, log, restart, show, start, stop VS
+            create, delete, list, log, restart, show, start, stop VS
 
             Usage:
             hpvs vs [command]
@@ -463,11 +502,12 @@
             update      Update virtual server
 
             Flags:
-            -h, --help   Help for vs
+            -h, --help          Help for vs
+                --host string   Host LPAR name
+                --json          if --json flag is passed , the output will be in json format
 
             Global Flags:
                 --debug                   If --debug is passed, it will enable debug logs
-                --host string             Host LPAR name
                 --log-output-dir string   Set log output directory
 
             Use "hpvs vs [command] --help" for more information about a command.
@@ -494,11 +534,10 @@
 
         Global Flags:
             --debug                   If --debug is passed, it will enable debug logs
-            --host string             Host LPAR name
             --log-output-dir string   Set log output directory
         ```
 
-4. For further exploration of the Hyper Protect Virtual Servers CLI [see the Knowledge Center](https://www.ibm.com/support/knowledgecenter/en/SSHPMH_1.2.x/topics/cmd_hpvs.html){target_blank}
+4. For further exploration of the Hyper Protect Virtual Servers CLI [see the Knowledge Center](https://www.ibm.com/support/knowledgecenter/en/SSHPMH_1.2.x/topics/cmd_hpvs.html){target=_blank}
 
 ## Add Docker registry to use for secure build
 
@@ -696,7 +735,7 @@
     echo "export GITHUB_SSH_KEY='${GITHUB_SSH_KEY}'" >> "${HOME}/.bashrc"
     ```
 
-4. Create Public and private key for GitHub access
+4. Create public and private key for GitHub access
 
     ``` bash
     ssh-keygen -t rsa -b 4096 -f "${GITHUB_SSH_KEY}" -N ''
@@ -756,7 +795,7 @@
         ![GitHub SSH Key Added](securebuild-setup_Images/SSH_key_added_to_GitHub.png)
 
     !!! note
-        You created this *public* `github.com` GitHub in the [Prerequisites](../prerequisites.md#Create-a-GitHub){target=_blank} (or already had one).
+        You created this *public* GitHub account in the [Prerequisites](../prerequisites.md#Create-a-GitHub){target=_blank} (or already had one).
 
 8. Scan for GitHub's public key (Done to trust GitHub connection the first time)
 
@@ -767,12 +806,12 @@
     !!! example "Example Output"
 
         ``` bash
-        # github.com:22 SSH-2.0-babeld-ffbef2ae
-        # github.com:22 SSH-2.0-babeld-ffbef2ae
-        # github.com:22 SSH-2.0-babeld-ffbef2ae
+        # github.com:22 SSH-2.0-babeld-4cec2db4
+        # github.com:22 SSH-2.0-babeld-4cec2db4
+        # github.com:22 SSH-2.0-babeld-4cec2db4
         ```
 
-9. Check your GitHub key now has access to your account with:
+9. Check that your GitHub key now has access to your account with:
 
     ``` bash
     ssh -T git@github.com -i "${GITHUB_SSH_KEY}"

@@ -8,11 +8,11 @@ Source `bashrc` to set necessary variables if unset
 source "${HOME}/.bashrc"
 ```
 
-## Create Certificate and Key for server side certificate checking in tls
+## Create Certificate and Key for server-side certificate checking in TLS
 
 !!! info
 
-    In this process you will create the `Secure Build Server Client Certificate and Key` referenced in the [key table](overview.md#fnref:2). You will keep the private key on your Linux vm and pass the corresponding certificate to the secure build server you are deploying in this section. Then, whenever you interact with the secure build server to build your applications and get your manifest files it will check that your private key matches the public key of the certificate (i.e. server side checking in mutual tls) so that only you (or others / CI tools with the necessary private key) can access the server to perform secure build operations (`hpvs sb` commands) on it (i.e. build, log, status, manifest, etc.).
+    In this process you will create the `Secure Build Server Client Certificate and Key` referenced in the [key table](overview.md#fnref:2). You will keep the private key on your Linux vm and pass the corresponding certificate to the secure build server you are deploying in this section. Then, whenever you interact with the secure build server to build your applications and get your manifest files it will check that your private key matches the public key of the certificate (i.e., server-side checking in mutual TLS) so that only you (or others / CI tools with the necessary private key) can access the server to perform secure build operations (`hpvs sb` commands) on it (i.e., build, log, status, manifest, etc.).
 
 1. Generate rand file
 
@@ -26,7 +26,7 @@ source "${HOME}/.bashrc"
     mkdir -p "${SB_DIR}/sbs_keys"
     ```
 
-3. Generate cert and key to use mutual tls
+3. Generate certificate and key to use mutual TLS
 
     ``` bash
     openssl req -newkey rsa:2048 \
@@ -47,20 +47,20 @@ source "${HOME}/.bashrc"
         -----
         ```
 
-4. Change cert to base64 encoding and save to new file.
+4. Change certificate to base64 encoding and save to new file.
 
     ``` bash
     echo $(cat "${SB_DIR}/sbs_keys/sbs.cert" | base64) \
     | tr -d ' ' > "${SB_DIR}/sbs_keys/sbs_base64.cert"
     ```
 
-5. Save the cert as an environment variable
+5. Save the certificate as an environment variable
 
     ``` bash
     export cert=$(cat "${SB_DIR}/sbs_keys/sbs_base64.cert")
     ```
 
-6. Check your cert with:
+6. Check your certificate with:
 
     ``` bash
     echo $cert
@@ -122,17 +122,19 @@ hpvs quotagroup create --name "sb_user${HPVS_NUMBER}" --size=40GB
 
     ``` bash
     +-------------+--------------+
-    | name        | sb_user00    |
-    | filesystem  | btrfs        |
-    | passthrough | false        |
-    | pool_id     | lv_data_pool |
-    | size        | 40GB         |
-    | available   | 40GB         |
-    | containers  | []           |
+    | PROPERTIES  | VALUES       |
+    +-------------+--------------+
+    | Name        | sb_user00    |
+    | Filesystem  | btrfs        |
+    | Passthrough | false        |
+    | PoolID      | lv_data_pool |
+    | Size        | 40 GB        |
+    | Containers  |              |
+    | Available   | 39 GB        |
     +-------------+--------------+
     ```
 
-## Create Securebuild server
+## Create Secure Build Server
 
 ``` bash
 hpvs vs create --name sbserver_${HPVS_NUMBER} --repo SecureDockerBuild \
@@ -147,28 +149,23 @@ hpvs vs create --name sbserver_${HPVS_NUMBER} --repo SecureDockerBuild \
 ???+ example "Example Output"
 
     ``` bash
-    ╭─────────────┬──────────────────────────────╮
-    │ PROPERTIES  │ VALUES                       │
-    ├─────────────┼──────────────────────────────┤
-    │ Name        │ sbserver_00                  │
-    │ Status      │ Up Less than a second        │
-    │ CPU         │ 2                            │
-    │ Memory      │ 2048                         │
-    │ Networks    │ Network:bridge               │
-    │             │ IPAddress:172.31.0.5         │
-    │             │ Gateway:172.31.0.1           │
-    │             │ Subnet:16                    │
-    │             │ MacAddress:02:42:ac:1f:00:05 │
-    │             │                              │
-    │             │                              │
-    │ Ports       │ LocalPort:443/tcp            │
-    │             │ GuestPort:30000              │
-    │             │                              │
-    │ Quotagroups │ appliance_data               │
-    │             │ sb_user00                    │
-    │             │                              │
-    │ State       │ running                      │
-    ╰─────────────┴──────────────────────────────╯
+    +-------------+------------------------------+
+    | PROPERTIES  | VALUES                       |
+    +-------------+------------------------------+
+    | Name        | sbserver_00                  |
+    | CPU         | 2                            |
+    | Memory      | 2048                         |
+    | State       | running                      |
+    | Status      | Up Less than a second        |
+    | Networks    | Gateway:172.31.0.1           |
+    |             | IPAddress:172.31.0.2         |
+    |             | MacAddress:02:42:ac:1f:00:02 |
+    |             | Network:bridge               |
+    |             | Subnet:16                    |
+    | Ports       | GuestPort:30000              |
+    |             | LocalPort:443/tcp            |
+    | Quotagroups | [sb_user00]                  |
+    +-------------+------------------------------+
     ```
 
 We can see the quotagroup is now being used with
@@ -180,20 +177,18 @@ hpvs quotagroup show --name "sb_user${HPVS_NUMBER}"
 ???+ example "Example Output"
 
     ``` bash
-    +-------------+--------------------------------+
-    | PROPERTIES  | VALUES                         |
-    +-------------+--------------------------------+
-    | name        | sb_user00                      |
-    | filesystem  | btrfs                          |
-    | passthrough | false                          |
-    | pool_id     | lv_data_pool                   |
-    | size        | 40GB                           |
-    | available   | 12GB                            |
-    | containers  | Container:sbserver_00          |
-    |             | Mountids:"new","data","docker" |
-    |             |                                |
-    |             |                                |
-    +-------------+--------------------------------+
+    +-------------+-----------------------------+
+    | PROPERTIES  | VALUES                      |
+    +-------------+-----------------------------+
+    | Name        | sb_user00                   |
+    | Filesystem  | btrfs                       |
+    | Passthrough | false                       |
+    | PoolID      | lv_data_pool                |
+    | Size        | 40 GB                       |
+    | Containers  | container_name:sbserver_00  |
+    |             | mount_ids:[new data docker] |
+    | Available   | 11 GB                       |
+    +-------------+-----------------------------+
     ```
 
 The show output for the Hyper Protect Virtual Server was shown when it was deployed but we can bring it back up with
@@ -205,28 +200,23 @@ hpvs vs show --name "sbserver_${HPVS_NUMBER}"
 ???+ example "Example Output"
 
     ``` bash
-    ╭─────────────┬──────────────────────────────╮
-    │ PROPERTIES  │ VALUES                       │
-    ├─────────────┼──────────────────────────────┤
-    │ Name        │ sbserver_00                  │
-    │ Status      │ Up About a minute            │
-    │ CPU         │ 2                            │
-    │ Memory      │ 2048                         │
-    │ Networks    │ Network:bridge               │
-    │             │ IPAddress:172.31.0.5         │
-    │             │ Gateway:172.31.0.1           │
-    │             │ Subnet:16                    │
-    │             │ MacAddress:02:42:ac:1f:00:05 │
-    │             │                              │
-    │             │                              │
-    │ Ports       │ LocalPort:443/tcp            │
-    │             │ GuestPort:30000              │
-    │             │                              │
-    │ Quotagroups │ appliance_data               │
-    │             │ sb_user00                    │
-    │             │                              │
-    │ State       │ running                      │
-    ╰─────────────┴──────────────────────────────╯
+    +-------------+------------------------------+
+    | PROPERTIES  | VALUES                       |
+    +-------------+------------------------------+
+    | Name        | sbserver_00                  |
+    | CPU         | 2                            |
+    | Memory      | 2048                         |
+    | State       | running                      |
+    | Status      | Up 2 minutes                 |
+    | Networks    | Gateway:172.31.0.1           |
+    |             | IPAddress:172.31.0.2         |
+    |             | MacAddress:02:42:ac:1f:00:02 |
+    |             | Network:bridge               |
+    |             | Subnet:16                    |
+    | Ports       | GuestPort:30000              |
+    |             | LocalPort:443/tcp            |
+    | Quotagroups | [sb_user00]                  |
+    +-------------+------------------------------+
     ```
 
 Your secure build server is now up and running! :fire:

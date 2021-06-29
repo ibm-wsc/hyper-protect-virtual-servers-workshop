@@ -20,7 +20,7 @@ Registering a fake account for lab purposes.
     ![User Registration](Bitcoin_Wallet_Images/Wallet_register_info.png)
 
     !!! Tip
-        Do not worry about the information you enter on the registration page (shown below) as it won't map to anything. You just need your password to log back in if you log out of the application.
+        Do not worry about the information you enter on the registration page shown above as it won't map to anything. You just need your password to log back in if you log out of the application.
 
 ## Wallet initialization
 
@@ -55,7 +55,7 @@ A wallet without currency is blasphemy, so it's time to fill it on up with fake 
     ![Wallet receiving bitcoin](Bitcoin_Wallet_Images/Receiving_bitcoin.png)
 
     !!! info
-        This is the address whose alloted bitcoins you lay claim to.
+        This is the address whose allotted bitcoins you lay claim to.
 
 2. Open [this bitcoin test faucet site](https://bitcoinfaucet.uo1.net/send.php){target=_blank} [click on the link] and use it to transfer bitcoin value to the `Receiving address` in your wallet **from step 1 above**.
 
@@ -77,9 +77,9 @@ A wallet without currency is blasphemy, so it's time to fill it on up with fake 
     ![Receive Transaction 0 Confirmations](Bitcoin_Wallet_Images/0_confirmations_block_details.png)
 
     !!! info
-        The number of [confirmations](https://en.bitcoin.it/wiki/Confirmation){target=_blank} a block receives is the number of blocks deep the block that has included the blockchain transaction is. In other words, `1 confirmation` means that the current head block includes the transaction. `2 confirmations` means that the current head blocks parent block contains the transaction and so on. The deeper the transaction is (more confirmations it has) the more mining power it would take to "reverse history" and undo the transaction.
+        The number of [confirmations](https://en.bitcoin.it/wiki/Confirmation){target=_blank} a block receives is the number of blocks deep the block that has included the blockchain transaction is. In other words, `1 confirmation` means that the current head block includes the transaction. `2 confirmations` means that the current head block's parent block contains the transaction and so on. The deeper the transaction is (more confirmations it has) the more mining power it would take to "reverse history" and undo the transaction.
 
-    Since there are `0 confirmations` in the picture above, it means that the transaction is not yet included in a block. This is why it has no timestamp yet and it's block number is listed as `0`.
+    Since there are `0 confirmations` in the picture above, it means that the transaction is not yet included in a block. This is why it has no timestamp yet and its block number is listed as `0`.
 
 6. After waiting anywhere from a minute to a few minutes (depending on the current testnet traffic) you should see a confirmation on your transaction.
 
@@ -105,7 +105,7 @@ Since you are feeling charitable you decide to transfer your testnet value back 
         This address is here for easy copy and paste (ensure this matches what the application shows in the browser before using this, as the bitcoin address they use for returning funds changes occasionally):
 
         ``` bash
-        tb1qm5tfegjevj27yvvna9elym9lnzcf0zraxgl8z2
+        tb1ql7w62elx9ucw4pj5lgw4l028hmuw80sndtntxt
         ```
 
 2. Send bitcoins to faucet using `Send` section of wallet

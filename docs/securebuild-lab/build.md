@@ -11,7 +11,7 @@ source "${HOME}/.bashrc"
 ## Create repository registration GPG signing key
 
 !!! info
-    This section creates the `Repository Registration Signing Key` referenced in the [key table](overview.md#fnref:2). [The GNU Privacy Guard (GPG)](https://gnupg.org/){target=_blank} utility (a free implementation of the OpenPGP standard or PGP) generates this key pair (protected by a user defined password) and then exports the public and private keys to files in the `${SB_DIR}/registration_keys/` directory. Later, you will employ these keys to sign a registration file for your securely built image to register it with your Hyper Protect Virtual Servers Appliance such that only the holder of the private key can change the registered repository on the Hyper Protect Virtual Servers appliance.
+    This section creates the `Repository Registration Signing Key` referenced in the [key table](overview.md#fnref:2). [The GNU Privacy Guard (GPG)](https://gnupg.org/){target=_blank} utility (a free implementation of the OpenPGP standard or PGP) generates this key pair (protected by a user defined password) and then exports the public and private keys to files in the `${SB_DIR}/registration_keys/` directory. Later, you will employ these keys to sign a registration file for your securely built image to register it with your Hyper Protect Virtual Servers appliance such that only the holder of the private key can change the registered repository on the Hyper Protect Virtual Servers appliance.
 
 1. Set key name
 
@@ -100,7 +100,7 @@ source "${HOME}/.bashrc"
 
     ???+ example "Example Output"
         ``` bash
-        secure_bitcoin_key_definition_keys  secure_bitcoin_key.pub secure_bitcoin_key.private
+        secure_bitcoin_key7750_definition_keys  secure_bitcoin_key7750.private  secure_bitcoin_key7750.pub
         ```
 
 ## Set Build Configuration
@@ -197,7 +197,7 @@ source "${HOME}/.bashrc"
 
     Additionally, this process generates a `Manifest Signing Key` which it employs to sign the contents of the build for attestation of the build contents by internal and/or third party auditors. The `Manifest Signing Key` is discussed in more detail in the [`Verify your application section`](#verify-your-application) later in the lab.
 
-1. Initialize Secure Build Hyper Protect Virtual server with configuration file generated in the [Set Build Configuration section](#set-build-configuration)
+1. Initialize Secure Build Hyper Protect Virtual Server with configuration file generated in the [Set Build Configuration section](#set-build-configuration)
 
     ``` bash
     hpvs sb init --config "${SB_DIR}/sb_config.yaml"
@@ -218,7 +218,7 @@ source "${HOME}/.bashrc"
     ```
 
     !!! Tip
-        The following build will take anywhere from **15-20 minutes** to complete. While this is ongoing, you should open a new tab in your terminal to check the automatically updating logs and build status (steps for doing this are detailed in the next few steps). If this command times out please check the status in the `step 3` to make sure nothing went wrong. It might just be that your build took too long and everything will be ok. If something did go wrong, visit the [Troubleshooting Secure Build section](#troubleshooting-secure-build)
+        The following build will take anywhere from **15-20 minutes** to complete. While this is ongoing, you should open a new tab in your terminal to check the automatically updating logs and build status (steps for doing this are detailed in the next few steps). If this command times out please check the status as in `step 4` to make sure nothing went wrong. It might just be that your build took too long and everything will be ok. If something did go wrong, visit the [Troubleshooting Secure Build section](#troubleshooting-secure-build).
 
     !!! note
         The secure build is asynchronous so if the command gets interrupted here don't worry! :grin:
@@ -338,7 +338,7 @@ source "${HOME}/.bashrc"
     !!! error "If you see an error in your status"
         If you see that your build ran into an error please visit the [Troubleshooting Secure Build section](#troubleshooting-secure-build)
 
-8. From the original terminal window that you ran `hpvs sb init`, output the repository registration file.
+8. From the original terminal window, where you ran `hpvs sb init`, output the repository registration file.
 
     ``` bash
     echo "${passphrase}" | hpvs sb regfile \
@@ -390,7 +390,7 @@ source "${HOME}/.bashrc"
 ## Verify your application
 
 !!! info
-    On the secure build server, the `.tbz` manifest file was hashed and then signed by the `Manifest Signing Key` referenced in the [key table](overview.md#fnref:2) which only exists on the server (inside its secure environment). In steps 1-11 below, you are using the matching public key you received from the secure build server (using a secure tls connection) in `step 4` to "undo" this signature to reveal the original hash of the file. We then compare this hash to the hash of the file we have using the `verify` command in `step 11`. `Verification OK` means they are the same, implying that the `.tbz` file we have now was the same one that was signed by the manifest private key inside the safe confines of the secure build server.
+    On the secure build server, the `.tbz` manifest file was hashed and then signed by the `Manifest Signing Key` referenced in the [key table](overview.md#fnref:2) which only exists on the server (inside its secure environment). In steps 1-11 below, you are using the matching public key you will receive from the secure build server (using a secure TLS connection) in `step 4` to "undo" this signature to reveal the original hash of the file. We then compare this hash to the hash of the file we have using the `verify` command in `step 11`. `Verification OK` means they are the same, implying that the `.tbz` file we have now was the same one that was signed by the manifest private key inside the safe confines of the secure build server.
 
 1. Create directories for your manifest file information and change into your new `manifest` directory.
 
@@ -425,7 +425,7 @@ source "${HOME}/.bashrc"
 
     !!! info
 
-        Connections to the secure build server are secured using mutual tls. This means that proper certificates and keys have to be used on the client side to access these files (as well as when doing the previous secure build commands). This adds a layer of security to make sure that the `public key` and `manifest files` are authentic and securely distributed.
+        Connections to the secure build server are secured using mutual TLS. This means that proper certificates and keys have to be used on the client side to access these files (as well as when doing the previous secure build commands). This adds a layer of security to make sure that the `public key` and `manifest files` are authentic and securely distributed.
 
 5. Check that your application manifest and signing key were retrieved
 
@@ -521,7 +521,7 @@ source "${HOME}/.bashrc"
 
 14. What does this give me?
 
-    This gives you a way to see the collection of files used for your build at the time of the build and signed by the manifest private key which is secured in your secure build container. By retrieving the public key and verifying the signature of the package we *and auditors* can verify what was used for our secure image build. (Since the private key was generated in the secure build server we can trust it) This gives us verification of what was used in the build as well as the verification of the images themselves we get from [Docker Content Trust](https://docs.docker.com/engine/security/trust/content_trust/){target=_blank}.
+    This gives you a way to see the collection of files used for your build at the time of the build and signed by the manifest private key which is secured in your secure build container. By retrieving the public key and verifying the signature of the package we *and auditors* can verify what was used for our secure image build. (Since the private key was generated in the secure build server we can trust it). This gives us verification of what was used in the build as well as the verification of the images themselves we get from [Docker Content Trust](https://docs.docker.com/engine/security/trust/content_trust/){target=_blank}.
 
     !!! note
         The secure build server also generates the keys for Docker Content Trust and stores them safely to provide a secure root of trust.

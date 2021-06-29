@@ -53,15 +53,17 @@ source "${HOME}/.bashrc"
     ???+ example "Example Output"
 
         ``` bash
-        +-------------+--------------+
-        | name        | hpvs_bc_a_00 |
-        | filesystem  | btrfs        |
-        | passthrough | false        |
-        | pool_id     | lv_data_pool |
-        | size        | 5GB          |
-        | available   | 5GB          |
-        | containers  | []           |
-        +-------------+--------------+
+        +-------------+---------------------+
+        | PROPERTIES  | VALUES              |
+        +-------------+---------------------+
+        | Name        | hpvs_bc_a_00        |
+        | Filesystem  | btrfs               |
+        | Passthrough | false               |
+        | PoolID      | lv_data_pool        |
+        | Size        | 5 GB                |
+        | Containers  |                     |
+        | Available   | 4 GB                |
+        +-------------+---------------------+
         ```
 
 2. View your newly created quotagroup
@@ -73,15 +75,17 @@ source "${HOME}/.bashrc"
     ???+ example "Example Output"
 
         ``` bash
-        +-------------+--------------+
-        | name        | hpvs_bc_a_00 |
-        | filesystem  | btrfs        |
-        | passthrough | false        |
-        | pool_id     | lv_data_pool |
-        | size        | 5GB          |
-        | available   | 5GB          |
-        | containers  | []           |
-        +-------------+--------------+
+        +-------------+---------------------+
+        | PROPERTIES  | VALUES              |
+        +-------------+---------------------+
+        | Name        | hpvs_bc_a_00        |
+        | Filesystem  | btrfs               |
+        | Passthrough | false               |
+        | PoolID      | lv_data_pool        |
+        | Size        | 5 GB                |
+        | Containers  |                     |
+        | Available   | 4 GB                |
+        +-------------+---------------------+
         ```
 
 ## Deploy your Application
@@ -104,28 +108,23 @@ source "${HOME}/.bashrc"
     ???+ example "Example Output"
 
         ``` bash
-        ╭─────────────┬──────────────────────────────╮
-        │ PROPERTIES  │ VALUES                       │
-        ├─────────────┼──────────────────────────────┤
-        │ Name        │ hpvs_bc_a_00                 │
-        │ Status      │ Up Less than a second        │
-        │ CPU         │ 2                            │
-        │ Memory      │ 2048                         │
-        │ Networks    │ Network:bridge               │
-        │             │ IPAddress:172.31.0.8         │
-        │             │ Gateway:172.31.0.1           │
-        │             │ Subnet:16                    │
-        │             │ MacAddress:02:42:ac:1f:00:08 │
-        │             │                              │
-        │             │                              │
-        │ Ports       │ LocalPort:443/tcp            │
-        │             │ GuestPort:30100              │
-        │             │                              │
-        │ Quotagroups │ appliance_data               │
-        │             │ hpvs_bc_a_00                 │
-        │             │                              │
-        │ State       │ running                      │
-        ╰─────────────┴──────────────────────────────╯
+        +-------------+------------------------------+
+        | PROPERTIES  | VALUES                       |
+        +-------------+------------------------------+
+        | Name        | hpvs_bc_a_00                 |
+        | CPU         | 2                            |
+        | Memory      | 2048                         |
+        | State       | running                      |
+        | Status      | Up Less than a second        |
+        | Networks    | Gateway:172.31.0.1           |
+        |             | IPAddress:172.31.0.6         |
+        |             | MacAddress:02:42:ac:1f:00:06 |
+        |             | Network:bridge               |
+        |             | Subnet:16                    |
+        | Ports       | GuestPort:30100              |
+        |             | LocalPort:443/tcp            |
+        | Quotagroups | [hpvs_bc_a_00]               |
+        +-------------+------------------------------+
         ```
 
 3. Check on the Quotagroup (and see the application is indeed using it)
@@ -137,20 +136,18 @@ source "${HOME}/.bashrc"
     ???+ example "Example Output"
 
         ```
-        +-------------+------------------------+
-        | PROPERTIES  | VALUES                 |
-        +-------------+------------------------+
-        | name        | hpvs_bc_a_00           |
-        | filesystem  | btrfs                  |
-        | passthrough | false                  |
-        | pool_id     | lv_data_pool           |
-        | size        | 5GB                    |
-        | available   | 751MB                  |
-        | containers  | Container:hpvs_bc_a_00 |
-        |             | Mountids:"new"         |
-        |             |                        |
-        |             |                        |
-        +-------------+------------------------+
+        +-------------+------------------------------------+
+        | PROPERTIES  | VALUES                             |
+        +-------------+------------------------------------+
+        | Name        | hpvs_bc_a_00                       |
+        | Filesystem  | btrfs                              |
+        | Passthrough | false                              |
+        | PoolID      | lv_data_pool                       |
+        | Size        | 5 GB                               |
+        | Containers  | container_name:hpvs_a_00           |
+        |             | mount_ids:[new]                    |
+        | Available   | 751 MB                             |
+        +-------------+------------------------------------+
         ```
 
     We can see the Hyper Protect Virtual Server for our application is now taking up the majority of our Quotagroup.
@@ -164,28 +161,23 @@ source "${HOME}/.bashrc"
     ???+ example "Example Output"
 
         ```
-        ╭─────────────┬──────────────────────────────╮
-        │ PROPERTIES  │ VALUES                       │
-        ├─────────────┼──────────────────────────────┤
-        │ Name        │ hpvs_bc_a_00                 │
-        │ Status      │ Up 6 minutes                 │
-        │ CPU         │ 2                            │
-        │ Memory      │ 2048                         │
-        │ Networks    │ Network:bridge               │
-        │             │ IPAddress:172.31.0.8         │
-        │             │ Gateway:172.31.0.1           │
-        │             │ Subnet:16                    │
-        │             │ MacAddress:02:42:ac:1f:00:08 │
-        │             │                              │
-        │             │                              │
-        │ Ports       │ LocalPort:443/tcp            │
-        │             │ GuestPort:30100              │
-        │             │                              │
-        │ Quotagroups │ appliance_data               │
-        │             │ hpvs_bc_a_00                 │
-        │             │                              │
-        │ State       │ running                      │
-        ╰─────────────┴──────────────────────────────╯
+        +-------------+------------------------------+
+        | PROPERTIES  | VALUES                       |
+        +-------------+------------------------------+
+        | Name        | hpvs_bc_a_00                 |
+        | CPU         | 2                            |
+        | Memory      | 2048                         |
+        | State       | running                      |
+        | Status      | Up 5 minutes                 |
+        | Networks    | IPAddress:172.31.0.6         |
+        |             | MacAddress:02:42:ac:1f:00:06 |
+        |             | Network:bridge               |
+        |             | Subnet:16                    |
+        |             | Gateway:172.31.0.1           |
+        | Ports       | GuestPort:30100              |
+        |             | LocalPort:443/tcp            |
+        | Quotagroups | [hpvs_bc_a_00]               |
+        +-------------+------------------------------+
         ```
 
 ## Access your application
