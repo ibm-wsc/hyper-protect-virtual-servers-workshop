@@ -747,7 +747,7 @@
 <h2 id="create-repository-registration-gpg-signing-key">Create repository registration GPG signing key<a class="headerlink" href="#create-repository-registration-gpg-signing-key" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>This section creates the <code>Repository Registration Signing Key</code> referenced in the <a href="overview.html#fnref:2">key table</a>. <a href="https://gnupg.org/" target="_blank">The GNU Privacy Guard (GPG)</a> utility (a free implementation of the OpenPGP standard or PGP) generates this key pair (protected by a user defined password) and then exports the public and private keys to files in the <code>${SB_DIR}/registration_keys/</code> directory. Later, you will employ these keys to sign a registration file for your securely built image to register it with your Hyper Protect Virtual Servers Appliance such that only the holder of the private key can change the registered repository on the Hyper Protect Virtual Servers appliance.</p>
+<p>This section creates the <code>Repository Registration Signing Key</code> referenced in the <a href="overview.html#fnref:2">key table</a>. <a href="https://gnupg.org/" target="_blank">The GNU Privacy Guard (GPG)</a> utility (a free implementation of the OpenPGP standard or PGP) generates this key pair (protected by a user defined password) and then exports the public and private keys to files in the <code>${SB_DIR}/registration_keys/</code> directory. Later, you will employ these keys to sign a registration file for your securely built image to register it with your Hyper Protect Virtual Servers appliance such that only the holder of the private key can change the registered repository on the Hyper Protect Virtual Servers appliance.</p>
 </div>
 <ol>
 <li>
@@ -824,7 +824,7 @@ gpg: <span class="k">done</span>
 <p>List newly generated key files</p>
 <div class="highlight"><pre><span></span><code> ls <span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span>/registration_keys/
 </code></pre></div>
-<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>secure_bitcoin_key_definition_keys  secure_bitcoin_key.pub secure_bitcoin_key.private
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>secure_bitcoin_key7750_definition_keys  secure_bitcoin_key7750.private  secure_bitcoin_key7750.pub
 </code></pre></div>
 </details>
 </li>
@@ -918,7 +918,7 @@ gpg: <span class="k">done</span>
 </div>
 <ol>
 <li>
-<p>Initialize Secure Build Hyper Protect Virtual server with configuration file generated in the <a href="#set-build-configuration">Set Build Configuration section</a></p>
+<p>Initialize Secure Build Hyper Protect Virtual Server with configuration file generated in the <a href="#set-build-configuration">Set Build Configuration section</a></p>
 <div class="highlight"><pre><span></span><code>hpvs sb init --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span>
 </code></pre></div>
 <div class="admonition example">
@@ -935,7 +935,7 @@ gpg: <span class="k">done</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>The following build will take anywhere from <strong>15-20 minutes</strong> to complete. While this is ongoing, you should open a new tab in your terminal to check the automatically updating logs and build status (steps for doing this are detailed in the next few steps). If this command times out please check the status in the <code>step 3</code> to make sure nothing went wrong. It might just be that your build took too long and everything will be ok. If something did go wrong, visit the <a href="#troubleshooting-secure-build">Troubleshooting Secure Build section</a></p>
+<p>The following build will take anywhere from <strong>15-20 minutes</strong> to complete. While this is ongoing, you should open a new tab in your terminal to check the automatically updating logs and build status (steps for doing this are detailed in the next few steps). If this command times out please check the status as in <code>step 4</code> to make sure nothing went wrong. It might just be that your build took too long and everything will be ok. If something did go wrong, visit the <a href="#troubleshooting-secure-build">Troubleshooting Secure Build section</a>.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1042,7 +1042,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 </div>
 </li>
 <li>
-<p>From the original terminal window that you ran <code>hpvs sb init</code>, output the repository registration file.</p>
+<p>From the original terminal window, where you ran <code>hpvs sb init</code>, output the repository registration file.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">passphrase</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> hpvs sb regfile <span class="se">\</span>
 --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span> <span class="se">\</span>
 --out <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/yaml.</span><span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span><span class="s2">.enc&quot;</span>
@@ -1088,7 +1088,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 <h2 id="verify-your-application">Verify your application<a class="headerlink" href="#verify-your-application" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>On the secure build server, the <code>.tbz</code> manifest file was hashed and then signed by the <code>Manifest Signing Key</code> referenced in the <a href="overview.html#fnref:2">key table</a> which only exists on the server (inside its secure environment). In steps 1-11 below, you are using the matching public key you received from the secure build server (using a secure tls connection) in <code>step 4</code> to "undo" this signature to reveal the original hash of the file. We then compare this hash to the hash of the file we have using the <code>verify</code> command in <code>step 11</code>. <code>Verification OK</code> means they are the same, implying that the <code>.tbz</code> file we have now was the same one that was signed by the manifest private key inside the safe confines of the secure build server.</p>
+<p>On the secure build server, the <code>.tbz</code> manifest file was hashed and then signed by the <code>Manifest Signing Key</code> referenced in the <a href="overview.html#fnref:2">key table</a> which only exists on the server (inside its secure environment). In steps 1-11 below, you are using the matching public key you will receive from the secure build server (using a secure TLS connection) in <code>step 4</code> to "undo" this signature to reveal the original hash of the file. We then compare this hash to the hash of the file we have using the <code>verify</code> command in <code>step 11</code>. <code>Verification OK</code> means they are the same, implying that the <code>.tbz</code> file we have now was the same one that was signed by the manifest private key inside the safe confines of the secure build server.</p>
 </div>
 <ol>
 <li>
@@ -1116,7 +1116,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Connections to the secure build server are secured using mutual tls. This means that proper certificates and keys have to be used on the client side to access these files (as well as when doing the previous secure build commands). This adds a layer of security to make sure that the <code>public key</code> and <code>manifest files</code> are authentic and securely distributed.</p>
+<p>Connections to the secure build server are secured using mutual TLS. This means that proper certificates and keys have to be used on the client side to access these files (as well as when doing the previous secure build commands). This adds a layer of security to make sure that the <code>public key</code> and <code>manifest files</code> are authentic and securely distributed.</p>
 </div>
 </li>
 <li>
@@ -1194,7 +1194,7 @@ manifest.docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641.
 </li>
 <li>
 <p>What does this give me?</p>
-<p>This gives you a way to see the collection of files used for your build at the time of the build and signed by the manifest private key which is secured in your secure build container. By retrieving the public key and verifying the signature of the package we <em>and auditors</em> can verify what was used for our secure image build. (Since the private key was generated in the secure build server we can trust it) This gives us verification of what was used in the build as well as the verification of the images themselves we get from <a href="https://docs.docker.com/engine/security/trust/content_trust/" target="_blank">Docker Content Trust</a>.</p>
+<p>This gives you a way to see the collection of files used for your build at the time of the build and signed by the manifest private key which is secured in your secure build container. By retrieving the public key and verifying the signature of the package we <em>and auditors</em> can verify what was used for our secure image build. (Since the private key was generated in the secure build server we can trust it). This gives us verification of what was used in the build as well as the verification of the images themselves we get from <a href="https://docs.docker.com/engine/security/trust/content_trust/" target="_blank">Docker Content Trust</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The secure build server also generates the keys for Docker Content Trust and stores them safely to provide a secure root of trust.</p>

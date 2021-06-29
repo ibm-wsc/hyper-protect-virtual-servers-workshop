@@ -761,12 +761,12 @@
 <h2 id="clean-up-secure-build-server">Clean up Secure Build Server<a class="headerlink" href="#clean-up-secure-build-server" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Cleanup virtual server</p>
+<p>Clean up virtual server</p>
 <div class="highlight"><pre><span></span><code>hpvs vs delete --name sbserver_<span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span>
 </code></pre></div>
 </li>
 <li>
-<p>Cleanup Quotagroup</p>
+<p>Clean up Quotagroup</p>
 <div class="highlight"><pre><span></span><code>hpvs quotagroup delete --name <span class="s2">&quot;sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 </li>
@@ -787,11 +787,11 @@
 <h2 id="clean-up-repository">Clean up Repository<a class="headerlink" href="#clean-up-repository" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>hpvs repository  delete --id <span class="si">${</span><span class="nv">REPO_ID</span><span class="si">}</span> --force
 </code></pre></div>
-<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+-------------------+-----------------------------------------------------------------------------------------------------------------------------+
-<span class="p">|</span> ContainersDeleted <span class="p">|</span> <span class="o">[]</span>                                                                                                                          <span class="p">|</span>
-<span class="p">|</span> ImagesDeleted     <span class="p">|</span> map<span class="o">[</span>Deleted:<span class="o">[</span>sha256:5c0129df1b5ccb333a4dea9ed5a880cbc15654a9c1d5e32bb4e183072ce7b021<span class="o">]</span> Untagged:<span class="o">[</span>gmoney23/hpvs_bc_a:latest<span class="o">]]</span> <span class="p">|</span>
-<span class="p">|</span> RepositoryDeleted <span class="p">|</span> docker.io/gmoney23/hpvs_bc_a                                                                                                <span class="p">|</span>
-+-------------------+-----------------------------------------------------------------------------------------------------------------------------+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+-------------------+-------------------------------------+
+<span class="p">|</span> ContainersDeleted <span class="p">|</span> <span class="o">[]</span>                                  <span class="p">|</span>
+<span class="p">|</span> ImagesDeleted     <span class="p">|</span> <span class="o">[</span>gmoney23/hpvs_bc_a:latest<span class="o">]</span>         <span class="p">|</span>
+<span class="p">|</span> RepositoryDeleted <span class="p">|</span> docker.io/gmoney23/hpvs_bc_a        <span class="p">|</span>
++-------------------+-------------------------------------+
 </code></pre></div>
 </details>
 <h2 id="clean-up-docker-token">Clean up Docker Token<a class="headerlink" href="#clean-up-docker-token" title="Permanent link">&para;</a></h2>

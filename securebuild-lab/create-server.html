@@ -501,7 +501,7 @@
       
         <li class="md-nav__item">
   <a href="#create-certificate-and-key-for-server-side-certificate-checking-in-tls" class="md-nav__link">
-    Create Certificate and Key for server side certificate checking in tls
+    Create Certificate and Key for server-side certificate checking in TLS
   </a>
   
 </li>
@@ -521,8 +521,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-securebuild-server" class="md-nav__link">
-    Create Securebuild server
+  <a href="#create-secure-build-server" class="md-nav__link">
+    Create Secure Build Server
   </a>
   
 </li>
@@ -668,7 +668,7 @@
       
         <li class="md-nav__item">
   <a href="#create-certificate-and-key-for-server-side-certificate-checking-in-tls" class="md-nav__link">
-    Create Certificate and Key for server side certificate checking in tls
+    Create Certificate and Key for server-side certificate checking in TLS
   </a>
   
 </li>
@@ -688,8 +688,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-securebuild-server" class="md-nav__link">
-    Create Securebuild server
+  <a href="#create-secure-build-server" class="md-nav__link">
+    Create Secure Build Server
   </a>
   
 </li>
@@ -716,10 +716,10 @@
 <p>Source <code>bashrc</code> to set necessary variables if unset</p>
 <div class="highlight"><pre><span></span><code><span class="nb">source</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
 </code></pre></div>
-<h2 id="create-certificate-and-key-for-server-side-certificate-checking-in-tls">Create Certificate and Key for server side certificate checking in tls<a class="headerlink" href="#create-certificate-and-key-for-server-side-certificate-checking-in-tls" title="Permanent link">&para;</a></h2>
+<h2 id="create-certificate-and-key-for-server-side-certificate-checking-in-tls">Create Certificate and Key for server-side certificate checking in TLS<a class="headerlink" href="#create-certificate-and-key-for-server-side-certificate-checking-in-tls" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>In this process you will create the <code>Secure Build Server Client Certificate and Key</code> referenced in the <a href="overview.html#fnref:2">key table</a>. You will keep the private key on your Linux vm and pass the corresponding certificate to the secure build server you are deploying in this section. Then, whenever you interact with the secure build server to build your applications and get your manifest files it will check that your private key matches the public key of the certificate (i.e. server side checking in mutual tls) so that only you (or others / CI tools with the necessary private key) can access the server to perform secure build operations (<code>hpvs sb</code> commands) on it (i.e. build, log, status, manifest, etc.).</p>
+<p>In this process you will create the <code>Secure Build Server Client Certificate and Key</code> referenced in the <a href="overview.html#fnref:2">key table</a>. You will keep the private key on your Linux vm and pass the corresponding certificate to the secure build server you are deploying in this section. Then, whenever you interact with the secure build server to build your applications and get your manifest files it will check that your private key matches the public key of the certificate (i.e., server-side checking in mutual TLS) so that only you (or others / CI tools with the necessary private key) can access the server to perform secure build operations (<code>hpvs sb</code> commands) on it (i.e., build, log, status, manifest, etc.).</p>
 </div>
 <ol>
 <li>
@@ -733,7 +733,7 @@
 </code></pre></div>
 </li>
 <li>
-<p>Generate cert and key to use mutual tls</p>
+<p>Generate certificate and key to use mutual TLS</p>
 <div class="highlight"><pre><span></span><code>openssl req -newkey rsa:2048 <span class="se">\</span>
 -new -nodes -x509 <span class="se">\</span>
 -days <span class="m">3650</span> <span class="se">\</span>
@@ -750,18 +750,18 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 </details>
 </li>
 <li>
-<p>Change cert to base64 encoding and save to new file.</p>
+<p>Change certificate to base64 encoding and save to new file.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="k">$(</span>cat <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sbs_keys/sbs.cert&quot;</span> <span class="p">|</span> base64<span class="k">)</span> <span class="se">\</span>
 <span class="p">|</span> tr -d <span class="s1">&#39; &#39;</span> &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sbs_keys/sbs_base64.cert&quot;</span>
 </code></pre></div>
 </li>
 <li>
-<p>Save the cert as an environment variable</p>
+<p>Save the certificate as an environment variable</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">cert</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sbs_keys/sbs_base64.cert&quot;</span><span class="k">)</span>
 </code></pre></div>
 </li>
 <li>
-<p>Check your cert with:</p>
+<p>Check your certificate with:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="nv">$cert</span>
 </code></pre></div>
 <details class="success" open="open"><summary>It should be long and have no spaces</summary><p><code>LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURUVENDQWpXZ0F3SUJBZ0lVUERITlQ3Y3YrZWNzZ1Y0QnZHSmhhaVAyOERnd0RRWUpLb1pJaHZjTkFRRUwKQlFBd05qRUxNQWtHQTFVRUJoTUNWVk14RERBS0JnTlZCQW9NQTBsQ1RURVpNQmNHQTFVRUF3d1FhSEIyY3k1bAplR0Z0Y0d4bExtTnZiVEFlRncweU1EQTJNall3TXpVM016RmFGdzB6TURBMk1qUXdNelUzTXpGYU1EWXhDekFKCkJnTlZCQVlUQWxWVE1Rd3dDZ1lEVlFRS0RBTkpRazB4R1RBWEJnTlZCQU1NRUdod2RuTXVaWGhoYlhCc1pTNWoKYjIwd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUURWbTBveGI5N3pnYTc2REtwWAptSC9XaWh0OGJCOUZMMEY0U3dxRjdhQ3I4RkZBUHhIYnFieVQvTVhZcVYwdGlWU1JNSHhDd2hhR1FlSXJhWDlKCjRVZ2FCaUEwQ2krWVFZWmF1SXcvVmI4SEtUYkxERC9SblMwai9SSFk1Tzl1TXJ3NXNpQzBydElTRXBwa1VFdFEKWGZTdGFDMU82bmlLUXY1NDZkRGdRRmVGbUI5WHZVeHdzK2pES1g4aW1XaWhIeERLYVN1cEkwRk9JQ094dVhVWQpZSTVPeWVrbDVNaGttMitVTjhFekowY3JtSGJTQnh2Rlg2amh4UkhWNTd6VjR2Tm5VTGQwL1ZCNTBxZ2ZtcmVPCk5PMUJOMGtOMk1vV1N1R3lRdDZNS0NvSHAyUzgxTmJMcXRERndjMkxtbGxkc21hVEFqTVdkTjFyNjlXdVlkTmUKYjlJaEFnTUJBQUdqVXpCUk1CMEdBMVVkRGdRV0JCVFMrNEJKTUhZbG9RS2kvZjVlR2N1MDg3U3Q4VEFmQmdOVgpIU01FR0RBV2dCVFMrNEJKTUhZbG9RS2kvZjVlR2N1MDg3U3Q4VEFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQTBHCkNTcUdTSWIzRFFFQkN3VUFBNElCQVFDQk9KdjVkbllLSUpmdXQ3VlVyWS9FYThzby9oaDhTdTQwK0NoRTYreVcKazFPSkV6NnorU3FrTFlwZ0hqV1JQL1VVY3ZzdCtnZVVNR2dZeThCZ01HaGFRVUdESm9NYzdvcDcyN2w1akdMcApjWGE3cDU0aWtqYnN3QzllL000a0tKRVVRWTEyUU42TDQrVDZBRUtZcnRUVnZCMURGLzhndW9ZNjFLbDEzOVNFCmVockllWGE4THVGTmY3STc1bHpJZHpTSHpieXp0empUeW9IYTN1cmloNUNnMkhISkpsTXlNaVIwQUVKMURMQmMKMmo0SFp2V0hrYWZaTEtuRnBKUHJNa01DSXpwdFQ1SnlHOW5pUlh3RmkxdzR6UDlJRHBCRVh1UGNuU1ZacFJFawpRSHNrSzY1Nm1xRndvY2pBMXNSMmZjS1pUbkJjMlhmM0NUelVxSVoyYStSVQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==</code></p>
@@ -811,17 +811,19 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 <div class="highlight"><pre><span></span><code>hpvs quotagroup create --name <span class="s2">&quot;sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span> --size<span class="o">=</span>40GB
 </code></pre></div>
 <details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+-------------+--------------+
-<span class="p">|</span> name        <span class="p">|</span> sb_user00    <span class="p">|</span>
-<span class="p">|</span> filesystem  <span class="p">|</span> btrfs        <span class="p">|</span>
-<span class="p">|</span> passthrough <span class="p">|</span> <span class="nb">false</span>        <span class="p">|</span>
-<span class="p">|</span> pool_id     <span class="p">|</span> lv_data_pool <span class="p">|</span>
-<span class="p">|</span> size        <span class="p">|</span> 40GB         <span class="p">|</span>
-<span class="p">|</span> available   <span class="p">|</span> 40GB         <span class="p">|</span>
-<span class="p">|</span> containers  <span class="p">|</span> <span class="o">[]</span>           <span class="p">|</span>
+<span class="p">|</span> PROPERTIES  <span class="p">|</span> VALUES       <span class="p">|</span>
++-------------+--------------+
+<span class="p">|</span> Name        <span class="p">|</span> sb_user00    <span class="p">|</span>
+<span class="p">|</span> Filesystem  <span class="p">|</span> btrfs        <span class="p">|</span>
+<span class="p">|</span> Passthrough <span class="p">|</span> <span class="nb">false</span>        <span class="p">|</span>
+<span class="p">|</span> PoolID      <span class="p">|</span> lv_data_pool <span class="p">|</span>
+<span class="p">|</span> Size        <span class="p">|</span> <span class="m">40</span> GB        <span class="p">|</span>
+<span class="p">|</span> Containers  <span class="p">|</span>              <span class="p">|</span>
+<span class="p">|</span> Available   <span class="p">|</span> <span class="m">39</span> GB        <span class="p">|</span>
 +-------------+--------------+
 </code></pre></div>
 </details>
-<h2 id="create-securebuild-server">Create Securebuild server<a class="headerlink" href="#create-securebuild-server" title="Permanent link">&para;</a></h2>
+<h2 id="create-secure-build-server">Create Secure Build Server<a class="headerlink" href="#create-secure-build-server" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>hpvs vs create --name sbserver_<span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span> --repo SecureDockerBuild <span class="se">\</span>
 --tag <span class="m">1</span>.2.3-release-f78a642 --cpu <span class="m">2</span> --ram <span class="m">2048</span> <span class="se">\</span>
 --quotagroup <span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = new, mount = /newroot, filesystem = ext4, size = 10GB}&quot;</span> <span class="se">\</span>
@@ -830,74 +832,62 @@ writing new private key to <span class="s1">&#39;/home/multiarch-lab/securebuild
 --env<span class="o">={</span><span class="nv">EX_VOLUMES</span><span class="o">=</span><span class="s2">&quot;/docker,/data&quot;</span>,ROOTFS_LOCK<span class="o">=</span>y,CLIENT_CRT<span class="o">=</span><span class="nv">$cert</span><span class="o">}</span> <span class="se">\</span>
 --ports <span class="s2">&quot;{containerport = 443, protocol = tcp, hostport = </span><span class="si">${</span><span class="nv">SB_PORT</span><span class="si">}</span><span class="s2">}&quot;</span>
 </code></pre></div>
-<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>╭─────────────┬──────────────────────────────╮
-│ PROPERTIES  │ VALUES                       │
-├─────────────┼──────────────────────────────┤
-│ Name        │ sbserver_00                  │
-│ Status      │ Up Less than a second        │
-│ CPU         │ <span class="m">2</span>                            │
-│ Memory      │ <span class="m">2048</span>                         │
-│ Networks    │ Network:bridge               │
-│             │ IPAddress:172.31.0.5         │
-│             │ Gateway:172.31.0.1           │
-│             │ Subnet:16                    │
-│             │ MacAddress:02:42:ac:1f:00:05 │
-│             │                              │
-│             │                              │
-│ Ports       │ LocalPort:443/tcp            │
-│             │ GuestPort:30000              │
-│             │                              │
-│ Quotagroups │ appliance_data               │
-│             │ sb_user00                    │
-│             │                              │
-│ State       │ running                      │
-╰─────────────┴──────────────────────────────╯
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+-------------+------------------------------+
+<span class="p">|</span> PROPERTIES  <span class="p">|</span> VALUES                       <span class="p">|</span>
++-------------+------------------------------+
+<span class="p">|</span> Name        <span class="p">|</span> sbserver_00                  <span class="p">|</span>
+<span class="p">|</span> CPU         <span class="p">|</span> <span class="m">2</span>                            <span class="p">|</span>
+<span class="p">|</span> Memory      <span class="p">|</span> <span class="m">2048</span>                         <span class="p">|</span>
+<span class="p">|</span> State       <span class="p">|</span> running                      <span class="p">|</span>
+<span class="p">|</span> Status      <span class="p">|</span> Up Less than a second        <span class="p">|</span>
+<span class="p">|</span> Networks    <span class="p">|</span> Gateway:172.31.0.1           <span class="p">|</span>
+<span class="p">|</span>             <span class="p">|</span> IPAddress:172.31.0.2         <span class="p">|</span>
+<span class="p">|</span>             <span class="p">|</span> MacAddress:02:42:ac:1f:00:02 <span class="p">|</span>
+<span class="p">|</span>             <span class="p">|</span> Network:bridge               <span class="p">|</span>
+<span class="p">|</span>             <span class="p">|</span> Subnet:16                    <span class="p">|</span>
+<span class="p">|</span> Ports       <span class="p">|</span> GuestPort:30000              <span class="p">|</span>
+<span class="p">|</span>             <span class="p">|</span> LocalPort:443/tcp            <span class="p">|</span>
+<span class="p">|</span> Quotagroups <span class="p">|</span> <span class="o">[</span>sb_user00<span class="o">]</span>                  <span class="p">|</span>
++-------------+------------------------------+
 </code></pre></div>
 </details>
 <p>We can see the quotagroup is now being used with</p>
 <div class="highlight"><pre><span></span><code>hpvs quotagroup show --name <span class="s2">&quot;sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
-<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+-------------+--------------------------------+
-<span class="p">|</span> PROPERTIES  <span class="p">|</span> VALUES                         <span class="p">|</span>
-+-------------+--------------------------------+
-<span class="p">|</span> name        <span class="p">|</span> sb_user00                      <span class="p">|</span>
-<span class="p">|</span> filesystem  <span class="p">|</span> btrfs                          <span class="p">|</span>
-<span class="p">|</span> passthrough <span class="p">|</span> <span class="nb">false</span>                          <span class="p">|</span>
-<span class="p">|</span> pool_id     <span class="p">|</span> lv_data_pool                   <span class="p">|</span>
-<span class="p">|</span> size        <span class="p">|</span> 40GB                           <span class="p">|</span>
-<span class="p">|</span> available   <span class="p">|</span> 12GB                            <span class="p">|</span>
-<span class="p">|</span> containers  <span class="p">|</span> Container:sbserver_00          <span class="p">|</span>
-<span class="p">|</span>             <span class="p">|</span> Mountids:<span class="s2">&quot;new&quot;</span>,<span class="s2">&quot;data&quot;</span>,<span class="s2">&quot;docker&quot;</span> <span class="p">|</span>
-<span class="p">|</span>             <span class="p">|</span>                                <span class="p">|</span>
-<span class="p">|</span>             <span class="p">|</span>                                <span class="p">|</span>
-+-------------+--------------------------------+
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+-------------+-----------------------------+
+<span class="p">|</span> PROPERTIES  <span class="p">|</span> VALUES                      <span class="p">|</span>
++-------------+-----------------------------+
+<span class="p">|</span> Name        <span class="p">|</span> sb_user00                   <span class="p">|</span>
+<span class="p">|</span> Filesystem  <span class="p">|</span> btrfs                       <span class="p">|</span>
+<span class="p">|</span> Passthrough <span class="p">|</span> <span class="nb">false</span>                       <span class="p">|</span>
+<span class="p">|</span> PoolID      <span class="p">|</span> lv_data_pool                <span class="p">|</span>
+<span class="p">|</span> Size        <span class="p">|</span> <span class="m">40</span> GB                       <span class="p">|</span>
+<span class="p">|</span> Containers  <span class="p">|</span> container_name:sbserver_00  <span class="p">|</span>
+<span class="p">|</span>             <span class="p">|</span> mount_ids:<span class="o">[</span>new data docker<span class="o">]</span> <span class="p">|</span>
+<span class="p">|</span> Available   <span class="p">|</span> <span class="m">11</span> GB                       <span class="p">|</span>
++-------------+-----------------------------+
 </code></pre></div>
 </details>
 <p>The show output for the Hyper Protect Virtual Server was shown when it was deployed but we can bring it back up with</p>
 <div class="highlight"><pre><span></span><code>hpvs vs show --name <span class="s2">&quot;sbserver_</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
-<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>╭─────────────┬──────────────────────────────╮
-│ PROPERTIES  │ VALUES                       │
-├─────────────┼──────────────────────────────┤
-│ Name        │ sbserver_00                  │
-│ Status      │ Up About a minute            │
-│ CPU         │ <span class="m">2</span>                            │
-│ Memory      │ <span class="m">2048</span>                         │
-│ Networks    │ Network:bridge               │
-│             │ IPAddress:172.31.0.5         │
-│             │ Gateway:172.31.0.1           │
-│             │ Subnet:16                    │
-│             │ MacAddress:02:42:ac:1f:00:05 │
-│             │                              │
-│             │                              │
-│ Ports       │ LocalPort:443/tcp            │
-│             │ GuestPort:30000              │
-│             │                              │
-│ Quotagroups │ appliance_data               │
-│             │ sb_user00                    │
-│             │                              │
-│ State       │ running                      │
-╰─────────────┴──────────────────────────────╯
+<details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+-------------+------------------------------+
+<span class="p">|</span> PROPERTIES  <span class="p">|</span> VALUES                       <span class="p">|</span>
++-------------+------------------------------+
+<span class="p">|</span> Name        <span class="p">|</span> sbserver_00                  <span class="p">|</span>
+<span class="p">|</span> CPU         <span class="p">|</span> <span class="m">2</span>                            <span class="p">|</span>
+<span class="p">|</span> Memory      <span class="p">|</span> <span class="m">2048</span>                         <span class="p">|</span>
+<span class="p">|</span> State       <span class="p">|</span> running                      <span class="p">|</span>
+<span class="p">|</span> Status      <span class="p">|</span> Up <span class="m">2</span> minutes                 <span class="p">|</span>
+<span class="p">|</span> Networks    <span class="p">|</span> Gateway:172.31.0.1           <span class="p">|</span>
+<span class="p">|</span>             <span class="p">|</span> IPAddress:172.31.0.2         <span class="p">|</span>
+<span class="p">|</span>             <span class="p">|</span> MacAddress:02:42:ac:1f:00:02 <span class="p">|</span>
+<span class="p">|</span>             <span class="p">|</span> Network:bridge               <span class="p">|</span>
+<span class="p">|</span>             <span class="p">|</span> Subnet:16                    <span class="p">|</span>
+<span class="p">|</span> Ports       <span class="p">|</span> GuestPort:30000              <span class="p">|</span>
+<span class="p">|</span>             <span class="p">|</span> LocalPort:443/tcp            <span class="p">|</span>
+<span class="p">|</span> Quotagroups <span class="p">|</span> <span class="o">[</span>sb_user00<span class="o">]</span>                  <span class="p">|</span>
++-------------+------------------------------+
 </code></pre></div>
 </details>
 <p>Your secure build server is now up and running! <img alt="🔥" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f525.svg" title=":fire:" /></p>
