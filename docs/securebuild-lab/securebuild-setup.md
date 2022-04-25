@@ -25,6 +25,7 @@
         hpvs [command]
 
         Available Commands:
+        completion  generate the autocompletion script for the specified shell
         crypto      Crypto command
         deploy      Deploy command
         help        Help about any command
@@ -50,6 +51,37 @@
         ```
 
 2. See more information for the `Available Commands` listed above with:
+
+    === "completion"
+
+        ``` bash
+        hpvs completion --help
+        ```
+
+        ???+ example "Example Output"
+
+            ``` bash
+            Generate the autocompletion script for hpvs for the specified shell.
+            See each sub-command's help for details on how to use the generated script.
+
+            Usage:
+            hpvs completion [command]
+
+            Available Commands:
+            bash        generate the autocompletion script for bash
+            fish        generate the autocompletion script for fish
+            powershell  generate the autocompletion script for powershell
+            zsh         generate the autocompletion script for zsh
+
+            Flags:
+            -h, --help   help for completion
+
+            Global Flags:
+                --debug                   If --debug is passed, it will enable debug logs
+                --log-output-dir string   Set log output directory
+
+            Use "hpvs completion [command] --help" for more information about a command.
+            ```
 
     === "crypto"
 
@@ -131,7 +163,7 @@
 
             Global Flags:
                 --debug                   If --debug is passed, it will enable debug logs
-                --log-output-dir string   Set log output directory`
+                --log-output-dir string   Set log output directory
             ```
 
     === "host"
@@ -806,9 +838,9 @@
     !!! example "Example Output"
 
         ``` bash
-        # github.com:22 SSH-2.0-babeld-4cec2db4
-        # github.com:22 SSH-2.0-babeld-4cec2db4
-        # github.com:22 SSH-2.0-babeld-4cec2db4
+        # github.com:22 SSH-2.0-babeld-4f04c79d
+        # github.com:22 SSH-2.0-babeld-4f04c79d
+        # github.com:22 SSH-2.0-babeld-4f04c79d
         ```
 
 9. Check that your GitHub key now has access to your account with:

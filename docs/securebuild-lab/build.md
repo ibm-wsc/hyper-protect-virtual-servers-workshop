@@ -272,12 +272,12 @@ source "${HOME}/.bashrc"
 
         ``` bash
         +---------------------+---------------+
-        | manifest_public_key |               |
-        | root_ssh_enabled    | false         |
-        | status              | github cloned |
         | build_name          |               |
         | image_tag           |               |
         | manifest_key_gen    |               |
+        | manifest_public_key |               |
+        | root_ssh_enabled    | false         |
+        | status              | github cloned |
         +---------------------+---------------+
         ```
 
@@ -316,7 +316,7 @@ source "${HOME}/.bashrc"
         2020-06-23 08:39:49,217  root       INFO    completed a build
         ```
 
-7. When the secure build successfully completes, you can check the status again to see a `completed` status.
+7. When the secure build successfully completes, you can check the status again to see a status of `success`.
 
     ``` bash
     hpvs sb status --config "${SB_DIR}/sb_config.yaml"
