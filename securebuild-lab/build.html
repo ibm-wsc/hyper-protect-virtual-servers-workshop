@@ -979,12 +979,12 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 <div class="highlight"><pre><span></span><code>hpvs sb status --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span>
 </code></pre></div>
 <details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+---------------------+---------------+
-<span class="p">|</span> manifest_public_key <span class="p">|</span>               <span class="p">|</span>
-<span class="p">|</span> root_ssh_enabled    <span class="p">|</span> <span class="nb">false</span>         <span class="p">|</span>
-<span class="p">|</span> status              <span class="p">|</span> github cloned <span class="p">|</span>
 <span class="p">|</span> build_name          <span class="p">|</span>               <span class="p">|</span>
 <span class="p">|</span> image_tag           <span class="p">|</span>               <span class="p">|</span>
 <span class="p">|</span> manifest_key_gen    <span class="p">|</span>               <span class="p">|</span>
+<span class="p">|</span> manifest_public_key <span class="p">|</span>               <span class="p">|</span>
+<span class="p">|</span> root_ssh_enabled    <span class="p">|</span> <span class="nb">false</span>         <span class="p">|</span>
+<span class="p">|</span> status              <span class="p">|</span> github cloned <span class="p">|</span>
 +---------------------+---------------+
 </code></pre></div>
 </details>
@@ -1023,7 +1023,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 </details>
 </li>
 <li>
-<p>When the secure build successfully completes, you can check the status again to see a <code>completed</code> status.</p>
+<p>When the secure build successfully completes, you can check the status again to see a status of <code>success</code>.</p>
 <div class="highlight"><pre><span></span><code>hpvs sb status --config <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sb_config.yaml&quot;</span>
 </code></pre></div>
 <details class="example" open="open"><summary>Example Output</summary><div class="highlight"><pre><span></span><code>+---------------------+------------------------------------------------------------------------------------------+
