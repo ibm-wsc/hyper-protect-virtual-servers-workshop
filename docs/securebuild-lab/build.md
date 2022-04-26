@@ -295,25 +295,25 @@ source "${HOME}/.bashrc"
     ???+ example "Example Output"
 
         ``` bash
-        2020-06-23 08:39:46,463  root       INFO    run: latest: digest: sha256:ffbaf396807659d5a4d66fe54c0ebf382a9f170c4eaf187b9b4c8582ca8fdec2 size: 5133
-        2020-06-23 08:39:46,463  root       INFO    run: Signing and pushing trust metadata
-        2020-06-23 08:39:48,299  root       INFO    run: Successfully signed docker.io/gmoney23/hpvs_bc:latest
-        2020-06-23 08:39:48,300  root       INFO    run: return code = 0
-        2020-06-23 08:39:48,300  root       INFO    extracting an image keyid and key
-        2020-06-23 08:39:48,301  root       INFO    keyid=0cc264a565c452ea6aca776b2787be54e94b905113e77edae00d5ec267a07ffc
-        2020-06-23 08:39:48,301  root       INFO    publickey=LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJmVENDQVNTZ0F3SUJBZ0lSQUt3cTlRWEZhMzRYMXdIRmZST2NJZXN3Q2dZSUtvWkl6ajBFQXdJd0pURWoKTUNFR0ExVUVBd3dhWkc5amEyVnlMbWx2TDJkdGIyNWxlVEl6TDJod2RuTmZZbU13SGhjTk1qQXdOakl6TURnegpPVFF4V2hjTk16QXdOakl4TURnek9UUXhXakFsTVNNd0lRWURWUVFEREJwa2IyTnJaWEl1YVc4dloyMXZibVY1Ck1qTXZhSEIyYzE5aVl6QlpNQk1HQnlxR1NNNDlBZ0VHQ0NxR1NNNDlBd0VIQTBJQUJKU3ZPdWlSaHJNcjJmQVYKcmZLcHZncVRYNXZwSFlodnEvZXc1SFRuMzRMcnBrQ0xJMjBkdmxjcTUyc1ZvQjVxYkpzeEdTbkphOU5sM0tYYQpZUlRjQ2Z1ak5UQXpNQTRHQTFVZER3RUIvd1FFQXdJRm9EQVRCZ05WSFNVRUREQUtCZ2dyQmdFRkJRY0RBekFNCkJnTlZIUk1CQWY4RUFqQUFNQW9HQ0NxR1NNNDlCQU1DQTBjQU1FUUNJRlhFWE9iZTdHR1NsSjEzTzZicTR6T0IKamhoMlZSbmRYOVJYMytrSFpnVVVBaUJBWXAyNTkwTkpVelJIK1lhR2JzQ1hMRmxOUWRzT2ltWW9NMzlqR0IwRAp5dz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
-        2020-06-23 08:39:48,301  root       INFO    generating a config file
-        2020-06-23 08:39:48,301  root       INFO    create_and_push: SoftCrypto
-        2020-06-23 08:39:48,819  root       INFO    digest=1f0b1f65b1462f16930b200c77ce5fbe654e1d624405bc243d713de1aade36b7
-        2020-06-23 08:39:48,819  root       INFO    block_size=64
-        2020-06-23 08:39:48,821  root       INFO    digest=1f0b1f65b1462f16930b200c77ce5fbe654e1d624405bc243d713de1aade36b7
-        2020-06-23 08:39:48,824  root       INFO    signature=114157a8bd98d7f5a5c2ca33f81496563af7f18d23123fc35c8aa84a5bfadc709ecb17e5e79d42d6bd6ac8a815053d9cfd039b7f01ab84b9a75a23e2917b0bc4f0c1b5bd5664dfebd573c2355c34115762b8fea56285d65cd8db4877c9b95ab3149b65d14ce1a23b1065a34c2d4ba9a1526286a03d87d307a5972cf1425e586c9d213b34fe53407c79a527e78779b7a70b426516db35f22a09329dfac76a8505613249ad2b46070ad7d932a8c4bbe1981d0370150528cb9e6f5a426be6734405435393a8d6d8e145418398f85bc28be6c332d2fa2e84f5465618051b110a3efcd25600dc95ee0d7f8bc0d36b8ddaa9ce1c4be78f38928d9213e5171078e22930
-        2020-06-23 08:39:48,824  root       INFO    verify=OK
-        2020-06-23 08:39:49,214  root       WARNING undefined MANIFEST_BUCKET_NAME
-        2020-06-23 08:39:49,214  root       WARNING skipping transferring a manifest to COS
-        2020-06-23 08:39:49,214  root       INFO    cleaning up the build environment
-        2020-06-23 08:39:49,214  root       INFO    github_dir=secure-bitcoin-wallet
-        2020-06-23 08:39:49,217  root       INFO    completed a build
+        2022-04-26 18:09:28,843  root       INFO    run: latest: digest: sha256:45cd2d06a2ef978cf1ae60b58833689ff2af1aff0b3d6aa2e69ea83378f6f22d size: 5549
+        2022-04-26 18:09:28,843  root       INFO    run: Signing and pushing trust metadata
+        2022-04-26 18:09:29,656  root       INFO    run: Successfully signed docker.io/gmoney23/hpvs_bc:latest
+        2022-04-26 18:09:29,661  root       INFO    run: return code = 0
+        2022-04-26 18:09:29,662  root       INFO    extracting an image keyid and key
+        2022-04-26 18:09:29,663  root       INFO    keyid=2092f4e8a72ab297e94a05c18a1ad5b558b9cdee3531018752cd23e238c02889
+        2022-04-26 18:09:29,663  root       INFO    publickey=LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJrVENDQVRhZ0F3SUJBZ0lSQUlSUVpKVmR0QVJycGNnc1A3T0diRVF3Q2dZSUtvWkl6ajBFQXdJd0xqRXMKTUNvR0ExVUVBd3dqWkc5amEyVnlMbWx2TDNOcGJHeHBiV0Z1TDJod2RuTmZZbU5mTWpBeU1qQTBNall3SGhjTgpNakl3TkRJMk1UZ3dPVEkwV2hjTk16SXdOREl6TVRnd09USTBXakF1TVN3d0tnWURWUVFERENOa2IyTnJaWEl1CmFXOHZjMmxzYkdsdFlXNHZhSEIyYzE5aVkxOHlNREl5TURReU5qQlpNQk1HQnlxR1NNNDlBZ0VHQ0NxR1NNNDkKQXdFSEEwSUFCSUhqM1RLaDZPYmp4Z214allOZ3ZDSGlDSTNOOTlBZy8vS0lPc0hxR25SYUR6NU5LbEdMWktvOAoxaDRYaUgwRG92d1ZFMGUvdlZzM3V3dnlwT0JEYzNtak5UQXpNQTRHQTFVZER3RUIvd1FFQXdJRm9EQVRCZ05WCkhTVUVEREFLQmdnckJnRUZCUWNEQXpBTUJnTlZIUk1CQWY4RUFqQUFNQW9HQ0NxR1NNNDlCQU1DQTBrQU1FWUMKSVFEU2o4SzcvVDhRSWFLbVoyaEdSTTZnTkRsRE01L21UcUdQK09qc3NwWS9jZ0loQU43ZDM5RXlITkV3bFRUMApkMC9XaVcwejRCMWdMM1RyQVhFRDlwVUhoMVR5Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+        2022-04-26 18:09:29,663  root       INFO    generating a config file
+        2022-04-26 18:09:29,664  root       INFO    create_and_push: SoftCrypto
+        2022-04-26 18:09:30,627  root       INFO    digest=7b997311130b0b0984e1b7cabd45e7b4a5461337d52dcb1b99be26849d7172d9
+        2022-04-26 18:09:30,627  root       INFO    block_size=64
+        2022-04-26 18:09:30,648  root       INFO    digest=7b997311130b0b0984e1b7cabd45e7b4a5461337d52dcb1b99be26849d7172d9
+        2022-04-26 18:09:30,650  root       INFO    signature=4e6b43530773245b8c04e016e8b112cfa8efab6621b84c9825d06c7fa7faba525c8cc97618313205bf46db123d8f53ca2377871b3daa6dec62e48fc539fd17c9796f5c395bd1a82b05e60d69796fea1baa7fb48b4f9ae0cd72c329121241b2e4f7a21d8bc6456fa921df2ab9b9a47974bfb841c540ff1bd9e9e350e9f9d1c5f4da3bef0857e3f21605e1131f4b6ca0a12db33ae57149e37718ef8e54b978769cbf8cf025d32323f1f488df6db9ffd6ec22ebad7daa67e99c3506b47bdefc0ebe3d0fe76edc6d19d38283a355f9d94eab20c3e3d32cdd6b5ae8f8e0f4748ffbfec10661f7aad9dbc3dd5017e42f4468f7ef5443303c694761d6ff8646382fda14
+        2022-04-26 18:09:30,650  root       INFO    verify=OK
+        2022-04-26 18:09:31,049  root       WARNING undefined MANIFEST_BUCKET_NAME
+        2022-04-26 18:09:31,049  root       WARNING skipping transferring a manifest to COS
+        2022-04-26 18:09:31,049  root       INFO    cleaning up the build environment
+        2022-04-26 18:09:31,049  root       INFO    github_dir=secure-bitcoin-wallet
+        2022-04-26 18:09:31,110  root       INFO    completed a build
         ```
 
 7. When the secure build successfully completes, you can check the status again to see a status of `success`.
@@ -325,13 +325,13 @@ source "${HOME}/.bashrc"
     ???+ example "Example Output"
 
         ``` bash
-        +---------------------+------------------------------------------------------------------------------------------+
-        | build_name          | docker.io.gmoney23.hpvs_bc.latest-b3416d8.2020-06-23_08-39-48.301849                     |
-        | image_tag           | latest-b3416d8                                                                           |
-        | manifest_key_gen    | soft_crypto                                                                              |
-        | manifest_public_key | manifest.docker.io.gmoney23.hpvs_bc.latest-b3416d8.2020-06-23_08-39-48.301849-public.pem |
+        +---------------------+---------------------------------------------------------------------------------------------------+
+        | manifest_public_key | manifest.docker.io.gmoney23.hpvs_bc.latest-941893e.2022-04-26_18-09-29.663558-public.pem |
         | root_ssh_enabled    | false                                                                                    |
         | status              | success                                                                                  |
+        | build_name          | docker.io.gmoney23.hpvs_bc.latest-941893e.2022-04-26_18-09-29.663558                     |
+        | image_tag           | latest-941893e                                                                           |
+        | manifest_key_gen    | soft_crypto                                                                              |
         +---------------------+------------------------------------------------------------------------------------------+
         ```
 
@@ -408,7 +408,7 @@ source "${HOME}/.bashrc"
     ???+ example "Example Output"
 
         ``` bash
-        docker.io.gmoney23.hpvs_bc.latest-b3416d8.2020-06-23_08-39-48.301849
+        docker.io.gmoney23.hpvs_bc.latest-941893e.2022-04-26_18-09-29.663558
         ```
 
 3. Get your application manifest
@@ -436,8 +436,8 @@ source "${HOME}/.bashrc"
     ???+ example "Example Output"
 
         ```bash 
-        docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641-public.pem
-        manifest.docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641.sig.tbz
+        docker.io.gmoney23.hpvs_bc.latest-941893e.2022-04-26_18-09-29.663558-public.pem
+        manifest.docker.io.gmoney23.hpvs_bc.latest-941893e.2022-04-26_18-09-29.663558.sig.tbz
         manifest_files
         ```
 
@@ -462,8 +462,8 @@ source "${HOME}/.bashrc"
     ???+ example "Example Output"
 
         ```
-        manifest.docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641.tbz
-        manifest.docker.io.gmoney23.hpvs_bc_a.latest-b3416d8.2020-06-23_22-12-54.183641.sig
+        manifest.docker.io.gmoney23.hpvs_bc.latest-941893e.2022-04-26_18-09-29.663558.tbz
+        manifest.docker.io.gmoney23.hpvs_bc.latest-941893e.2022-04-26_18-09-29.663558.sig
         ```
 
     !!! note

@@ -1,6 +1,6 @@
 # Configuring your Environment
 
-## Explore the Hyper Protect Virtual Servers CLI
+## Explore the Hyper Protect Virtual Servers command line interface (CLI)
 
 !!! info
     In this lab, we will use the Hyper Protect Virtual Servers CLI (`hpvs` command) to interact with our Hyper Protect Virtual Servers Hosting Appliance in order to perform the various actions necessary for the Secure Build. Below is a quick introduction to the commands available through this CLI.
