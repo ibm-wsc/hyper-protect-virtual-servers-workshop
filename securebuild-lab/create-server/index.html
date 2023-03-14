@@ -1,0 +1,1457 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../securebuild-setup/">
+      
+      
+        <link rel="next" href="../build/">
+      
+      <link rel="icon" href="../../images/hpvs-logo.svg">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>Create your HPVS Secure Build Server - Hyper Protect Virtual Servers (HPVS) Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#create-your-hpvs-secure-build-server" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Hyper Protect Virtual Servers (HPVS) Workshop" class="md-header__button md-logo" aria-label="Hyper Protect Virtual Servers (HPVS) Workshop" data-md-component="logo">
+      
+  <img src="../../images/hpvs-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hyper Protect Virtual Servers (HPVS) Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Create your HPVS Secure Build Server
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../assignment/" class="md-tabs__link">
+      Lab Assignments
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../grep11-lab/overview/" class="md-tabs__link">
+        GREP11 Lab
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../prerequisites/" class="md-tabs__link md-tabs__link--active">
+        Secure Image Build Lab
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../glossary/" class="md-tabs__link">
+      Glossary of terms
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../resources/" class="md-tabs__link">
+      Other resources
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../proposechange/" class="md-tabs__link">
+      Propose a change
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hyper Protect Virtual Servers (HPVS) Workshop" class="md-nav__button md-logo" aria-label="Hyper Protect Virtual Servers (HPVS) Workshop" data-md-component="logo">
+      
+  <img src="../../images/hpvs-logo.svg" alt="logo">
+
+    </a>
+    Hyper Protect Virtual Servers (HPVS) Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assignment/" class="md-nav__link">
+        Lab Assignments
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          GREP11 Lab
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          GREP11 Lab
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11-lab/overview/" class="md-nav__link">
+        Lab overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11-lab/grep11-setup/" class="md-nav__link">
+        How to set up a GREP11 server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11-lab/grep11-display/" class="md-nav__link">
+        Displaying your GREP11 environment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11-lab/run-grep11-samples/" class="md-nav__link">
+        Run the GREP11 sample code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+          Run the Lab exercises
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          Run the Lab exercises
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11-lab/exercise-overview/" class="md-nav__link">
+        An overview of the Exercises
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11-lab/lab-exercise1/" class="md-nav__link">
+        Exercise 1 (List PKCS Mechanisms)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11-lab/lab-exercise2/" class="md-nav__link">
+        Exercise 2 (Encryption and Decryption)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11-lab/lab-exercise3/" class="md-nav__link">
+        Exercise 3 (Sign and Verify)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grep11-lab/lab-exercise4/" class="md-nav__link">
+        Exercise 4 (Wrap and Unwrap Key)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Secure Image Build Lab
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Secure Image Build Lab
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequisites/" class="md-nav__link">
+        Prerequisites
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        Hyper Protect Virtual Servers (HPVS) Lab Process Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securebuild-setup/" class="md-nav__link">
+        Configuring your Environment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Create your HPVS Secure Build Server
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Create your HPVS Secure Build Server
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#export-variables-set-in-previous-sections-to-current-terminal-session" class="md-nav__link">
+    Export Variables set in previous sections to current terminal session
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-your-provided-number-and-save-it-for-later-use" class="md-nav__link">
+    Set your provided number and save it for later use
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-certificate-and-key-for-server-side-certificate-checking-in-tls" class="md-nav__link">
+    Create Certificate and Key for server-side certificate checking in TLS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-quotagroup-with-storage-for-secure-build-server" class="md-nav__link">
+    Create Quotagroup with storage for secure build server
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-secure-build-server" class="md-nav__link">
+    Create Secure Build Server
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build/" class="md-nav__link">
+        Securely Build your Application
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy-app/" class="md-nav__link">
+        Deploy your Securely Built Application as a Hyper Protect Virtual Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bitcoin_wallet/" class="md-nav__link">
+        Welcome to the Secure Bitcoin Wallet on IBM LinuxONE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cleanup/" class="md-nav__link">
+        Clean up your Environment
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        Glossary of terms
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/" class="md-nav__link">
+        Other resources
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../proposechange/" class="md-nav__link">
+        Propose a change
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#export-variables-set-in-previous-sections-to-current-terminal-session" class="md-nav__link">
+    Export Variables set in previous sections to current terminal session
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-your-provided-number-and-save-it-for-later-use" class="md-nav__link">
+    Set your provided number and save it for later use
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-certificate-and-key-for-server-side-certificate-checking-in-tls" class="md-nav__link">
+    Create Certificate and Key for server-side certificate checking in TLS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-quotagroup-with-storage-for-secure-build-server" class="md-nav__link">
+    Create Quotagroup with storage for secure build server
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-secure-build-server" class="md-nav__link">
+    Create Secure Build Server
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop/edit/master/docs/securebuild-lab/create-server.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop/raw/master/docs/securebuild-lab/create-server.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+
+<h1 id="create-your-hpvs-secure-build-server">Create your HPVS Secure Build Server<a class="headerlink" href="#create-your-hpvs-secure-build-server" title="Permanent link">&para;</a></h1>
+<h2 id="export-variables-set-in-previous-sections-to-current-terminal-session">Export Variables set in previous sections to current terminal session<a class="headerlink" href="#export-variables-set-in-previous-sections-to-current-terminal-session" title="Permanent link">&para;</a></h2>
+<p>Source <code>bashrc</code> to set necessary variables if unset</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
+</code></pre></div>
+<h2 id="set-your-provided-number-and-save-it-for-later-use">Set your provided number and save it for later use<a class="headerlink" href="#set-your-provided-number-and-save-it-for-later-use" title="Permanent link">&para;</a></h2>
+<p>You will be assigned a number for the lab so as not to interfere with other users.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a href="../../assignment/" target="_blank">This table</a> tells you which number you are assigned.</p>
+</div>
+<ol>
+<li>
+<p>Set the <code>HPVS_NUMBER</code> variable with your assigned 2 digit number</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Command Syntax</label><label for="__tabbed_1_2">Example Command</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">HPVS_NUMBER</span><span class="o">=</span><span class="s2">&quot;your_assigned_number&quot;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">HPVS_NUMBER</span><span class="o">=</span><span class="s2">&quot;00&quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Your user will <strong>NOT</strong> be <code>00</code>. Please set the appropriate user you have been assigned.</p>
+</div>
+</li>
+<li>
+<p>Save your number to <code>bashrc</code> for later use.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export HPVS_NUMBER=&#39;</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Set Secure Build Server Port</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">SB_PORT</span><span class="o">=</span><span class="m">300</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>Save <code>SB_PORT</code> to <code>bashrc</code> for later use.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export SB_PORT=&#39;</span><span class="si">${</span><span class="nv">SB_PORT</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.bashrc&quot;</span>
+</code></pre></div>
+</li>
+</ol>
+<h2 id="create-certificate-and-key-for-server-side-certificate-checking-in-tls">Create Certificate and Key for server-side certificate checking in TLS<a class="headerlink" href="#create-certificate-and-key-for-server-side-certificate-checking-in-tls" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In this process you will create the <code>Secure Build Server Client Certificate and Key</code> referenced in the <a href="../overview/#fnref:2">key table</a>. You will keep the private key on your Linux vm and pass the corresponding certificate to the secure build server you are deploying in this section. Then, whenever you interact with the secure build server to build your applications and get your manifest files it will check that your private key matches the public key of the certificate (i.e., server-side checking in mutual TLS) so that only you (or others / CI tools with the necessary private key) can access the server to perform secure build operations (<code>hpvs sb</code> commands) on it (i.e., build, log, status, manifest, etc.).</p>
+</div>
+<ol>
+<li>
+<p>Generate rand file</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>rand<span class="w"> </span>-out<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/.rnd&quot;</span><span class="w"> </span>-hex<span class="w"> </span><span class="m">256</span>
+</code></pre></div>
+</li>
+<li>
+<p>Make <code>SB_DIR/sbs_keys</code> directory to store secure build server keys and switch to it.</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span><span class="s2">/sbs_keys&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span>/sbs_keys
+</code></pre></div>
+</li>
+<li>
+<p>Create a private key that will be used by the Secure Build Server certification authority</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>ca.key<span class="w"> </span><span class="m">2048</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create the Secure Build Server certification authority</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-new<span class="w"> </span>-x509<span class="w"> </span>-key<span class="w"> </span>ca.key<span class="w"> </span>-days<span class="w"> </span><span class="m">730</span><span class="w"> </span>-out<span class="w"> </span>ca.pem
+</code></pre></div>
+</li>
+<li>
+<p>Set environment variables that will be referenced in a configuration file used by subsequent openssl commands in the lab</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">COMMON_NAME</span><span class="o">=</span>server
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATHLEN</span><span class="o">=</span>CA:true
+<span class="nb">export</span><span class="w"> </span><span class="nv">SUBJECT_ALT_NAME</span><span class="o">=</span>DNS:192.168.22.79:<span class="si">${</span><span class="nv">SB_PORT</span><span class="si">}</span>,IP:192.168.22.79
+</code></pre></div>
+</li>
+<li>
+<p>Create the configuration file which will be used by subsequent openssl commands in the lab</p>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">cat &lt;&lt; EOF &gt; ${SB_DIR}/sbs_keys/openssl.cnf</span>
+<span class="l l-Scalar l-Scalar-Plain"># OpenSSL configuration file.</span>
+<span class="l l-Scalar l-Scalar-Plain">#</span>
+
+<span class="l l-Scalar l-Scalar-Plain"># Establish working directory.</span>
+
+<span class="l l-Scalar l-Scalar-Plain">dir   = .</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ ca ]</span>
+<span class="l l-Scalar l-Scalar-Plain">default_ca  = CA_default</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ CA_default ]</span>
+<span class="l l-Scalar l-Scalar-Plain">serial   = \$dir/serial</span>
+<span class="l l-Scalar l-Scalar-Plain">#database  = \${ENV::DIR}/index.txt</span>
+<span class="l l-Scalar l-Scalar-Plain">#new_certs_dir  = \$dir/newcerts</span>
+<span class="l l-Scalar l-Scalar-Plain">#private_key       = \$dir/ca.key</span>
+<span class="l l-Scalar l-Scalar-Plain">#certificate       = \$dir/ca.cer</span>
+<span class="l l-Scalar l-Scalar-Plain">default_days  = 730</span>
+<span class="l l-Scalar l-Scalar-Plain">default_md  = sha256</span>
+<span class="l l-Scalar l-Scalar-Plain">preserve  = no</span>
+<span class="l l-Scalar l-Scalar-Plain">email_in_dn  = no</span>
+<span class="l l-Scalar l-Scalar-Plain">nameopt   = default_ca</span>
+<span class="l l-Scalar l-Scalar-Plain">certopt   = default_ca</span>
+<span class="l l-Scalar l-Scalar-Plain">default_crl_days = 45</span>
+<span class="l l-Scalar l-Scalar-Plain">policy   = policy_match</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ policy_match ]</span>
+<span class="l l-Scalar l-Scalar-Plain">countryName  = match</span>
+<span class="l l-Scalar l-Scalar-Plain">stateOrProvinceName = optional</span>
+<span class="l l-Scalar l-Scalar-Plain">organizationName = match</span>
+<span class="l l-Scalar l-Scalar-Plain">organizationalUnitName = optional</span>
+<span class="l l-Scalar l-Scalar-Plain">commonName  = supplied</span>
+<span class="l l-Scalar l-Scalar-Plain">emailAddress  = optional</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ req ]</span>
+<span class="l l-Scalar l-Scalar-Plain">default_md  = sha256</span>
+<span class="l l-Scalar l-Scalar-Plain">distinguished_name = req_distinguished_name</span>
+<span class="l l-Scalar l-Scalar-Plain">prompt             = yes</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ req_distinguished_name ]</span>
+<span class="l l-Scalar l-Scalar-Plain">#countryName = Country</span>
+<span class="l l-Scalar l-Scalar-Plain">#countryName_default = US</span>
+<span class="l l-Scalar l-Scalar-Plain">#countryName_min = 2</span>
+<span class="l l-Scalar l-Scalar-Plain">#countryName_max = 2</span>
+<span class="l l-Scalar l-Scalar-Plain">#localityName = Locality</span>
+<span class="l l-Scalar l-Scalar-Plain">#localityName_default = Los Angeles</span>
+<span class="l l-Scalar l-Scalar-Plain">#organizationName = Organization</span>
+<span class="l l-Scalar l-Scalar-Plain">#organizationName_default = IBM</span>
+<span class="l l-Scalar l-Scalar-Plain">#commonName = Common Name</span>
+<span class="l l-Scalar l-Scalar-Plain">#commonName_max = 64</span>
+
+<span class="l l-Scalar l-Scalar-Plain">C  = US</span>
+<span class="l l-Scalar l-Scalar-Plain">ST = California</span>
+<span class="l l-Scalar l-Scalar-Plain">L  = Los Angeles</span>
+<span class="l l-Scalar l-Scalar-Plain">O  = IBM</span>
+<span class="l l-Scalar l-Scalar-Plain">CN = \${ENV::COMMON_NAME}</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ certauth ]</span>
+<span class="l l-Scalar l-Scalar-Plain">subjectKeyIdentifier = hash</span>
+<span class="l l-Scalar l-Scalar-Plain">authorityKeyIdentifier = keyid:always,issuer:always</span>
+<span class="l l-Scalar l-Scalar-Plain">keyUsage = digitalSignature, keyEncipherment, dataEncipherment, keyCertSign, cRLSign</span>
+<span class="l l-Scalar l-Scalar-Plain">keyUsage = digitalSignature, keyEncipherment, dataEncipherment, keyCertSign, cRLSign</span>
+<span class="l l-Scalar l-Scalar-Plain">basicConstraints = \${ENV::PATHLEN}</span>
+<span class="l l-Scalar l-Scalar-Plain">#crlDistributionPoints = @crl</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ server ]</span>
+<span class="l l-Scalar l-Scalar-Plain">basicConstraints = CA:FALSE</span>
+<span class="l l-Scalar l-Scalar-Plain">keyUsage = digitalSignature, keyEncipherment, dataEncipherment</span>
+<span class="l l-Scalar l-Scalar-Plain">extendedKeyUsage = serverAuth</span>
+<span class="l l-Scalar l-Scalar-Plain">nsCertType = server</span>
+<span class="l l-Scalar l-Scalar-Plain">crlDistributionPoints = @crl</span>
+<span class="l l-Scalar l-Scalar-Plain">subjectAltName = \${ENV::SUBJECT_ALT_NAME}</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ client ]</span>
+<span class="l l-Scalar l-Scalar-Plain">basicConstraints = CA:FALSE</span>
+<span class="l l-Scalar l-Scalar-Plain">keyUsage = digitalSignature, keyEncipherment, dataEncipherment</span>
+<span class="l l-Scalar l-Scalar-Plain">extendedKeyUsage = clientAuth,msSmartcardLogin</span>
+<span class="l l-Scalar l-Scalar-Plain">nsCertType = client</span>
+<span class="l l-Scalar l-Scalar-Plain">crlDistributionPoints = @crl</span>
+<span class="l l-Scalar l-Scalar-Plain">authorityInfoAccess = @ocsp_section</span>
+<span class="l l-Scalar l-Scalar-Plain">subjectAltName = @alt_names</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ selfSignedServer ]</span>
+<span class="l l-Scalar l-Scalar-Plain">subjectKeyIdentifier = hash</span>
+<span class="l l-Scalar l-Scalar-Plain">authorityKeyIdentifier = keyid:always,issuer:always</span>
+<span class="l l-Scalar l-Scalar-Plain">keyUsage = digitalSignature, keyEncipherment, dataEncipherment</span>
+<span class="l l-Scalar l-Scalar-Plain">basicConstraints = CA:FALSE</span>
+<span class="l l-Scalar l-Scalar-Plain">subjectAltName = \${ENV::SUBJECT_ALT_NAME}</span>
+<span class="l l-Scalar l-Scalar-Plain">extendedKeyUsage = serverAuth</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ selfSignedClient ]</span>
+<span class="l l-Scalar l-Scalar-Plain">subjectKeyIdentifier = hash</span>
+<span class="l l-Scalar l-Scalar-Plain">authorityKeyIdentifier = keyid:always,issuer:always</span>
+<span class="l l-Scalar l-Scalar-Plain">keyUsage = digitalSignature, keyEncipherment, dataEncipherment</span>
+<span class="l l-Scalar l-Scalar-Plain">basicConstraints = CA:FALSE</span>
+<span class="l l-Scalar l-Scalar-Plain">subjectAltName = @alt_names</span>
+<span class="l l-Scalar l-Scalar-Plain">extendedKeyUsage = clientAuth</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ server_client ]</span>
+<span class="l l-Scalar l-Scalar-Plain">subjectKeyIdentifier = hash</span>
+<span class="l l-Scalar l-Scalar-Plain">keyUsage = digitalSignature, keyEncipherment, dataEncipherment</span>
+<span class="l l-Scalar l-Scalar-Plain">basicConstraints = CA:FALSE</span>
+<span class="l l-Scalar l-Scalar-Plain">subjectAltName = \${ENV::SUBJECT_ALT_NAME}</span>
+<span class="l l-Scalar l-Scalar-Plain">crlDistributionPoints = @crl</span>
+<span class="l l-Scalar l-Scalar-Plain">extendedKeyUsage = serverAuth,clientAuth</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ v3_intermediate_ca ]</span>
+<span class="l l-Scalar l-Scalar-Plain"># Extensions for a typical intermediate CA</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain">subjectKeyIdentifier = hash</span>
+<span class="l l-Scalar l-Scalar-Plain">authorityKeyIdentifier = keyid:always,issuer</span>
+<span class="l l-Scalar l-Scalar-Plain">basicConstraints = critical, \${ENV::PATHLEN}</span>
+<span class="l l-Scalar l-Scalar-Plain">keyUsage = critical, digitalSignature, cRLSign, keyCertSign</span>
+<span class="l l-Scalar l-Scalar-Plain">crlDistributionPoints = @crl</span>
+<span class="l l-Scalar l-Scalar-Plain">authorityInfoAccess = @ocsp_section</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ crl ]</span>
+<span class="l l-Scalar l-Scalar-Plain">URI=http://localhost/ca.crl</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ ocsp_section ]</span>
+<span class="l l-Scalar l-Scalar-Plain">OCSP;URI.0 = http://localhost:2560/ocsp</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ ocsp ]</span>
+<span class="l l-Scalar l-Scalar-Plain"># Extension for OCSP signing certificates</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain">basicConstraints = CA:FALSE</span>
+<span class="l l-Scalar l-Scalar-Plain">subjectKeyIdentifier = hash</span>
+<span class="l l-Scalar l-Scalar-Plain">authorityKeyIdentifier = keyid,issuer</span>
+<span class="l l-Scalar l-Scalar-Plain">keyUsage = critical, digitalSignature</span>
+<span class="l l-Scalar l-Scalar-Plain">extendedKeyUsage = critical, OCSPSigning</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[alt_names]</span>
+<span class="l l-Scalar l-Scalar-Plain"># email= \${ENV::SUBJECT_ALT_NAME}</span>
+<span class="l l-Scalar l-Scalar-Plain">otherName=msUPN;UTF8:\${ENV::SUBJECT_ALT_NAME}</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[v3_conf]</span>
+<span class="l l-Scalar l-Scalar-Plain">keyUsage = digitalSignature, keyEncipherment, dataEncipherment, keyCertSign, cRLSign</span>
+<span class="l l-Scalar l-Scalar-Plain">basicConstraints = CA:FALSE</span>
+<span class="l l-Scalar l-Scalar-Plain">EOF</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create a private key that will be used by the Secure Build Server</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>server-key.pem<span class="w"> </span><span class="m">2048</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create the Secure Build Server certificate signing request</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-new<span class="w"> </span>-key<span class="w"> </span>server-key.pem<span class="w"> </span>-out<span class="w"> </span>server.csr<span class="w">   </span>
+</code></pre></div>
+</li>
+<li>
+<p>Create the Secure Build Server certificate</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-sha256<span class="w"> </span>-req<span class="w"> </span>-in<span class="w"> </span>server.csr<span class="w"> </span><span class="se">\</span>
+-CA<span class="w"> </span>ca.pem<span class="w"> </span><span class="se">\</span>
+-CAkey<span class="w"> </span>ca.key<span class="w"> </span><span class="se">\</span>
+-set_serial<span class="w"> </span><span class="m">8086</span><span class="w"> </span>-extfile<span class="w"> </span>openssl.cnf<span class="w"> </span><span class="se">\</span>
+-extensions<span class="w"> </span>server<span class="w"> </span>-days<span class="w"> </span><span class="m">730</span><span class="w"> </span>-outform<span class="w"> </span>PEM<span class="w"> </span><span class="se">\</span>
+-out<span class="w"> </span>server.pem
+</code></pre></div>
+</li>
+<li>
+<p>Create a private key for use by the client certificate</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>client-key.pem<span class="w"> </span><span class="m">2048</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create the client certificate signing request</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-new<span class="w"> </span><span class="se">\</span>
+-key<span class="w"> </span>client-key.pem<span class="w"> </span><span class="se">\</span>
+-out<span class="w"> </span>client.csr
+</code></pre></div>
+</li>
+<li>
+<p>Create the client certificate</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-req<span class="w"> </span>-days<span class="w"> </span><span class="m">730</span><span class="w"> </span><span class="se">\</span>
+-in<span class="w"> </span>client.csr<span class="w"> </span><span class="se">\</span>
+-CA<span class="w"> </span>ca.pem<span class="w"> </span><span class="se">\</span>
+-CAcreateserial<span class="w"> </span><span class="se">\</span>
+-CAkey<span class="w"> </span>ca.key<span class="w"> </span><span class="se">\</span>
+-out<span class="w"> </span>client_cert.pem
+</code></pre></div>
+</li>
+<li>
+<p>Create environment variables</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ca_cert</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="k">$(</span>cat<span class="w"> </span>ca.pem<span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="k">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="k">)</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">client_cert</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="k">$(</span>cat<span class="w"> </span>client_cert.pem<span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="k">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="k">)</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">server_cert</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="k">$(</span>cat<span class="w"> </span>server.pem<span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="k">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="k">)</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">server_key</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="k">$(</span>cat<span class="w"> </span>server-key.pem<span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="k">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="k">)</span>
+</code></pre></div>
+</li>
+<li>
+<p>Switch back to main lab working directory</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">SB_DIR</span><span class="si">}</span>
+</code></pre></div>
+<h2 id="create-quotagroup-with-storage-for-secure-build-server">Create Quotagroup with storage for secure build server<a class="headerlink" href="#create-quotagroup-with-storage-for-secure-build-server" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>hpvs<span class="w"> </span>quotagroup<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--size<span class="o">=</span>40GB
+</code></pre></div>
+<details class="example" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code>+-------------+--------------+
+<span class="p">|</span><span class="w"> </span>PROPERTIES<span class="w">  </span><span class="p">|</span><span class="w"> </span>VALUES<span class="w">       </span><span class="p">|</span>
++-------------+--------------+
+<span class="p">|</span><span class="w"> </span>Name<span class="w">        </span><span class="p">|</span><span class="w"> </span>sb_user00<span class="w">    </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Filesystem<span class="w">  </span><span class="p">|</span><span class="w"> </span>btrfs<span class="w">        </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Passthrough<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nb">false</span><span class="w">        </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>PoolID<span class="w">      </span><span class="p">|</span><span class="w"> </span>lv_data_pool<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Size<span class="w">        </span><span class="p">|</span><span class="w"> </span><span class="m">40</span><span class="w"> </span>GB<span class="w">        </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Containers<span class="w">  </span><span class="p">|</span><span class="w">              </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Available<span class="w">   </span><span class="p">|</span><span class="w"> </span><span class="m">39</span><span class="w"> </span>GB<span class="w">        </span><span class="p">|</span>
++-------------+--------------+
+</code></pre></div>
+</details>
+<h2 id="create-secure-build-server">Create Secure Build Server<a class="headerlink" href="#create-secure-build-server" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>hpvs<span class="w"> </span>vs<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>sbserver_<span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="w"> </span>--repo<span class="w"> </span>SecureDockerBuild<span class="w"> </span><span class="se">\</span>
+--tag<span class="w"> </span><span class="m">1</span>.2.7.1<span class="w"> </span>--cpu<span class="w"> </span><span class="m">2</span><span class="w"> </span>--ram<span class="w"> </span><span class="m">2048</span><span class="w"> </span><span class="se">\</span>
+--quotagroup<span class="w"> </span><span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = new, mount = /newroot, filesystem = ext4, size = 4GB, reset_root=true}&quot;</span><span class="w"> </span><span class="se">\</span>
+--quotagroup<span class="w"> </span><span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = data, mount = /data, filesystem = ext4, size = 4GB}&quot;</span><span class="w"> </span><span class="se">\</span>
+--quotagroup<span class="w"> </span><span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = docker, mount = /docker, filesystem = ext4, size = 16GB}&quot;</span><span class="w"> </span><span class="se">\</span>
+--env<span class="o">={</span><span class="nv">EX_VOLUMES</span><span class="o">=</span><span class="s2">&quot;/docker,/data&quot;</span>,ROOTFS_LOCK<span class="o">=</span>y,CLIENT_CRT<span class="o">=</span><span class="nv">$client_cert</span>,CLIENT_CA<span class="o">=</span><span class="nv">$ca_cert</span>,SERVER_CRT<span class="o">=</span><span class="nv">$server_cert</span>,SERVER_KEY<span class="o">=</span><span class="nv">$server_key</span>,RUNQ_ROOTDISK<span class="o">=</span>new<span class="o">}</span><span class="w"> </span><span class="se">\</span>
+--ports<span class="w"> </span><span class="s2">&quot;{containerport = 443, protocol = tcp, hostport = </span><span class="si">${</span><span class="nv">SB_PORT</span><span class="si">}</span><span class="s2">}&quot;</span>
+</code></pre></div>
+<details class="example" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code>+-------------+------------------------------+
+<span class="p">|</span><span class="w"> </span>PROPERTIES<span class="w">  </span><span class="p">|</span><span class="w"> </span>VALUES<span class="w">                       </span><span class="p">|</span>
++-------------+------------------------------+
+<span class="p">|</span><span class="w"> </span>Name<span class="w">        </span><span class="p">|</span><span class="w"> </span>sbserver_00<span class="w">                  </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>CPU<span class="w">         </span><span class="p">|</span><span class="w"> </span><span class="m">2</span><span class="w">                            </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Memory<span class="w">      </span><span class="p">|</span><span class="w"> </span><span class="m">2048</span><span class="w">                         </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>State<span class="w">       </span><span class="p">|</span><span class="w"> </span>running<span class="w">                      </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Status<span class="w">      </span><span class="p">|</span><span class="w"> </span>Up<span class="w"> </span>Less<span class="w"> </span>than<span class="w"> </span>a<span class="w"> </span>second<span class="w">        </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Networks<span class="w">    </span><span class="p">|</span><span class="w"> </span>Gateway:172.31.0.1<span class="w">           </span><span class="p">|</span>
+<span class="p">|</span><span class="w">             </span><span class="p">|</span><span class="w"> </span>IPAddress:172.31.0.2<span class="w">         </span><span class="p">|</span>
+<span class="p">|</span><span class="w">             </span><span class="p">|</span><span class="w"> </span>MacAddress:02:42:ac:1f:00:02<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">             </span><span class="p">|</span><span class="w"> </span>Network:bridge<span class="w">               </span><span class="p">|</span>
+<span class="p">|</span><span class="w">             </span><span class="p">|</span><span class="w"> </span>Subnet:16<span class="w">                    </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Ports<span class="w">       </span><span class="p">|</span><span class="w"> </span>GuestPort:30000<span class="w">              </span><span class="p">|</span>
+<span class="p">|</span><span class="w">             </span><span class="p">|</span><span class="w"> </span>LocalPort:443/tcp<span class="w">            </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Quotagroups<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="o">[</span>sb_user00<span class="o">]</span><span class="w">                  </span><span class="p">|</span>
++-------------+------------------------------+
+</code></pre></div>
+</details>
+<p>We can see the quotagroup is now being used with</p>
+<div class="highlight"><pre><span></span><code>hpvs<span class="w"> </span>quotagroup<span class="w"> </span>show<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<details class="example" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code>+-------------+-----------------------------+
+<span class="p">|</span><span class="w"> </span>PROPERTIES<span class="w">  </span><span class="p">|</span><span class="w"> </span>VALUES<span class="w">                      </span><span class="p">|</span>
++-------------+-----------------------------+
+<span class="p">|</span><span class="w"> </span>Name<span class="w">        </span><span class="p">|</span><span class="w"> </span>sb_user00<span class="w">                   </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Filesystem<span class="w">  </span><span class="p">|</span><span class="w"> </span>btrfs<span class="w">                       </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Passthrough<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nb">false</span><span class="w">                       </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>PoolID<span class="w">      </span><span class="p">|</span><span class="w"> </span>lv_data_pool<span class="w">                </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Size<span class="w">        </span><span class="p">|</span><span class="w"> </span><span class="m">40</span><span class="w"> </span>GB<span class="w">                       </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Containers<span class="w">  </span><span class="p">|</span><span class="w"> </span>container_name:sbserver_00<span class="w">  </span><span class="p">|</span>
+<span class="p">|</span><span class="w">             </span><span class="p">|</span><span class="w"> </span>mount_ids:<span class="o">[</span>new<span class="w"> </span>data<span class="w"> </span>docker<span class="o">]</span><span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Available<span class="w">   </span><span class="p">|</span><span class="w"> </span><span class="m">11</span><span class="w"> </span>GB<span class="w">                       </span><span class="p">|</span>
++-------------+-----------------------------+
+</code></pre></div>
+</details>
+<p>The show output for the Hyper Protect Virtual Server was shown when it was deployed but we can bring it back up with</p>
+<div class="highlight"><pre><span></span><code>hpvs<span class="w"> </span>vs<span class="w"> </span>show<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;sbserver_</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<details class="example" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code>+-------------+------------------------------+
+<span class="p">|</span><span class="w"> </span>PROPERTIES<span class="w">  </span><span class="p">|</span><span class="w"> </span>VALUES<span class="w">                       </span><span class="p">|</span>
++-------------+------------------------------+
+<span class="p">|</span><span class="w"> </span>Name<span class="w">        </span><span class="p">|</span><span class="w"> </span>sbserver_00<span class="w">                  </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>CPU<span class="w">         </span><span class="p">|</span><span class="w"> </span><span class="m">2</span><span class="w">                            </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Memory<span class="w">      </span><span class="p">|</span><span class="w"> </span><span class="m">2048</span><span class="w">                         </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>State<span class="w">       </span><span class="p">|</span><span class="w"> </span>running<span class="w">                      </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Status<span class="w">      </span><span class="p">|</span><span class="w"> </span>Up<span class="w"> </span><span class="m">2</span><span class="w"> </span>minutes<span class="w">                 </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Networks<span class="w">    </span><span class="p">|</span><span class="w"> </span>Gateway:172.31.0.1<span class="w">           </span><span class="p">|</span>
+<span class="p">|</span><span class="w">             </span><span class="p">|</span><span class="w"> </span>IPAddress:172.31.0.2<span class="w">         </span><span class="p">|</span>
+<span class="p">|</span><span class="w">             </span><span class="p">|</span><span class="w"> </span>MacAddress:02:42:ac:1f:00:02<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">             </span><span class="p">|</span><span class="w"> </span>Network:bridge<span class="w">               </span><span class="p">|</span>
+<span class="p">|</span><span class="w">             </span><span class="p">|</span><span class="w"> </span>Subnet:16<span class="w">                    </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Ports<span class="w">       </span><span class="p">|</span><span class="w"> </span>GuestPort:30000<span class="w">              </span><span class="p">|</span>
+<span class="p">|</span><span class="w">             </span><span class="p">|</span><span class="w"> </span>LocalPort:443/tcp<span class="w">            </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Quotagroups<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="o">[</span>sb_user00<span class="o">]</span><span class="w">                  </span><span class="p">|</span>
++-------------+------------------------------+
+</code></pre></div>
+</details>
+<p>Your secure build server is now up and running! <img alt="🔥" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f525.svg" title=":fire:" /></p>
+<p>It is available at the IP Address of the Hyper Protect Virtual Server LPAR and port (GuestPort) specified.</p>
+<p>You will use this secure build server to securely build your application in the next section.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can assign IP addresses and hostnames for containers as necessary for your purposes but using the docker network and host ports is a nice way to quickly get running without having to use up IP addresses on your network.</p>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../securebuild-setup/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configuring your Environment" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Previous
+                </span>
+                Configuring your Environment
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../build/" class="md-footer__link md-footer__link--next" aria-label="Next: Securely Build your Application" rel="next">
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Next
+                </span>
+                Securely Build your Application
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ibm-wsc" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://hub.docker.com/u/s390x" target="_blank" rel="noopener" title="hub.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+    
+  </body>
+</html>

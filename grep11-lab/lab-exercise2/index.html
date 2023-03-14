@@ -1,0 +1,1348 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../lab-exercise1/">
+      
+      
+        <link rel="next" href="../lab-exercise3/">
+      
+      <link rel="icon" href="../../images/hpvs-logo.svg">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>Exercise 2 (Encryption and Decryption) - Hyper Protect Virtual Servers (HPVS) Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exercise-2-encrypt-and-decrypt-data" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Hyper Protect Virtual Servers (HPVS) Workshop" class="md-header__button md-logo" aria-label="Hyper Protect Virtual Servers (HPVS) Workshop" data-md-component="logo">
+      
+  <img src="../../images/hpvs-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hyper Protect Virtual Servers (HPVS) Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Exercise 2 (Encryption and Decryption)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../assignment/" class="md-tabs__link">
+      Lab Assignments
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../overview/" class="md-tabs__link md-tabs__link--active">
+        GREP11 Lab
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../prerequisites/" class="md-tabs__link">
+        Secure Image Build Lab
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../glossary/" class="md-tabs__link">
+      Glossary of terms
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../resources/" class="md-tabs__link">
+      Other resources
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../proposechange/" class="md-tabs__link">
+      Propose a change
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hyper Protect Virtual Servers (HPVS) Workshop" class="md-nav__button md-logo" aria-label="Hyper Protect Virtual Servers (HPVS) Workshop" data-md-component="logo">
+      
+  <img src="../../images/hpvs-logo.svg" alt="logo">
+
+    </a>
+    Hyper Protect Virtual Servers (HPVS) Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assignment/" class="md-nav__link">
+        Lab Assignments
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          GREP11 Lab
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          GREP11 Lab
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        Lab overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grep11-setup/" class="md-nav__link">
+        How to set up a GREP11 server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grep11-display/" class="md-nav__link">
+        Displaying your GREP11 environment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../run-grep11-samples/" class="md-nav__link">
+        Run the GREP11 sample code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+          Run the Lab exercises
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          Run the Lab exercises
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise-overview/" class="md-nav__link">
+        An overview of the Exercises
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-exercise1/" class="md-nav__link">
+        Exercise 1 (List PKCS Mechanisms)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Exercise 2 (Encryption and Decryption)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Exercise 2 (Encryption and Decryption)
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-exercise-2" class="md-nav__link">
+    Overview of Exercise 2
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-exercise3/" class="md-nav__link">
+        Exercise 3 (Sign and Verify)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-exercise4/" class="md-nav__link">
+        Exercise 4 (Wrap and Unwrap Key)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Secure Image Build Lab
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Secure Image Build Lab
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequisites/" class="md-nav__link">
+        Prerequisites
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../securebuild-lab/overview/" class="md-nav__link">
+        Hyper Protect Virtual Servers (HPVS) Lab Process Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../securebuild-lab/securebuild-setup/" class="md-nav__link">
+        Configuring your Environment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../securebuild-lab/create-server/" class="md-nav__link">
+        Create your HPVS Secure Build Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../securebuild-lab/build/" class="md-nav__link">
+        Securely Build your Application
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../securebuild-lab/deploy-app/" class="md-nav__link">
+        Deploy your Securely Built Application as a Hyper Protect Virtual Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../securebuild-lab/bitcoin_wallet/" class="md-nav__link">
+        Welcome to the Secure Bitcoin Wallet on IBM LinuxONE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../securebuild-lab/cleanup/" class="md-nav__link">
+        Clean up your Environment
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        Glossary of terms
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/" class="md-nav__link">
+        Other resources
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../proposechange/" class="md-nav__link">
+        Propose a change
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-exercise-2" class="md-nav__link">
+    Overview of Exercise 2
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop/edit/master/docs/grep11-lab/lab-exercise2.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop/raw/master/docs/grep11-lab/lab-exercise2.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+
+<h1 id="exercise-2-encrypt-and-decrypt-data">Exercise 2 - Encrypt and Decrypt Data<a class="headerlink" href="#exercise-2-encrypt-and-decrypt-data" title="Permanent link">&para;</a></h1>
+<h2 id="overview-of-exercise-2">Overview of Exercise 2<a class="headerlink" href="#overview-of-exercise-2" title="Permanent link">&para;</a></h2>
+<p>Exercise 2 creates an AES secret key and uses it to encrypt some <em>plaintext</em> data. Plaintext which has been encrypted is referred to as <em>ciphertext</em>.
+This ciphertext is then decrypted back into plaintext using the same AES secret key that was used for encryption. The original plaintext is compared to- and is expected to be identical to- the plaintext that resulted from the encryption and decryption.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Plaintext data is often, but not necessarily, human-readable.  It is any data that could be of value to an adversary, if the adversary could obtain the data in its original, or plaintext, form.  Hence the need for encryption. If an adversary were to obtain ciphertext, it is unreadable and thus of little or no value to the adversary.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The PKCS #11 standard uses the phrase <em>secret key</em> often. <em>Secret key</em> is synonoymous with the term <em>symmetric key</em>, which is also a term commonly used in cryptography.  That is, a single key is used for both encryption and decryption.</p>
+</div>
+<ol>
+<li>
+<p>Run the second exercise:</p>
+<div class="highlight"><pre><span></span><code>./lab<span class="w"> </span>--ex2
+</code></pre></div>
+<details class="example">
+<summary>Example Output</summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll">Generated<span class="w"> </span>AES<span class="w"> </span>Key<span class="w"> </span>with<span class="w"> </span>mechanism<span class="w">  </span>CKM_AES_KEY_GEN
+</span>
+length<span class="w"> </span>of<span class="w"> </span>key<span class="w"> </span>blob<span class="w"> </span>is<span class="w"> </span><span class="m">256</span><span class="w"> </span>bytes
+Key<span class="w"> </span>blob<span class="w"> </span>is<span class="w"> </span><span class="o">(</span>values<span class="w"> </span><span class="k">in</span><span class="w"> </span>decimal<span class="o">)</span>:
+<span class="o">[</span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">176</span><span class="w"> </span><span class="m">130</span><span class="w"> </span><span class="m">49</span><span class="w"> </span><span class="m">65</span><span class="w"> </span><span class="m">141</span><span class="w"> </span><span class="m">152</span><span class="w"> </span><span class="m">246</span><span class="w"> </span><span class="m">85</span><span class="w"> </span><span class="m">132</span><span class="w"> </span><span class="m">150</span><span class="w"> </span><span class="m">183</span><span class="w"> </span><span class="m">226</span><span class="w"> </span><span class="m">212</span><span class="w"> </span><span class="m">36</span><span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">141</span><span class="w"> </span><span class="m">38</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="m">52</span><span class="w"> </span><span class="m">217</span><span class="w"> </span><span class="m">158</span><span class="w"> </span><span class="m">52</span><span class="w"> </span><span class="m">159</span><span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="m">220</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">126</span><span class="w"> </span><span class="m">250</span><span class="w"> </span><span class="m">240</span><span class="w"> </span><span class="m">129</span><span class="w"> </span><span class="m">168</span><span class="w"> </span><span class="m">243</span><span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">158</span><span class="w"> </span><span class="m">220</span><span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="m">158</span><span class="w"> </span><span class="m">254</span><span class="w"> </span><span class="m">73</span><span class="w"> </span><span class="m">111</span><span class="w"> </span><span class="m">45</span><span class="w"> </span><span class="m">102</span><span class="w"> </span><span class="m">230</span><span class="w"> </span><span class="m">162</span><span class="w"> </span><span class="m">209</span><span class="w"> </span><span class="m">246</span><span class="w"> </span><span class="m">93</span><span class="w"> </span><span class="m">216</span><span class="w"> </span><span class="m">200</span><span class="w"> </span><span class="m">108</span><span class="w"> </span><span class="m">223</span><span class="w"> </span><span class="m">116</span><span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="m">109</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">82</span><span class="w"> </span><span class="m">87</span><span class="w"> </span><span class="m">166</span><span class="w"> </span><span class="m">108</span><span class="w"> </span><span class="m">227</span><span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">54</span><span class="w"> </span><span class="m">59</span><span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">126</span><span class="w"> </span><span class="m">154</span><span class="w"> </span><span class="m">14</span><span class="w"> </span><span class="m">159</span><span class="w"> </span><span class="m">250</span><span class="w"> </span><span class="m">161</span><span class="w"> </span><span class="m">203</span><span class="w"> </span><span class="m">128</span><span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="m">237</span><span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="m">218</span><span class="w"> </span><span class="m">243</span><span class="w"> </span><span class="m">169</span><span class="w"> </span><span class="m">235</span><span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">112</span><span class="w"> </span><span class="m">101</span><span class="w"> </span><span class="m">109</span><span class="w"> </span><span class="m">177</span><span class="w"> </span><span class="m">94</span><span class="w"> </span><span class="m">191</span><span class="w"> </span><span class="m">251</span><span class="w"> </span><span class="m">198</span><span class="w"> </span><span class="m">126</span><span class="w"> </span><span class="m">102</span><span class="w"> </span><span class="m">93</span><span class="w"> </span><span class="m">236</span><span class="w"> </span><span class="m">51</span><span class="w"> </span><span class="m">190</span><span class="w"> </span><span class="m">157</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">188</span><span class="w"> </span><span class="m">128</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">114</span><span class="w"> </span><span class="m">120</span><span class="w"> </span><span class="m">135</span><span class="w"> </span><span class="m">191</span><span class="w"> </span><span class="m">22</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">42</span><span class="w"> </span><span class="m">191</span><span class="w"> </span><span class="m">209</span><span class="w"> </span><span class="m">135</span><span class="w"> </span><span class="m">168</span><span class="w"> </span><span class="m">241</span><span class="w"> </span><span class="m">228</span><span class="w"> </span><span class="m">137</span><span class="w"> </span><span class="m">121</span><span class="w"> </span><span class="m">180</span><span class="w"> </span><span class="m">140</span><span class="w"> </span><span class="m">113</span><span class="w"> </span><span class="m">211</span><span class="w"> </span><span class="m">159</span><span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">192</span><span class="w"> </span><span class="m">70</span><span class="w"> </span><span class="m">74</span><span class="w"> </span><span class="m">130</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">180</span><span class="w"> </span><span class="m">75</span><span class="w"> </span><span class="m">86</span><span class="w"> </span><span class="m">230</span><span class="w"> </span><span class="m">207</span><span class="w"> </span><span class="m">240</span><span class="w"> </span><span class="m">101</span><span class="w"> </span><span class="m">164</span><span class="w"> </span><span class="m">65</span><span class="w"> </span><span class="m">179</span><span class="w"> </span><span class="m">122</span><span class="w"> </span><span class="m">59</span><span class="w"> </span><span class="m">202</span><span class="w"> </span><span class="m">213</span><span class="w"> </span><span class="m">142</span><span class="w"> </span><span class="m">244</span><span class="w"> </span><span class="m">54</span><span class="w"> </span><span class="m">151</span><span class="w"> </span><span class="m">158</span><span class="w"> </span><span class="m">46</span><span class="w"> </span><span class="m">72</span><span class="w"> </span><span class="m">52</span><span class="w"> </span><span class="m">249</span><span class="w"> </span><span class="m">87</span><span class="w"> </span><span class="m">219</span><span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">202</span><span class="w"> </span><span class="m">69</span><span class="w"> </span><span class="m">150</span><span class="w"> </span><span class="m">45</span><span class="w"> </span><span class="m">195</span><span class="w"> </span><span class="m">200</span><span class="w"> </span><span class="m">84</span><span class="w"> </span><span class="m">134</span><span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="m">148</span><span class="w"> </span><span class="m">21</span><span class="w"> </span><span class="m">70</span><span class="w"> </span><span class="m">144</span><span class="w"> </span><span class="m">235</span><span class="w"> </span><span class="m">236</span><span class="w"> </span><span class="m">141</span><span class="w"> </span><span class="m">234</span><span class="w"> </span><span class="m">135</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">120</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">180</span><span class="w"> </span><span class="m">69</span><span class="w"> </span><span class="m">84</span><span class="w"> </span><span class="m">35</span><span class="w"> </span><span class="m">73</span><span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">71</span><span class="w"> </span><span class="m">208</span><span class="w"> </span><span class="m">212</span><span class="w"> </span><span class="m">143</span><span class="w"> </span><span class="m">135</span><span class="w"> </span><span class="m">222</span><span class="w"> </span><span class="m">115</span><span class="w"> </span><span class="m">85</span><span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">172</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">202</span><span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">249</span><span class="w"> </span><span class="m">109</span><span class="w"> </span><span class="m">71</span><span class="w"> </span><span class="m">41</span><span class="w"> </span><span class="m">255</span><span class="w"> </span><span class="m">177</span><span class="w"> </span><span class="m">105</span><span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">134</span><span class="w"> </span><span class="m">33</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">54</span><span class="w"> </span><span class="m">254</span><span class="w"> </span><span class="m">210</span><span class="o">]</span>
+
+The<span class="w"> </span>above<span class="w"> </span>structure<span class="w"> </span>is<span class="w"> </span>what<span class="w"> </span>you<span class="w"> </span>would<span class="w"> </span>save<span class="w"> </span><span class="k">in</span><span class="w"> </span>order<span class="w"> </span>to<span class="w"> </span>persist<span class="w"> </span>this<span class="w"> </span>key<span class="w"> </span>blob.
+
+Below<span class="w"> </span>is<span class="w"> </span>how<span class="w"> </span>the<span class="w"> </span>above<span class="w"> </span>structure<span class="w"> </span>would<span class="w"> </span>typically<span class="w"> </span>be<span class="w"> </span>saved,<span class="w"> </span><span class="k">in</span><span class="w"> </span>PEM<span class="w"> </span>Format:
+
+-----BEGIN<span class="w"> </span>HSM<span class="w"> </span>ENCRYPTED<span class="w"> </span>AES<span class="w"> </span>SECRET<span class="w"> </span>KEY-----
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADsIIxQY2Y9lWElrfi1CQo
+AAAAAAAAjSYAAAAAAAAAARI02Z40nx3cCn768IGo8w+e3CAenv5Jby1m5qLR9l3Y
+yGzfdCBtAVJXpmzjFAk2Oxh+mg6f+qHLgBvtG9rzqesccGVtsV6/+8Z+Zl3sM76d
+BLyAAXJ4h78WByq/0Yeo8eSJebSMcdOfGsBGSoIZtEtW5s/wZaRBs3o7ytWO9DaX
+ni5INPlX2wvKRZYtw8hUhh6UFUaQ6+yN6ocEeAG0RVQjSRBH0NSPh95zVRoZrALK
+DwL5bUcp/7FpFIYhCjb+0g<span class="o">==</span>
+-----END<span class="w"> </span>HSM<span class="w"> </span>ENCRYPTED<span class="w"> </span>AES<span class="w"> </span>SECRET<span class="w"> </span>KEY-----
+
+WK<span class="w"> </span>virtualization<span class="w"> </span>mask<span class="w"> </span>is<span class="w"> </span><span class="o">[</span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="o">]</span>
+See<span class="w"> </span><span class="m">6</span>.2.2<span class="w"> </span>of<span class="w"> </span>page<span class="w"> </span><span class="m">179</span><span class="w"> </span>of<span class="w"> </span>http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+<span class="hll">WK<span class="w"> </span>ID<span class="w"> </span>is<span class="w"> </span><span class="o">[</span><span class="m">3</span><span class="w"> </span><span class="m">176</span><span class="w"> </span><span class="m">130</span><span class="w"> </span><span class="m">49</span><span class="w"> </span><span class="m">65</span><span class="w"> </span><span class="m">141</span><span class="w"> </span><span class="m">152</span><span class="w"> </span><span class="m">246</span><span class="w"> </span><span class="m">85</span><span class="w"> </span><span class="m">132</span><span class="w"> </span><span class="m">150</span><span class="w"> </span><span class="m">183</span><span class="w"> </span><span class="m">226</span><span class="w"> </span><span class="m">212</span><span class="w"> </span><span class="m">36</span><span class="w"> </span><span class="m">40</span><span class="o">]</span>
+</span>See<span class="w"> </span><span class="m">6</span>.7.1<span class="w"> </span>on<span class="w"> </span>page<span class="w"> </span><span class="m">182</span><span class="w"> </span>of<span class="w">  </span>http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+Blob<span class="w"> </span>version<span class="w"> </span>is<span class="w"> </span><span class="o">[</span><span class="m">18</span><span class="w"> </span><span class="m">52</span><span class="o">]</span>
+See<span class="w"> </span><span class="m">3</span>.1.1<span class="w"> </span>on<span class="w"> </span>page<span class="w"> </span><span class="m">141</span><span class="w"> </span>of<span class="w"> </span>http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+Initialization<span class="w"> </span>Vector<span class="w"> </span>is<span class="w"> </span><span class="o">[</span><span class="m">217</span><span class="w"> </span><span class="m">158</span><span class="w"> </span><span class="m">52</span><span class="w"> </span><span class="m">159</span><span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="m">220</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">126</span><span class="w"> </span><span class="m">250</span><span class="w"> </span><span class="m">240</span><span class="w"> </span><span class="m">129</span><span class="w"> </span><span class="m">168</span><span class="w"> </span><span class="m">243</span><span class="w"> </span><span class="m">15</span><span class="o">]</span>
+
+Encrypted<span class="w"> </span>part<span class="w"> </span>is<span class="w"> </span><span class="o">[</span><span class="m">158</span><span class="w"> </span><span class="m">220</span><span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="m">158</span><span class="w"> </span><span class="m">254</span><span class="w"> </span><span class="m">73</span><span class="w"> </span><span class="m">111</span><span class="w"> </span><span class="m">45</span><span class="w"> </span><span class="m">102</span><span class="w"> </span><span class="m">230</span><span class="w"> </span><span class="m">162</span><span class="w"> </span><span class="m">209</span><span class="w"> </span><span class="m">246</span><span class="w"> </span><span class="m">93</span><span class="w"> </span><span class="m">216</span><span class="w"> </span><span class="m">200</span><span class="w"> </span><span class="m">108</span><span class="w"> </span><span class="m">223</span><span class="w"> </span><span class="m">116</span><span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="m">109</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">82</span><span class="w"> </span><span class="m">87</span><span class="w"> </span><span class="m">166</span><span class="w"> </span><span class="m">108</span><span class="w"> </span><span class="m">227</span><span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">54</span><span class="w"> </span><span class="m">59</span><span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">126</span><span class="w"> </span><span class="m">154</span><span class="w"> </span><span class="m">14</span><span class="w"> </span><span class="m">159</span><span class="w"> </span><span class="m">250</span><span class="w"> </span><span class="m">161</span><span class="w"> </span><span class="m">203</span><span class="w"> </span><span class="m">128</span><span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="m">237</span><span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="m">218</span><span class="w"> </span><span class="m">243</span><span class="w"> </span><span class="m">169</span><span class="w"> </span><span class="m">235</span><span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">112</span><span class="w"> </span><span class="m">101</span><span class="w"> </span><span class="m">109</span><span class="w"> </span><span class="m">177</span><span class="w"> </span><span class="m">94</span><span class="w"> </span><span class="m">191</span><span class="w"> </span><span class="m">251</span><span class="w"> </span><span class="m">198</span><span class="w"> </span><span class="m">126</span><span class="w"> </span><span class="m">102</span><span class="w"> </span><span class="m">93</span><span class="w"> </span><span class="m">236</span><span class="w"> </span><span class="m">51</span><span class="w"> </span><span class="m">190</span><span class="w"> </span><span class="m">157</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">188</span><span class="w"> </span><span class="m">128</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">114</span><span class="w"> </span><span class="m">120</span><span class="w"> </span><span class="m">135</span><span class="w"> </span><span class="m">191</span><span class="w"> </span><span class="m">22</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">42</span><span class="w"> </span><span class="m">191</span><span class="w"> </span><span class="m">209</span><span class="w"> </span><span class="m">135</span><span class="w"> </span><span class="m">168</span><span class="w"> </span><span class="m">241</span><span class="w"> </span><span class="m">228</span><span class="w"> </span><span class="m">137</span><span class="w"> </span><span class="m">121</span><span class="w"> </span><span class="m">180</span><span class="w"> </span><span class="m">140</span><span class="w"> </span><span class="m">113</span><span class="w"> </span><span class="m">211</span><span class="w"> </span><span class="m">159</span><span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">192</span><span class="w"> </span><span class="m">70</span><span class="w"> </span><span class="m">74</span><span class="w"> </span><span class="m">130</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">180</span><span class="w"> </span><span class="m">75</span><span class="w"> </span><span class="m">86</span><span class="w"> </span><span class="m">230</span><span class="w"> </span><span class="m">207</span><span class="w"> </span><span class="m">240</span><span class="w"> </span><span class="m">101</span><span class="w"> </span><span class="m">164</span><span class="w"> </span><span class="m">65</span><span class="w"> </span><span class="m">179</span><span class="w"> </span><span class="m">122</span><span class="w"> </span><span class="m">59</span><span class="w"> </span><span class="m">202</span><span class="w"> </span><span class="m">213</span><span class="w"> </span><span class="m">142</span><span class="w"> </span><span class="m">244</span><span class="w"> </span><span class="m">54</span><span class="w"> </span><span class="m">151</span><span class="w"> </span><span class="m">158</span><span class="w"> </span><span class="m">46</span><span class="w"> </span><span class="m">72</span><span class="w"> </span><span class="m">52</span><span class="w"> </span><span class="m">249</span><span class="w"> </span><span class="m">87</span><span class="w"> </span><span class="m">219</span><span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">202</span><span class="w"> </span><span class="m">69</span><span class="w"> </span><span class="m">150</span><span class="w"> </span><span class="m">45</span><span class="w"> </span><span class="m">195</span><span class="w"> </span><span class="m">200</span><span class="w"> </span><span class="m">84</span><span class="w"> </span><span class="m">134</span><span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="m">148</span><span class="w"> </span><span class="m">21</span><span class="w"> </span><span class="m">70</span><span class="w"> </span><span class="m">144</span><span class="w"> </span><span class="m">235</span><span class="w"> </span><span class="m">236</span><span class="w"> </span><span class="m">141</span><span class="w"> </span><span class="m">234</span><span class="w"> </span><span class="m">135</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">120</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">180</span><span class="w"> </span><span class="m">69</span><span class="w"> </span><span class="m">84</span><span class="o">]</span>
+
+MAC<span class="w"> </span>is<span class="w"> </span><span class="o">[</span><span class="m">35</span><span class="w"> </span><span class="m">73</span><span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">71</span><span class="w"> </span><span class="m">208</span><span class="w"> </span><span class="m">212</span><span class="w"> </span><span class="m">143</span><span class="w"> </span><span class="m">135</span><span class="w"> </span><span class="m">222</span><span class="w"> </span><span class="m">115</span><span class="w"> </span><span class="m">85</span><span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">172</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">202</span><span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">249</span><span class="w"> </span><span class="m">109</span><span class="w"> </span><span class="m">71</span><span class="w"> </span><span class="m">41</span><span class="w"> </span><span class="m">255</span><span class="w"> </span><span class="m">177</span><span class="w"> </span><span class="m">105</span><span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">134</span><span class="w"> </span><span class="m">33</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">54</span><span class="w"> </span><span class="m">254</span><span class="w"> </span><span class="m">210</span><span class="o">]</span>
+MAC<span class="w"> </span>is<span class="w"> </span><span class="m">32</span><span class="w"> </span>bytes,<span class="w"> </span>see<span class="w"> </span>field<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">3</span>.1<span class="w"> </span>on<span class="w"> </span>page<span class="w"> </span><span class="m">140</span><span class="w"> </span>of<span class="w"> </span>http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+Checksum<span class="w"> </span>is<span class="w"> </span><span class="o">[</span><span class="m">144</span><span class="w"> </span><span class="m">147</span><span class="w"> </span><span class="m">65</span><span class="o">]</span>,<span class="w"> </span>length<span class="w"> </span>of<span class="w"> </span>checksum<span class="w"> </span>is<span class="w"> </span><span class="m">3</span>
+
+
+Original<span class="w"> </span>message,<span class="w"> </span>prior<span class="w"> </span>to<span class="w"> </span>any<span class="w"> </span>encryption<span class="w"> </span>or<span class="w"> </span>decryption<span class="w"> </span>operations:<span class="w">  </span>Hello,<span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>very<span class="w"> </span>long<span class="w"> </span>and<span class="w"> </span>creative<span class="w"> </span>message<span class="w"> </span>without<span class="w"> </span>any<span class="w"> </span>imagination
+
+<span class="k">in</span><span class="w"> </span>progress<span class="w"> </span>ciphertext<span class="w"> </span>is:
+��!E�S���<span class="o">}</span>�p�!��
+
+<span class="k">in</span><span class="w"> </span>progress<span class="w"> </span>ciphertext<span class="w"> </span>is:
+��!E�S���<span class="o">}</span>�p�!��7I�Hd�i�7p�/N˽.�g��K�<span class="p">;</span>����_����NØtk���YH�^�
+
+Final<span class="w"> </span>ciphertext<span class="w"> </span>is:
+��!E�S���<span class="o">}</span>�p�!��7I�Hd�i�7p�/N˽.�g��K�<span class="p">;</span>����_����NØtk���YH�^���H�5f�!��&gt;-<span class="w"></span>c
+
+In<span class="w"> </span>progress<span class="w"> </span>decryption<span class="w"> </span>is:
+
+
+In<span class="w"> </span>progress<span class="w"> </span>decryption<span class="w"> </span>is:
+Hello,<span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>very<span class="w"> </span>long<span class="w"> </span>and<span class="w"> </span>creative<span class="w"> </span>message<span class="w"> </span>without<span class="w"> </span>any<span class="w"> </span>imag
+
+Final<span class="w"> </span>decryption<span class="w"> </span>is:
+Hello,<span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>very<span class="w"> </span>long<span class="w"> </span>and<span class="w"> </span>creative<span class="w"> </span>message<span class="w"> </span>without<span class="w"> </span>any<span class="w"> </span>imagination
+
+Original<span class="w"> </span>message<span class="w"> </span>equals<span class="w"> </span>decrypted<span class="w"> </span>message!
+
+Original<span class="w"> </span>message:<span class="w">  </span>Hello,<span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>very<span class="w"> </span>long<span class="w"> </span>and<span class="w"> </span>creative<span class="w"> </span>message<span class="w"> </span>without<span class="w"> </span>any<span class="w"> </span>imagination
+Length<span class="w"> </span>of<span class="w"> </span>original<span class="w"> </span>message:<span class="w"> </span><span class="m">71</span>
+
+Encrypted<span class="w"> </span>message
+��!E�S���<span class="o">}</span>�p�!��7I�Hd�i�7p�/N˽.�g��K�<span class="p">;</span>����_����NØtk���YH�^���H�5f�!��&gt;-<span class="w"></span>c
+Length<span class="w"> </span>of<span class="w"> </span>encrypted<span class="w"> </span>message:<span class="w"> </span><span class="m">80</span>
+
+Decrypted<span class="w"> </span>message:<span class="w"> </span>Hello,<span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>very<span class="w"> </span>long<span class="w"> </span>and<span class="w"> </span>creative<span class="w"> </span>message<span class="w"> </span>without<span class="w"> </span>any<span class="w"> </span>imagination
+Length<span class="w"> </span>of<span class="w"> </span>decrypted<span class="w"> </span>message:<span class="w"> </span><span class="m">71</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<p>The mechanism used to generate the key is <em>CKM_AES_KEY_GEN</em> which informs us that we wish to generate an AES secret key.</p>
+<p>The length of the key blob is 256 bytes.  Notice that this key blob contains metadata used by the EP11 library, so it contains much more than the actual key, which is 256 bits, not bytes.  In fact we can't even see the key in cleartext form.  It is encrypted within the key blob by the Crypto Express 7S card domain's <em>root wrapping key</em>. The only place the key we created is ever available in the clear is while it is being used inside the Crypto Express 7S card, because the root wrapping key never leaves the card.</p>
+<p>The ID of the root wrapping key of the Crypto Express 7S card domain is listed in the output in the line that starts with <em>WK ID is</em>.  This ID is the first sixteen bytes of the hash of the key. It is not the full hash, and even if it was, you cannot retrieve the original data from the hash, so the root wrapping key remains secret.</p>
+<p>The ID of the root wrapping key for our Crypto Express 7S card domain is</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span><span class="m">3</span><span class="w"> </span><span class="m">176</span><span class="w"> </span><span class="m">130</span><span class="w"> </span><span class="m">49</span><span class="w"> </span><span class="m">65</span><span class="w"> </span><span class="m">141</span><span class="w"> </span><span class="m">152</span><span class="w"> </span><span class="m">246</span><span class="w"> </span><span class="m">85</span><span class="w"> </span><span class="m">132</span><span class="w"> </span><span class="m">150</span><span class="w"> </span><span class="m">183</span><span class="w"> </span><span class="m">226</span><span class="w"> </span><span class="m">212</span><span class="w"> </span><span class="m">36</span><span class="w"> </span><span class="m">40</span><span class="o">]</span>
+</code></pre></div>
+<p>As you perform the exercises in this lab, you may notice that any time I print out the <em>WK ID</em>, it will always be this value.</p>
+<p>The encryption in this exercise takes place in multiple calls.  One may either encrypt all of the data in a single call to a function named <em>Encrypt()</em>, or may make multiple calls by performing one or more calls to <em>EncryptUpdate()</em> followed by a call to <em>EncryptFinal()</em>.  This sample program uses the latter approach, so in the output you see two lines that say <em>In progress ciphertext is</em> that show the results so far after each <em>EncryptUpdate()</em> call and then a line that says <em>Final ciphertext is</em> after the call to <em>EncryptFinal()</em>.  Decryption follows the same pattern-  two calls to <em>DecryptUpdate()</em> followed by a call to <em>DecryptFinal()</em>, and the output in the program indicates this.</p>
+</li>
+<li>
+<p>The program for this exercise defaults to a key length of 256 bits.  Try running with a key length of 128 bits:</p>
+<div class="highlight"><pre><span></span><code>./lab<span class="w"> </span>--ex2<span class="w"> </span>--keyLength<span class="w"> </span><span class="m">128</span>
+</code></pre></div>
+<details class="example">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code>Generated AES Key with mechanism  CKM_AES_KEY_GEN
+
+length of key blob is 256 bytes
+Key blob is (values in decimal):
+[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 176 130 49 65 141 152 246 85 132 150 183 226 212 36 40 0 0 0 0 0 0 141 38 0 0 0 0 0 0 0 1 18 52 3 221 177 141 112 242 216 176 144 18 6 175 10 206 202 162 226 99 67 216 88 101 201 3 114 172 228 151 134 15 141 183 46 209 125 119 136 246 196 223 189 56 243 204 100 151 226 149 160 128 229 255 216 226 133 171 65 244 16 197 245 172 136 232 118 184 206 173 34 79 215 214 202 250 8 237 80 168 235 252 137 221 202 76 92 21 176 127 119 178 212 220 235 169 231 144 203 67 92 32 243 99 83 171 234 198 118 71 201 176 223 202 214 117 107 152 139 105 99 39 22 243 21 20 173 175 57 84 114 199 115 225 125 30 230 123 50 120 157 37 32 151 24 77 118 170 12 222 17 3 53 7 177 238 226 18 192 102 80 131 223 195 188 205 133 31 172 138 123 48 4 244 81 224 205 165 108 128 163 226 55 208 117 70 166 128 111 166 213 158]
+
+The above structure is what you would save in order to persist this key blob.
+
+Below is how the above structure would typically be saved, in PEM Format:
+
+-----BEGIN HSM ENCRYPTED AES SECRET KEY-----
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADsIIxQY2Y9lWElrfi1CQo
+AAAAAAAAjSYAAAAAAAAAARI0A92xjXDy2LCQEgavCs7KouJjQ9hYZckDcqzkl4YP
+jbcu0X13iPbE370488xkl+KVoIDl/9jihatB9BDF9ayI6Ha4zq0iT9fWyvoI7VCo
+6/yJ3cpMXBWwf3ey1NzrqeeQy0NcIPNjU6vqxnZHybDfytZ1a5iLaWMnFvMVFK2v
+OVRyx3PhfR7mezJ4nSUglxhNdqoM3hEDNQex7uISwGZQg9/DvM2FH6yKezAE9FHg
+zaVsgKPiN9B1RqaAb6bVng==
+-----END HSM ENCRYPTED AES SECRET KEY-----
+
+WK virtualization mask is [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+See 6.2.2 of page 179 of http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+WK ID is [3 176 130 49 65 141 152 246 85 132 150 183 226 212 36 40]
+See 6.7.1 on page 182 of  http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+Blob version is [18 52]
+See 3.1.1 on page 141 of http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+Initialization Vector is [3 221 177 141 112 242 216 176 144 18 6 175 10 206]
+
+Encrypted part is [202 162 226 99 67 216 88 101 201 3 114 172 228 151 134 15 141 183 46 209 125 119 136 246 196 223 189 56 243 204 100 151 226 149 160 128 229 255 216 226 133 171 65 244 16 197 245 172 136 232 118 184 206 173 34 79 215 214 202 250 8 237 80 168 235 252 137 221 202 76 92 21 176 127 119 178 212 220 235 169 231 144 203 67 92 32 243 99 83 171 234 198 118 71 201 176 223 202 214 117 107 152 139 105 99 39 22 243 21 20 173 175 57 84 114 199 115 225 125 30 230 123 50 120 157 37 32 151 24 77 118 170 12 222 17 3 53 7 177 238 226 18 192 102]
+
+MAC is [80 131 223 195 188 205 133 31 172 138 123 48 4 244 81 224 205 165 108 128 163 226 55 208 117 70 166 128 111 166 213 158]
+MAC is 32 bytes, see field 15 in 3.1 on page 140 of http://public.dhe.ibm.com/security/cryptocards/pciecc4/EP11/docs/ep11-structure.pdf
+
+Checksum is [132 58 194], length of checksum is 3
+
+
+Original message, prior to any encryption or decryption operations:  Hello, this is a very long and creative message without any imagination
+
+in progress ciphertext is:
+���[�F�Vl
+
+in progress ciphertext is:
+���[̶:���l
+        �.�W�+�]n,�#�-��{������4��uj��!�
+                                            v
+
+Final ciphertext is:
+���[̶:���l
+        �.�W�+�]n,�#�-��{������4��uj��!�
+                                            v��7Ѵ��,��5-��
+
+In progress decryption is:
+
+
+In progress decryption is:
+Hello, this is a very long and creative message without any imag
+
+Final decryption is:
+Hello, this is a very long and creative message without any imagination
+
+Original message equals decrypted message!
+
+Original message:  Hello, this is a very long and creative message without any imagination
+Length of original message: 71
+
+Encrypted message
+���[̶:���l
+        �.�W�+�]n,�#�-��{������4��uj��!�
+                                            v��7Ѵ��,��5-��
+Length of encrypted message: 80
+
+Decrypted message: Hello, this is a very long and creative message without any imagination
+Length of decrypted message: 71
+</code></pre></div>
+</details>
+<p>Our first run of this program used a key length of 256 bits, and this run used a key length of 128 bits.  Notice that the key blob itself is still 256 bytes in length. </p>
+<p>By the way, the gibberish printed out in the encrypted message portion of the output is because a byte of ciphertext is likely to contain any value from 0 to 255 and only a portion of those will turn out to be printable characters if you try to treat it as if it was a character string and try to print it out like this program does-  you may see one or more lines, if one of the ciphertext bytes produced happens to be the value of a linefeed character, and if it is a carriage return without a line feed it may have "overwritten" some of the preceding gibberish.  Real life use cases aren't typically going to require you to print ciphertext as this program did for education purposes.</p>
+</li>
+<li>
+<p>Try with a key length of 192 bits:</p>
+<div class="highlight"><pre><span></span><code>./lab<span class="w"> </span>--ex2<span class="w"> </span>--keyLength<span class="w"> </span><span class="m">192</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Output not shown here, it should be similar to the prior two commands.</p>
+</div>
+</li>
+<li>
+<p>Try with a key length of 384 bits:</p>
+<div class="highlight"><pre><span></span><code>./lab<span class="w"> </span>--ex2<span class="w"> </span>--keyLength<span class="w"> </span><span class="m">384</span>
+</code></pre></div>
+<details class="example" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code>panic: GenerateKey Error: rpc error: code = Unknown desc = CKR_KEY_SIZE_RANGE
+
+goroutine 1 [running]:
+main.encryptAndDecrypt(0x180, 0xa28e3b, 0x47)
+    /home/hyper-protect-lab/go/src/github.com/ibm-developer/ibm-cloud-hyperprotectcrypto/golang/lab/exercise2.go:55 +0x2c89
+main.main()
+    /home/hyper-protect-lab/go/src/github.com/ibm-developer/ibm-cloud-hyperprotectcrypto/golang/lab/main.go:73 +0x3a3
+</code></pre></div>
+</details>
+<p>Don't panic!  (Even if Go did).  I meant for this to happen.</p>
+<p>This exercise uses the <em>CKM_AES_KEY_GEN</em> mechanism.  (This is in the first line of the program output).  If we run exercise one again and pipe its output to grep, with a fancy argument to print one extra line, we can see that the minimum key size is 128 bits and the maximum key size is 256 bits.  Try it:</p>
+<div class="highlight"><pre><span></span><code>./lab<span class="w"> </span>--ex1<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>CKM_AES_KEY_GEN<span class="w"> </span>--after-context<span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The minimum and maximum key sizes are shown in bytes, so you must multiply the values shown by eight to get the sizes in bits.</p>
+</div>
+</li>
+<li>
+<p>So our key size must be in a range from 128 to 256 bits.  Let's try a key length of 224 bits:</p>
+<div class="highlight"><pre><span></span><code>./lab<span class="w"> </span>--ex2<span class="w"> </span>--keyLength<span class="w"> </span><span class="m">224</span>
+</code></pre></div>
+<details class="example" open="open">
+<summary>Example Output</summary>
+<div class="highlight"><pre><span></span><code>panic: GenerateKey Error: rpc error: code = Unknown desc = CKR_KEY_SIZE_RANGE
+
+goroutine 1 [running]:
+main.encryptAndDecrypt(0xe0, 0xa28e3b, 0x47)
+    /home/hyper-protect-lab/go/src/github.com/ibm-developer/ibm-cloud-hyperprotectcrypto/golang/lab/exercise2.go:55 +0x2c89
+main.main()
+    /home/hyper-protect-lab/go/src/github.com/ibm-developer/ibm-cloud-hyperprotectcrypto/golang/lab/main.go:73 +0x3a3
+</code></pre></div>
+</details>
+<p>Is this the new math where 224 is not between 128 and 256? No. What's going on here is that the AES standard supports keys of a certain length-  128, 192, and 256 bits. So while the mechanism information told us the minimum and maximum key size, the expectation is that the programmer knows a little bit about the AES standard when using it!</p>
+</li>
+<li>
+<p>Would you like to encrypt and decrypt your own text?  Try it like this-  feel free to copy and paste what is provided here, or substitute your own witty banter for the value of the <code>--plaintext</code> argument.</p>
+<div class="highlight"><pre><span></span><code>./lab<span class="w"> </span>--ex2<span class="w"> </span>--plaintext<span class="w"> </span><span class="s2">&quot;The quick brown fox jumped over the lazy dog&quot;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Output not shown, but you should see the message being encrypted and decrypted.  Unless...</p>
+</div>
+<div class="admonition troubleshooting">
+<p class="admonition-title">Troubleshooting</p>
+<p>If you received this message in your output, <code>panic: Failed Encrypt [rpc error: code = Unknown desc = CKR_ARGUMENTS_BAD]</code>,
+then there is a pretty good chance that you supplied a plaintext value less than twenty-one characters in length.</p>
+<p>This exercise was based on the sample code, which performs the encryption in two steps.
+The first step passed the first twenty bytes of input to the crypto card, and the second step passed the remainder of
+the input. The input was hard-coded and of length greater than twenty bytes, so the sample does not have logic to handle input of twenty bytes or less. The sample has not been modified to handle the case where that second pass isn't needed. </p>
+<p>Don't worry, in the real world, you can probably solve this problem if you throw enough money at it. :-)</p>
+</div>
+</li>
+</ol>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../lab-exercise1/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Exercise 1 (List PKCS Mechanisms)" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Previous
+                </span>
+                Exercise 1 (List PKCS Mechanisms)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab-exercise3/" class="md-footer__link md-footer__link--next" aria-label="Next: Exercise 3 (Sign and Verify)" rel="next">
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Next
+                </span>
+                Exercise 3 (Sign and Verify)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ibm-wsc" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://hub.docker.com/u/s390x" target="_blank" rel="noopener" title="hub.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+    
+  </body>
+</html>

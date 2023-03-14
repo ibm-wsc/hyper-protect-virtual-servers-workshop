@@ -1,0 +1,2038 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../securebuild-lab/cleanup/">
+      
+      
+        <link rel="next" href="../resources/">
+      
+      <link rel="icon" href="../images/hpvs-logo.svg">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>Glossary of terms - Hyper Protect Virtual Servers (HPVS) Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#appliance" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Hyper Protect Virtual Servers (HPVS) Workshop" class="md-header__button md-logo" aria-label="Hyper Protect Virtual Servers (HPVS) Workshop" data-md-component="logo">
+      
+  <img src="../images/hpvs-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hyper Protect Virtual Servers (HPVS) Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Glossary of terms
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../assignment/" class="md-tabs__link">
+      Lab Assignments
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../grep11-lab/overview/" class="md-tabs__link">
+        GREP11 Lab
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../prerequisites/" class="md-tabs__link">
+        Secure Image Build Lab
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
+      Glossary of terms
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../resources/" class="md-tabs__link">
+      Other resources
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../proposechange/" class="md-tabs__link">
+      Propose a change
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hyper Protect Virtual Servers (HPVS) Workshop" class="md-nav__button md-logo" aria-label="Hyper Protect Virtual Servers (HPVS) Workshop" data-md-component="logo">
+      
+  <img src="../images/hpvs-logo.svg" alt="logo">
+
+    </a>
+    Hyper Protect Virtual Servers (HPVS) Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assignment/" class="md-nav__link">
+        Lab Assignments
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          GREP11 Lab
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          GREP11 Lab
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grep11-lab/overview/" class="md-nav__link">
+        Lab overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grep11-lab/grep11-setup/" class="md-nav__link">
+        How to set up a GREP11 server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grep11-lab/grep11-display/" class="md-nav__link">
+        Displaying your GREP11 environment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grep11-lab/run-grep11-samples/" class="md-nav__link">
+        Run the GREP11 sample code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+          Run the Lab exercises
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          Run the Lab exercises
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grep11-lab/exercise-overview/" class="md-nav__link">
+        An overview of the Exercises
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grep11-lab/lab-exercise1/" class="md-nav__link">
+        Exercise 1 (List PKCS Mechanisms)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grep11-lab/lab-exercise2/" class="md-nav__link">
+        Exercise 2 (Encryption and Decryption)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grep11-lab/lab-exercise3/" class="md-nav__link">
+        Exercise 3 (Sign and Verify)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grep11-lab/lab-exercise4/" class="md-nav__link">
+        Exercise 4 (Wrap and Unwrap Key)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Secure Image Build Lab
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Secure Image Build Lab
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prerequisites/" class="md-nav__link">
+        Prerequisites
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securebuild-lab/overview/" class="md-nav__link">
+        Hyper Protect Virtual Servers (HPVS) Lab Process Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securebuild-lab/securebuild-setup/" class="md-nav__link">
+        Configuring your Environment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securebuild-lab/create-server/" class="md-nav__link">
+        Create your HPVS Secure Build Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securebuild-lab/build/" class="md-nav__link">
+        Securely Build your Application
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securebuild-lab/deploy-app/" class="md-nav__link">
+        Deploy your Securely Built Application as a Hyper Protect Virtual Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securebuild-lab/bitcoin_wallet/" class="md-nav__link">
+        Welcome to the Secure Bitcoin Wallet on IBM LinuxONE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securebuild-lab/cleanup/" class="md-nav__link">
+        Clean up your Environment
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Glossary of terms
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Glossary of terms
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#appliance" class="md-nav__link">
+    Appliance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appliance-administrator" class="md-nav__link">
+    Appliance Administrator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appliance-operational-data" class="md-nav__link">
+    Appliance Operational Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appliance-protected-data" class="md-nav__link">
+    Appliance Protected Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appliance-vendor" class="md-nav__link">
+    Appliance Vendor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#byok" class="md-nav__link">
+    BYOK
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#byoi" class="md-nav__link">
+    BYOI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container" class="md-nav__link">
+    Container
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crypto-administrator" class="md-nav__link">
+    Crypto administrator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crypto-units" class="md-nav__link">
+    Crypto units
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-encryption-keys" class="md-nav__link">
+    Data encryption keys
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datapool" class="md-nav__link">
+    Datapool
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-content-trust" class="md-nav__link">
+    Docker Content Trust
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-registry" class="md-nav__link">
+    Docker registry
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ep11" class="md-nav__link">
+    EP11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envelope-encryption" class="md-nav__link">
+    Envelope encryption
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fips-140-2-compliance" class="md-nav__link">
+    FIPS 140-2 compliance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fips-197-compliance" class="md-nav__link">
+    FIPS 197 compliance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gpg" class="md-nav__link">
+    GPG
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grep11" class="md-nav__link">
+    GREP11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grpc" class="md-nav__link">
+    gRPC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-security-module" class="md-nav__link">
+    Hardware security module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hosting-appliance" class="md-nav__link">
+    Hosting Appliance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image" class="md-nav__link">
+    Image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#isv" class="md-nav__link">
+    ISV
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#master-key" class="md-nav__link">
+    Master key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#management-utilities" class="md-nav__link">
+    Management Utilities
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#management-server" class="md-nav__link">
+    Management server
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manifest" class="md-nav__link">
+    Manifest
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manifest-public-key" class="md-nav__link">
+    Manifest public key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manifest-private-key" class="md-nav__link">
+    Manifest private key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutual-tls" class="md-nav__link">
+    Mutual TLS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#namespace" class="md-nav__link">
+    Namespace
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partition" class="md-nav__link">
+    Partition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pkcs-11" class="md-nav__link">
+    PKCS #11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-memory-enclave" class="md-nav__link">
+    Protected memory enclave
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quotagroup" class="md-nav__link">
+    Quotagroup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#root-keys" class="md-nav__link">
+    Root keys
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registry" class="md-nav__link">
+    Registry
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository" class="md-nav__link">
+    Repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-definition-files" class="md-nav__link">
+    Repository definition files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-registration-files" class="md-nav__link">
+    Repository registration files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runc" class="md-nav__link">
+    runc
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runq" class="md-nav__link">
+    runq
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s390x" class="md-nav__link">
+    s390x
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secondary-node" class="md-nav__link">
+    Secondary node
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#smart-cards" class="md-nav__link">
+    Smart cards
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#smart-card-readers" class="md-nav__link">
+    Smart card readers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#smart-card-utility-program" class="md-nav__link">
+    Smart Card Utility Program
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signature-key" class="md-nav__link">
+    Signature key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-key" class="md-nav__link">
+    Standard key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secure-build-secure-image-build" class="md-nav__link">
+    Secure Build / Secure Image Build
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secure-service-container" class="md-nav__link">
+    Secure Service Container
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secure-service-container-partition" class="md-nav__link">
+    Secure Service Container partition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    SSH
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-pool" class="md-nav__link">
+    Storage Pool
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-administrator" class="md-nav__link">
+    System Administrator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tag" class="md-nav__link">
+    tag
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trusted-key-entry-application" class="md-nav__link">
+    Trusted Key Entry application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workload" class="md-nav__link">
+    Workload
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workload-data" class="md-nav__link">
+    Workload Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workload-image" class="md-nav__link">
+    Workload Image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workload-user" class="md-nav__link">
+    Workload User
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workload-vendor" class="md-nav__link">
+    Workload Vendor
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        Other resources
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proposechange/" class="md-nav__link">
+        Propose a change
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#appliance" class="md-nav__link">
+    Appliance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appliance-administrator" class="md-nav__link">
+    Appliance Administrator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appliance-operational-data" class="md-nav__link">
+    Appliance Operational Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appliance-protected-data" class="md-nav__link">
+    Appliance Protected Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appliance-vendor" class="md-nav__link">
+    Appliance Vendor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#byok" class="md-nav__link">
+    BYOK
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#byoi" class="md-nav__link">
+    BYOI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container" class="md-nav__link">
+    Container
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crypto-administrator" class="md-nav__link">
+    Crypto administrator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crypto-units" class="md-nav__link">
+    Crypto units
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-encryption-keys" class="md-nav__link">
+    Data encryption keys
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datapool" class="md-nav__link">
+    Datapool
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-content-trust" class="md-nav__link">
+    Docker Content Trust
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-registry" class="md-nav__link">
+    Docker registry
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ep11" class="md-nav__link">
+    EP11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envelope-encryption" class="md-nav__link">
+    Envelope encryption
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fips-140-2-compliance" class="md-nav__link">
+    FIPS 140-2 compliance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fips-197-compliance" class="md-nav__link">
+    FIPS 197 compliance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gpg" class="md-nav__link">
+    GPG
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grep11" class="md-nav__link">
+    GREP11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grpc" class="md-nav__link">
+    gRPC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-security-module" class="md-nav__link">
+    Hardware security module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hosting-appliance" class="md-nav__link">
+    Hosting Appliance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image" class="md-nav__link">
+    Image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#isv" class="md-nav__link">
+    ISV
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#master-key" class="md-nav__link">
+    Master key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#management-utilities" class="md-nav__link">
+    Management Utilities
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#management-server" class="md-nav__link">
+    Management server
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manifest" class="md-nav__link">
+    Manifest
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manifest-public-key" class="md-nav__link">
+    Manifest public key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manifest-private-key" class="md-nav__link">
+    Manifest private key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutual-tls" class="md-nav__link">
+    Mutual TLS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#namespace" class="md-nav__link">
+    Namespace
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partition" class="md-nav__link">
+    Partition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pkcs-11" class="md-nav__link">
+    PKCS #11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-memory-enclave" class="md-nav__link">
+    Protected memory enclave
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quotagroup" class="md-nav__link">
+    Quotagroup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#root-keys" class="md-nav__link">
+    Root keys
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registry" class="md-nav__link">
+    Registry
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository" class="md-nav__link">
+    Repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-definition-files" class="md-nav__link">
+    Repository definition files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-registration-files" class="md-nav__link">
+    Repository registration files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runc" class="md-nav__link">
+    runc
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runq" class="md-nav__link">
+    runq
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s390x" class="md-nav__link">
+    s390x
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secondary-node" class="md-nav__link">
+    Secondary node
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#smart-cards" class="md-nav__link">
+    Smart cards
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#smart-card-readers" class="md-nav__link">
+    Smart card readers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#smart-card-utility-program" class="md-nav__link">
+    Smart Card Utility Program
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signature-key" class="md-nav__link">
+    Signature key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-key" class="md-nav__link">
+    Standard key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secure-build-secure-image-build" class="md-nav__link">
+    Secure Build / Secure Image Build
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secure-service-container" class="md-nav__link">
+    Secure Service Container
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secure-service-container-partition" class="md-nav__link">
+    Secure Service Container partition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    SSH
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-pool" class="md-nav__link">
+    Storage Pool
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-administrator" class="md-nav__link">
+    System Administrator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tag" class="md-nav__link">
+    tag
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trusted-key-entry-application" class="md-nav__link">
+    Trusted Key Entry application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workload" class="md-nav__link">
+    Workload
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workload-data" class="md-nav__link">
+    Workload Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workload-image" class="md-nav__link">
+    Workload Image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workload-user" class="md-nav__link">
+    Workload User
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workload-vendor" class="md-nav__link">
+    Workload Vendor
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop/edit/master/docs/glossary.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop/raw/master/docs/glossary.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+
+  <h1>Glossary of terms</h1>
+
+<p>This glossary of terms consolidates the terms for the Hyper Protect Virtual Servers offering in alphabetical order to help both customers and internal team members to understand our offering better.</p>
+<h2 id="appliance">Appliance<a class="headerlink" href="#appliance" title="Permanent link">&para;</a></h2>
+<p>IBM Secure Service Container based appliance provided by an Appliance Vendor. From Hosting Appliance perspective, it is the combination of IBM Secure Service Container and the Hyper Protect Servers Hosting Appliance.</p>
+<h2 id="appliance-administrator">Appliance Administrator<a class="headerlink" href="#appliance-administrator" title="Permanent link">&para;</a></h2>
+<p>The person administrating an appliance which includes tasks, such as configuring storage, or memory to the appliance or performing other configuration tasks through the API provided by SSC/the Hosting Appliance.</p>
+<h2 id="appliance-operational-data">Appliance Operational Data<a class="headerlink" href="#appliance-operational-data" title="Permanent link">&para;</a></h2>
+<p>Metrics, logs, appliance dump data, error logs, stack traces, kernel dump, etc.</p>
+<h2 id="appliance-protected-data">Appliance Protected Data<a class="headerlink" href="#appliance-protected-data" title="Permanent link">&para;</a></h2>
+<p>Appliance secrets, workload data, configuration data, settings, and other internal information stored by an appliance.</p>
+<h2 id="appliance-vendor">Appliance Vendor<a class="headerlink" href="#appliance-vendor" title="Permanent link">&para;</a></h2>
+<p>An internal, or external exploiter of SSC, packaging SSC into an appliance.</p>
+<h2 id="byok">BYOK<a class="headerlink" href="#byok" title="Permanent link">&para;</a></h2>
+<p>The abbreviation of Bring Your Own Key, which allows you to import your existing keys to Hyper Protect Crypto Services service instances that protect your keys with advanced encryption.</p>
+<h2 id="byoi">BYOI<a class="headerlink" href="#byoi" title="Permanent link">&para;</a></h2>
+<p>The abbreviation of Bring Your Own Image, which is a part of the IBM Hyper Protect Virtual Servers solution to support the development and deployment of your own container images on top of the Secure Service Container framework.</p>
+<h2 id="container">Container<a class="headerlink" href="#container" title="Permanent link">&para;</a></h2>
+<p>A runtime instance of an Open Container Image (OCI) image.</p>
+<h2 id="crypto-administrator">Crypto administrator<a class="headerlink" href="#crypto-administrator" title="Permanent link">&para;</a></h2>
+<p>The person who signs commands that are issued to the crypto units. Multiple administrators can be added to one crypto unit to increase security.</p>
+<h2 id="crypto-units">Crypto units<a class="headerlink" href="#crypto-units" title="Permanent link">&para;</a></h2>
+<p>A single unit that represents a hardware security module and the corresponding software stack that is dedicated to the hardware security module for cryptography.</p>
+<h2 id="data-encryption-keys">Data encryption keys<a class="headerlink" href="#data-encryption-keys" title="Permanent link">&para;</a></h2>
+<p>A cryptographic key used to encrypt data that is stored in an application.</p>
+<h2 id="datapool">Datapool<a class="headerlink" href="#datapool" title="Permanent link">&para;</a></h2>
+<p>Synonyms for Storage Pool.</p>
+<h2 id="docker-content-trust">Docker Content Trust<a class="headerlink" href="#docker-content-trust" title="Permanent link">&para;</a></h2>
+<p>Docker Content Trust (DCT) is a feature in the Docker containerization platform that provides the ability to use digital signatures for data sent to and received from remote Docker registries. These signatures allow client-side or runtime verification of the integrity and publisher of specific image tags.</p>
+<p>Through DCT, image publishers can sign their images and image consumers can ensure that the images they pull are signed. Publishers could be individuals or organizations manually signing their content or automated software supply chains signing content as part of their release process.</p>
+<h2 id="docker-registry">Docker registry<a class="headerlink" href="#docker-registry" title="Permanent link">&para;</a></h2>
+<p>A Docker registry is a storage and content delivery system, holding named Docker images, available in different tagged versions.</p>
+<h2 id="ep11">EP11<a class="headerlink" href="#ep11" title="Permanent link">&para;</a></h2>
+<p>The abbreviation of Enterprise PKCS #11, which is specifically designed for customers seeking support for open standards and enhanced security. The EP11 library provides an interface very similar to the industry-standard PKCS #11 API.</p>
+<h2 id="envelope-encryption">Envelope encryption<a class="headerlink" href="#envelope-encryption" title="Permanent link">&para;</a></h2>
+<p>The process of encrypting data with a data encryption key and then encrypting the key with a root key that can be fully managed.</p>
+<h2 id="fips-140-2-compliance">FIPS 140-2 compliance<a class="headerlink" href="#fips-140-2-compliance" title="Permanent link">&para;</a></h2>
+<p>An organization’s adherence to the Federal Information Processing Standards (FIPS) 140-2 standards. This standard specifies the security requirements that will be satisfied by a cryptographic module utilized within a security system protecting sensitive information.  FIPS 140-2 outlines four levels of security: </p>
+<p>Level 1 - the lowest level of security. It covers the basic security features in a cryptographic module.</p>
+<p>Level 2 - improves the physical security aspects of cryptographic modules. Examples of required physical security             measures are tamper-evident coatings, seals, or pick-resistant locks. Role-based authentication is included in this security level and ensures the operator accessing the module is authorized and is limited to their assigned actions. </p>
+<p>Level 3 - requires enhanced physical security, potentially with products available from the private sector. A multi-chip embedded module has to be contained in a strong enclosure that zeroizes critical security parameters when it is removed. This security level also uses identity-based authentication. </p>
+<p>Level 4 - requires tamper detection circuits to be able to detect any device penetration. This level is best for when cryptographic modules are in a physically unprotected environment that intruders can access. Modules must be able to detect fluctuations and zeroize themselves. Level 4 also protects against security compromises due to environmental conditions.</p>
+<h2 id="fips-197-compliance">FIPS 197 compliance<a class="headerlink" href="#fips-197-compliance" title="Permanent link">&para;</a></h2>
+<p>An organization’s adherence to Federal Information Processing Standards (FIPS) 197 which is an algorithmic standard that addresses the Advanced Encryption Standard (AES). AES specifies a FIPS-approved cryptographic algorithm that can be used to protect electronic data. The AES algorithm is a symmetric block cipher that can encrypt and decrypt information.</p>
+<h2 id="gpg">GPG<a class="headerlink" href="#gpg" title="Permanent link">&para;</a></h2>
+<p>The abbreviation of Gnu Privacy Guard, which is an open standard used for signing, encrypting, and decrypting texts with public and private keys to increase the security of communications.</p>
+<h2 id="grep11">GREP11<a class="headerlink" href="#grep11" title="Permanent link">&para;</a></h2>
+<p>Represents Enterprise PKCS #11 (EP11) APIs over gRPC calls, which is designed to be a stateless interface for cryptographic operations on cloud.</p>
+<h2 id="grpc">gRPC<a class="headerlink" href="#grpc" title="Permanent link">&para;</a></h2>
+<p>A modern open source high performance remote procedure call (RPC) framework that can connect services in and across data centers for load balancing, tracing, health checking, and authentication.</p>
+<h2 id="hardware-security-module">Hardware security module<a class="headerlink" href="#hardware-security-module" title="Permanent link">&para;</a></h2>
+<p>A physical appliance that provides on-demand encryption, key management, and key storage as a managed service.</p>
+<h2 id="hosting-appliance">Hosting Appliance<a class="headerlink" href="#hosting-appliance" title="Permanent link">&para;</a></h2>
+<p>A technical component within IBM Secure Service Container based appliances, providing the enablement for running Docker-based workloads.</p>
+<h2 id="image">Image<a class="headerlink" href="#image" title="Permanent link">&para;</a></h2>
+<p>The basis of the containers. An image is an ordered collection of root file system changes and the corresponding execution parameters for use within a container runtime.</p>
+<h2 id="isv">ISV<a class="headerlink" href="#isv" title="Permanent link">&para;</a></h2>
+<p>The abbreviation of Independent Software Vendor, who provides software solutions by developing and deploying containerized applications to the Secure Service Container partitions.</p>
+<h2 id="master-key">Master key<a class="headerlink" href="#master-key" title="Permanent link">&para;</a></h2>
+<p>An encryption key that is used to protect a crypto unit. The master key provides full control of the hardware security module and ownership of the root of trust that encrypts the chain keys, including the root key and standard key.</p>
+<h2 id="management-utilities">Management Utilities<a class="headerlink" href="#management-utilities" title="Permanent link">&para;</a></h2>
+<p>A set of applications to provide an alternate way of configuring Hyper Protect Crypto Services service instances using signature keys and master key parts stored on smart cards. </p>
+<h2 id="management-server">Management server<a class="headerlink" href="#management-server" title="Permanent link">&para;</a></h2>
+<p>An x86 or s390x Linux management server used to run the commands provided by the Hyper Protect Virtual Servers offering, and administer the offering.</p>
+<h2 id="manifest">Manifest<a class="headerlink" href="#manifest" title="Permanent link">&para;</a></h2>
+<p>A manifest is generated by the Secure Build for audit purpose, which contains a copy of the github project cloned by the Secure Build container, a copy of the build log, and a build.json with the build status.</p>
+<h2 id="manifest-public-key">Manifest public key<a class="headerlink" href="#manifest-public-key" title="Permanent link">&para;</a></h2>
+<p>A manifest public key is used to verify the manifest generated by the Secure Build.</p>
+<h2 id="manifest-private-key">Manifest private key<a class="headerlink" href="#manifest-private-key" title="Permanent link">&para;</a></h2>
+<p>A manifest private key is used to sign the manifest during the Secure Build.</p>
+<h2 id="mutual-tls">Mutual TLS<a class="headerlink" href="#mutual-tls" title="Permanent link">&para;</a></h2>
+<p>Mutual authentication or two-way authentication refers to two parties authenticating each other at the same time. Mutual TLS is doing this over the TLS protocol.</p>
+<h2 id="namespace">Namespace<a class="headerlink" href="#namespace" title="Permanent link">&para;</a></h2>
+<p>A namespace such as ibmzcontainers that contains a number of unique images. For examples, the images include hpvsop-base, hyperpcons-worker, hyperpcons-riaas, and so on.</p>
+<h2 id="partition">Partition<a class="headerlink" href="#partition" title="Permanent link">&para;</a></h2>
+<p>A partition is the logic partition (LPAR) on the mainframe, and can be created by using the logic partitioning tools such as Hardware Management Console (HMC) or other logical partitioning tools.</p>
+<h2 id="pkcs-11">PKCS #11<a class="headerlink" href="#pkcs-11" title="Permanent link">&para;</a></h2>
+<p>The abbreviation of Public-Key Cryptography Standards #11, which defines a platform-independent API to cryptographic tokens, such as HSM and smart cards.</p>
+<h2 id="protected-memory-enclave">Protected memory enclave<a class="headerlink" href="#protected-memory-enclave" title="Permanent link">&para;</a></h2>
+<p>Defined private regions of memory whose contents are protected and unable to be read or saved to any process outside the enclave itself.</p>
+<h2 id="quotagroup">Quotagroup<a class="headerlink" href="#quotagroup" title="Permanent link">&para;</a></h2>
+<p>The storage assigned to a workload running on an appliance. The appliance administrator assigns FCP, or ECKD based storage to an appliance. He then creates quotagroups, representing parts of the underlying storage. He finally assigns quotagroups to workloads through the appliance API.</p>
+<h2 id="root-keys">Root keys<a class="headerlink" href="#root-keys" title="Permanent link">&para;</a></h2>
+<p>A symmetric wrapping key that is used for encrypting and decrypting other keys that are stored in a data service.</p>
+<h2 id="registry">Registry<a class="headerlink" href="#registry" title="Permanent link">&para;</a></h2>
+<p>A Registry is a hosted service containing repositories of container images that responds to the Registry API. For example, Docker Hub.</p>
+<h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">&para;</a></h2>
+<p>A repository is a set of containerized images. A repository can be shared by pushing it to a registry server. Different images in the repository can be labeled using tags. For example, hpvsop-base.</p>
+<h2 id="repository-definition-files">Repository definition files<a class="headerlink" href="#repository-definition-files" title="Permanent link">&para;</a></h2>
+<p>An encrypted registration file or a repository definition file is used to register the repository, for authentication or validation reasons, such that a Hosting Appliance will trust that the image, when pulled from the registry, is authentic.</p>
+<h2 id="repository-registration-files">Repository registration files<a class="headerlink" href="#repository-registration-files" title="Permanent link">&para;</a></h2>
+<p>A cleartext Python or JSON format file, which is generated by the Secure Build container when the container is created. The JSON format repository registration file can be used as the direct input to generate an encrypted repository definition file.</p>
+<h2 id="runc">runc<a class="headerlink" href="#runc" title="Permanent link">&para;</a></h2>
+<p>A CLI tool for spawning and running containers according to the Open Container Initiative (OCI) specification.</p>
+<h2 id="runq">runq<a class="headerlink" href="#runq" title="Permanent link">&para;</a></h2>
+<p>An open-sourced hypervisor-based Docker runtime environment, which is based on runc to run regular containerized images in a lightweight KVM or Qemu virtual machine.</p>
+<h2 id="s390x">s390x<a class="headerlink" href="#s390x" title="Permanent link">&para;</a></h2>
+<p>The underlying architecture of IBM Z or LinuxONE mainframe.</p>
+<h2 id="secondary-node">Secondary node<a class="headerlink" href="#secondary-node" title="Permanent link">&para;</a></h2>
+<p>A cluster member that replicates the contents of the primary database in Hyper Protect DBaaS.</p>
+<h2 id="smart-cards">Smart cards<a class="headerlink" href="#smart-cards" title="Permanent link">&para;</a></h2>
+<p>An HSM that looks like a credit card with an embedded chip. The chip is capable of performing a limited set of cryptographic operations and is loaded with custom software.</p>
+<h2 id="smart-card-readers">Smart card readers<a class="headerlink" href="#smart-card-readers" title="Permanent link">&para;</a></h2>
+<p>A device that attaches to a workstation and allows the workstation to communicate with a smart card.</p>
+<h2 id="smart-card-utility-program">Smart Card Utility Program<a class="headerlink" href="#smart-card-utility-program" title="Permanent link">&para;</a></h2>
+<p>The application installed as part of the Management Utilities. It sets up and manages the smart cards used by the Trusted Key Entry (TKE) application.</p>
+<h2 id="signature-key">Signature key<a class="headerlink" href="#signature-key" title="Permanent link">&para;</a></h2>
+<p>An encryption key that is used by the crypto unit administrator to sign commands that are issued to the crypto unit.</p>
+<h2 id="standard-key">Standard key<a class="headerlink" href="#standard-key" title="Permanent link">&para;</a></h2>
+<p>Another resource in Hyper Protect Crypto Services to directly encrypt and decrypt data.</p>
+<h2 id="secure-build-secure-image-build">Secure Build / Secure Image Build<a class="headerlink" href="#secure-build-secure-image-build" title="Permanent link">&para;</a></h2>
+<p>The process of building the application code from a Git-like source repository into a container image for s390x architecture, signing the image by using the authentication keys, and publishing the image to the remote repository for later integration.</p>
+<h2 id="secure-service-container">Secure Service Container<a class="headerlink" href="#secure-service-container" title="Permanent link">&para;</a></h2>
+<p>A container framework based on the runq technology, that is supported by the IBM Z or LinuxONE servers.</p>
+<h2 id="secure-service-container-partition">Secure Service Container partition<a class="headerlink" href="#secure-service-container-partition" title="Permanent link">&para;</a></h2>
+<p>A type of logic partitions (LPARs) on the mainframe that runs the Secure Service Container framework.</p>
+<h2 id="ssh">SSH<a class="headerlink" href="#ssh" title="Permanent link">&para;</a></h2>
+<p>The abbreviation of Secure Shell, which is a cryptographic network protocol for operating network services securely over an unsecured network by using public and private keys.</p>
+<h2 id="storage-pool">Storage Pool<a class="headerlink" href="#storage-pool" title="Permanent link">&para;</a></h2>
+<p>A storage pool is a uniquely named collection of storage disks on which the appliance file system is mounted.</p>
+<h2 id="system-administrator">System Administrator<a class="headerlink" href="#system-administrator" title="Permanent link">&para;</a></h2>
+<p>This role includes the system administrator of a machine, storage administrators, and network administrators.</p>
+<h2 id="tag">tag<a class="headerlink" href="#tag" title="Permanent link">&para;</a></h2>
+<p>A tag is used to version images in a repository. For example, latest, 1.2.3.4-develop-a0d3aea, or s390x-develop-54a9045.</p>
+<h2 id="trusted-key-entry-application">Trusted Key Entry application<a class="headerlink" href="#trusted-key-entry-application" title="Permanent link">&para;</a></h2>
+<p>The application installed as part of the Management Utilities. It uses smart cards to load master keys in service instances and to perform other configuration tasks for service instances.</p>
+<h2 id="workload">Workload<a class="headerlink" href="#workload" title="Permanent link">&para;</a></h2>
+<p>The application and data provided and generated by a (running) Workload Image.</p>
+<h2 id="workload-data">Workload Data<a class="headerlink" href="#workload-data" title="Permanent link">&para;</a></h2>
+<p>Workload user or workload client data, workload logs, workload secrets stored in the appliance.</p>
+<h2 id="workload-image">Workload Image<a class="headerlink" href="#workload-image" title="Permanent link">&para;</a></h2>
+<p>A container-based image, provided by the Workload Vendor. An appliance only runs workload images which have been registered with the appliance through a repository definition file.</p>
+<h2 id="workload-user">Workload User<a class="headerlink" href="#workload-user" title="Permanent link">&para;</a></h2>
+<p>The end-user of a workload.</p>
+<h2 id="workload-vendor">Workload Vendor<a class="headerlink" href="#workload-vendor" title="Permanent link">&para;</a></h2>
+<p>The creator of a Docker image running on top of Hosting Appliance.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../securebuild-lab/cleanup/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Clean up your Environment" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Previous
+                </span>
+                Clean up your Environment
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../resources/" class="md-footer__link md-footer__link--next" aria-label="Next: Other resources" rel="next">
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Next
+                </span>
+                Other resources
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ibm-wsc" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://hub.docker.com/u/s390x" target="_blank" rel="noopener" title="hub.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+    
+  </body>
+</html>
