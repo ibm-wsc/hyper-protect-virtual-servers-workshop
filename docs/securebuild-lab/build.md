@@ -108,7 +108,7 @@ source "${HOME}/.bashrc"
 1. Set Secure Build Lab IP Address
 
     ``` bash
-    export SB_IP=192.168.22.80
+    export SB_IP=192.168.22.79
     ```
 
 2. Save Secure Build Lab IP Address for later use
@@ -159,8 +159,9 @@ source "${HOME}/.bashrc"
         sbs:
             url: 'https://${SB_IP}'
             port: '${SB_PORT}'
-            cert_path: '${SB_DIR}/sbs_keys/sbs.cert'
-            key_path: '${SB_DIR}/sbs_keys/sbs.key'
+            cert_path: '${SB_DIR}/sbs_keys/client_cert.pem'
+            key_path: '${SB_DIR}/sbs_keys/client-key.pem'
+            ca_cert_path: '${SB_DIR}/sbs_keys/ca.pem'
         regfile:
             id: '${REPO_ID}'
         github:

@@ -15,4 +15,4 @@ For step 8, when selecting scopes, you only have to select the first check box t
 Create a Docker account (if you don't already have one) following the instructions [here](https://docs.docker.com/docker-id/){target=_blank}.
 
 ## Create a Docker access token
-Create an access token for Docker Hub access during the lab (you will delete it if after finishing the lab) following the instructions [here](https://docs.docker.com/docker-hub/access-tokens/#create-an-access-token){target=_blank}. If you already have a Docker account and already have a Docker access token, we recommend that you create a new access token just for this lab instead of using any existing ones.
+Create an access token for Docker Hub access during the lab (you will delete it after finishing the lab) following the instructions [here](https://docs.docker.com/docker-hub/access-tokens/#create-an-access-token){target=_blank}. If you already have a Docker account and already have a Docker access token, we recommend that you create a new access token just for this lab instead of using any existing ones.

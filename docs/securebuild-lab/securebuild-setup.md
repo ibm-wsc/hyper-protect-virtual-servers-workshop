@@ -614,7 +614,7 @@
     echo "export DOCKER_USERNAME='${DOCKER_USERNAME}'" >> "${HOME}/.bashrc"
     ```
 
-4. Set your `DOCKER_PASSWORD` the token you created for this lab on [Docker Hub](https://hub.docker.com/){target=_blank}.
+4. Set your `DOCKER_PASSWORD` to the token you created for this lab on [Docker Hub](https://hub.docker.com/){target=_blank}.
 
     === "Command Syntax"
 

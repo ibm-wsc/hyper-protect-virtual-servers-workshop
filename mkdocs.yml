@@ -31,9 +31,43 @@ nav:
 theme: 
   name: material
   palette:
-    scheme: preference
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      primary: black
+      accent: yellow
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      primary: black
+      accent: yellow
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
   favicon: images/hpvs-logo.svg
   logo: images/hpvs-logo.svg
+  features:
+    - header.autohide
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.tracking
+    - navigation.footer
+    - search.share
+    - navigation.indexes
+    - announce.dismiss
+    - content.tabs.link
+    - content.code.copy
+    - content.action.edit
+    - content.action.view
+
 extra:
   social:
     - icon: fontawesome/brands/github
@@ -44,26 +78,35 @@ google_analytics:
   - UA-174658170-2
   - auto
 markdown_extensions:
+  - abbr
   - admonition
   - codehilite
   - footnotes
-  - pymdownx.arithmatex
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.betterem:
       smart_enable: all
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.details
+  - pymdownx.keys
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      auto_append:
+        - includes/glossary.md
   - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
-  - pymdownx.tabbed
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.tilde
   - attr_list
+  - tables
   - toc:
       permalink: true
