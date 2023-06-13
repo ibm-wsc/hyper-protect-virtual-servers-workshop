@@ -74,9 +74,32 @@ extra:
       link: https://github.com/ibm-wsc
     - icon: fontawesome/brands/docker
       link: https://hub.docker.com/u/s390x
-google_analytics:
-  - UA-174658170-2
-  - auto
+  analytics:
+    provider: google
+    property: G-N1XCHYKZ2T
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/heart
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/heart-broken
+          name: This page could be improved
+          data: 0
+          note: >- 
+            Thanks for your feedback! Help us improve this page by
+            using our <a href="https://github.com/ibm-wsc/hyper-protect-virtual-servers-workshop/issues/new/?title=[Feedback]+{title}+-+{url}" target="_blank" rel="noopener">feedback form</a>.
+
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make the documentation as good as possible.
+
 markdown_extensions:
   - abbr
   - admonition
@@ -110,3 +133,9 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - print-site:
+      add_to_navigation: true

@@ -1,3 +1,4 @@
+# Glossary
 This glossary of terms consolidates the terms for the Hyper Protect Virtual Servers offering in alphabetical order to help both customers and internal team members to understand our offering better.
 
 ## Appliance

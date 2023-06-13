@@ -57,7 +57,7 @@ A wallet without currency is blasphemy, so it's time to fill it on up with fake 
     !!! info
         This is the address whose allotted bitcoins you lay claim to.
 
-2. Open [this bitcoin test faucet site](https://bitcoinfaucet.uo1.net/send.php){target=_blank} [click on the link] and use it to transfer bitcoin value to the `Receiving address` in your wallet **from step 1 above**.
+2. Open [this bitcoin test faucet site](https://coinfaucet.eu/en/btc-testnet/){target=_blank} [click on the link] and use it to transfer bitcoin value to the `Receiving address` in your wallet **from step 1 above**.
 
     ![Transfer Bitcoins](Bitcoin_Wallet_Images/Send_bitcoins_to_wallet.png)
 

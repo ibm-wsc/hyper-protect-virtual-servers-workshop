@@ -585,10 +585,7 @@
     ???+ example "Example Output"
 
         ```
-        +---------------+
-        | REGISTRY NAME |
-        +---------------+
-        +---------------+
+		ERROR: HVS-RYLI001 List registry failed. Error occurred while reading /home/hpvsgrep11/hpvs/config/reg.json file. Refer to the product documentation for resolution.
         ```
 
 2. Set your `DOCKER_USERNAME` to the username for your account on [Docker Hub](https://hub.docker.com/){target=_blank}
