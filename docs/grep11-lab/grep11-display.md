@@ -15,8 +15,8 @@
         +---------------+--------+
         | CRYPTO.DOMAIN | STATUS |
         +---------------+--------+
-        | 08.0016       | in use |
-        | 0a.0016       | in use |
+        | 08.0014       | in use |
+        | 0a.0014       | in use |
         +---------------+--------+
         ```
 
@@ -32,17 +32,13 @@
 
     ???+ example "Example output"
     
-        ``` hl_lines="4-5"
-        +----------------------+---------+-------------+---------------------------------------+
-        | NAMES                | STATE   | STATUS      | IMAGE                                 |
-        +----------------------+---------+-------------+---------------------------------------+
-        | grep11-08-0016-9876  | running | Up 16 hours | ibmzcontainers/hpcs-grep11-prod:1.2.1 |
-        | grep11-0a-0016-19876 | running | Up 16 hours | ibmzcontainers/hpcs-grep11-prod:1.2.1 |
-        | monitoring           | running | Up 4 weeks  | ibmzcontainers/monitoring:1.2.1       |
-        | collectd             | running | Up 4 weeks  | ibmzcontainers/collectd-host:1.2.1    |
-        | hpvs_grafana         | running | Up 3 weeks  | jinxiong/hpvs_grafana:latest          |
-        | prom0630_19          | running | Up 3 weeks  | jinxiong/prom0630:latest              |
-        +----------------------+---------+-------------+---------------------------------------+
+        ``` 
+        +----------------------+---------+-------------+----------------------------------------------------------------------------------------------------------------+
+        | NAMES                | STATE   | STATUS      | IMAGE                                                                                                          |
+        +----------------------+---------+-------------+----------------------------------------------------------------------------------------------------------------+
+        | grep11-08-0014-9876  | running | Up 19 hours | docker-eu-public.artifactory.swg-devops.com/sys-zaas-team-hpcs-dev-docker-local/hpcs/grep11-ep11server:1.2.7.3 |
+        | grep11-0a-0014-19876 | running | Up 19 hours | docker-eu-public.artifactory.swg-devops.com/sys-zaas-team-hpcs-dev-docker-local/hpcs/grep11-ep11server:1.2.7.3 |
+        +----------------------+---------+-------------+----------------------------------------------------------------------------------------------------------------+
         ```
 
     Observe that there are two servers listed whose name starts with `grep11`.  These are the two GREP11 servers that we have provided. One accessible from host port 9876 and one from host port 19876.
@@ -53,32 +49,29 @@
 2. Display details about one of the GREP11 servers with this command:
 
     ``` bash
-    hpvs vs show --name grep11-08-0016-9876
+    hpvs vs show --name grep11-08-0014-9876
     ```
 
     ???+ example "Example output"
 
         ```
+
         +-------------+------------------------------+
         | PROPERTIES  | VALUES                       |
         +-------------+------------------------------+
-        | Name        | grep11-08-0016-9876          |
-        | Status      | Up 16 hours                  |
+        | Name        | grep11-08-0014-9876          |
         | CPU         | 2                            |
         | Memory      | 2048                         |
-        | Networks    | Network:bridge               |
-        |             | IPAddress:172.31.0.4         |
-        |             | Gateway:172.31.0.1           |
+        | State       | running                      |
+        | Status      | Up 19 hours                  |
+        | Networks    | Gateway:172.31.0.1           |
+        |             | IPAddress:172.31.0.2         |
+        |             | MacAddress:02:42:ac:1f:00:02 |
+        |             | Network:bridge               |
         |             | Subnet:16                    |
-        |             | MacAddress:02:42:ac:1f:00:04 |
-        |             |                              |
-        |             |                              |
         | Ports       | LocalPort:9876/tcp           |
         |             | GuestPort:9876               |
-        |             |                              |
-        | Quotagroups | appliance_data               |
-        |             |                              |
-        | State       | running                      |
+        | Quotagroups | []                           |
         +-------------+------------------------------+
 
         ```

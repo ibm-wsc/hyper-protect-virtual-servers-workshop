@@ -215,11 +215,11 @@ The first step was to create another RSA private key that our GREP11 server will
     **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
-openssl genrsa -out grep11-server80-9876-key.pem 2048
+openssl genrsa -out grep11-server79-9876-key.pem 2048
 ```
 
 !!! note
-    The value of the `-out` argument, `grep11-server80-9876-key.pem` can be whatever you want it to be. I named it what I did for a reason.  The _80_ in _server80_ is for the last octet of my Hyper Protect Virtual Servers LPAR's IP adresss, 192.168.22.80, and I intend to use this certificate for a GREP11 server listening on port 9876 on one of the LPAR's Crypto Express 7S domains.
+    The value of the `-out` argument, `grep11-server79-9876-key.pem` can be whatever you want it to be. I named it what I did for a reason.  The _79_ in _server79_ is for the last octet of my Hyper Protect Virtual Servers LPAR's IP adresss, 192.168.22.79, and I intend to use this certificate for a GREP11 server listening on port 9876 on one of the LPAR's Crypto Express 7S domains.
 
 Then, this private key was used as input to *openssl* in order to create a *certificate signing request*:
 
@@ -227,7 +227,7 @@ Then, this private key was used as input to *openssl* in order to create a *cert
     **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
-openssl req -new -key grep11-server80-9876-key.pem -out grep11-server80-9876.csr
+openssl req -new -key grep11-server79-9876-key.pem -out grep11-server79-9876.csr
 ```
 
 The certificate signing request will be passed to our certification authority which will use the information to create an X.509 certificate.  We used *openssl* for this, too:
@@ -236,16 +236,16 @@ The certificate signing request will be passed to our certification authority wh
     **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ```bash
-openssl x509 -sha256 -req -in grep11-server80-9876.csr -CA atgz-hpvs-ca.pem -CAkey atgz-hpvs-ca.key -set_serial 8086 -extfile openssl.cnf -extensions server -days 365 -outform PEM -out grep11-server80-9876.pem
+openssl x509 -sha256 -req -in grep11-server79-9876.csr -CA atgz-hpvs-ca.pem -CAkey atgz-hpvs-ca.key -set_serial 8086 -extfile openssl.cnf -extensions server -days 365 -outform PEM -out grep11-server79-9876.pem
 ```
 
-The file name of the certificate that was created by the preceding command is the value of the `-out` argument, `grep11-server80-9876.pem`.  `openssl` allows us to list this certificate in human-friendly form:
+The file name of the certificate that was created by the preceding command is the value of the `-out` argument, `grep11-server79-9876.pem`.  `openssl` allows us to list this certificate in human-friendly form:
 
 !!! Reminder
     **The command shown below is for reference only**- it has already been performed by the lab instructors in order to set up the lab environment for you.
 
 ``` bash
-openssl x509 -in grep11-server80-9876.pem -noout -text
+openssl x509 -in grep11-server79-9876.pem -noout -text
 ```
 
 ??? example "Example output"
@@ -260,7 +260,7 @@ openssl x509 -in grep11-server80-9876.pem -noout -text
             Validity
                 Not Before: Dec 10 19:28:28 2020 GMT
                 Not After : Jan  4 19:28:28 2022 GMT
-            Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Advanced Technology Group - IBM Z, CN = 192.168.22.80
+            Subject: C = US, ST = Virginia, L = Herndon, O = IBM, OU = Advanced Technology Group - IBM Z, CN = 192.168.22.79
             Subject Public Key Info:
                 Public Key Algorithm: rsaEncryption
                     RSA Public-Key: (2048 bit)
@@ -299,7 +299,7 @@ openssl x509 -in grep11-server80-9876.pem -noout -text
                     URI:http://localhost/ca.crl
 
                 X509v3 Subject Alternative Name: 
-                    DNS:192.168.22.80:9876, IP Address:192.168.22.80
+                    DNS:192.168.22.79:9876, IP Address:192.168.22.79
         Signature Algorithm: sha256WithRSAEncryption
             1f:bb:b0:26:34:62:82:62:ca:7f:1c:a6:ef:54:15:d9:44:88:
             e4:97:19:5b:2c:fc:dd:1c:01:70:ee:27:1c:ec:49:58:25:a5:
@@ -428,12 +428,12 @@ hpvs crypto list
     +---------------+--------+
     | CRYPTO.DOMAIN | STATUS |
     +---------------+--------+
-    | 08.0016       | online |
-    | 0a.0016       | online |
+    | 08.0014       | online |
+    | 0a.0014       | online |
     +---------------+--------+
     ```
 
-The values shown in the **CRYPTO.DOMAIN** column are in hexadecimal.  So, translating to decimal, our LPAR is using Crypto Express 7S cards 8 and 10, with domain 22 in both cards assigned to our LPAR.  (A Crypto Express 7S card can have up to 85 domains- think of each domain as a "virtual" Crypto Express 7S card).
+The values shown in the **CRYPTO.DOMAIN** column are in hexadecimal.  So, translating to decimal, our LPAR is using Crypto Express 7S cards 8 and 10, with domain 20 in both cards assigned to our LPAR.  (A Crypto Express 7S card can have up to 85 domains- think of each domain as a "virtual" Crypto Express 7S card).
 
 ## Create YAML or JSON configuration files for GREP11 server
 
@@ -446,7 +446,7 @@ I will show both the YAML and JSON files first, then I will show both methods of
 
 ### YAML file for GREP11 server configuration
 
-This is the YAML file for a GREP11 server that will listen for client connections on port 9876, and will use domain 22 (hex 16) of Crypto Express 7S card 08:
+This is the YAML file for a GREP11 server that will listen for client connections on port 9876, and will use domain 20 (hex 14) of Crypto Express 7S card 08:
 
 ??? example "GREP11 server YAML configuration file"
 
@@ -455,26 +455,26 @@ This is the YAML file for a GREP11 server that will listen for client connection
     #
     # use this file with the 'hpvs deploy' command, e.g.,
     #
-    #  hpvs deploy --config $HOME/hpvs/config/grep11/vs_grep11_80-9876.yml 
+    #  hpvs deploy --config $HOME/hpvs/config/grep11/vs_grep11_79-9876.yml 
     #
     type: virtualserver
     virtualservers:
-    - name: grep11-08-0016-9876
-    host: atgzlpar80
+    - name: grep11-08-0014-9876
+    host: atgzlpar79
     repoid: hpcsKpGrep11_runq
-    imagetag: 1.2.1
+    imagetag: 1.2.7.3
     imagefile: hpcsKpGrep11_runq.tar.gz
     crypto:
         crypto_matrix:
-        - 08.0016
+        - 08.0014
     environment:
     - key: EP11SERVER_EP11CRYPTO_DOMAIN
-        value: "08.0016"
+        value: "08.0014"
     #
     - key: EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CERTFILEBYTES
-        value: "@/home/hyper-protect-lab/hpvs/config/grep11/keys/grep11-server80-9876.pem"
+        value: "@/home/hyper-protect-lab/hpvs/config/grep11/keys/grep11-server79-9876.pem"
     - key: EP11SERVER_EP11CRYPTO_CONNECTION_TLS_KEYFILEBYTES
-        value: "@/home/hyper-protect-lab/hpvs/config/grep11/keys/grep11-server80-9876-key.pem"
+        value: "@/home/hyper-protect-lab/hpvs/config/grep11/keys/grep11-server79-9876-key.pem"
     - key: EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CACERTBYTES
         value: "@/home/hyper-protect-lab/hpvs/config/grep11/keys/atgz-hpvs-ca.pem"
     - key: EP11SERVER_EP11CRYPTO_CONNECTION_TLS_ENABLED
@@ -497,15 +497,15 @@ This is the YAML file for a GREP11 server that will listen for client connection
 
 ### JSON file for GREP11 server configuration
 
-This is a JSON file for a GREP11 server that will listen for client connections on port 9876, and will use domain 22 (hex 16) of Crypto Express 7S card 08:
+This is a JSON file for a GREP11 server that will listen for client connections on port 9876, and will use domain 20 (hex 14) of Crypto Express 7S card 08:
 
 ??? example "GREP11 server JSON configuration file"
 
     ``` hl_lines="2"
     {
-    "EP11SERVER_EP11CRYPTO_DOMAIN":"08.0016",
-    "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CERTFILEBYTES":"@/home/hyper-protect-lab/hpvs/config/grep11/keys/grep11-server80-9876.pem",
-    "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_KEYFILEBYTES":"@/home/hyper-protect-lab/hpvs/config/grep11/keys/grep11-server80-9876-key.pem",
+    "EP11SERVER_EP11CRYPTO_DOMAIN":"08.0014",
+    "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CERTFILEBYTES":"@/home/hyper-protect-lab/hpvs/config/grep11/keys/grep11-server79-9876.pem",
+    "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_KEYFILEBYTES":"@/home/hyper-protect-lab/hpvs/config/grep11/keys/grep11-server79-9876-key.pem",
     "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_CACERTBYTES":"@/home/hyper-protect-lab/hpvs/config/grep11/keys/atgz-hpvs-ca.pem",
     "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_ENABLED":true,
     "EP11SERVER_EP11CRYPTO_CONNECTION_TLS_MUTUAL":true,
@@ -526,13 +526,13 @@ If you looked carefully at the JSON file and the YAML file in the previous secti
 ???+ example "Command to start the GREP11 server with the YAML file"
 
     ```
-    hpvs deploy --config $HOME/hpvs/config/grep11/vs_grep11_80-9876.yml
+    hpvs deploy --config $HOME/hpvs/config/grep11/vs_grep11_79-9876.yml
     ```
 
 ???+ example "Command to start the GREP11 server with the JSON file"
 
     ```
-    hpvs vs create --name grep11-08-0016-9876 --repo hpcsKpGrep11_runq --tag 1.2.2.1 --crypto_matrix=08.0016 --cpu 2 --ram 2048 --envjsonpath ${HOME}/hpvs/config/grep11/grep11_env_08.0016.json --ports "{containerport = 9876, protocol = tcp, hostport = 9876}"
+    hpvs vs create --name grep11-08-0014-9876 --repo hpcsKpGrep11_runq --tag 1.2.7.3 --crypto_matrix=08.0014 --cpu 2 --ram 2048 --envjsonpath ${HOME}/hpvs/config/grep11/grep11_env_08.0014.json --ports "{containerport = 9876, protocol = tcp, hostport = 9876}"
     ```
 
 !!! Important

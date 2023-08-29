@@ -191,7 +191,7 @@ echo "https://${SB_IP}:${APP_PORT}/electrum"
 ???+ example "Example Output"
 
     ```
-    https://192.168.22.80:30100/electrum
+    https://192.168.22.79:30100/electrum
     ```
 
 Your app is now up and running at the address printed in your terminal!
