@@ -15,7 +15,7 @@
         <link rel="next" href="../run-grep11-samples/">
       
       <link rel="icon" href="../../images/hpvs-logo.svg">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -23,10 +23,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -995,8 +995,8 @@
 +---------------+--------+
 | CRYPTO.DOMAIN | STATUS |
 +---------------+--------+
-| 08.0016       | in use |
-| 0a.0016       | in use |
+| 08.0014       | in use |
+| 0a.0014       | in use |
 +---------------+--------+
 </code></pre></div>
 </details>
@@ -1011,16 +1011,12 @@
 </code></pre></div>
 <details class="example" open="open">
 <summary>Example output</summary>
-<div class="highlight"><pre><span></span><code>+----------------------+---------+-------------+---------------------------------------+
-| NAMES                | STATE   | STATUS      | IMAGE                                 |
-+----------------------+---------+-------------+---------------------------------------+
-<span class="hll">| grep11-08-0016-9876  | running | Up 16 hours | ibmzcontainers/hpcs-grep11-prod:1.2.1 |
-</span><span class="hll">| grep11-0a-0016-19876 | running | Up 16 hours | ibmzcontainers/hpcs-grep11-prod:1.2.1 |
-</span>| monitoring           | running | Up 4 weeks  | ibmzcontainers/monitoring:1.2.1       |
-| collectd             | running | Up 4 weeks  | ibmzcontainers/collectd-host:1.2.1    |
-| hpvs_grafana         | running | Up 3 weeks  | jinxiong/hpvs_grafana:latest          |
-| prom0630_19          | running | Up 3 weeks  | jinxiong/prom0630:latest              |
-+----------------------+---------+-------------+---------------------------------------+
+<div class="highlight"><pre><span></span><code>+----------------------+---------+-------------+----------------------------------------------------------------------------------------------------------------+
+| NAMES                | STATE   | STATUS      | IMAGE                                                                                                          |
++----------------------+---------+-------------+----------------------------------------------------------------------------------------------------------------+
+| grep11-08-0014-9876  | running | Up 19 hours | docker-eu-public.artifactory.swg-devops.com/sys-zaas-team-hpcs-dev-docker-local/hpcs/grep11-ep11server:1.2.7.3 |
+| grep11-0a-0014-19876 | running | Up 19 hours | docker-eu-public.artifactory.swg-devops.com/sys-zaas-team-hpcs-dev-docker-local/hpcs/grep11-ep11server:1.2.7.3 |
++----------------------+---------+-------------+----------------------------------------------------------------------------------------------------------------+
 </code></pre></div>
 </details>
 <p>Observe that there are two servers listed whose name starts with <code>grep11</code>.  These are the two GREP11 servers that we have provided. One accessible from host port 9876 and one from host port 19876.</p>
@@ -1031,30 +1027,26 @@
 </li>
 <li>
 <p>Display details about one of the GREP11 servers with this command:</p>
-<div class="highlight"><pre><span></span><code>hpvs<span class="w"> </span>vs<span class="w"> </span>show<span class="w"> </span>--name<span class="w"> </span>grep11-08-0016-9876
+<div class="highlight"><pre><span></span><code>hpvs<span class="w"> </span>vs<span class="w"> </span>show<span class="w"> </span>--name<span class="w"> </span>grep11-08-0014-9876
 </code></pre></div>
 <details class="example" open="open">
 <summary>Example output</summary>
 <div class="highlight"><pre><span></span><code>+-------------+------------------------------+
 | PROPERTIES  | VALUES                       |
 +-------------+------------------------------+
-| Name        | grep11-08-0016-9876          |
-| Status      | Up 16 hours                  |
+| Name        | grep11-08-0014-9876          |
 | CPU         | 2                            |
 | Memory      | 2048                         |
-| Networks    | Network:bridge               |
-|             | IPAddress:172.31.0.4         |
-|             | Gateway:172.31.0.1           |
+| State       | running                      |
+| Status      | Up 19 hours                  |
+| Networks    | Gateway:172.31.0.1           |
+|             | IPAddress:172.31.0.2         |
+|             | MacAddress:02:42:ac:1f:00:02 |
+|             | Network:bridge               |
 |             | Subnet:16                    |
-|             | MacAddress:02:42:ac:1f:00:04 |
-|             |                              |
-|             |                              |
 | Ports       | LocalPort:9876/tcp           |
 |             | GuestPort:9876               |
-|             |                              |
-| Quotagroups | appliance_data               |
-|             |                              |
-| State       | running                      |
+| Quotagroups | []                           |
 +-------------+------------------------------+
 </code></pre></div>
 </details>
@@ -1070,7 +1062,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 24, 2020</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 29, 2023</span>
       
         <br>
         Created:
@@ -1306,7 +1298,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../assets/javascripts/bundle.fac441b0.min.js"></script>
       
         <script src="../../js/print-site.js"></script>
       

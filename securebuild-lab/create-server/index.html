@@ -15,7 +15,7 @@
         <link rel="next" href="../build/">
       
       <link rel="icon" href="../../images/hpvs-logo.svg">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
@@ -23,10 +23,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -1321,7 +1321,7 @@
 </details>
 <h2 id="create-secure-build-server">Create Secure Build Server<a class="headerlink" href="#create-secure-build-server" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>hpvs<span class="w"> </span>vs<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>sbserver_<span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="w"> </span>--repo<span class="w"> </span>SecureDockerBuild<span class="w"> </span><span class="se">\</span>
---tag<span class="w"> </span><span class="m">1</span>.2.7.1<span class="w"> </span>--cpu<span class="w"> </span><span class="m">2</span><span class="w"> </span>--ram<span class="w"> </span><span class="m">2048</span><span class="w"> </span><span class="se">\</span>
+--tag<span class="w"> </span><span class="m">1</span>.2.7.3<span class="w"> </span>--cpu<span class="w"> </span><span class="m">2</span><span class="w"> </span>--ram<span class="w"> </span><span class="m">2048</span><span class="w"> </span><span class="se">\</span>
 --quotagroup<span class="w"> </span><span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = new, mount = /newroot, filesystem = ext4, size = 4GB, reset_root=true}&quot;</span><span class="w"> </span><span class="se">\</span>
 --quotagroup<span class="w"> </span><span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = data, mount = /data, filesystem = ext4, size = 4GB}&quot;</span><span class="w"> </span><span class="se">\</span>
 --quotagroup<span class="w"> </span><span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = docker, mount = /docker, filesystem = ext4, size = 16GB}&quot;</span><span class="w"> </span><span class="se">\</span>
@@ -1405,7 +1405,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 15, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 29, 2023</span>
       
         <br>
         Created:
@@ -1641,7 +1641,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.footer", "search.share", "navigation.indexes", "announce.dismiss", "content.tabs.link", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../assets/javascripts/bundle.fac441b0.min.js"></script>
       
         <script src="../../js/print-site.js"></script>
       
