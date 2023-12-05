@@ -36,8 +36,8 @@
         +----------------------+---------+-------------+----------------------------------------------------------------------------------------------------------------+
         | NAMES                | STATE   | STATUS      | IMAGE                                                                                                          |
         +----------------------+---------+-------------+----------------------------------------------------------------------------------------------------------------+
-        | grep11-08-0014-9876  | running | Up 19 hours | docker-eu-public.artifactory.swg-devops.com/sys-zaas-team-hpcs-dev-docker-local/hpcs/grep11-ep11server:1.2.7.3 |
-        | grep11-0a-0014-19876 | running | Up 19 hours | docker-eu-public.artifactory.swg-devops.com/sys-zaas-team-hpcs-dev-docker-local/hpcs/grep11-ep11server:1.2.7.3 |
+        | grep11-08-0014-9876  | running | Up 19 hours | docker-eu-public.artifactory.swg-devops.com/sys-zaas-team-hpcs-dev-docker-local/hpcs/grep11-ep11server:1.2.7.4 |
+        | grep11-0a-0014-19876 | running | Up 19 hours | docker-eu-public.artifactory.swg-devops.com/sys-zaas-team-hpcs-dev-docker-local/hpcs/grep11-ep11server:1.2.7.4 |
         +----------------------+---------+-------------+----------------------------------------------------------------------------------------------------------------+
         ```
 
