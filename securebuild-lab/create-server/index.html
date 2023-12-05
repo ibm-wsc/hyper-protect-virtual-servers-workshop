@@ -1321,7 +1321,7 @@
 </details>
 <h2 id="create-secure-build-server">Create Secure Build Server<a class="headerlink" href="#create-secure-build-server" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>hpvs<span class="w"> </span>vs<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>sbserver_<span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="w"> </span>--repo<span class="w"> </span>SecureDockerBuild<span class="w"> </span><span class="se">\</span>
---tag<span class="w"> </span><span class="m">1</span>.2.7.3<span class="w"> </span>--cpu<span class="w"> </span><span class="m">2</span><span class="w"> </span>--ram<span class="w"> </span><span class="m">2048</span><span class="w"> </span><span class="se">\</span>
+--tag<span class="w"> </span><span class="m">1</span>.2.7.4<span class="w"> </span>--cpu<span class="w"> </span><span class="m">2</span><span class="w"> </span>--ram<span class="w"> </span><span class="m">2048</span><span class="w"> </span><span class="se">\</span>
 --quotagroup<span class="w"> </span><span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = new, mount = /newroot, filesystem = ext4, size = 4GB, reset_root=true}&quot;</span><span class="w"> </span><span class="se">\</span>
 --quotagroup<span class="w"> </span><span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = data, mount = /data, filesystem = ext4, size = 4GB}&quot;</span><span class="w"> </span><span class="se">\</span>
 --quotagroup<span class="w"> </span><span class="s2">&quot;{quotagroup = sb_user</span><span class="si">${</span><span class="nv">HPVS_NUMBER</span><span class="si">}</span><span class="s2">, mountid = docker, mount = /docker, filesystem = ext4, size = 16GB}&quot;</span><span class="w"> </span><span class="se">\</span>
@@ -1405,7 +1405,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 29, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 5, 2023</span>
       
         <br>
         Created:
