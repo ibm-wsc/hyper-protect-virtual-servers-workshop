@@ -1538,7 +1538,7 @@ virtualservers:
 -<span class="w"> </span>name:<span class="w"> </span>grep11-08-0014-9876
 host:<span class="w"> </span>atgzlpar79
 repoid:<span class="w"> </span>hpcsKpGrep11_runq
-imagetag:<span class="w"> </span><span class="m">1</span>.2.7.4
+imagetag:<span class="w"> </span><span class="m">1</span>.2.7.5
 imagefile:<span class="w"> </span>hpcsKpGrep11_runq.tar.gz
 crypto:
 <span class="w">    </span>crypto_matrix:
@@ -1602,7 +1602,7 @@ ports:
 </details>
 <details class="example" open="open">
 <summary>Command to start the GREP11 server with the JSON file</summary>
-<div class="highlight"><pre><span></span><code>hpvs vs create --name grep11-08-0014-9876 --repo hpcsKpGrep11_runq --tag 1.2.7.4 --crypto_matrix=08.0014 --cpu 2 --ram 2048 --envjsonpath ${HOME}/hpvs/config/grep11/grep11_env_08.0014.json --ports &quot;{containerport = 9876, protocol = tcp, hostport = 9876}&quot;
+<div class="highlight"><pre><span></span><code>hpvs vs create --name grep11-08-0014-9876 --repo hpcsKpGrep11_runq --tag 1.2.7.5 --crypto_matrix=08.0014 --cpu 2 --ram 2048 --envjsonpath ${HOME}/hpvs/config/grep11/grep11_env_08.0014.json --ports &quot;{containerport = 9876, protocol = tcp, hostport = 9876}&quot;
 </code></pre></div>
 </details>
 <div class="admonition important">
@@ -1623,7 +1623,7 @@ ports:
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 5, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 19, 2024</span>
       
         <br>
         Created:
